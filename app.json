@@ -1,0 +1,17 @@
+{
+  "name": "DORIS-Intranet",
+  "description": "A simple project to get started with Django on Heroku",
+  "repository": "https://github.com/nycrecords/intranet",
+  "keywords": ["python", "django", "intranet", "cms"],
+  "env": {
+    "DJANGO_SECRET_KEY": {
+      "description": "A randomly generated secret to secure your Django installation",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+  ],
+  "scripts": {
+    "postdeploy": "python manage.py migrate --noinput"
+  }
+}
