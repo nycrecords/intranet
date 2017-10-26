@@ -160,4 +160,4 @@ typings/
 .env
 
 # SQLite Databases
-.db
+*.db
