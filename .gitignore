@@ -158,3 +158,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# SQLite Databases
+.db
