@@ -1,0 +1,49 @@
+<!--{% extends "bootstrap/base.html" %}-->
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+{% block head %}
+    {{ super() }}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
+{% endblock %}
+
+<body>
+
+{% block navbar %}
+    <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+            </div>
+        </div>
+    </div>
+    <div class="blue-overlay">
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+
+</body>
+</html>
