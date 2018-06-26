@@ -55,6 +55,10 @@ body {
     margin-bottom: 5rem;
 }
 
+.top-padding {
+    padding-top: 2rem;
+}
+
 .all-posts-heading {
     color: #3F72E6;
     padding-left: 0;
@@ -62,6 +66,15 @@ body {
     font-size: 16px;
     font-weight: normal;
     line-height: 22px;
+}
+
+.sort-by-label {
+    /*padding-top: 3rem;*/
+    padding-left: 9rem;
+    color: #787878;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
 }
 
 .sort-by-dropdown {
@@ -141,6 +154,62 @@ form.filter-form {
     font-weight: normal;
     letter-spacing: 0.8px;
     line-height: 16px;
+}
+
+.first-post-row {
+    padding-top: 5.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.post-row {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.post-icon {
+    word-wrap: break-word;
+    color: #4CAF50;
+    border-radius: 50%;
+}
+
+.post-description {
+    word-wrap: break-word;
+}
+
+.post-title {
+    color: #4A4A4A;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.post-date-author {
+    color: #787878;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.post-preview {
+    color: #787878;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.post-divider {
+    border: 1px solid #ACACAC;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.read-more {
+    float: right;
+    color: #3F72E6;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
 }
 
 .blue-footer {
