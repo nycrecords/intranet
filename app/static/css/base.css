@@ -15,6 +15,11 @@ body {
     background: linear-gradient(180deg, #5094A5 0%, #0C4857 100%);
 }
 
+.news-updates-padding {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+}
+
 .home-news-update {
     padding-top: 13px;
     padding-bottom: 20px;
@@ -42,6 +47,8 @@ body {
     width: 100%;
     height: 75%;
     margin: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
     border-radius: 3px;
     background-color: #FFFFFF;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
@@ -50,14 +57,30 @@ body {
 
 .all-posts-heading {
     color: #3F72E6;
+    padding-left: 0;
     font-family: "Helvetica Neue";
     font-size: 16px;
     font-weight: normal;
     line-height: 22px;
 }
 
+.sort-by-dropdown {
+    margin-top: 10px;
+    float: right;
+    height: 40px;
+    width: 290px;
+    color: #4A4A4A;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.5), 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
 .filter-section {
-    width: 20%;
+    width: 25%;
 }
 
 .filter-by-heading {
@@ -112,6 +135,7 @@ form.filter-form {
 
 .filter-option-label {
     color: #4A90E2;
+    margin-left: 5px;
     font-family: "Helvetica Neue";
     font-size: 14px;
     font-weight: normal;

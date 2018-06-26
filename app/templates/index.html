@@ -2,12 +2,18 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="col-sm-12">
+<div class="col-sm-12 news-updates-padding">
     <div class="home-news-update">Home&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;News & Updates</div>
     <h1 class="news-updates">News & Updates</h1>
     <div class="well content-area">
         <div class="col-sm-12">
-            <h2 class="all-posts-heading">All Posts</h2>
+            <h2 class="col-sm-6 all-posts-heading">All Posts</h2>
+            <select class="col-sm-6 sort-by-dropdown">
+                <option value="Date">Date</option>
+                <option value="Author">Author A-Z</option>
+                <option value="Author">Author Z-A</option>
+                <option value="Type">Type</option>
+            </select>
         </div>
         <div class="col-sm-3 filter-section">
             <h2 class="filter-by-heading">Filter by:</h2>
@@ -109,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 well"></div>
+        <div class="col-sm-9"></div>
     </div>
 </div>
 {% endblock %}
