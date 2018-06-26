@@ -2,11 +2,114 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="page-content">
+<div class="col-sm-12">
     <div class="home-news-update">Home&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;News & Updates</div>
     <h1 class="news-updates">News & Updates</h1>
     <div class="well content-area">
+        <div class="col-sm-12">
+            <h2 class="all-posts-heading">All Posts</h2>
+        </div>
+        <div class="col-sm-3 filter-section">
+            <h2 class="filter-by-heading">Filter by:</h2>
+            <div class="panel-group">
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POSTING
+                        TYPE
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Meetings
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;MEETING
+                        TYPE
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Administration
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    IT Status
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Municipal Library
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Senior Staff
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Strategic Planning
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Meetings
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 well"></div>
     </div>
-
 </div>
 {% endblock %}

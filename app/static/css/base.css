@@ -5,17 +5,13 @@ body {
 }
 
 .top-header {
-    /*min-height: 48px;*/
     min-height: 4.5rem;
-    /*min-height: 8%;*/
     background-color: #000000;
     margin-bottom: 0;
 }
 
 .blue-overlay {
-    /*min-height: 216px;*/
     min-height: 18.5rem;
-    /*min-height: 33%;*/
     background: linear-gradient(180deg, #5094A5 0%, #0C4857 100%);
 }
 
@@ -44,8 +40,86 @@ body {
 
 .content-area {
     width: 100%;
+    height: 75%;
     margin: auto;
     border-radius: 3px;
     background-color: #FFFFFF;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 5rem;
+}
+
+.all-posts-heading {
+    color: #3F72E6;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 22px;
+}
+
+.filter-section {
+    width: 20%;
+}
+
+.filter-by-heading {
+    color: #787878;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.35px;
+    line-height: 24px;
+}
+
+.panel-group > .panel.filter-border {
+    border-radius: 0px;
+}
+
+.panel-default > .filter-heading {
+    color: #5C95A3;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 1px;
+}
+
+hr.panel-divider {
+    margin-top: 0;
+    margin-bottom: 0;
+    border-top: 1px solid #ACACAC;
+    border-radius: 3px;
+}
+
+.filter-border {
+    border: 1px solid #ACACAC;
+    border-radius: 3px;
+}
+
+.filter-heading {
+    color: #5C95A3;
+    font-family: "Helvetica Neue";
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+form.filter-form {
+    margin-bottom: 0;
+}
+
+.panel-body.filter-choices {
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+.filter-option-label {
+    color: #4A90E2;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.8px;
+    line-height: 16px;
+}
+
+.blue-footer {
+    height: 30rem;
+    background-color: #77A0A9;
 }
