@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: 5950a9223a1c
+Revision ID: a1755712ae71
 Revises: 
-Create Date: 2018-06-27 18:38:46.656504
+Create Date: 2018-06-28 14:08:42.867596
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '5950a9223a1c'
+revision = 'a1755712ae71'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('type', sa.Enum('News', 'Event', 'Meeting Notes', name='post_type'), nullable=True),
     sa.Column('title', sa.String(), nullable=True),
     sa.Column('content', sa.String(), nullable=True),
-    sa.Column('categories', postgresql.ARRAY(sa.String()), nullable=True),
+    sa.Column('tags', postgresql.ARRAY(sa.String()), nullable=True),
     sa.Column('date_created', sa.DateTime(), nullable=True),
     sa.Column('date_modified', sa.DateTime(), nullable=True),
     sa.Column('visible', sa.Boolean(), nullable=True),
@@ -82,11 +82,12 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('meeting_date', sa.DateTime(), nullable=True),
     sa.Column('meeting_location', sa.String(), nullable=True),
+    sa.Column('meeting_leader', sa.String(), nullable=True),
     sa.Column('note_taker', sa.Integer(), nullable=True),
     sa.Column('start_time', sa.String(), nullable=True),
     sa.Column('end_time', sa.String(), nullable=True),
     sa.Column('attendees', postgresql.ARRAY(sa.Integer()), nullable=True),
-    sa.Column('next_meeting', sa.DateTime(), nullable=True),
+    sa.Column('next_meeting_date', sa.DateTime(), nullable=True),
     sa.Column('next_meeting_leader', sa.Integer(), nullable=True),
     sa.Column('next_meeting_note_taker', sa.Integer(), nullable=True),
     sa.Column('meeting_type', sa.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'), nullable=True),
