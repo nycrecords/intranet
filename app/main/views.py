@@ -21,5 +21,8 @@ def news_and_updates():
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
 def new_post():
-
-    return render_template('news_and_updates.html')
+    form = Meeting_Notes_Form()
+    if form.validate_on_submit():
+        flash('Form submitted.')
+        return redirect(url_for('main.index'))
+    return render_template('new_meeting_notes.html', form=form)
