@@ -2,14 +2,23 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="col-sm-12 news-updates-padding">
-    <div class="home-news-update">Home&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;News & Updates</div>
-    <h1 class="news-updates">News & Updates</h1>
-    <div class="well content-area">
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">News & Updates</h1>
+    </div>
+    <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
-            <h2 class="col-sm-6 all-posts-heading">All Posts</h2>
+            <div class="col-sm-6 all-posts-link">
+                <a href="#">All Posts</a>
+            </div>
             <div class="col-sm-6">
-                <span class="sort-by-label">Sort by:</span>
+                <p class="sort-by-label">Sort by:</p>
                 <select class="sort-by-dropdown">
                     <option value="Date">Date</option>
                     <option value="Author">Author A-Z</option>
@@ -19,7 +28,7 @@
             </div>
         </div>
         <div class="col-sm-3 filter-section">
-            <h2 class="filter-by-heading">Filter by:</h2>
+            <p class="filter-by">Filter by:</p>
             <div class="panel-group">
                 <div class="panel filter-border">
                     <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POSTING
@@ -132,7 +141,6 @@
                     <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
                 </div>
             </div>
-            <hr class="post-divider"/>
             <div class="col-sm-12 post-row">
                 <div class="col-sm-3 post-icon">
                 </div>
@@ -146,7 +154,6 @@
                     <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
                 </div>
             </div>
-            <hr class="post-divider"/>
             <div class="col-sm-12 post-row">
                 <div class="col-sm-3 post-icon">
                 </div>
