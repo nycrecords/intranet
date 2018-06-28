@@ -5,10 +5,13 @@
 
 {% block head %}
     {{ super() }}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>
+    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
 {% endblock %}
 
 <body>
@@ -50,7 +53,10 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
 {% endblock %}
 
 </body>

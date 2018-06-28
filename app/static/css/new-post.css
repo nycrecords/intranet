@@ -1,0 +1,25 @@
+.new-post-form {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.post-form-label {
+    color: #2A2C2E;
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.post-form-field {
+    margin-bottom: 3rem;
+}
+
+.post-form-input {
+    width: 50%;
+}
+
+.post-form-select {
+    width: 50%;
+    /*height: 50px;*/
+}
