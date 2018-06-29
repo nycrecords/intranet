@@ -43,8 +43,8 @@
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_note_taker.label (class="post-form-label") }}
-                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
+                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker", data_role="tagsinput") }}
             </div>
 
             <div class="form-group">
@@ -57,25 +57,40 @@
                     {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="datepicker") }}
             </div>
 
-    <!--title = StringField('TITLE')-->
-    <!--meeting_type = SelectField("MEETING TYPE", choices=choices.MEETING_TYPES)-->
-    <!--division = SelectField("DIVISION", choices=choices.DIVISIONS)-->
-    <!--meeting_date = StringField('MEETING DATE')-->
-    <!--meeting_location = StringField('LOCATION')-->
-    <!--meeting_leader = StringField('MEETING LEADER')-->
-    <!--meeting_note_taker = StringField('MEETING NOTETAKER')-->
-    <!--start_time = StringField('START TIME')-->
-    <!--end_time = StringField('END TIME')-->
-    <!--attendees = StringField('ATTENDEES')-->
-    <!--content = TextAreaField('DISCUSSION')-->
-    <!--tags = StringField('TAGS')-->
-    <!--next_meeting_date = StringField('NEXT MEETING DATE')-->
-    <!--next_meeting_leader = StringField('NEXT MEETING LEADER')-->
-    <!--next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')-->
-    <!--submit = SubmitField()-->
+            <div class="form-group">
+                    {{ form.attendees.label (class="post-form-label") }}<br>
+                    {{ form.attendees (class="form-control post-form-field post-form-input", id="", data_role="tagsinput") }}
+            </div>
 
+            <div class="form-group">
+                    {{ form.content.label (class="post-form-label") }}<br>
+                    {{ form.content (class="form-control post-form-field post-form-textarea", id="", rows="2") }}
+            </div>
+
+            <div class="form-group">
+                    {{ form.tags.label (class="post-form-label") }}
+                    {{ form.tags (class="form-control post-form-field post-form-input", id="datepicker") }}
+            </div>
+
+            <div class="form-group">
+                    {{ form.next_meeting_date.label (class="post-form-label") }}
+                    {{ form.next_meeting_date (class="form-control post-form-field post-form-input", id="datepicker") }}
+            </div>
+
+            <div class="form-group">
+                    {{ form.next_meeting_leader.label (class="post-form-label") }}
+                    {{ form.next_meeting_leader (class="form-control post-form-field post-form-input", id="datepicker") }}
+            </div>
+
+            <div class="form-group">
+                    {{ form.next_meeting_note_taker.label (class="post-form-label") }}
+                    {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker") }}
+            </div>
+
+            <div class="center-submit-button">
+                    {{ form.submit (class="btn btn-secondary post-form-submit", id="submit", type="submit") }}
+            </div>
         </form>
-        <!--{{wtf.quick_form(form)}}-->
     </div>
 </div>
 {% endblock %}
