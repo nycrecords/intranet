@@ -49,8 +49,27 @@ class Posts(db.Model):
     visible = db.Column(db.Boolean, default=True)
     deleted = db.Column(db.Boolean, default=False)
 
+    __mapper_args__ = {'polymorphic_on': type}
+
+    # def __init__(self,
+    #              author,
+    #              type,
+    #              title,
+    #              content,
+    #              tags):
+    #     self.author = author
+    #     self.type = type
+    #     self.title = title,
+    #     self.content = content,
+    #     self.tags = tags,
+    #     self.date_created = datetime.utcnow()
+    #     self.date_modified = None
+    #     self.visible = True
+    #     self.deleted = False
+
     def __repr__(self):
         return '<Posts %r>' % self.id
+
 
 class MeetingNotes(db.Model):
     __tablename__ = 'meeting_notes'

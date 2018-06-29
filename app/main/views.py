@@ -8,15 +8,12 @@ from app.main.utils import create_post
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
-    form = Meeting_Notes_Form()
-    if form.validate_on_submit():
-        flash('Form submitted.')
-        return redirect(url_for('main.index'))
-    return render_template('index.html', form=form)
+    return render_template('index.html')
 
 
 @main.route('/news-updates', methods=['GET', 'POST'])
 def news_and_updates():
+
     return render_template('news_and_updates.html')
 
 
@@ -25,7 +22,9 @@ def new_post():
     form = Meeting_Notes_Form()
 
     if flask_request.method == 'POST':
-        post_id = create_post()
+        post_id = create_post(title=form.title.data,
+                              meeting_date=form.meeting_date.data)
+        print(post_id)
 
     # if form.validate_on_submit():
         flash('Form submitted.')
