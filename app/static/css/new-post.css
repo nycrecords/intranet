@@ -1,0 +1,56 @@
+.new-post-form {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.post-form-label {
+    color: #2A2C2E;
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.post-form-field {
+    margin-bottom: 3rem;
+}
+
+.post-form-input {
+    width: 50%;
+}
+
+.post-form-select {
+    width: 50%;
+}
+
+.poste-form-textarea {
+    width: 500px;
+    height: 500px;
+}
+
+.bootstrap-tagsinput {
+    width: 50%;
+}
+
+.text-core {
+    width: 500px;
+}
+
+.text-wrap {
+    width: 500px;
+}
+
+.center-submit-button {
+    text-align: center;
+}
+
+.post-form-submit {
+    width: 50%;
+    border: 1px solid #ECAC2A;
+    border-radius: 4px;
+    background-color: #ECAC2A;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-size: 18px;
+}

@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">News & Updates</h1>
+    </div>
+    <div class="col-sm-12 well content-area">
+        <div class="col-sm-12 top-padding">
+            <div class="col-sm-6 all-posts-link">
+                <a href="#">All Posts</a>
+                <a href="{{ url_for('main.new_post') }}">New Post</a>
+            </div>
+            <div class="col-sm-6">
+                <p class="sort-by-label">Sort by:</p>
+                <select class="sort-by-dropdown">
+                    <option value="Date">Date</option>
+                    <option value="Author">Author A-Z</option>
+                    <option value="Author">Author Z-A</option>
+                    <option value="Type">Type</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-3 filter-section">
+            <p class="filter-by">Filter by:</p>
+            <div class="panel-group">
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POSTING
+                        TYPE
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Meetings
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;MEETING
+                        TYPE
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Administration
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    IT Status
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Municipal Library
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Senior Staff
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Strategic Planning
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    Meetings
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 post-section">
+            <div class="col-sm-12 first-post-row">
+                <div class="col-sm-3 post-icon">
+                </div>
+                <div class="col-sm-9 post-description">
+                    <p class="post-title">IT Department Weekly Status Meeting</p>
+                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
+                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
+                        review of current status.
+                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
+                        of the</p>
+                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
+                </div>
+            </div>
+            <div class="col-sm-12 post-row">
+                <div class="col-sm-3 post-icon">
+                </div>
+                <div class="col-sm-9 post-description">
+                    <p class="post-title">IT Department Weekly Status Meeting</p>
+                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
+                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
+                        review of current status.
+                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
+                        of the</p>
+                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
+                </div>
+            </div>
+            <div class="col-sm-12 post-row">
+                <div class="col-sm-3 post-icon">
+                </div>
+                <div class="col-sm-9 post-description">
+                    <p class="post-title">IT Department Weekly Status Meeting</p>
+                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
+                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
+                        review of current status.
+                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
+                        of the</p>
+                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
