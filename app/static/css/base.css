@@ -61,3 +61,148 @@ body {
     height: 30rem;
     background-color: #77A0A9;
 }
+
+/* Navigation Style */
+
+
+.wednesday-november {
+	height: 22px;
+	width: 305px;
+	color: #FFFFFF;
+	font-family: "Proxima Nova";
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 0.6px;
+	line-height: 22px;
+    text-align: right;
+    font-weight: 100;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+
+.doris {
+    height: 57px;
+    width: 142px;
+    color: #FFFFFF;
+    font-family: "Phosphate";
+    font-size: 48px;
+    letter-spacing: 3px;
+    line-height: 59px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.intranet {
+    height: 35px;
+    width: 144px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 30px;
+    letter-spacing: 5.1px;
+    line-height: 65px;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.rectangle-2 {
+    height: 40px;
+    width: 296px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.search {
+    height: 16px;
+    width: 75px;
+    color: #ACACAC;
+    font-size: 20px;
+    font-family: "Helvetica Neue";
+    line-height: 24px;
+    padding: 10px;
+}
+
+.float-r {
+    display: inline-block;
+    width: 320px;
+    float: right; 
+}
+
+.button{
+   padding: none;
+   border:none;
+   background: none;
+}
+
+.news-updates {
+	height: 23px;
+	width: 150px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.employee-resources {
+	height: 23px;
+	width: 190px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.strategic-planning {
+	height: 23px;
+	width: 164px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.it-support {
+	height: 23px;
+	width: 95px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue";
+	font-size: 20px;
+	line-height: 24px;
+	text-align: center;
+}
+
+.nav-link{
+    color:white;
+    height: 18px;    
+    width: 190px;    
+    color: #FFFFFF;    
+    font-family: "Helvetica Neue";
+    font-weight: normal;     
+    font-size: 15px;    
+    line-height: 24px;    
+    text-align: center;
+ }
+ 
+ .dropdown-item{
+    font-family: "Helvetica Neue";
+    font-weight: normal;     
+    font-size: 15px;
+    color:#000000
+ }
+ 
+ ul{
+    list-style: none;
+ }
+
+.button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+}
