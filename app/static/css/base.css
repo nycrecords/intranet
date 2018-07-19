@@ -66,18 +66,21 @@ body {
 
 
 .wednesday-november {
-	height: 22px;
-	width: 305px;
-	color: #FFFFFF;
-	font-family: "Proxima Nova";
-	font-size: 18px;
-	font-weight: 600;
-	letter-spacing: 0.6px;
-	line-height: 22px;
+    height: 22px;
+    width: 305px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    line-height: 22px;
     text-align: right;
-    font-weight: 100;
+    font-weight: normal;
+    letter-spacing: 1px;
     padding-top: 2.5rem;
     padding-bottom: 1rem;
+    float:right;
+    margin-right:13px;    
 }
 
 
@@ -116,89 +119,65 @@ body {
     background-color: #FFFFFF;
 }
 
-.search {
-    height: 16px;
+.navbar-searchbar { 
+    height: 25px;
     width: 75px;
     color: #ACACAC;
-    font-size: 20px;
+    font-size: 24px;
     font-family: "Helvetica Neue";
-    line-height: 24px;
-    padding: 10px;
+    line-height: 26px;
+    padding: 15px;
 }
 
-.float-r {
+#search-bar {
     display: inline-block;
-    width: 320px;
-    float: right; 
+    width: 280px;
 }
 
-.button{
-   padding: none;
-   border:none;
-   background: none;
+.navbar-option:hover>.dropdown-menu{
+    display:block;
 }
 
-.news-updates {
-	height: 23px;
-	width: 150px;
-	color: #FFFFFF;
-	font-family: "Helvetica Neue";
-	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
+.nav-magnification-style{
+    padding: 9px 10px;
+    color: darkgray;
+    background-color: grey;
+    border-color: #979797;
 }
 
-.employee-resources {
-	height: 23px;
-	width: 190px;
-	color: #FFFFFF;
-	font-family: "Helvetica Neue";
-	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
+.nav-caret{
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #FFFFFF;
 }
 
-.strategic-planning {
-	height: 23px;
-	width: 164px;
-	color: #FFFFFF;
-	font-family: "Helvetica Neue";
-	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
-}
-
-.it-support {
-	height: 23px;
-	width: 95px;
-	color: #FFFFFF;
-	font-family: "Helvetica Neue";
-	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
-}
 /* Style Changes to the nav bar */
 .nav{
     top:20px;
 }
 
+.navbar-nav  ul{
+    justify-content: space-around;
+}
  
 .navbar-option a{
     text-align: center;
     height: 25px;    
-    width: 220px;    
+    width: auto;    
     color: #FFFFFF;    
     font-family: "Helvetica Neue";
     font-weight: normal; 
     font-weight: 300;    
     font-size: 20px;    
     line-height: 24px;
+    padding:0;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
     background-color: transparent;
 }
+
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
     background-color: transparent;
 }
@@ -208,10 +187,14 @@ body {
  }
 
 .dropdown-menu>li>a{
-    margin-top: 20px;
-    margin-bottom: 15px;
+    text-align: left;
+    padding-bottom: 35;
+    padding-top: 10;
 }
 
-.navbar-nav>li>.dropdown-menu{
-    margin-top:10px;
+.dropdown-menu>li>a:hover{
+  background-color:#d4d7db
 }
+
+.test{
+margin-left: 15px;}

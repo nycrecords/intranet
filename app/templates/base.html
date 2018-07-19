@@ -38,19 +38,29 @@
                 </div>
             </div>
             <span class="intranet top-padding2">intranet</span>
-            <div class="float-r">
-                <div class="search">
-                    <input type="text" placeholder="Search" class="rectangle-2">
+
+            <form class="navbar-form navbar-right" role="search">
+                <div class="input-group add-on">
+                    <input class="form-control" placeholder="Search" name="srch-term" id="search-bar" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default nav-magnification-style" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
+
             <nav class="navbar transparent">
                 <div class="navbar-inner container-fluid">
                     <ul class="nav navbar-nav col-sm-12">
-                        <li id="news-updates-tab" class="col-sm-3 navbar-option">
-                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">News & Updates</a>
+                        <li  class="col-sm-3 navbar-option">
+                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="test">
+                                News & Updates
+                                <span class="caret nav-caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">Action</a>
+                                    <a href="/news-update">Action</a>
                                 </li>
                                 <li>
                                     <a href="#">Another action</a>
@@ -64,7 +74,10 @@
                             </ul>
                         </li>
                         <li class="col-sm-3 navbar-option">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employee Resources</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Employee Resources
+                                <span class="caret nav-caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="#">Staff Directory</a>
@@ -84,7 +97,15 @@
                             <a href="#">Strategic Planning</a>
                         </li>
                         <li class="col-sm-3 navbar-option">
-                            <a href="#">IT Support</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="space">
+                                IT Support
+                                <span class="caret nav-caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">FAQ</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
