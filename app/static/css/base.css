@@ -61,3 +61,26 @@ body {
     height: 30rem;
     background-color: #77A0A9;
 }
+
+.footer-inner{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+}
+.footer-margin-left{
+    width: 380px;
+    height: auto;
+    float: left;
+}
+.footer-border{
+   border-left: 1px solid;
+}
+.footer-box{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    border: 1px solid #F00;
+}
+.footer-box h1{
+    
+}
