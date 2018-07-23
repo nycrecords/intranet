@@ -11,8 +11,9 @@ body {
 }
 
 .blue-overlay {
-    min-height: 18.5rem;
-    background: linear-gradient(180deg, #5094A5 0%, #0C4857 100%);
+    min-height: 22rem;
+    background-image: linear-gradient(to bottom right, rgba(80, 148, 165, 0.6),rgba(12, 72, 87, 0.6)), url("/static/img/intranet_header_background.jpg");
+    background-size: cover;
 }
 
 .breadcrumb-header {
@@ -80,7 +81,7 @@ body {
     padding-top: 2.5rem;
     padding-bottom: 1rem;
     float:right;
-    margin-right:13px;    
+    margin-right:1rem;    
 }
 
 
@@ -108,7 +109,7 @@ body {
     line-height: 65px;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
-    margin-left: 15px;
+    margin-left: 1.5rem;
 }
 
 .rectangle-2 {
@@ -120,13 +121,17 @@ body {
 }
 
 .navbar-searchbar { 
-    height: 25px;
+    height: 30px;
     width: 75px;
     color: #ACACAC;
     font-size: 24px;
     font-family: "Helvetica Neue";
     line-height: 26px;
     padding: 15px;
+}
+
+.navbar-form{
+    margin-right: .009rem;
 }
 
 #search-bar {
@@ -153,17 +158,20 @@ body {
 
 /* Style Changes to the nav bar */
 .nav{
-    top:20px;
+    top:3.9rem;
 }
 
 .navbar-nav  ul{
     justify-content: space-around;
 }
+
+.navbar-nav>li>.dropdown-menu{
+   margin-top:.81rem;
+}
  
 .navbar-option a{
     text-align: center;
-    height: 25px;    
-    width: auto;    
+    height: 25px;       
     color: #FFFFFF;    
     font-family: "Helvetica Neue";
     font-weight: normal; 
@@ -171,6 +179,7 @@ body {
     font-size: 20px;    
     line-height: 24px;
     padding:0;
+    margin-bottom:2rem;
 }
 
 .nav>li>a:focus, .nav>li>a:hover {
@@ -188,13 +197,18 @@ body {
 
 .dropdown-menu>li>a{
     text-align: left;
-    padding-bottom: 35;
-    padding-top: 10;
+    padding-bottom: 2.1875rem;
+    padding-top: 0.625rem;
 }
 
 .dropdown-menu>li>a:hover{
   background-color:#d4d7db
 }
 
-.test{
-margin-left: 15px;}
+.navbar-option:hover{
+    border-bottom: 1rem solid #F9B52B;
+}
+
+.navbar-inner>.navbar-nav{
+    
+}
