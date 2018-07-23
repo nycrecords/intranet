@@ -10,10 +10,8 @@ from app.main.utils import create_post
 def index():
     return render_template('index.html')
 
-
 @main.route('/news-updates', methods=['GET', 'POST'])
 def news_and_updates():
-
     return render_template('news_and_updates.html')
 
 
@@ -30,3 +28,7 @@ def new_post():
         flash('Form submitted.')
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
+
+@main.route('/it-support', methods=['GET', 'POST'])
+def it_support():
+    return render_template('it_support.html')
