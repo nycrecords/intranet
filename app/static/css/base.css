@@ -63,7 +63,7 @@ body {
     background-color: #77A0A9;
 }
 
-/* Navigation Style */
+/* Header Style */
 
 
 .wednesday-november {
@@ -174,11 +174,9 @@ body {
     height: 25px;       
     color: #FFFFFF;    
     font-family: "Helvetica Neue";
-    font-weight: normal; 
-    font-weight: 300;    
+    font-weight: normal;    
     font-size: 20px;    
     line-height: 24px;
-    padding:0;
     margin-bottom:2rem;
 }
 
@@ -191,24 +189,24 @@ body {
     background-color: transparent;
 }
 
-.dropdown-menu { 
-    min-width: 250px;
- }
+ .dropdown-menu { 
+    width: 19.6em;
+ } 
 
 .dropdown-menu>li>a{
     text-align: left;
-    padding-bottom: 2.1875rem;
-    padding-top: 0.625rem;
-}
+    /* margin-bottom:0;
+    vertical-align: center;
+    padding-top:15px;
+    padding-bottom:15px;
+    */
+}  
 
 .dropdown-menu>li>a:hover{
-  background-color:#d4d7db
+  background-color:#d4d7db;
+  background-size:cover;
 }
 
 .navbar-option:hover{
     border-bottom: 1rem solid #F9B52B;
-}
-
-.navbar-inner>.navbar-nav{
-    
 }
