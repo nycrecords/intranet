@@ -1,11 +1,85 @@
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+<div class=" col-sm-12">
+    <div class="breadcrumb-section ">
+        <div class="container container-spacing">
+            <div class="col-sm-9">
 
-{% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-    </div>
-    <div class="col-sm-12 well content-area">
+            </div>
+            <div class="col-sm-3">
+                <div class="col-sm-12 quick-links">
+                    <div class="quick-link-header">
+                        <p class="test"><i class="fa fa-bookmark-o"></i></i> QUICK LINK</p>
+                        <!-- <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> -->
+                    </div>
+                    <div class="well">
+                        <ul class="quick-links-anchors">
+                            <li>
+                                <a href=#>CityShare</a>
+                            </li>
+                            <li>
+                                <a href=#>CityTime</a>
+                            </li>
+                            <li>
+                                <a href=#>TimeClock</a>
+                            </li>
+                            <li>
+                                <a href=#>Tools & Applications</a>
+                            </li>
+                            <li>
+                                <a href=#>Documents</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-sm-12 quick-links">
+                        <div class="quick-link-header">
+                            <p class="test"><i class="fa fa-calendar-o" aria-hidden="true"></i> CALENDER</p>
+                            <!-- <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> -->
+                        </div>
+                        <div class="well">
+                            <ul class="quick-links-anchors">
+                               
+                            </ul>
+                        </div>
+                </div>
+
+                <div class="col-sm-12 quick-links">
+                    <div class="quick-link-header">
+                        <p class="test"> <i class="fa fa-briefcase" aria-hidden="true"></i>        DIVISIONS</p>
+                        <!-- <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> -->
+                    </div>
+                    <div class="well">
+                        <ul class="quick-links-anchors">
+                            <li>
+                                <a href=#>Administration</a>
+                            </li>
+                            <li>
+                                <a href=#>Executive</a>
+                            </li>
+                            <li>
+                                <a href=#>External Affairs</a>
+                            </li>
+                            <li>
+                                <a href=#>Grant Unit</a>
+                            </li>
+                            <li>
+                                <a href=#>Management & Information Services</a>
+                            </li>
+                            <li>
+                                <a href=#>Municipal Archives</a>
+                            </li>
+                            <li>
+                                <a href=#>Municipal Library</a>
+                            </li>
+                            <li>
+                                <a href=#>Municipal Records</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
