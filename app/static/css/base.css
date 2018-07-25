@@ -60,10 +60,7 @@ body {
 .blue-footer {
     height: 35rem;
     background-color: #77A0A9;
-    position:fixed;
-    bottom:0;
-    right:0;
-    left:0;
+
 }
 
 /* footer work */   
@@ -80,6 +77,7 @@ body {
 }
 
 .doris-banner {
+    /* dimensions are 60% of actual png dimensions */
     height: 40px;
     width: 293px;
     margin-top: 80px;
