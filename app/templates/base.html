@@ -3,25 +3,24 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-{% block head %}
-    {{ super() }}
-    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.core.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.autocomplete.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.tags.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/easy-autocomplete.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
-{% endblock %}
+{% block head %} {{ super() }}
+<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.core.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.autocomplete.css') }}"
+/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.tags.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/easy-autocomplete.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}" /> {% endblock %}
 
 <body>
 
-{% block navbar %}
+    {% block navbar %}
     <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -31,53 +30,115 @@
     <div class="blue-overlay">
 
     </div>
-{% endblock %}
-
-{% block content %}
+    {% endblock %} {% block content %}
     <div class="container">
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% block page_content %}{% endblock %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %} {% block page_content %}{% endblock %}
     </div>
     <div class="blue-footer">
-            <div class="footer-inner">
-                    <div class="footer-left">
+        <div class="center-footer">
+            <div class="col-sm-12">
+                <div class="footer-left col-sm-3">
                     <div class="footer-box">
-                    <h1>ABOUT</h1>
-                    <ul>
-                        <li><a href="#">Our Mission</a></li>
-                        <li><a href="#">Divisions</a></li>
-                        <li><a href="#">Contacts</a></li>
-                    </ul>
-{% endblock %}
-
-{% block footer %}
+                        <img class="doris-banner" src="/static/img/doris_banner.png">
+                    </div>
+                </div>
+                <div class="footer-left col-sm-3">
+                    <div class="footer-box">
+                        <h1>ABOUT</h1>
+                        <ul>
+                            <li>
+                                <a href="#">Our Mission</a>
+                            </li>
+                            <li>
+                                <a href="#">Divisions</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-left col-sm-3">
+                    <div class="footer-box">
+                        <h1>DORIS SITES</h1>
+                        <ul>
+                            <li>
+                                <a href="http://www.archives.nyc/">Archives.nyc</a>
+                            </li>
+                            <li>
+                                <a href="https://a860-openrecords.nyc.gov/">OpenRecords</a>
+                            </li>
+                            <li>
+                                <a href="http://nycma.lunaimaging.com/luna/servlet">Online Gallary</a>
+                            </li>
+                            <li>
+                                <a href="http://www.womensactivism.nyc/">Women's Activism.nyc</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-left col-sm-3">
+                    <div class="social-media-box">
+                        <div class="footer-option-centered">
+                            </ul>
+                            <h1>SOCIAL MEDIA</h1>
+                            <ul>
+                                <li>
+                                    <img class="social-media-logo" src="/static/img/facebook_logo.png"></img>
+                                    <a href="https://www.facebook.com/nycrecords"> Facebook</a>
+                                </li>
+                                <li>
+                                    <img class="social-media-logo" src="/static/img/instagram_logo.png">
+                                    <a href="https://www.instagram.com/nycarchives/"> Instagram</a>
+                                </li>
+                                <li>
+                                    <img class="social-media-logo" src="/static/img/twitter_logo.png">
+                                    <a href="https://twitter.com/nycrecords"> Twitter</a>
+                                </li>
+                                <li>
+                                    <img class="social-media-logo" src="/static/img/tumblr_logo.png">
+                                    <a href="http://nycrecords.tumblr.com/"> Tumblr</a>
+                                </li>
+                                <li>
+                                    <img class="social-media-logo" src="/static/img/youtube_logo.png">
+                                    <a href="https://www.youtube.com/user/NYCDeptofRecords"> YouTube</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-line-1">
+                    <div class="footer-line-2">
+                        <div class="footer-line-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %} {% block footer %}
     <div class="blue-overlay">
-    <footer> some footer</footer>
-{% endblock %}
-
-{% block scripts %}
-    {{ super() }}
-    {{ moment.include_moment() }}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
+        <footer> some footer</footer>
+        {% endblock %} {% block scripts %} {{ super() }} {{ moment.include_moment() }}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.core.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.autocomplete.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.tags.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.easy-autocomplete.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
-{% endblock %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script> {% endblock %}
 
 </body>
+
 </html>
