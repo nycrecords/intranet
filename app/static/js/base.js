@@ -1,5 +1,8 @@
 $(function () {
-    $("#datepicker").datepicker();
+    // $("#datepicker").datepicker();
+    // $(".datepicker").datepicker();
+    $("#meeting-date-datepicker").datepicker();
+    $("#next-meeting-date-datepicker").datepicker();
 
     try {
         // render timepicker plugins
@@ -85,5 +88,52 @@ $(function () {
         });
 
     tinymce.init({ selector:'textarea' });
+
+
+    $.ajax({
+        url: "/main/get_user_list",
+        type: "GET",
+        success: function (data) {
+            // populate the list
+            var users = datgita;
+            console.log(users);
+        },
+        error: function () {
+          console.log("BAD");
+        }
+    });
+
+
 });
 
+
+$( function() {
+    var users = [
+       "Edwin",
+        "John",
+        "Nikko",
+        "Taylor",
+        "Tracy",
+        "Michael",
+        "Wallace",
+        "Brandon",
+        "Eileen"
+    ];
+    $( "#next-meeting-leader" ).autocomplete({
+      source: users
+    });
+    $( "#next-meeting-note-taker" ).autocomplete({
+      source: users
+    });
+  } );
+
+
+// $.ajax({
+//     url: "/get_user_list/",
+//     type: "GET",
+//     success: function (data) {
+//         // populate the list
+//         var users = data;
+//         console.log(users);
+//     }
+// });
