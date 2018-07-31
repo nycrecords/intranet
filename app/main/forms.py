@@ -28,3 +28,8 @@ class Meeting_Notes_Form(FlaskForm):
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
     submit = SubmitField()
 
+
+class Staff_Directory_Search_Form(FlaskForm):
+    search = StringField('Search')
+    filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
+    submit = SubmitField('Search')

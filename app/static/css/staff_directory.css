@@ -1,0 +1,78 @@
+.panel-default>.panel-header-style{
+    background-color:#FFFFFF;
+    height:125px;
+}
+
+.panel-header-style{
+    padding-top:40px;
+}
+
+.panel-body-style{
+    padding:0;
+}
+
+.table-styles{
+    margin-bottom:0;
+}
+
+.header-spacing{
+    text-align: center;
+}
+
+.th-styles{
+    color: #FFFFFF;
+    font-family:Helvetica Neue;
+    font-size: 18px;
+    letter-spacing: 0.82px;
+    font-weight: normal !important;
+    background-color:#5C95A3;
+}
+
+.td-styles{
+    color: #333333;
+    font-family: Helvetica Neue;
+    font-size: 18px;
+    letter-spacing: 0.76px;
+    text-align:left;
+    vertical-align: middle;
+    background-color:#FFFFFF;
+}
+
+.select {
+    color: #39393A;
+    font-family: Helvetica Neue;
+    font-size: 18px;
+    width: 290px;
+}
+
+.avatar-style{
+    width:50px;
+    height:50px;
+    margin-right: 20px;
+}
+
+input[type=text], select{
+    width:290px;
+    height:35px;
+    font-family: Helvetica Neue;
+    font-size:20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    font-weight: normal;
+    background-color:#FFFFFF;
+}
+
+input[type=submit]{
+    height:35px;
+    font-family: Helvetica Neue;
+    font-size:20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    font-weight:normal;
+    background-color:#FFFFFF;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+        vertical-align: middle !important;
+}
+
