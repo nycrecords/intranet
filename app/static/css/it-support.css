@@ -1,6 +1,21 @@
-.it-support-opition-boxes{
-    height: 208px;	
-    width: 344px;	
-    border-radius: 5px;	
-    background-color:#F1F1F1;;
+.it-support-option-boxes{
+    height: 208px;
+    width: 344px;
+    border-radius: 5px;
+    background-color:#F1F1F1;
+}
+.it-support-text-area{
+    font-size: 14pt;
+    padding: 25px 25px 25px 25px;
+    color: dimgray;
+}
+.glyphicon.it-support-glyphicon{
+    min-height:  104px;
+    line-height: 104px;
+    font-size: 50px;
+    display: block;
+    text-align: center;
+}
+.title{
+    text-align: center;
 }
