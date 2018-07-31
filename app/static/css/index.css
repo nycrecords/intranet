@@ -6,7 +6,7 @@ margin-bottom: 2.3rem;
     margin-top: 2rem;
 }
 
-.well{
+.well.quick-links-well{
     background: #ffffff;
     width: 291px;
     border-radius:0;
