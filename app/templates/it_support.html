@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">IT Support</h1>
+    </div>
+    <div class="well content-area container">
+        <div class="row">
+            <div class="it-information-text col-sm-4">
+                <div class="it-support-opition-boxes col-sm-12">
+                    <div class="col-sm-12">
+                        <p>DORIS HELP DESK</p>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- plan is create a inner grid with the glypicons and text -->
+                    </div>
+                </div>
+                <p>For DORIS related requests, contact Kevin Chan in the Management and Information Services division.</p>
+            </div>
+            <div class="it-information-text col-sm-4">
+                <div class="it-support-opition-boxes">
+                    <p>CITYSIDE SERVICE DESK</p>
+                </div>
+                <p>For an immediate ticket and faster turnaround, users and IT staff can submit their incidents or requests
+                    to the CityWide Service Desk using the Self Service Portal My Desk.</p>
+            </div>
+            <div class="it-information-text col-sm-4">
+                <div class="it-support-opition-boxes">
+                    <p>TRAINING</p>
+                </div>
+                <p>Get hands on tranining with MS Office as well as cybersecurity awareness.</p>
+            </div>
+        </div>
+        <div class="it-information-text">
+            <p>For answers to common problems or issues, check out our FAQ page. </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
