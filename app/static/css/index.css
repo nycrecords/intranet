@@ -97,3 +97,41 @@ hr{
     margin-bottom: 15px;      
      border-top: 2px solid #eee;
 }
+
+/*carousel styles start here*/
+
+.carousel-caption{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 40px;
+    color: #fff;
+    text-align: left;
+    background: rgba(0,0,0,0.4);
+}
+.carousel-indicators
+{
+    bottom: -3px;
+    text-align: right;
+}
+.carousel-indicators li
+{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000\9;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #16a085;
+    border-radius: 50%;
+}
+.caption-text{
+    color: white;
+    font-style: italic;
+}
