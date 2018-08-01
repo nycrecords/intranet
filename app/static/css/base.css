@@ -70,11 +70,11 @@ body {
     height: auto;
     margin: auto;
 }
-.footer-left{
-    width: 380px;
-    height: auto;
-    float: left;
-}
+/*.footer-left{*/
+    /*width: 380px;*/
+    /*height: auto;*/
+    /*float: left;*/
+/*}*/
 
 .doris-banner {
     /* dimensions are 60% of actual png dimensions */
@@ -173,32 +173,18 @@ body {
  .center-footer{
     margin: 0 auto;
     width: 92.5%;
-} 
+}
 
 .footer-line-1{
     box-sizing: border-box;	
     height: 265px;	
     width: 0.5px;	
     border: 0.5px solid rgba(33,32,32,0.5);
-    margin-left: 410px;
+    /*margin-left: 410px;*/
+    margin-left: 29%;
     margin-top: 45px;
 }
 
-.footer-line-2{
-    box-sizing: border-box;	
-    height: 265px;	
-    width: 0.5px;	
-    border: 0.5px solid rgba(33,32,32,0.5);	
-    margin-left: 320px;
-}
-
-.footer-line-3{
-    box-sizing: border-box;	
-    height: 265px;	
-    width: 0.5px;	
-    border: 0.5px solid rgba(33,32,32,0.5);	
-    margin-left: 430px;
-}
 
 .footer-option-centered{
     width: 50%;
@@ -208,4 +194,10 @@ body {
 
 a {
     text-decoration: none !important;
+}
+
+.page-wrap {
+width: 960px;
+margin: 0 auto;
+    position: relative;
 }
