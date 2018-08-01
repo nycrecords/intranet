@@ -222,7 +222,7 @@ body {
     margin: auto;
 }
 .footer-left{
-    width: 380px;
+    /*width: 380px;*/
     height: auto;
     float: left;
 }
