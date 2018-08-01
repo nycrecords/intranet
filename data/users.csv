@@ -1,5 +1,5 @@
 "first_name","middle_initial","last_name","email","division","title","phone_number","room","profile_picture_path","permissions"
-"Naushad","","Ali","nali@records.nyc.gov","Bush Terminal Rec.","","212-788-8563","103",""
+"Naushad","","Ali","nali@records.nyc.gov","Bush Terminal Rec.","","212-788-8563","103","app/static/img/Colon Niko - Face.jpg"
 "Boris","","Aphanou","gaphanou@records.nyc.gov","Reference","","212-788-8564","105",""
 "Fred","","Baptiste","fbaptiste@records.nyc.gov","Records Mgt.","","212-788-8557","305",""
 "Martin","","Batey","mbatey@records.nyc.gov","Technology","","212-788-8567/646-858-5276","B3",""
@@ -30,7 +30,7 @@
 "LaTonya","","Jones","lcjones@records.nyc.gov","Administration","","212-341-6022","305",""
 "Asha","","Kapadia","akapadia@records.nyc.gov","Reference Room","","212-788-8631","103",""
 "Alla","","Kerzhnerman","akerzhnerman@records.nyc.gov","Reference Room","","212-788-8631","103",""
-"Marcia,"","Kirk","mkirk@records.nyc.gov","Municipal Library","","212-788-8594","112",""
+"Marcia","","Kirk","mkirk@records.nyc.gov","Municipal Library","","212-788-8594","112",""
 "Sylvia","","Kollar","skollar@records.nyc.gov","Municipal Library","","212-788-8617,"101",""
 "Nora","","Ligorano","nligorano@records.nyc.gov","Conservation","","212-788-8637","B6",""
 
