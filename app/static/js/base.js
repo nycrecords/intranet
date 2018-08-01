@@ -84,6 +84,9 @@ $(function () {
             );
         });
 
-    tinymce.init({ selector:'textarea' });
+    tinymce.init({selector: 'textarea'});
+
+    $('[data-toggle="popover"]').popover();
+
 });
 
