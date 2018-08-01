@@ -31,6 +31,13 @@ class Users(db.Model):
     profile_picture_path = db.Column(db.String)
     permissions = db.Column(db.BigInteger)
 
+    @property
+    def full_name(self):
+        if self.middle_initial:
+            return self.first_name + " " + self.middle_initial + " " + self.last_name
+        return self.first_name + " " + self.last_name
+
+
     def __repr__(self):
         return '<Users %r>' % self.id
 

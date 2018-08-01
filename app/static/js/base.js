@@ -89,51 +89,21 @@ $(function () {
 
     tinymce.init({ selector:'textarea' });
 
-
+    var users = [];
     $.ajax({
-        url: "/main/get_user_list",
+        url: "/get_user_list/",
         type: "GET",
         success: function (data) {
-            // populate the list
-            var users = datgita;
-            console.log(users);
-        },
-        error: function () {
-          console.log("BAD");
+            users = data['users'];
+
+            $("#next-meeting-leader").autocomplete({
+                source: users
+            });
+            $("#next-meeting-note-taker").autocomplete({
+                source: users
+            });
         }
     });
-
-
 });
 
 
-$( function() {
-    var users = [
-       "Edwin",
-        "John",
-        "Nikko",
-        "Taylor",
-        "Tracy",
-        "Michael",
-        "Wallace",
-        "Brandon",
-        "Eileen"
-    ];
-    $( "#next-meeting-leader" ).autocomplete({
-      source: users
-    });
-    $( "#next-meeting-note-taker" ).autocomplete({
-      source: users
-    });
-  } );
-
-
-// $.ajax({
-//     url: "/get_user_list/",
-//     type: "GET",
-//     success: function (data) {
-//         // populate the list
-//         var users = data;
-//         console.log(users);
-//     }
-// });
