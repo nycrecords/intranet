@@ -1,6 +1,18 @@
-.it-support-opition-boxes{
-    height: 208px;	
-    width: 344px;	
-    border-radius: 5px;	
-    background-color:#F1F1F1;;
+.linklist {
+    font-size: 24pt;
+    color: dimgray;
+}
+.link{
+    color: dimgray;
+    text-decoration: none;
+}
+.link:hover{
+    text-decoration: none;
+}
+.tagline{
+    color: dimgray;
+}
+.somewords{
+    color: dimgray;
+    font-size: 18px;
 }
