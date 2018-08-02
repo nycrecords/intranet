@@ -41,22 +41,20 @@
                 <tbody>
                 {% for user in users %}
                     <tr>
-                        {#                        <td class="td-styles">#}
-                        {#                            {% if user.profile_picture_path %}#}
-                        {#                                <img class="avatar-style" src="{{ user.image_profile_path }}" alt="avatar">>#}
-                        {#                            {% else %}#}
-                        {#                                <img class="avatar-style" src="{{ url_for('static', filename='img/avatar.png') }}">#}
-                        {#                            {% endif %}#}
-                        {#                            </a>{{ user.first_name }}</td>#}
                         <td>
-                            <a href="#" class="popper" data-toggle="popover">
-                                <img class="avatar-style" src="{{  url_for('static', filename='img/avatar.png') }}" alt="avatar">
-                            </a>
+                            <div  class="popper col-sm-6" data-toggle="popover" data-placement="right">
+                                {% if user.profile_picture_path%}
+                                    <img class="avatar-style" src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                                {% else %}
+                                    <img class="avatar-style"
+                                         src="{{ url_for('static', filename='img/avatar.png') }}">
+                                {% endif %}
+                            </div>
                             <div class="popper-content hide">
                                 <div class="col-sm-12">
-                                    <div class="col-sm-5">
-                                        {% if user.profile_picture_path %}#}
-                                            <img class="avatar-style" src="{{ user.image_profile_path }}" alt="avatar">>
+                                    <div class="col-sm-3">
+                                        {% if user.profile_picture_path %}
+                                            <img class="avatar-style" src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
                                         {% else %}
                                             <img class="avatar-style"
                                                  src="{{ url_for('static', filename='img/avatar.png') }}">
@@ -70,11 +68,11 @@
                                     <div class="col-sm-12">
                                         Phone: {{ user.phone_number }}
                                         Email: {{ user.email }}
-                                        Office: {{ user.suite }}
+                                        Office: {{ user.room }}
                                     </div>
                                 </div>
                             </div>
-                            {{ user.first_name }}
+                                {{ user.first_name }}
                         </td>
                         <td class="td-styles">{{ user.last_name }}</td>
                         <td class="td-styles">{{ user.division }}</td>

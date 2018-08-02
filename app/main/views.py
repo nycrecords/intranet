@@ -6,6 +6,7 @@ from . import main
 from app.main.forms import Meeting_Notes_Form, Staff_Directory_Search_Form
 from datetime import datetime
 from app.main.utils import create_post
+from sqlalchemy import func
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -43,15 +44,15 @@ def staff_directory():
     if form.search.data is "":
         users = Users.query.all()
     elif form.filters.data == 'First Name':
-        users = Users.query.filter_by(first_name=form.search.data).all()
+        users = Users.query.filter(func.lower(Users.first_name)==func.lower(form.search.data)).all()
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter_by(last_name=form.search.data).all()
+        users = Users.query.filter(func.lower(Users.last_name) == func.lower(form.search.data)).all()
     elif form.filters.data == 'Division':
-        users = Users.query.filter_by(division=form.search.data).all()
+        users = Users.query.filter(func.lower(Users.division) == func.lower(form.search.data)).all()
     elif form.filters.data == 'Title':
-        users = Users.query.filter_by(title=form.search.data).all()
+        users = Users.query.filter(func.lower(Users.title) == func.lower(form.search.data)).all()
     else:
-        users = Users.query.all()
+        users = Users.query.order_by(Users.last_name).all()
 
     # page = request.args.get(get_page_parameter(), type=int, default=1)
     # pagination = Pagination(page=page, total=users.count())
