@@ -42,37 +42,39 @@
                 {% for user in users %}
                     <tr>
                         <td>
-                            <div  class="popper col-sm-6" data-toggle="popover" data-placement="right">
-                                {% if user.profile_picture_path%}
-                                    <img class="avatar-style" src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                            <a class="popover-right  popper" data-toggle="popover">
+                                {% if user.profile_picture_path %}
+                                    <img class="avatar-style"
+                                         src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
                                 {% else %}
                                     <img class="avatar-style"
                                          src="{{ url_for('static', filename='img/avatar.png') }}">
                                 {% endif %}
-                            </div>
+                            </a>
                             <div class="popper-content hide">
-                                <div class="col-sm-12">
-                                    <div class="col-sm-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
                                         {% if user.profile_picture_path %}
-                                            <img class="avatar-style" src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                                            <img class="popover-img"
+                                                 src="{{ url_for('static', filename=user.profile_picture_path) }}"
+                                                 alt="avatar">
                                         {% else %}
-                                            <img class="avatar-style"
+                                            <img class="popover-img"
                                                  src="{{ url_for('static', filename='img/avatar.png') }}">
                                         {% endif %}
                                     </div>
-                                    <div class="col-sm-7">
-                                        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-                                        <h4>Director</h4>
-                                        {{ user.title }}
-                                    </div>
-                                    <div class="col-sm-12">
-                                        Phone: {{ user.phone_number }}
-                                        Email: {{ user.email }}
-                                        Office: {{ user.room }}
+                                    <div class="col-sm-6">
+                                        <p class="name-styles">{{ user.first_name }} {{ user.last_name }}</p>
+                                        <p class="titles-styles">{{ user.title }}</p>
+                                        <p class="division-styles">{{ user.division }}</p>
+
                                     </div>
                                 </div>
+                                <div class="row information-styles">Phone: {{ user.phone_number }}</div>
+                                <div class="row information-styles">Email: {{ user.email }}</div>
+                                <div class="row information-styles"> Office: {{ user.room }}</div>
                             </div>
-                                {{ user.first_name }}
+                            {{ user.first_name }}
                         </td>
                         <td class="td-styles">{{ user.last_name }}</td>
                         <td class="td-styles">{{ user.division }}</td>

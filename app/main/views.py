@@ -44,13 +44,13 @@ def staff_directory():
     if form.search.data is "":
         users = Users.query.all()
     elif form.filters.data == 'First Name':
-        users = Users.query.filter(func.lower(Users.first_name)==func.lower(form.search.data)).all()
+        users = Users.query.filter(Users.first_name.ilike('%'+form.search.data+'%')).all()
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter(func.lower(Users.last_name) == func.lower(form.search.data)).all()
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%')).all()
     elif form.filters.data == 'Division':
-        users = Users.query.filter(func.lower(Users.division) == func.lower(form.search.data)).all()
+        users = Users.query.filter(Users.division.ilike('%'+form.search.data+'%')).all()
     elif form.filters.data == 'Title':
-        users = Users.query.filter(func.lower(Users.title) == func.lower(form.search.data)).all()
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%')).all()
     else:
         users = Users.query.order_by(Users.last_name).all()
 
