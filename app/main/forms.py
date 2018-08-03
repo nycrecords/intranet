@@ -25,6 +25,8 @@ class Meeting_Notes_Form(FlaskForm):
     tags = StringField('TAGS')
     next_meeting_date = StringField('NEXT MEETING DATE')
     next_meeting_leader = StringField('NEXT MEETING LEADER')
+    next_meeting_leader_id = StringField()
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
+    next_meeting_note_taker_id = StringField()
     submit = SubmitField()
 

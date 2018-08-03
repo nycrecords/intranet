@@ -87,23 +87,47 @@ $(function () {
             );
         });
 
-    tinymce.init({ selector:'textarea' });
+    tinymce.init({selector: 'textarea'});
 
     var users = [];
     $.ajax({
         url: "/get_user_list/",
         type: "GET",
+        dataType: "json",
         success: function (data) {
-            users = data['users'];
+            for (key in data) {
+                var userJSON = {};
+                userJSON["value"] = key;
+                userJSON["label"] = data[key];
+                users.push(userJSON);
+            }
 
             $("#next-meeting-leader").autocomplete({
-                source: users
+                source: users,
+                focus: function (event, ui) {
+                    $("#next-meeting-leader").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#next-meeting-leader").val(ui.item.label);
+                    $("#next-meeting-leader-id").val(ui.item.value);
+                    return false;
+                }
             });
+
             $("#next-meeting-note-taker").autocomplete({
-                source: users
+                source: users,
+                focus: function (event, ui) {
+                    $("#next-meeting-note-taker").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#next-meeting-note-taker").val(ui.item.label);
+                    $("#next-meeting-note-taker-id").val(ui.item.value);
+                    return false;
+                }
             });
         }
     });
 });
-
 

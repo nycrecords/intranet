@@ -80,11 +80,14 @@
             <div class="form-group">
                     {{ form.next_meeting_leader.label (class="post-form-label") }}
                     {{ form.next_meeting_leader (class="form-control post-form-field post-form-input", id="next-meeting-leader") }}
+                    {{ form.next_meeting_leader_id (class="hidden-field", id="next-meeting-leader-id") }}
             </div>
 
             <div class="form-group">
                     {{ form.next_meeting_note_taker.label (class="post-form-label") }}
                     {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="next-meeting-note-taker") }}
+                    {{ form.next_meeting_note_taker_id (class="hidden-field", id="next-meeting-note-taker-id") }}
+
             </div>
 
             <div class="center-submit-button">
