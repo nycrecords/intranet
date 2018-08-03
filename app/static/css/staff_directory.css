@@ -24,7 +24,7 @@
     font-family:Helvetica Neue;
     font-size: 18px;
     letter-spacing: 0.82px;
-    font-weight: normal !important;
+    font-weight: normal;
     background-color:#5C95A3;
 }
 
@@ -48,6 +48,7 @@
 .avatar-style{
     width:50px;
     height:50px;
+    border-radius: 50%;
     margin-right: 20px;
 }
 
@@ -88,10 +89,13 @@ input[type=submit]{
 .popover-img{
     margin-top:20px;
     margin-left: 15px;
+    border-radius: 50%;
     height: 156px;
     width: 156px;
 }
-
+a>.popper:hover{
+    text-decoration: none;
+}
 .Name-styles {
     margin-top:20px;
     font-size: 36px;
