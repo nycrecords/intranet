@@ -204,7 +204,16 @@ hr{
     color: inherit;
 }
 .entry-pic{
-    font-size: 20pt;
+    font-size: 15pt;
     text-align: center;
     padding-top: 20px;
+}
+.meetings{
+    color: #6b93b8;
+}
+.events{
+    color: #d46452;
+}
+.news{
+    color: #589fa3;
 }
