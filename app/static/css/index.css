@@ -116,13 +116,25 @@ hr{
 .carousel-indicators
 {
     bottom: -3px;
-    text-align: right;
+    text-align: center;
+}
+.carousel-indicators li.active{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000\9;
+    border: 1px solid #16a085;
+    border-radius: 50%;
+    background: white;
 }
 .carousel-indicators li
 {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
@@ -134,4 +146,65 @@ hr{
 .caption-text{
     color: white;
     font-style: italic;
+}
+.caption-title{
+    font-size: 18pt;
+}
+.scrolldown{
+    background-color: #53818C;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: -10px;
+    padding: 0;
+
+}
+.scrollablediv{
+    height: 400px;
+    padding: 10px;
+    overflow-y: scroll;
+    background-color: lightgray;
+}
+.entry{
+    height: 120px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+}
+.scrollholder{
+    background-color: white;
+    height: 550px;
+}
+.viewmore{
+    border-radius: 6px;
+    background-color: orange;
+    font-size: 24px;
+    padding: 14px 40px;
+    color: white;
+    float: right;
+    margin-right: 40px;
+}
+.datenlocation{
+    color: dimgray;
+    float: top;
+    font-size: 8pt;
+    margin: 0;
+}
+.entrytitle{
+    margin: 0;
+    font-size: 14pt;
+}
+.entrytext{
+    overflow: hidden;
+    height: 45px;
+    font-size: 12pt;
+}
+.scrolllink{
+    color: inherit;
+}
+.scrolllink:hover{
+    color: inherit;
+}
+.entry-pic{
+    font-size: 20pt;
+    text-align: center;
+    padding-top: 20px;
 }
