@@ -1,210 +1,52 @@
-.container{
-margin-bottom: 2.3rem;
-}
-
-.quick-links{
-    margin-top: 2rem;
-}
-
-.well{
-    background: #ffffff;
-    width: 291px;
-    border-radius:0;
-}
-
-glyphicon{
-    font-size:20px;
-    margin-right: 5;
-}
-
-.quick-link-header{
-    height: 48px;	
-    width: 291px;	
-    border-radius: 3px 3px 0 0;	
-    background-color: #53818C;
+.it-support-opition-boxes{
+    height: 176px;
+    width: 344px;
+    border-radius: 5px;
+    background-color:#F1F1F1;;
     text-align: center;
 }
-
-.quick-link-title{	
-    color: #FFFFFF;	
-    font-family: "Helvetica Neue";	
-    font-size: 22px;	
-    font-weight: normal;	
-    letter-spacing: 1px;	
-    line-height: 46px;
-    text-align: left;
-    margin-left:17;
+.card-content{
+    height: 256px;
+    width: 256px;
+    border-radius: 5px;
+    margin-left: 47px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid dimgray;
+    background-color: #F1F1F1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
-.quick-links-anchors{
-    padding-left:10;
+.sitecard{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
 }
-
-.quick-links-anchors>li{		
-    list-style: none;
-    margin: 10px 0;
+.siteimage{
+    text-align: center;
+    width: 225px;
+    height: 70px;
+    padding-top: 10px;
 }
-
-.quick-links-anchors>li>a{		
-    color: #000000;	
-    font-family: "Helvetica Neue";	
-    font-size: 18px;	
-    letter-spacing: 0.35px;	
-    line-height: 24px;
+.employee-text{
+    margin-top: 40px;
 }
-
-.quick-links-anchors>li>a:hover,a:focus{
-    text-decoration:none;
+.employeeresources{
+    font-size: 24pt;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
-
-.date-styles{	
-    color: #9B9B9B;	
-    font-family: "Helvetica Neue";	
-    font-size: 18px;	
-    font-weight: bold;	
-    line-height: 22px;
+.resourceinfo{
+    font-size: 13pt;
 }
-
-.event-styles>a{	
-    color: #000000;	
-    font-family: "Helvetica Neue";	
-    font-size: 18px;	
-    font-weight: normal;	
-    line-height: 23px;
-}
-
-.event-styles>a:hover{
+.cardclick{
+    color: inherit;
     text-decoration: none;
 }
-
-.calender-view-style{		
-    color: #ECAC2A;	
-    font-family: "Helvetica Neue";	
-    font-size: 18px;	
-    font-weight: normal;	
-    line-height: 22px;	
-    float:right;
-    margin-right:1.6rem;
+.cardclick:hover{
+    color: inherit;
+    text-decoration: none;
 }
-
-.calender-view-style:hover, .calender-view-style:focus{
-    text-decoration:none;
-    color:#ECAC2A;
-}
-
-hr{
-    margin-top: 10px;
-    margin-bottom: 15px;      
-     border-top: 2px solid #eee;
-}
-
-/*carousel styles start here*/
-
-.carousel-caption{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    padding-left: 40px;
-    color: #fff;
-    text-align: left;
-    background: rgba(0,0,0,0.4);
-}
-.carousel-indicators
-{
-    bottom: -3px;
-    text-align: center;
-}
-.carousel-indicators li.active{
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin: 1px;
-    text-indent: -999px;
-    cursor: pointer;
-    background-color: #000\9;
-    border: 1px solid #16a085;
-    border-radius: 50%;
-    background: white;
-}
-.carousel-indicators li
-{
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin: 1px;
-    text-indent: -999px;
-    cursor: pointer;
-    background-color: #000\9;
-    background-color: rgba(0,0,0,0);
-    border: 1px solid #16a085;
-    border-radius: 50%;
-}
-.caption-text{
-    color: white;
-    font-style: italic;
-}
-.caption-title{
-    font-size: 18pt;
-}
-.scrolldown{
-    background-color: #53818C;
-    border-radius: 3px 3px 0 0;
-    margin-bottom: -10px;
-    padding: 0;
-
-}
-.scrollablediv{
-    height: 400px;
-    padding: 10px;
-    overflow-y: scroll;
-    background-color: lightgray;
-}
-.entry{
-    height: 120px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: white;
-}
-.scrollholder{
-    background-color: white;
-    height: 550px;
-}
-.viewmore{
-    border-radius: 6px;
-    background-color: orange;
-    font-size: 24px;
-    padding: 14px 40px;
-    color: white;
-    float: right;
-    margin-right: 40px;
-}
-.datenlocation{
+hr {
     color: dimgray;
-    float: top;
-    font-size: 8pt;
-    margin: 0;
-}
-.entrytitle{
-    margin: 0;
-    font-size: 14pt;
-}
-.entrytext{
-    overflow: hidden;
-    height: 45px;
-    font-size: 12pt;
-}
-.scrolllink{
-    color: inherit;
-}
-.scrolllink:hover{
-    color: inherit;
-}
-.entry-pic{
-    font-size: 20pt;
-    text-align: center;
-    padding-top: 20px;
+    border-width: 2px;
 }

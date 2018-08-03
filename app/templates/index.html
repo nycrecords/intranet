@@ -1,233 +1,142 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
-<div class=" col-sm-12">
-    <div class="breadcrumb-section ">
-        <div class="container container-spacing">
-            <div class="col-sm-9">
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">News and Updates</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Events</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Employee Resources</h1>
+    </div>
+    <div class="well content-area container">
+        <div class="row">
+            <div class="employee-text col-sm-4">
+                <a href="#" class="cardclick">
+                   <div class="it-support-opition-boxes">
+                        <p class="employeeresources">Staff Directory</p>
+                        <img src="https://i.imgur.com/TLGRy1R.png">
+                    </div>
+                </a>
                 <br>
-                <div class="carousel">
-                    <div id="thisCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Carousel indicators -->
-                        <ol class="carousel-indicators">
-                            <li data-target="#thisCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#thisCarousel" data-slide-to="1"></li>
-                            <li data-target="#thisCarousel" data-slide-to="2"></li>
-                        </ol>
-                        <!-- Wrapper for carousel items -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img src="https://images.pexels.com/photos/126407/pexels-photo-126407.jpeg?cs=srgb&dl=animal-pet-cute-126407.jpg&fm=jpg" alt="First Slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="caption-title">Hell fsdfasdfasdHello fsdfasdfasd</h5>
-                                    <a href="#" class="caption-text">Read More</a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/126407/pexels-photo-126407.jpeg?cs=srgb&dl=animal-pet-cute-126407.jpg&fm=jpg" alt="Second Slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="caption-title">Hello</h5>
-                                    <a href="#" class="caption-text">Read more</a>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img src="https://images.pexels.com/photos/126407/pexels-photo-126407.jpeg?cs=srgb&dl=animal-pet-cute-126407.jpg&fm=jpg" alt="Third Slide">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="caption-title">Hello</h5>
-                                    <a href="#" class="caption-text" style="">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                          <a class="carousel-control-prev" href="#thisCarousel" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                          </a>
-                          <a class="carousel-control-next" href="#thisCarousel" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                          </a>
+                <p class="resourceinfo">Look up contact information for Department of Records staff members.</p>
+            </div>
+            <div class="employee-text col-sm-4">
+                <a href="#" class="cardclick">
+                    <div class="it-support-opition-boxes">
+                        <p class="employeeresources">Employee Benefits</p>
+                        <img src="https://i.imgur.com/GIG3ww7.png">
                     </div>
-                </div>
+                </a>
                 <br>
-                <div>
-                    <div class="scrolldown">
-                        <p class="quick-link-title"><span class="glyphicon glyphicon-bookmark"></span> What's New</p>
-                    </div>
-                    <div class="scrollholder">
-                        <div style="background-color: white; padding: 30px 40px;">
-                            <div class="scrollablediv">
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic" style="font-family: Arial;">
-                                            <span class="glyphicon glyphicon-file" aria-hidden="true"><br>Meetings</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic">
-                                            <span class="glyphicon glyphicon-file" aria-hidden="true"><br>Meetings</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic">
-                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"><br>Events</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic">
-                                            <span class="glyphicon glyphicon-globe" aria-hidden="true"><br>News</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic">
-                                            <span class="glyphicon glyphicon-globe" aria-hidden="true"><br>News</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="" class="scrolllink">
-                                    <div class="entry">
-                                        <div class="col-sm-2 entry-pic">
-                                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"><br>Events</span>
-                                        </div>
-                                        <div class="col-sm-10 entry-info">
-                                            <h4 class="entrytitle">IT Department Weekly Status Meeting</h4>
-                                            <p class="datenlocation">October 18, 2017</p>
-                                            <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussin: Thanks fo your cardsThaThanksThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards fo yThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsour cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cardsnks fo your cardsThanks fo your cardsThanks fo your cardsThanks fo your cards given/recieafsdf</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <button class="viewmore" type="button" onclick="window.location.href='#'">View More</button>
-                    </div>
-                </div>
+                <p class="resourceinfo">Find information on employee benefits for DORIS and NYC.gov employees.</p>
             </div>
-            <div class="col-sm-3">
-                <div class="col-sm-12 quick-links">
-                    <div class="quick-link-header">
-                        <p class="quick-link-title"><span class="glyphicon glyphicon-bookmark"></span> QUICK LINKS</p>
+            <div class="employee-text col-sm-4">
+                <a href="#" class="cardclick">
+                    <div class="it-support-opition-boxes">
+                        <p class="employeeresources">Documents</p>
+                        <img src="https://i.imgur.com/IlY12D6.png">
                     </div>
-                    <div class="well">
-                        <ul class="quick-links-anchors">
-                            <li>
-                                <a href="https://cityshare.nycnet/">CityShare</a>
-                            </li>
-                            <li>
-                                <a href="https://prod.citytime.nycnet/">CityTime</a>
-                            </li>
-                            <li>
-                                <a href="http://timeclock.records.nycnet/">TimeClock</a>
-                            </li>
-                            <li>
-                                <a href=#>Tools & Applications</a>
-                            </li>
-                            <li>
-                                <a href=#>Documents</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 quick-links">
-                    <div class="quick-link-header">
-                        <p class="quick-link-title"> <i class="glyphicon glyphicon-calendar"></i> CALENDER</p>
-                    </div>
-                    <div class="well">
-                        <div class="row">
-                            <div class="col-sm-2 date-styles">Nov 01</div>
-                            <div class="col-sm-10 event-styles"><a href="#">Municipal Library Book Group</a></div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 date-styles">Nov 06</div>
-                            <div class="col-sm-10 event-styles"><a href="#">100 Years! Stay Tuned</a></div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 date-styles">Nov 10</div>
-                            <div class="col-sm-10 event-styles"><a href="#">Senior Staff Meeting</a></div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-2 date-styles">Nov 23</div>
-                            <div class="col-sm-10 event-styles"><a href="#">Thanksgiving Parade</a></div>
-                        </div>
-                        <div class="row">
-                            <a class="calender-view-style" href="#">View More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-12 quick-links">
-                    <div class="quick-link-header">
-                        <p class="quick-link-title"><i class="glyphicon glyphicon-briefcase"></i> DIVISIONS</p>
-                    </div>
-                    <div class="well">
-                        <ul class="quick-links-anchors">
-                            <li>
-                                <a href=#>Administration</a>
-                            </li>
-                            <li>
-                                <a href=#>Executive</a>
-                            </li>
-                            <li>
-                                <a href=#>External Affairs</a>
-                            </li>
-                            <li>
-                                <a href=#>Grant Unit</a>
-                            </li>
-                            <li>
-                                <a href=#>Management & Information Services</a>
-                            </li>
-                            <li>
-                                <a href=#>Municipal Archives</a>
-                            </li>
-                            <li>
-                                <a href=#>Municipal Library</a>
-                            </li>
-                            <li>
-                                <a href=#>Municipal Records</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                </a>
+                <br>
+                <p class="resourceinfo">Looking for templates, instructions or information on Policies and Procedures? Download files here.</p>
             </div>
+        </div>
+        <hr>
+        <h3>External Sites</h3>
+        <div class="row">
+            <br>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://i.imgur.com/TttNPSZ.png" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://i.imgur.com/OLA3Qdp.pngs" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://i.imgur.com/nl8TK3I.png" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <br>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://a127-ess.nyc.gov/prdess/images/OPSE_logo.gif" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://www.nycers.org/sites/default/themes/dtheme/img/logo-theme.svg" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="cardclick">
+                <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://www1.nyc.gov/assets/opa/images/content/header/logo.png" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <br>
+            <a href="" class="cardclick">
+               <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="https://www1.nyc.gov/assets/olr/images/content/header/logo.png" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="cardclick">
+               <div class="sitecard col-sm-4">
+                    <div class="card-content col-sm-12">
+                        <img src="http://www.nyc.gov/html/dcas/includes/site_images/branding/logo.png" class="siteimage">
+                        <br>
+                        <br>
+                        <p>TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt TEXt </p>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
