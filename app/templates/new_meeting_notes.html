@@ -43,8 +43,16 @@
             </div>
 
             <div class="form-group">
+                    {{ form.meeting_leader.label (class="post-form-label") }}
+                    {{ form.meeting_leader (class="form-control post-form-field post-form-input", id="meeting-leader") }}
+                    {{ form.meeting_leader_id (class="hidden-field", id="meeting-leader-id") }}
+            </div>
+
+            <div class="form-group">
                     {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
-                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker", data_role="tagsinput") }}
+                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="meeting-note-taker") }}
+                    {{ form.meeting_note_taker_id (class="hidden-field", id="meeting-note-taker-id") }}
+
             </div>
 
             <div class="form-group">
@@ -87,7 +95,6 @@
                     {{ form.next_meeting_note_taker.label (class="post-form-label") }}
                     {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="next-meeting-note-taker") }}
                     {{ form.next_meeting_note_taker_id (class="hidden-field", id="next-meeting-note-taker-id") }}
-
             </div>
 
             <div class="center-submit-button">

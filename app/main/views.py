@@ -24,13 +24,15 @@ def new_post():
     form = Meeting_Notes_Form()
 
     if flask_request.method == 'POST':
+        meeting_leader = Users.query.filter_by(id=form.meeting_leader_id.data).one()
+        meeting_note_taker = Users.query.filter_by(id=form.meeting_note_taker_id.data).one()
         next_meeting_leader = Users.query.filter_by(id=form.next_meeting_leader_id.data).one()
         next_meeting_note_taker = Users.query.filter_by(id=form.next_meeting_note_taker_id.data).one()
 
         meeting_notes_id = create_meeting_notes(meeting_date=form.meeting_date.data,
                                                 meeting_location=form.meeting_location.data,
-                                                meeting_leader=form.meeting_leader.data,
-                                                meeting_note_taker=form.meeting_note_taker.data,
+                                                meeting_leader=meeting_leader.id,
+                                                meeting_note_taker=meeting_note_taker.id,
                                                 start_time=form.start_time.data,
                                                 end_time=form.end_time.data,
                                                 attendees=[],
@@ -40,6 +42,7 @@ def new_post():
                                                 meeting_type=form.meeting_type.data,
                                                 division=form.division.data)
         print(meeting_notes_id)
+        print(meeting_note_taker.id)
         # if form.validate_on_submit():
         flash('Form submitted.')
         return redirect(url_for('main.news_and_updates'))

@@ -85,7 +85,7 @@ class MeetingNotes(Posts):
     id = db.Column(db.Integer, db.ForeignKey(Posts.id), primary_key=True)
     meeting_date = db.Column(db.DateTime)
     meeting_location = db.Column(db.String)
-    meeting_leader = db.Column(db.String)
+    meeting_leader = db.Column(db.Integer, db.ForeignKey('users.id'))
     note_taker = db.Column(db.Integer, db.ForeignKey('users.id'))
     start_time = db.Column(db.String)
     end_time = db.Column(db.String)
@@ -123,7 +123,7 @@ class MeetingNotes(Posts):
         self.meeting_date = meeting_date
         self.meeting_location = meeting_location
         self.meeting_leader = meeting_leader
-        self.meeting_note_taker = meeting_note_taker
+        self.note_taker = meeting_note_taker
         self.start_time = start_time
         self.end_time = end_time
         self.attendees = attendees
@@ -131,7 +131,7 @@ class MeetingNotes(Posts):
         self.next_meeting_leader = next_meeting_leader
         self.next_meeting_note_taker = next_meeting_note_taker
         self.meeting_type = meeting_type
-        self.division = division
+        self.meeting_division = division
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id

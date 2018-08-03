@@ -102,6 +102,32 @@ $(function () {
                 users.push(userJSON);
             }
 
+            $("#meeting-leader").autocomplete({
+                source: users,
+                focus: function (event, ui) {
+                    $("#meeting-leader").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#meeting-leader").val(ui.item.label);
+                    $("#meeting-leader-id").val(ui.item.value);
+                    return false;
+                }
+            });
+
+            $("#meeting-note-taker").autocomplete({
+                source: users,
+                focus: function (event, ui) {
+                    $("#meeting-note-taker").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#meeting-note-taker").val(ui.item.label);
+                    $("#meeting-note-taker-id").val(ui.item.value);
+                    return false;
+                }
+            });
+
             $("#next-meeting-leader").autocomplete({
                 source: users,
                 focus: function (event, ui) {
@@ -127,6 +153,7 @@ $(function () {
                     return false;
                 }
             });
+
         }
     });
 });
