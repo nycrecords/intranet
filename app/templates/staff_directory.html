@@ -44,14 +44,15 @@
                     <tr>
                         <td class="col-sm-2">
                             <a class="popover-right  popper" data-toggle="popover">
-                                {% if user.profile_picture_path %}
-                                    <img class="avatar-style"
-                                         src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
-                                {% else %}
-                                    <img class="avatar-style"
-                                         src="{{ url_for('static', filename='img/avatar.png') }}">
-                                {% endif %}
+                            {% if user.profile_picture_path %}
+                                <img class="avatar-style"
+                                     src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                            {% else %}
+                                <img class="avatar-style"
+                                     src="{{ url_for('static', filename='img/avatar.png') }}">
+                            {% endif %}
                             </a>
+
                             <div class="popper-content hide">
                                 <div class="row">
                                     <div class="col-sm-5">
@@ -88,7 +89,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example" class="text-center">
+            <nav aria-label="Page navigation" class="text-center">
                 <ul class="pagination">
                     <li class="page-item">
                         {% if users.has_prev %}
@@ -107,8 +108,6 @@
                         {% if page %}
                             <li class="page-item"><a
                                     href="{{ url_for('main.staff_directory',page_num=page) }}">{{ page }}</a></li>
-                        {% else %}
-                            ...
                         {% endif %}
                     {% endfor %}
                     <li class="page-item">
@@ -126,7 +125,6 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
 

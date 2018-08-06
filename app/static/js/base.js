@@ -86,7 +86,6 @@ $(function () {
 
     tinymce.init({selector: 'textarea'});
 
-    $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
             placement: 'right',
             html: true,
@@ -97,7 +96,9 @@ $(function () {
         $(document).on("click", ".popover-content .close", function () {
             $(this).parents(".popover").popover('hide');
         });
-    });
+        $('[data-toggle=popover]').on('click', function () {
+            $('[data-toggle=popover]').not(this).popover('hide');
+        });
 
 });
 
