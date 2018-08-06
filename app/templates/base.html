@@ -18,7 +18,6 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}" />
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/fontawesome.css') }}" />
 {% endblock %} <body> {% block navbar %}
 <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
     <div class="container">
@@ -28,13 +27,13 @@
 </div>
 <div class="blue-overlay">
     <div class="container">
-        <div class="wednesday-november">Wednesday, November 1, 2017</div>
-        <div class="doris">
+        <div class=" header-current-date">{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
+        <div class="header-doris-style">
             <div>
                 <span>Doris</span>
             </div>
         </div>
-        <span class="intranet">intranet</span>
+        <span class="header-intranet-style ">intranet</span>
 
         <form class="navbar-form navbar-right" role="search">
             <div class="input-group add-on">
@@ -115,7 +114,7 @@
     </div>
     {% endfor %} {% block page_content %}{% endblock %}
 </div>
-<div class="blue-footer">
+<div class="header-style">
     {% endblock %} {% block footer %}
     <div class="blue-overlay">
         <footer> some footer</footer>

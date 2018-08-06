@@ -58,7 +58,7 @@ body {
     padding-bottom: 1.5rem;
 }
 
-.blue-footer {
+.header-style {
     height: 30rem;
     background-color: #77A0A9;
 }
@@ -66,7 +66,7 @@ body {
 /* Header Style */
 
 
-.wednesday-november {
+.header-current-date {
     height: 22px;
     width: 305px;
     color: #FFFFFF;
@@ -76,8 +76,6 @@ body {
     letter-spacing: 0.6px;
     line-height: 22px;
     text-align: right;
-    font-weight: normal;
-    letter-spacing: 1px;
     padding-top: 2.5rem;
     padding-bottom: 1rem;
     float:right;
@@ -85,7 +83,7 @@ body {
 }
 
 
-.doris {
+.header-doris-style{
     height: 57px;
     width: 142px;
     color: #FFFFFF;
@@ -99,7 +97,7 @@ body {
     margin-left: 15px;
 }
 
-.intranet {
+.header-intranet-style {
     height: 35px;
     width: 144px;
     color: #FFFFFF;
@@ -107,8 +105,6 @@ body {
     font-size: 30px;
     letter-spacing: 5.1px;
     line-height: 65px;
-    /* padding-top: 2rem;
-    padding-bottom: 1.5rem; */
     margin-left: 1.5rem;
     margin-top: 10.0rem;
 }
@@ -131,10 +127,6 @@ body {
     padding: 15px;
 }
 
-.navbar-form{
-    margin-right: .009rem;
-}
-
 #search-bar {
     font-size: 18px;
     display: inline-block;
@@ -149,8 +141,8 @@ body {
 
 .nav-magnification-style{
     padding: 9px 10px;
-    color: darkgray;
-    background-color: grey;
+    color: #696969;
+    background-color: lightgray;
     border-color: #979797;
 }
 
