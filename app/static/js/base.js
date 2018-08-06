@@ -86,7 +86,18 @@ $(function () {
 
     tinymce.init({selector: 'textarea'});
 
-    $('[data-toggle="popover"]').popover();
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'right',
+            html: true,
+            content: function () {
+                return $(this).next('.popper-content').html();
+            }
+        });
+        $(document).on("click", ".popover-content .close", function () {
+            $(this).parents(".popover").popover('hide');
+        });
+    });
 
 });
 
