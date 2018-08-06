@@ -6,10 +6,11 @@
     text-align: center;
 }
 .card-content{
+    position: relative;
     height: 256px;
     width: 256px;
     border-radius: 5px;
-    margin-left: 47px;
+    left: 47px;
     margin-bottom: 10px;
     margin-top: 10px;
     border: 1px solid dimgray;
@@ -49,4 +50,9 @@
 hr {
     color: dimgray;
     border-width: 2px;
+}
+.sitetext{
+    overflow: hidden;
+    height: 140px;
+    word-wrap: break-word;
 }
