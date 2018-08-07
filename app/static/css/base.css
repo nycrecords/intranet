@@ -65,16 +65,11 @@ body {
 
 /* footer work */   
 
-.footer-inner{
+.footer-styles {
     width: 260px;
     height: auto;
     margin: auto;
 }
-/*.footer-left{*/
-    /*width: 380px;*/
-    /*height: auto;*/
-    /*float: left;*/
-/*}*/
 
 .doris-banner {
     /* dimensions are 60% of actual png dimensions */
@@ -83,7 +78,7 @@ body {
     margin-top: 80px;
 } 
 
-.social-media-logo{
+.social-media-logo {
     height: 24px;
     width: 24px;
     position: relative;
@@ -91,17 +86,15 @@ body {
     margin-right: 10px;
 }
 
-.social-media-box{
+.social-media-box {
     width: 260px;
     height: auto;
-    margin: 0 auto;    
-    margin-top: 15px;
-    margin-right: 15px;
+    margin: 0 auto;
     text-align: center;
-    padding-top: 15px;
+    margin-top: -10px;
 }
 
-.social-media-box h1{
+.social-media-box h1 {
     height: 24px;	
     width: 250px;	
     color: #212020;	
@@ -111,18 +104,18 @@ body {
     line-height: 25px;
 }
 
-.social-media-box ul{
+.social-media-box ul {
     margin: 0px;
     padding: 0px;
 }
 
-.social-media-box ul li{
+.social-media-box ul li {
     list-style-type: none;
     padding-top: 15px;
 }
 
-.social-media-box ul li a{
-    height: 23px;	
+.social-media-box ul li a {
+    height: 23px;
     width: 108px;	
     color: #212020;	
     font-family: "Helvetica Neue";	
@@ -131,63 +124,51 @@ body {
     text-align: center;
 }
 
-.footer-box{
+.footer-box {
     width: 260px;
     height: auto;
-    margin: 0 auto;    
-    /* border: 1px solid #F00; */
-    margin-top: 15px;
+    margin: 0 auto;
+    /*border: 1px solid #F00;*/
     text-align: center;
-    padding-top: 15px;
+    margin-top: -10px;
 }
 
-.footer-box h1{
+.footer-box h1 {
     height: 24px;	
     width: 250px;	
     color: #212020;	
-    font-family: "Helvetica Neue";	
-    font-size: 20px;	
-    font-weight: bold;	
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    font-weight: bold;
     line-height: 25px;
 }
 
-.footer-box ul{
+.footer-box ul {
     margin: 0px;
     padding: 0px;
 }
 
-.footer-box ul li{
+.footer-box ul li {
     list-style-type: none;
     padding-top: 15px;
 }
 
-.footer-box ul li a{
-    height: 23px;	
-    width: 108px;	
-    color: #212020;	
-    font-family: "Helvetica Neue";	
-    font-size: 20px;	
+.footer-box ul li a {
+    height: 23px;
+    width: 108px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
     line-height: 24px;
 }
 
- .center-footer{
+.center-footer {
     margin: 0 auto;
     width: 92.5%;
 }
 
-.footer-line-1{
-    box-sizing: border-box;	
-    height: 265px;	
-    width: 0.5px;	
-    border: 0.5px solid rgba(33,32,32,0.5);
-    /*margin-left: 410px;*/
-    margin-left: 29%;
-    margin-top: 45px;
-}
-
-
-.footer-option-centered{
-    width: 50%;
+.social-media-box-centered {
+    width: 92.5%;
     text-align: left;
     margin-left: 35px;
 }
@@ -196,8 +177,20 @@ a {
     text-decoration: none !important;
 }
 
-.page-wrap {
-width: 960px;
-margin: 0 auto;
-    position: relative;
+.wrap{
+    margin: 0 auto;
 }
+
+.line{
+    top:35px;
+    width: 25%;
+    height:280px;
+    z-index:10;
+    display:table-cell;
+    border-right:solid rgba(33,32,32,0.5) 1px;
+}
+
+.line:last-child{
+    border:0px
+}
+
