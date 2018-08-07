@@ -161,6 +161,7 @@ body {
     justify-content: space-around;
 }
 
+/*Where then navbar link dropdown menu will open*/
 .navbar-nav>li>.dropdown-menu{
    margin-top:.81rem;
 }
@@ -178,12 +179,9 @@ body {
     margin-bottom:2rem;
 }
 
+/*If the navbar link is focus or hover*/
 .nav>li>a:focus, .nav>li>a:hover {
     text-decoration: none;
-    background-color: transparent;
-}
-
-.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
     background-color: transparent;
 }
 
@@ -197,6 +195,7 @@ body {
     padding-bottom:30px;
 }  
 
+/*if you hover on a link for a drop down menuß*/
 .dropdown-menu>li>a:hover{
   background-color:#d4d7db;
   padding-bottom:30px;
