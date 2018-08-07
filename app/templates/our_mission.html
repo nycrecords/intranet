@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block head %} {{ super() }}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/our_mission.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Divisions</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Our Mission</h1>
+    </div>
+    <div class="well content-area container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="https://i.pinimg.com/originals/f1/01/c6/f101c6151dc7fd2a20c93a6ece18b807.jpg" style="width: 525px; margin-top: 50px; margin-left: 5px">
+            </div>
+            <div class="col-sm-6">
+                <br>
+                <div>
+                    <p class="words">Established in 1977, the Department of Records and Information Services (DORIS) preserves and provides public access to historical and
+                        contemporary records and information about New York City government. We operate the Municipal Archives, the Municipal Library, and the Records Center.</p>
+                    <br>
+                    <p class="words">The mission of the NYC Department of Records and Information Services is to foster civic life by preserving and providing access to the historical
+                        and contemporary records of New York City government, to ensure that City records are properly maintained following professional archival
+                        and record management practices and to make materials available to diverse communities both online and in person.  </p>
+                    <br>
+                    <p class="words">Currently, the agency has eight divisions: </p>
+                    <ul class="divisionlist">
+                        <a href="">
+                            <li>
+                                Administration
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Executive
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                External Affairs
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Grant Unit
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Management and Information Services
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Municipal Archives
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Municipal Library
+                            </li>
+                        </a>
+                        <a href="">
+                            <li>
+                                Municipal Archives
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

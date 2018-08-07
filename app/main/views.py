@@ -30,3 +30,18 @@ def new_post():
         flash('Form submitted.')
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
+
+@main.route('/our-mission', methods=['GET', 'POST'])
+def our_mission():
+
+    return render_template('our_mission.html')
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+
+    return render_template('contact.html')
+
+@main.route('/divisions', methods=['GET', 'POST'])
+def divisions():
+
+    return render_template('divisions.html')

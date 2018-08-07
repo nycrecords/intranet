@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+
+{% block head %} {{ super() }}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/contact.css') }}"/>
+{% endblock %}
+
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Divisions</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Contact</h1>
+    </div>
+    <div class="well content-area container">
+        <p style="color: darkgrey; font-size: 14pt">To find contact information for a Department of Records staff member, visit the <a href="">Staff Directory</a></p>
+        <br>
+        <div class="row">
+            <div class="textcol col-sm-6">
+                <h3>Building Security</h3>
+                <p>212-788-8548</p>
+                <br>
+                <h3>Building Services</h3>
+                <p>Mr. Cintron: 212-788-8828</p>
+                <p>Melayka Lee: 212-788-8827</p>
+                <br>
+                <h3>Building Engineer</h3>
+                <p>Rodney / Arthur: 212-788-8546</p>
+                <br>
+                <h3>Bush</h3>
+                <p>212-788-8563</p>
+            </div>
+            <div class="textcol col-sm-6">
+                <h3>Reading Room</h3>
+                <p>212-788-8590</p>
+                <br>
+                <h3>Fax Numbers</h3>
+                <p>Room 304: 212-788-8625</p>
+                <p>Room 305: 212-788-8618</p>
+                <p>Room 105 EFax: 718-935-6459</p>
+                <br>
+                <h3>Queens Fax</h3>
+                <p>718-471-2085</p>
+                <br>
+                <h3>Queens Warehouse</h3>
+                <p>718-416-8988 / 8989</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
