@@ -1,21 +1,18 @@
-.it-support-option-boxes{
-    height: 208px;
-    width: 344px;
-    border-radius: 5px;
-    background-color:#F1F1F1;
-}
-.it-support-text-area{
-    font-size: 14pt;
-    padding: 25px 25px 25px 25px;
-    color: dimgray;
-}
-.glyphicon.it-support-glyphicon{
-    min-height:  104px;
-    line-height: 104px;
-    font-size: 50px;
-    display: block;
+.divisioncard{
+    width: 250px;
+    height: 175px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    margin: 17px;
     text-align: center;
+    font-size: 18pt;
+    padding-top: 70px;
 }
-.title{
-    text-align: center;
+.division-description{
+    width: 250px;
+    height: 135px;
+    margin-left: 17px;
+    margin-right: 17px;
+    overflow: hidden;
+    font-size: 12pt;
 }
