@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, request as flask_request
+from flask import render_template, redirect, url_for, flash, request as flask_request, jsonify
 from app import db
 from app.models import Users
 from . import main
@@ -40,16 +40,64 @@ def staff_directory(page_num):
     num=page_num
 
     if form.search.data is "":
-        users = Users.query.order_by(Users.last_name).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.order_by(Users.last_name).paginate(per_page=10, page=page_num)
     elif form.filters.data == 'First Name':
-        users = Users.query.filter(Users.first_name.ilike('%'+form.search.data+'%')).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.filter(Users.first_name.ilike('%'+form.search.data+'%')).paginate(per_page=10, page=page_num)
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%')).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%')).paginate(per_page=10, page=page_num)
     elif form.filters.data == 'Division':
-        users = Users.query.filter(Users.division.ilike('%'+form.search.data+'%')).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.filter(Users.division.ilike('%'+form.search.data+'%')).paginate(per_page=10, page=page_num)
     elif form.filters.data == 'Title':
-        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%')).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%')).paginate(per_page=10, page=page_num)
     else:
-        users = Users.query.order_by(Users.last_name).paginate(per_page=10, page=page_num, error_out=True)
+        users = Users.query.order_by(Users.last_name).paginate(per_page=10, page=page_num)
 
     return render_template('staff_directory.html', users=users, form=form, num=num)
+
+
+@main.route('/get_user_first_names/', methods=['GET'])
+def get_user_list():
+
+    # if option=='First Name':
+    #     users=Users.query.filter(Users.first_name)
+    # elif option=='Last Name':
+    #     users=Users.query.filter(Users.last_name)
+    # elif option=='Division':
+    #     users=Users.query.filter(Users.division)
+    # elif option=='Title':
+    #     users=Users.query.filter(Users.title)
+    # else:
+
+    users = Users.query.all()
+    users_array = []
+    for user in users:
+        users_array.append(user.first_name)
+
+    return jsonify(users_array), 200
+
+@main.route('/get_user_last_names/', methods=['GET'])
+def get_user_list():
+    users = Users.query.all()
+    users_array = []
+    for user in users:
+        users_array.append(user.last_name)
+
+    return jsonify(users_array), 200
+
+@main.route('/get_user_division/', methods=['GET'])
+def get_user_list():
+    users = Users.query.all()
+    users_array = []
+    for user in users:
+        users_array.append(user.division)
+
+    return jsonify(users_array), 200
+
+@main.route('/get_user_title/', methods=['GET'])
+def get_user_list():
+    users = Users.query.all()
+    users_array = []
+    for user in users:
+        users_array.append(user.title)
+
+    return jsonify(users_array), 200

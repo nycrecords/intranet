@@ -2,9 +2,9 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-    {#     <script type="text/javascript" src="{{ url_for('static', filename='js/staff_directory.js') }}"></script>#}
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/staff_directory.css') }}"/>
+    {#    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>#}
+    {#    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>#}
     <div>
         <div class="breadcrumb-section">
             <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -21,10 +21,10 @@
 
     <div class="panel panel-default">
         <div class="panel-heading panel-header-style col-sm-12">
-            <form class="staff-directory-search" method="post">
-                <div class="col-sm-4 header-spacing" id="search">{{ form.search }}</div>
-                <div class="col-sm-4 header-spacing">{{ form.filters }}</div>
-                <div class="col-sm-4 header-spacing">{{ form.submit }}</div>
+            <form class="staff-directory-search-options" method="post">
+                <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="test") }}</div>
+                <div class="col-sm-4" id="filter-menu">{{ form.filters (id="filter-data") }}</div>
+                <div class="col-sm-4 " id="staff-directory-submit">{{ form.submit }}</div>
             </form>
         </div>
         <div class="panel-body panel-body-style">
@@ -39,23 +39,23 @@
                     <th class="th-styles">Email</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="staff-directory-table">
                 {% for user in users.items %}
                     <tr>
                         <td class="col-sm-2">
                             <a class="popover-right  popper" data-toggle="popover">
-                            {% if user.profile_picture_path %}
-                                <img class="avatar-style"
-                                     src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
-                            {% else %}
-                                <img class="avatar-style"
-                                     src="{{ url_for('static', filename='img/avatar.png') }}">
-                            {% endif %}
+                                {% if user.profile_picture_path %}
+                                    <img class="avatar-style"
+                                         src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                                {% else %}
+                                    <img class="avatar-style"
+                                         src="{{ url_for('static', filename='img/avatar.png') }}">
+                                {% endif %}
                             </a>
 
                             <div class="popper-content hide">
                                 <div class="row">
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-4">
                                         {% if user.profile_picture_path %}
                                             <img class="popover-img"
                                                  src="{{ url_for('static', filename=user.profile_picture_path) }}"
@@ -66,19 +66,17 @@
                                         {% endif %}
                                     </div>
                                     <div class="col-sm-5">
-                                        <p class="name-styles">{{ user.first_name }} {{ user.last_name }}</p>
-                                        <p class="titles-styles">{{ user.title }}</p>
-                                        <p class="division-styles">{{ user.division }}</p>
+                                        <p id="popover-name-styles">{{ user.first_name }} {{ user.last_name }}</p>
+                                        <p id="popover-titles-styles">{{ user.title }}</p>
+                                        <p id="popover-division-styles">{{ user.division }}</p>
                                     </div>
-                                    <div class="col-sm-1">
-                                        <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    </div>
+                                    <a href="#" class="close popover-close-link" data-dismiss="alert">&times;</a>
                                 </div>
-                                <div class="row information-styles">Phone: {{ user.phone_number }}</div>
-                                <div class="row information-styles">Email: {{ user.email }}</div>
-                                <div class="row information-styles"> Office: {{ user.room }}</div>
+                                <div class="row" id="popover-information-styles">Phone: {{ user.phone_number }}</div>
+                                <div class="row" id="popover-information-styles">Email: {{ user.email }}</div>
+                                <div class="row" id="popover-information-styles"> Office: {{ user.room }}</div>
                             </div>
-                            {{ user.first_name }}
+                            <span class="td-styles">{{ user.first_name }}</span>
                         </td>
                         <td class="td-styles">{{ user.last_name }}</td>
                         <td class="td-styles">{{ user.division }}</td>
@@ -89,43 +87,38 @@
                 {% endfor %}
                 </tbody>
             </table>
-            <nav aria-label="Page navigation" class="text-center">
-                <ul class="pagination">
-                    <li class="page-item">
-                        {% if users.has_prev %}
-                            <a class="page-link" href="{{ url_for('main.staff_directory',page_num=num-1) }}">
-                                <span aria-hidden="true">&#x25C0;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        {% else %}
-                            <a class="page-link" href="#">
-                                <span aria-hidden="true">&#x25C0;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        {% endif %}
-                    </li>
-                    {% for page in users.iter_pages() %}
-                        {% if page %}
-                            <li class="page-item"><a
-                                    href="{{ url_for('main.staff_directory',page_num=page) }}">{{ page }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    <li class="page-item">
-                        {% if users.has_next %}
-                            <a class="page-link" href="{{ url_for('main.staff_directory',page_num=num+1) }}">
-                                <span aria-hidden="true">&#x25B6;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        {% else %}
-                            <a class="page-link" href="# ">
-                                <span aria-hidden="true">&#x25B6;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </nav>
         </div>
+        <nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                <li class="page-item">
+                    {% if users.has_prev %}
+                        <a class="page-link" href="{{ url_for('main.staff_directory',page_num=num-1) }}">
+                            <span aria-hidden="true">&#x25C0;</span>
+                        </a>
+                    {% else %}
+                        <a class="page-link" href="#">
+                            <span aria-hidden="true">&#x25C0;</span>
+                        </a>
+                    {% endif %}
+                </li>
+                {% for page in users.iter_pages() %}
+                    {% if page %}
+                        <li class="page-item"><a
+                                href="{{ url_for('main.staff_directory',page_num=page) }}">{{ page }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item">
+                    {% if users.has_next %}
+                        <a class="page-link" href="{{ url_for('main.staff_directory',page_num=num+1) }}">
+                            <span aria-hidden="true">&#x25B6;</span>
+                        </a>
+                    {% else %}
+                        <a class="page-link" href="#">
+                            <span aria-hidden="true">&#x25B6;</span>
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
     </div>
-
 {% endblock %}

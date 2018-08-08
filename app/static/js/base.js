@@ -43,62 +43,106 @@ $(function () {
         // TODO: find a better way to handle this error
     }
 
-    var options = {
-        data: ["blue", "green", "pink", "red", "yellow"]
-    };
+    $("#filter-menu").on("focus", ".request-type", function () {
+        var target = document.activeElement.id;
+        target = target.replace("request-type-", "");
+        var targetId = "#" + document.activeElement.id;
+        $("#filter-menu").off().change(function () {
+            if (target == "First Name") {
 
-    $("#basics").easyAutocomplete(options);
+                $.ajax({
+                    url: "/get_user_first_names/",
+                    type: "GET",
+                    success: function (data) {
+                        $("#test").autocomplete({
+                            source: data
+                        });
+                    }
+                });
+            }
 
+            else if (target == "Last Name") {
 
-    $('#textarea')
-        .textext({
-            plugins: 'tags autocomplete'
-        })
-        .bind('getSuggestions', function (e, data) {
-            var list = [
-                    'Basic',
-                    'Closure',
-                    'Cobol',
-                    'Delphi',
-                    'Erlang',
-                    'Fortran',
-                    'Go',
-                    'Groovy',
-                    'Haskel',
-                    'Java',
-                    'JavaScript',
-                    'OCAML',
-                    'PHP',
-                    'Perl',
-                    'Python',
-                    'Ruby',
-                    'Scala'
-                ],
-                textext = $(e.target).textext()[0],
-                query = (data ? data.query : '') || ''
-            ;
+                $.ajax({
+                    url: "/get_user_last_names/",
+                    type: "GET",
+                    success: function (data) {
+                        $("#test").autocomplete({
+                            source: data
+                        });
+                    }
+                });
+            }
 
-            $(this).trigger(
-                'setSuggestions',
-                {result: textext.itemManager().filter(list, query)}
-            );
+            else if (target == "Division") {
+
+                $.ajax({
+                    url: "/get_user_division/",
+                    type: "GET",
+                    success: function (data) {
+                        $("#test").autocomplete({
+                            source: data
+                        });
+                    }
+                });
+            }
+
+            else if (target == "Title") {
+
+                $.ajax({
+                    url: "/get_user_title/",
+                    type: "GET",
+                    success: function (data) {
+                        $("#test").autocomplete({
+                            source: data
+                        });
+                    }
+                });
+            }
+
+            else {
+                $.ajax({
+                    url: "/get_user_first_names/",
+                    type: "GET",
+                    success: function (data) {
+                        $("#test").autocomplete({
+                            source: data
+                        });
+                    }
+                });
+            }
         });
+    });
+
+
+    // $('#filter').on(function(){
+    //    var value = $('#filter-data').val();
+    //     $.ajax({
+    //         url: "/get_user_data'/",
+    //         type: "GET",
+    //         success: function (data) {
+    //             $("#test").autocomplete({
+    //                 source: data
+    //             });
+    //         }
+    //     });
+    // });
 
     tinymce.init({selector: 'textarea'});
 
-        $('[data-toggle="popover"]').popover({
-            placement: 'right',
-            html: true,
-            content: function () {
-                return $(this).next('.popper-content').html();
-            }
-        });
-        $(document).on("click", ".popover-content .close", function () {
-            $(this).parents(".popover").popover('hide');
-        });
-        $('[data-toggle=popover]').on('click', function () {
-            $('[data-toggle=popover]').not(this).popover('hide');
-        });
+    $('[data-toggle="popover"]').popover({
+        placement: 'right',
+        html: true,
+        content: function () {
+            return $(this).next('.popper-content').html();
+        }
+    });
+    $(document).on("click", ".popover-content .close", function () {
+        $(this).parents(".popover").popover('hide');
+    });
+    $('[data-toggle=popover]').on('click', function () {
+        $('[data-toggle=popover]').not(this).popover('hide');
+    });
 
 });
 
