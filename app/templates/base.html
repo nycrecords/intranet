@@ -15,6 +15,7 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/easy-autocomplete.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/login.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
 {% endblock %}
@@ -44,12 +45,11 @@
 
         {% block page_content %}{% endblock %}
     </div>
-    <div class="blue-footer">
+    <!--<div class="blue-footer">-->
 {% endblock %}
 
 {% block footer %}
-    <div class="blue-overlay">
-    <footer> some footer</footer>
+    <div class="blue-footer">
 {% endblock %}
 
 {% block scripts %}

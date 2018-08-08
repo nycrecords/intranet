@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 splashside">
+            <img src="../static/img/Surrogate%20Court%20new.png" class="doris">
+            <div class="imagetext">
+                <p class="doristext">DORIS</p>
+                <p class="intranet">intranet</p>
+            </div>
+        </div>
+        <div class="col-sm-6 loginside">
+            <form action="#">
+                <div class="container" style="width: 550px">
+                    <div class="login">
+                        <label><b>Login</b></label>
+                        <input type="text" placeholder="Enter your email address" name="username" required>
+                        <br>
+                        <label><b>Password</b></label>
+                        <input type="password" placeholder="Enter your password" name="password" required>
+                        <br>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="remember"> Remember me</label>
+                        </div>
+                        <br>
+                        <button type="submit" class="loginbutton">Log In</button>
+                        <br>
+                        <br>
+                        <label style="text-align: center"><b>Don't have an account yet?</b>
+                            <br>
+                            <a href="">Create an account</a>
+                        </label>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
