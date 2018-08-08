@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Tools and Applications</h1>
+    </div>
+    <div class="well content-area container">
+        <div class="row">
+            <div class="it-information-text col-sm-4">
+                <a href="">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="title">Label Generator <br> (Epayments)</h4>
+                            <img class="picture" src="../static/img/Intranet%20Assets%202/creditcard.png">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="it-information-text col-sm-4">
+                <a href="">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="title">Letter Generator</h4>
+                            <img class="picture" src="../static/img/Intranet%20Assets%202/letter.png">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="it-information-text col-sm-4">
+                <a href="">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="title">Procurement</h4>
+                            <img class="picture" src="../static/img/Intranet%20Assets%202/procurement.png">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="it-support-text col-sm-4">
+                <div class="it-support-text-area">
+                    <p>Online order tracking for reference room and photo unit staff. Login to access.</p>
+                </div>
+            </div>
+            <div class="it-support-text col-sm-4">
+                <div class="it-support-text-area">
+                    <p>Letter generator for Reference Room staff. Login to access.</p>
+                </div>
+            </div>
+            <div class="it-support-text col-sm-4">
+                <div class="it-support-text-area">
+                    <p>Agency purchase requests, permission based on role in agency (external site).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

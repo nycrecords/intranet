@@ -1,0 +1,34 @@
+.it-support-option-boxes{
+    height: 175px;
+    width: 344px;
+    border-radius: 5px;
+    background-color:#F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.it-support-text-area{
+    font-size: 14pt;
+    padding: 25px 25px 25px 25px;
+    color: dimgray;
+}
+.glyphicon.it-support-glyphicon{
+    min-height:  104px;
+    line-height: 104px;
+    font-size: 50px;
+    display: block;
+    text-align: center;
+}
+.title{
+    text-align: center;
+}
+.click{
+    color: inherit;
+}
+.picture{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+}
