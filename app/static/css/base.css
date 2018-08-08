@@ -60,7 +60,6 @@ body {
 .blue-footer {
     height: 35rem;
     background-color: #77A0A9;
-
 }
 
 /* footer work */   
@@ -75,8 +74,8 @@ body {
     /* dimensions are 60% of actual png dimensions */
     height: 40px;
     width: 293px;
-    margin-top: 80px;
-} 
+    margin-top: 75px;
+}
 
 .social-media-logo {
     height: 24px;
@@ -84,24 +83,27 @@ body {
     position: relative;
     top: -4px;
     margin-right: 10px;
+    margin-left: 25px;
 }
 
 .social-media-box {
     width: 260px;
     height: auto;
     margin: 0 auto;
-    text-align: center;
-    margin-top: -10px;
+    margin-top: 25px;
+    border: 1px solid transparent;
+    margin-top: -15px;
 }
 
 .social-media-box h1 {
-    height: 24px;	
-    width: 250px;	
-    color: #212020;	
-    font-family: "Helvetica Neue";	
-    font-size: 20px;	
-    font-weight: bold;	
+    height: 24px;
+    width: 250px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    font-weight: bold;
     line-height: 25px;
+    margin-left: 25px;
 }
 
 .social-media-box ul {
@@ -116,10 +118,10 @@ body {
 
 .social-media-box ul li a {
     height: 23px;
-    width: 108px;	
-    color: #212020;	
-    font-family: "Helvetica Neue";	
-    font-size: 20px;	
+    width: 108px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
     line-height: 24px;
     text-align: center;
 }
@@ -128,19 +130,20 @@ body {
     width: 260px;
     height: auto;
     margin: 0 auto;
-    /*border: 1px solid #F00;*/
+    margin-top: 25px;
+    border: 1px solid transparent;
     text-align: center;
-    margin-top: -10px;
 }
 
 .footer-box h1 {
-    height: 24px;	
-    width: 250px;	
-    color: #212020;	
+    height: 24px;
+    width: 250px;
+    color: #212020;
     font-family: "Helvetica Neue";
     font-size: 20px;
     font-weight: bold;
     line-height: 25px;
+    margin-top: -15px;
 }
 
 .footer-box ul {
@@ -161,12 +164,6 @@ body {
     font-size: 20px;
     line-height: 24px;
 }
-
-.center-footer {
-    margin: 0 auto;
-    width: 92.5%;
-}
-
 .social-media-box-centered {
     width: 92.5%;
     text-align: left;
@@ -177,9 +174,21 @@ a {
     text-decoration: none !important;
 }
 
-.wrap{
+/*.wrap{*/
+    /*margin: 0 auto;*/
+/*}*/
+
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
     margin: 0 auto;
+    position: relative;
 }
+
+/*.center-footer {*/
+    /*margin: 0 auto;*/
+    /*width: 80%;*/
+/*}*/
 
 .line{
     top:35px;
