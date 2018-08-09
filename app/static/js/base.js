@@ -43,92 +43,37 @@ $(function () {
         // TODO: find a better way to handle this error
     }
 
-    $("#filter-menu").on("focus", ".request-type", function () {
-        var target = document.activeElement.id;
-        target = target.replace("request-type-", "");
-        var targetId = "#" + document.activeElement.id;
-        $("#filter-menu").off().change(function () {
-            if (target == "First Name") {
-
-                $.ajax({
-                    url: "/get_user_first_names/",
-                    type: "GET",
-                    success: function (data) {
-                        $("#test").autocomplete({
-                            source: data
-                        });
-                    }
-                });
-            }
-
-            else if (target == "Last Name") {
-
-                $.ajax({
-                    url: "/get_user_last_names/",
-                    type: "GET",
-                    success: function (data) {
-                        $("#test").autocomplete({
-                            source: data
-                        });
-                    }
-                });
-            }
-
-            else if (target == "Division") {
-
-                $.ajax({
-                    url: "/get_user_division/",
-                    type: "GET",
-                    success: function (data) {
-                        $("#test").autocomplete({
-                            source: data
-                        });
-                    }
-                });
-            }
-
-            else if (target == "Title") {
-
-                $.ajax({
-                    url: "/get_user_title/",
-                    type: "GET",
-                    success: function (data) {
-                        $("#test").autocomplete({
-                            source: data
-                        });
-                    }
-                });
-            }
-
-            else {
-                $.ajax({
-                    url: "/get_user_first_names/",
-                    type: "GET",
-                    success: function (data) {
-                        $("#test").autocomplete({
-                            source: data
-                        });
-                    }
+    // ON FIRST PAGE load
+    $(document).ready(function () {
+        $.ajax({
+            url: '/get_filter_options_list/' + $('#filter-data').val(),
+            type: "GET",
+            success: function (data) {
+                $("#test").autocomplete({
+                    source: data
                 });
             }
         });
     });
 
 
-    // $('#filter').on(function(){
-    //    var value = $('#filter-data').val();
-    //     $.ajax({
-    //         url: "/get_user_data'/",
-    //         type: "GET",
-    //         success: function (data) {
-    //             $("#test").autocomplete({
-    //                 source: data
-    //             });
-    //         }
-    //     });
-    // });
+    // handles on filter change
+    $(document).on("focus", "#filter-data", function () {
+        $("#filter-data").off().change(function () {
+            $.ajax({
+                url: '/get_filter_options_list/' + $('#filter-data').val(),
+                type: "GET",
+                success: function (data) {
+                    $("#test").autocomplete({
+                        source: data
+                    });
+                }
+            });
+        });
+    });
 
     tinymce.init({selector: 'textarea'});
+
 
     $('[data-toggle="popover"]').popover({
         placement: 'right',

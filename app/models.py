@@ -48,8 +48,8 @@ class Users(db.Model):
                     last_name=row['last_name'],
                     email=row['email'],
                     division=row['division'],
-                    title=row['title'],
                     phone_number=row['phone_number'],
+                    title=row['title'],
                     room=row['room'],
                     profile_picture_path=row['profile_picture_path'],
                     permissions=row['permissions']
