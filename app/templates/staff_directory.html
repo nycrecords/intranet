@@ -30,7 +30,6 @@
         </div>
         <div class="panel-body panel-body-style">
             <table class="table table-bordered table-styles">
-                <thead>
                 <tr>
                     <th class="th-styles">First</th>
                     <th class="th-styles">Last</th>
@@ -39,7 +38,6 @@
                     <th class="th-styles">Phone</th>
                     <th class="th-styles">Email</th>
                 </tr>
-                </thead>
                 <tbody id="staff-directory-table">
                 {% for user in users %}
                     <tr>
@@ -66,7 +64,7 @@
                                                  src="{{ url_for('static', filename='img/avatar.png') }}">
                                         {% endif %}
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-7">
                                         <p id="popover-name-styles">{{ user.first_name }} {{ user.last_name }}</p>
                                         <p id="popover-titles-styles">{{ user.title }}</p>
                                         <p id="popover-division-styles">{{ user.division }}</p>
