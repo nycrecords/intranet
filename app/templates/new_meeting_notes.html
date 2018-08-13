@@ -2,105 +2,106 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
-                    & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New Post</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">New Post</h1>
-    </div>
-    <div class="col-sm-12 well content-area">
-        <form class="new-post-form" method="post">
-            {{ form.csrf_token }}
-            <div class="form-group">
+    <div class="col-sm-12">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a
+                            href="{{ url_for('main.news_and_updates') }}">News
+                        & Updates</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">New Post</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">New Post</h1>
+        </div>
+        <div class="col-sm-12 well content-area">
+            <form class="new-post-form" method="post" enctype=multipart/form-data data-parsley-validate>
+                {{ form.csrf_token }}
+                <div class="form-group">
                     {{ form.title.label (class="post-form-label") }}
                     {{ form.title (class="form-control post-form-field post-form-input", id="title") }}
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.meeting_type.label (class="post-form-label") }}
-                    {{ form.meeting_type (class="form-control post-form-field post-form-select", id="title") }}
-            </div>
+                    {{ form.meeting_type (class="form-control post-form-field post-form-select", id="meeting-type") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.division.label (class="post-form-label") }}
-                    {{ form.division (class="form-control post-form-field post-form-select", id="title") }}
-            </div>
+                    {{ form.division (class="form-control post-form-field post-form-select", id="division") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.meeting_date.label (class="post-form-label") }}
-                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date-datepicker") }}
-            </div>
+                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date-datepicker", readonly="readonly") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.meeting_location.label (class="post-form-label") }}
-                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="datepicker") }}
-            </div>
+                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location", maxlength="100") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.meeting_leader.label (class="post-form-label") }}
                     {{ form.meeting_leader (class="form-control post-form-field post-form-input", id="meeting-leader") }}
                     {{ form.meeting_leader_id (class="hidden-field", id="meeting-leader-id") }}
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
                     {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="meeting-note-taker") }}
                     {{ form.meeting_note_taker_id (class="hidden-field", id="meeting-note-taker-id") }}
 
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.start_time.label (class="post-form-label") }}
-                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="datepicker") }}
-            </div>
+                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time", readonly="readonly") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.end_time.label (class="post-form-label") }}
-                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="datepicker") }}
-            </div>
+                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time", readonly="readonly") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.attendees.label (class="post-form-label") }}<br>
-                    {{ form.attendees (class="form-control post-form-field post-form-input", id="", data_role="tagsinput") }}
-            </div>
+                    {{ form.attendees (class="form-control post-form-field post-form-input", id="attendees", data_role="tagsinput") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.content.label (class="post-form-label") }}<br>
-                    {{ form.content (class="form-control post-form-field post-form-textarea", id="", rows="2") }}
-            </div>
+                    {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10", type="submit", value="submit", maxlength="10") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.tags.label (class="post-form-label") }}
-                    {{ form.tags (class="form-control post-form-field post-form-input", id="datepicker") }}
-            </div>
+                    {{ form.tags (class="form-control post-form-field post-form-input", id="tags") }}
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.next_meeting_date.label (class="post-form-label") }}
                     {{ form.next_meeting_date (class="form-control post-form-field post-form-input datepicker", id="next-meeting-date-datepicker") }}
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.next_meeting_leader.label (class="post-form-label") }}
                     {{ form.next_meeting_leader (class="form-control post-form-field post-form-input", id="next-meeting-leader") }}
                     {{ form.next_meeting_leader_id (class="hidden-field", id="next-meeting-leader-id") }}
-            </div>
+                </div>
 
-            <div class="form-group">
+                <div class="form-group">
                     {{ form.next_meeting_note_taker.label (class="post-form-label") }}
                     {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="next-meeting-note-taker") }}
                     {{ form.next_meeting_note_taker_id (class="hidden-field", id="next-meeting-note-taker-id") }}
-            </div>
+                </div>
 
-            <div class="center-submit-button">
+                <div class="center-submit-button">
                     {{ form.submit (class="btn btn-secondary post-form-submit", id="submit", type="submit") }}
-            </div>
-        </form>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

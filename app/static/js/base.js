@@ -53,41 +53,99 @@ $(function () {
     $("#basics").easyAutocomplete(options);
 
 
-    $('#textarea')
-        .textext({
-            plugins: 'tags autocomplete'
-        })
-        .bind('getSuggestions', function (e, data) {
-            var list = [
-                    'Basic',
-                    'Closure',
-                    'Cobol',
-                    'Delphi',
-                    'Erlang',
-                    'Fortran',
-                    'Go',
-                    'Groovy',
-                    'Haskel',
-                    'Java',
-                    'JavaScript',
-                    'OCAML',
-                    'PHP',
-                    'Perl',
-                    'Python',
-                    'Ruby',
-                    'Scala'
-                ],
-                textext = $(e.target).textext()[0],
-                query = (data ? data.query : '') || ''
-            ;
+    // $('#textarea')
+    //     .textext({
+    //         plugins: 'tags autocomplete',
+    //     })
+    //     .bind('getSuggestions', function (e, data) {
+    //         var list = [
+    //                 'Basic',
+    //                 'Closure',
+    //                 'Cobol',
+    //                 'Delphi',
+    //                 'Erlang',
+    //                 'Fortran',
+    //                 'Go',
+    //                 'Groovy',
+    //                 'Haskel',
+    //                 'Java',
+    //                 'JavaScript',
+    //                 'OCAML',
+    //                 'PHP',
+    //                 'Perl',
+    //                 'Python',
+    //                 'Ruby',
+    //                 'Scala'
+    //             ],
+    //             textext = $(e.target).textext()[0],
+    //             query = (data ? data.query : '') || ''
+    //         ;
+    //
+    //         $(this).trigger(
+    //             'setSuggestions',
+    //             {result: textext.itemManager().filter(list, query)}
+    //         );
+    //     });
 
-            $(this).trigger(
-                'setSuggestions',
-                {result: textext.itemManager().filter(list, query)}
-            );
+    // tinymce.init({
+    //     max_chars: 10,
+    //     selector: 'textarea',
+    //     entity_encoding: 'raw',
+    //     setup: function (editor) {
+    //         editor.on('change', function () {
+    //             // tinymce.triggerSave();
+    //             editor.save()
+    //         });
+    //     }
+    // });
+
+    window.onload = function () {
+        tinymce.init({
+            selector: 'textarea',
+            setup: function (ed) {
+                ed.on('keyup', function (e) {
+                    ed.save()
+                    var count = CountCharacters();
+                    document.getElementById("content").innerHTML = "Characters: " + count;
+                    document.getElementById("content").onclick = function () {
+                        ValidateCharacterLength;
+                    };
+
+                });
+            }
         });
+    }
 
-    tinymce.init({selector: 'textarea'});
+    function CountCharacters() {
+        var body = tinymce.get("content").getBody();
+        var description = tinymce.trim(body.innerText || body.textContent);
+        console.log(description.length)
+        return description.length;
+    };
+
+    function ValidateCharacterLength() {
+        var max = 20;
+        var count = CountCharacters();
+        if (count > max) {
+            alert("Maximum " + max + " characters allowed.")
+            return false;
+        }
+        return;
+    }
+
+    // window.Parsley
+    //     .addValidator('custom', {
+    //         requirementType: 'integer',
+    //         validateNumber: function () {
+    //             var max = 10
+    //             var count = CountCharacters();
+    //             return count <= max;
+    //         },
+    //         messages: {
+    //             en: 'This value is too long. It should have 10 characters or less.'
+    //         }
+    //     });
+
 
     var users = [];
     $.ajax({
@@ -156,5 +214,28 @@ $(function () {
 
         }
     });
+
+    var requiredFields = ["title", "meeting-type", "division", "meeting-date-datepicker", "meeting-location",
+        "start-time", "end-time", "attendees", "tags", "content", "next-meeting-date-datepicker"]
+
+    for (var i = 0; i < requiredFields.length; i++) {
+        $("#" + requiredFields[i]).attr("data-parsley-required", "");
+    }
+
+    $("#title").attr("data-parsley-maxlength", 100);
+    $("#title").attr("data-parsley-minlength", 10);
+    $("#meeting-location").attr("data-parsley-maxlength", 100);
+    $("#content").attr("data-parsley-custom", "");
+//
+//     window.Parsley.addValidator('dateformat', {
+//     validate: function(value, id) {
+//         var isValid = moment(value, "MM/DD/YYYY", true).isValid();
+//         return isValid;
+//     },
+//     messages: {
+//         en: 'Please provide date in format dd/mm/yyyy'
+//     }
+// })
+
 });
 
