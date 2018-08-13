@@ -1,6 +1,14 @@
 label{
     display: block;
 }
+
+.container {
+    height: 100%;
+    width: 100%;
+    padding:0;
+
+}
+
 input{
     width: 540px;
     padding: 12px 20px;
@@ -32,28 +40,7 @@ input{
     background: rgba(0,255,255, 0.5);
     box-shadow: 0px 870px rgba(255, 0, 92, 0.4) inset;
 }
-.row{
-    margin: 0;
-     padding: 0;
-     height: 100%;
-    width: 100%;
- }
-.splashside{
-    height: 100%;
-    width: 50%;
-    position: relative;
-    padding: 0;
-}
-.container{
-    height: 100%;
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-body, html{
-    height: 100%;
-    width: 100%;
-}
+
 .doristext{
     font-family: Phosphate;
     color: white;
