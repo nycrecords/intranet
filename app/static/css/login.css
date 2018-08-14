@@ -1,7 +1,11 @@
-.image {
+.container {
     height: 100%;
     width: 100%;
-    padding: 0;
+    padding-left: 0;
+}
+
+.test {
+    padding-left: 0;
 }
 
 .doris {
@@ -10,7 +14,6 @@
     height: 870px;
     width: 720px;
     background: rgba(0, 255, 255, 0.5);
-    box-shadow: 0px 870px rgba(255, 0, 92, 0.4) inset;
 }
 
 .doristext {
@@ -18,10 +21,8 @@
     color: white;
     font-size: 72px;
     text-align: center;
-    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     line-height: 91px;
     letter-spacing: 4.5px;
-    margin-bottom: -25px;
 }
 
 .intranet {
@@ -42,10 +43,11 @@
 }
 
 .label-login-style {
+    padding-bottom: .5rem;
     font-weight: 300;
     color: #2A2C2E;
     font-family: "Helvetica Neue";
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .login-input-style > input {
@@ -54,9 +56,11 @@
     border: 1px solid #CCCCCC;
     border-radius: 4px;
     background-color: #FFFFFF;
+    padding-left: 10px;
 }
 
 #login-submit-style > input {
+    padding-left: 10px;
     height: 52px;
     width: 540px;
     border: 1px solid #ECAC2A;
@@ -67,9 +71,17 @@
 }
 
 #registration-link-style {
+    width: 540px;
     color: #000000;
     font-family: "Helvetica Neue";
     font-size: 16px;
     line-height: 18px;
     text-align: center;
+    padding-left: 10rem;
+}
+
+.login-form-styles {
+    margin-top: 14.4375rem;
+    padding-bottom: 4rem;
+    padding-left: 4.6875rem;
 }

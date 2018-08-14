@@ -5,17 +5,17 @@
 {% endblock %}
 
 {% block page_content %}
-
-    <div class="container image">
-        <div class="col-sm-6 ">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/login.css') }}"/>
+    <div class="container">
+        <div class="col-sm-6 test">
             <img src="../static/img/Surrogate%20Court%20new.png" class="doris">
             <div class="imagetext">
                 <p class="doristext">DORIS</p>
                 <p class="intranet">intranet</p>
             </div>
         </div>
-        <div class="col-sm-6 loginside">
-            <form action="" method="post">
+        <div class="col-sm-6">
+            <form action="" class="login-form-styles" method="post">
                 <p>
                 <div class="label-login-style">Login</div>
                 <div class="login-input-style">{{ form.email(size=64) }}</div>
