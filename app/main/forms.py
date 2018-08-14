@@ -4,9 +4,10 @@ from wtforms.fields import (
     TextAreaField,
     SelectField,
     SubmitField,
-    BooleanField
+    BooleanField,
+    PasswordField
 )
-from wtforms.validators import DataRequired, Optional
+from wtforms.validators import DataRequired, Optional, Email
 from app.constants import choices
 
 
@@ -28,3 +29,8 @@ class Meeting_Notes_Form(FlaskForm):
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
     submit = SubmitField()
 
+class Login_Form(FlaskForm):
+    email = StringField('Login', validators=[DataRequired(), Email()])
+    password = PasswordField('Password',validators=[DataRequired()])
+    remember_me = BooleanField('Remember Me')
+    submit =SubmitField('Log In')

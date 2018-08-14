@@ -6,8 +6,7 @@
 
 {% block page_content %}
 
-<div class="container">
-    <div class="row">
+    <div class="container image">
         <div class="col-sm-6 ">
             <img src="../static/img/Surrogate%20Court%20new.png" class="doris">
             <div class="imagetext">
@@ -16,33 +15,32 @@
             </div>
         </div>
         <div class="col-sm-6 loginside">
-            <form action="#">
-                <div class="container" >
-                    <div class="login">
-                        <label><b>Login</b></label>
-                        <input type="text" placeholder="Enter your email address" name="username" required>
-                        <br>
-                        <label><b>Password</b></label>
-                        <input type="password" placeholder="Enter your password" name="password" required>
-                        <br>
-                        <div class="checkbox">
-                            <label><input type="checkbox" name="remember"> Remember me</label>
-                        </div>
-                        <br>
-                        <button type="submit" class="loginbutton">Log In</button>
-                        <br>
-                        <br>
-                        <label style="text-align: center"><b>Don't have an account yet?</b>
-                            <br>
-                            <a href="">Create an account</a>
-                        </label>
-                    </div>
+            <form action="" method="post">
+                <p>
+                <div class="label-login-style">Login</div>
+                <div class="login-input-style">{{ form.email(size=64) }}</div>
+                <br>
+                </p>
+                <p>
+                <div class="label-login-style"> Password</div>
+                <div class="login-input-style">   {{ form.password(size=32) }}<br></div>
+                </p>
 
-                </div>
+                <p>
+
+                    <br>
+                <div class="label-login-style"> {{ form.remember_me() }} Remember Me</div>
+                <br>
+                </p>
+                <p>
+                <div id="login-submit-style">{{ form.submit }}</div>
+                </p>
             </form>
+            <p id="registration-link-style">Don't have an account yet?<br>
+                <a href="#">Create an account?</a>
+            </p>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block footer %}

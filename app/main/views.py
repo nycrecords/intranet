@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, request as flask_request
 from app import db
 from . import main
-from app.main.forms import Meeting_Notes_Form
+from app.main.forms import Meeting_Notes_Form, Login_Form
 from datetime import datetime
 from app.main.utils import create_post
 
@@ -34,4 +34,5 @@ def new_post():
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = Login_Form()
+    return render_template('login.html',form=form)
