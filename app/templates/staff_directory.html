@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/staff_directory.css') }}"/>
+    <div>
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.index') }}">Employee
+                        Resource</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Staff Directory</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">Staff Directory</h1>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-header-style col-sm-12">
+            <form class="staff-directory-search" method="post">
+                <div class="col-sm-4 header-spacing" id="search">{{ form.search }}</div>
+                <div class="col-sm-4 header-spacing">{{ form.filters }}</div>
+                <div class="col-sm-4 header-spacing">{{ form.submit }}</div>
+            </form>
+        </div>
+        <div class="panel-body panel-body-style">
+            <table class="table table-bordered table-styles">
+                <thead>
+                <tr>
+                    <th class="th-styles">First</th>
+                    <th class="th-styles">Last</th>
+                    <th class="th-styles">Division</th>
+                    <th class="th-styles">Title</th>
+                    <th class="th-styles">Phone</th>
+                    <th class="th-styles">Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td class="td-styles">
+                            <img class="avatar-style" src="{{ url_for('static', filename='img/avatar.png') }}"
+                                 alt="avatar"></a>{{ user.first_name }}</td>
+                        <td class="td-styles">{{ user.last_name }}</td>
+                        <td class="td-styles">{{ user.division }}</td>
+                        <td class="td-styles">Quality Assurance Analyst</td>
+                        <td class="td-styles">{{ user.phone_number }}</td>
+                        <td class="td-styles">{{ user.email }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

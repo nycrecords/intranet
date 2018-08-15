@@ -11,3 +11,11 @@ DIVISIONS = [
     ('Administration', 'Administration'),
     ('IT', 'IT')
 ]
+
+STAFF_DIRECTORY_FILTERS = [
+    ('First Name', 'First Name'),
+    ('Last Name', 'Last Name'),
+    ('Division', 'Division'),
+    ('Title', 'Title')
+
+]
