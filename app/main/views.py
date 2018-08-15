@@ -32,9 +32,9 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
-@main.route('/it-support', methods=['GET', 'POST'])
-def it_support():
-    return render_template('it_support.html')
+@main.route('/divisions', methods=['GET', 'POST'])
+def divisions():
+    return render_template('divisions.html')
 
 
 @main.route('/staff-directory', methods=['GET', 'POST'])
