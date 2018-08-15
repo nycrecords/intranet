@@ -29,6 +29,6 @@ def new_post():
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
 
-@main.route('/it-support', methods=['GET', 'POST'])
-def it_support():
-    return render_template('it_support.html')
+@main.route('/resources', methods=['GET', 'POST'])
+def resources():
+    return render_template('resources.html')
