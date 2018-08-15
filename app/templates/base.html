@@ -3,25 +3,26 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-{% block head %}
-    {{ super() }}
-    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.core.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.autocomplete.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.tags.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/easy-autocomplete.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
+{% block head %} {{ super() }}
+<!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.core.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.autocomplete.css') }}"
+/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.tags.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/easy-autocomplete.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}" /> 
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}" 
 {% endblock %}
 
 <body>
 
-{% block navbar %}
+    {% block navbar %}
     <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -29,46 +30,115 @@
         </div>
     </div>
     <div class="blue-overlay">
+        <div class="container">
+            <div class="float-r">
+                <div class="wednesday-november">Wednesday, November 1, 2017</div>
+            </div>
+            <div class="doris top-padding2">
+                <div>
+                    <span>Doris</span>
+                </div>
+            </div>
+            <span class="intranet top-padding2">intranet</span>
 
+            <form class="navbar-form navbar-right" role="search">
+                <div class="input-group add-on">
+                    <input class="form-control" placeholder="Search" name="srch-term" id="search-bar" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default nav-magnification-style" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <nav class="navbar transparent">
+                <div class="navbar-inner container-fluid ">
+                    <ul class="nav navbar-nav col-sm-12 ">
+                        <li  class="col-md-3 navbar-option">
+                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                News & Updates
+                                <span class="caret nav-caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/news-update">News</a>
+                                </li>
+                                <li>
+                                    <a href="#">Meeting Notes</a>
+                                </li>
+                                <li>
+                                    <a href="#">Events</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3 navbar-option">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Employee Resources
+                                <span class="caret nav-caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">Staff Directory</a>
+                                </li>
+                                <li>
+                                    <a href="#">Employee Benefits</a>
+                                </li>
+                                <li>
+                                    <a href="#">Policies & Procedures</a>
+                                </li>
+                                <li>
+                                    <a href="#">Documents</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col-sm-3 navbar-option">
+                            <a href="#">Strategic Planning</a>
+                        </li>
+                        <li class="col-sm-3 navbar-option">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="space">
+                                IT Support
+                                <span class="caret nav-caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">FAQ</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
-{% endblock %}
-
-{% block content %}
+    {% endblock %} {% block content %}
     <div class="container">
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-            </div>
-        {% endfor %}
-
-        {% block page_content %}{% endblock %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %} {% block page_content %}{% endblock %}
     </div>
     <div class="blue-footer">
-{% endblock %}
-
-{% block footer %}
-    <div class="blue-overlay">
-    <footer> some footer</footer>
-{% endblock %}
-
-{% block scripts %}
-    {{ super() }}
-    {{ moment.include_moment() }}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.core.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.autocomplete.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.tags.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.easy-autocomplete.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
-{% endblock %}
+        {% endblock %} {% block footer %}
+        <div class="blue-overlay">
+            <footer> some footer</footer>
+            {% endblock %} {% block scripts %} {{ super() }} {{ moment.include_moment() }}
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.core.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.autocomplete.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.tags.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.easy-autocomplete.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script> {% endblock %}
 
 </body>
+
 </html>
