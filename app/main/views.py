@@ -52,25 +52,6 @@ def staff_directory():
     return render_template('staff_directory.html', users=users, form=form)
 
 
-# @main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
-# def get_filter_options_list(filter_value):
-#     users = Users.query.all()
-#     users_array = []
-#     if filter_value == "First Name":
-#         for user in users:
-#             users_array.append(user.first_name)
-#     if filter_value == "Last Name":
-#         for user in users:
-#             users_array.append(user.last_name)
-#     if filter_value == "Division":
-#         for user in users:
-#             users_array.append(user.division)
-#     if filter_value == "Title":
-#         for user in users:
-#             users_array.append(user.title)
-#
-#     return jsonify(users_array), 200
-
 @main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
 def get_filter_options_list(filter_value):
     users = Users.query.all()
@@ -89,7 +70,7 @@ def get_filter_options_list(filter_value):
         users_array = list(set(users_array))
     if filter_value == "Title":
         for user in users:
-            if user not in users_array:
-                users_array.append(user.title)
+            users_array.append(user.title)
+        users_array = list(set(users_array))
 
     return jsonify(users_array), 200
