@@ -32,7 +32,7 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
-@main.route('/documents', methods=['GET', 'POST'])
-def documents():
+@main.route('/calender', methods=['GET', 'POST'])
+def calender():
 
-    return render_template('documents.html')
+    return render_template('calender.html')

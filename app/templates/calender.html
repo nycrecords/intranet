@@ -1,0 +1,183 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">News and Updates</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Events</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Calender</h1>
+    </div>
+    <div class="col-sm-7">
+        <br>
+        <div class="search-container">
+            <div class="tab">
+                <button class="tablinks firstbutton" onclick="openTab(event, 'Instructions')" id="defaultOpen">
+                    Upcoming Events
+                </button>
+                <button class="tablinks secondbutton" onclick="openTab(event, 'Policies & Procedures')">
+                    Past Events
+                </button>
+            </div>
+        </div>
+        <div id="Instructions" class="tabcontent">
+            <div>
+                <div class="entry">
+                    <div class="date col-sm-1">
+                        <p class="datearrow">
+                            &#9654
+                        </p>
+                    </div>
+                    <div class="date col-sm-2">
+                        <p class="datetext">
+                            Nov <br>
+                            01
+                        </p>
+                    </div>
+                    <div class="event col-sm-9">
+                        <h4>Municipal Library Book Club</h4>
+                        <p>NYC Department of Records<br>
+                            Monday, 6pm</p>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="date col-sm-1">
+                        <p class="datearrow">
+                            &#9654
+                        </p>
+                    </div>
+                    <div class="date col-sm-2">
+                        <p class="datetext">
+                            Nov <br>
+                            06
+                        </p>
+                    </div>
+                    <div class="event col-sm-9">
+                        <h4>100 Years! Stay Tuned</h4>
+                        <p>NYC Department of Records<br>
+                            Thursday, 5pm</p>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="date col-sm-1">
+                        <p class="datearrow">
+                            &#9654
+                        </p>
+                    </div>
+                    <div class="date col-sm-2">
+                        <p class="datetext">
+                            Nov <br>
+                            08
+                        </p>
+                    </div>
+                    <div class="event col-sm-9">
+                        <h4>Civil Service Exam</h4>
+                        <p>NYC Department of Records<br>
+                            Wednesday, 6:30pm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Policies & Procedures" class="tabcontent">
+            <br>
+        </div>
+        <br>
+    </div>
+    <div class="col-sm-5">
+        <br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" style="font-size: 16pt"><span class="glyphicon glyphicon-menu-hamburger"
+                                                                  aria-hidden="true"></span>
+            </button>
+            <button type="button" class="btn btn-secondary" style="font-size: 16pt;"><span class="glyphicon glyphicon-calendar"
+                                                                  aria-hidden="true"></span>
+            </button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="month">
+            <ul>
+                <li class="next">&#10095;</li>
+                <li class="prev">&#10094;</li>
+                <li class="monthname">
+                    November
+                    <span style="font-size:18px">2017</span>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="weekdays">
+            <li>Mo</li>
+            <li>Tu</li>
+            <li>We</li>
+            <li>Th</li>
+            <li>Fr</li>
+            <li>Sa</li>
+            <li>Su</li>
+        </ul>
+
+        <ul class="days">
+            <li><span class="event">1</span></li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li><span class="event">6</span></li>
+            <li>7</li>
+            <li><span class="event">8</span></li>
+            <li>9</li>
+            <li><span class="active">10</span></li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+            <li>19</li>
+            <li>20</li>
+            <li>21</li>
+            <li>22</li>
+            <li>23</li>
+            <li>24</li>
+            <li>25</li>
+            <li>26</li>
+            <li>27</li>
+            <li>28</li>
+            <li>29</li>
+            <li>30</li>
+            <li>31</li>
+        </ul>
+        <br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary">Today</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+</script>
+{% endblock %}
