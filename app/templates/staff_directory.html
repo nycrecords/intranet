@@ -39,7 +39,7 @@
                     <th class="th-styles">Email</th>
                 </tr>
                 <tbody id="staff-directory-table">
-                {% for user in users %}
+                {% for user in users.items %}
                     <tr>
                         <td class="col-sm-2">
                             <a class="popover-right  popper" data-toggle="popover">
@@ -86,6 +86,13 @@
                 {% endfor %}
                 </tbody>
             </table>
+            {% for page_num in users.iter_pages() %}
+                {% if page_num %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.staff_directory',page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    ...
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

@@ -81,6 +81,7 @@ $(function () {
         container: "body",
         content: function () {
             return $(this).next('.popper-content').html();
+
         }
     });
     $(document).on("click", ".popover-content .close", function () {
