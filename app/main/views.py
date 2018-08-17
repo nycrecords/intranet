@@ -35,23 +35,30 @@ def new_post():
 @main.route('/staff-directory', methods=['GET', 'POST'])
 def staff_directory():
     form = Staff_Directory_Search_Form()
-    page = flask_request.args.get('page',1, type=int)
+    page = flask_request.args.get('page', 1, type=int)
 
     if form.search.data is "":
         users = Users.query.order_by(Users.last_name).paginate(page=page, per_page=10)
     elif form.filters.data == 'First Name':
-        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%')).paginate(page=1, per_page=10)
+        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%')).paginate(page=page, per_page=10)
+        # users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%')).paginate(page=1, per_page=10)
+        # return redirect('/search<string:users>',)
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%')).paginate(page=1, per_page=10)
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%')).paginate(page=page, per_page=10)
     elif form.filters.data == 'Division':
-        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%')).paginate(page=1, per_page=10)
+        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%')).paginate(page=page, per_page=10)
     elif form.filters.data == 'Title':
-        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%')).paginate(page=1, per_page=10)
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%')).paginate(page=page, per_page=10)
     else:
         users = Users.query.order_by(Users.last_name).paginate(page=page, per_page=10)
 
-    return render_template('staff_directory.html', users=users, form=form)
+    return render_template('staff_directory.html', users=users, form=form, page=page)
 
+
+@main.route('/search', methods=['GET','Post'])
+# def show_results(users):
+#     form  = Staff_Directory_Search_Form()
+#     render_template('search.html', users=users, form=form)
 
 @main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
 def get_filter_options_list(filter_value):

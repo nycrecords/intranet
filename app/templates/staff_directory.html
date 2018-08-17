@@ -21,12 +21,14 @@
 
     <div class="panel panel-default">
         <div class="panel-heading panel-header-style col-sm-12">
-            <form class="staff-directory-search-options" method="post">
+{#            action="{{ url_for('main.staff_directory/1') }}"#}
+            <form class="staff-directory-search-options"  method="post">
                 <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="test") }}</div>
                 <div class="col-sm-4 menu" id="filter-menu">{{ form.filters (id="filter-data") }}</div>
                 <div class="col-sm-4 "
                      id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
             </form>
+            {{ page }}
         </div>
         <div class="panel-body panel-body-style">
             <table class="table table-bordered table-styles">
