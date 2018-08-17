@@ -35,12 +35,12 @@
 
                 <div class="form-group">
                     {{ form.meeting_date.label (class="post-form-label") }}
-                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date-datepicker", readonly="readonly") }}
+                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date-datepicker") }}
                 </div>
 
                 <div class="form-group">
                     {{ form.meeting_location.label (class="post-form-label") }}
-                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location", maxlength="100") }}
+                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location") }}
                 </div>
 
                 <div class="form-group">
@@ -58,12 +58,12 @@
 
                 <div class="form-group">
                     {{ form.start_time.label (class="post-form-label") }}
-                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time", readonly="readonly") }}
+                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time") }}
                 </div>
 
                 <div class="form-group">
                     {{ form.end_time.label (class="post-form-label") }}
-                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time", readonly="readonly") }}
+                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time") }}
                 </div>
 
                 <div class="form-group">
@@ -73,7 +73,7 @@
 
                 <div class="form-group">
                     {{ form.content.label (class="post-form-label") }}<br>
-                    {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10", type="submit", value="submit", maxlength="10") }}
+                    {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10") }}
                 </div>
 
                 <div class="form-group">

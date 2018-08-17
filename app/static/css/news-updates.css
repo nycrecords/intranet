@@ -139,6 +139,7 @@ form.filter-form {
     border: 1px solid #ACACAC;
     margin-left: 2rem;
     margin-right: 2rem;
+    margin-bottom: 1rem;
 }
 
 .read-more {
@@ -147,4 +148,30 @@ form.filter-form {
     font-family: "Helvetica Neue";
     font-size: 16px;
     font-weight: normal;
+}
+
+/*added cs to the news_and_updates.html*/
+
+.meeting-notes-icon{
+    margin-top: 4rem;
+}
+
+.meetings-under-meeting-notes-icon {
+	height: 19px;
+	width: 86.25px;
+	color: #6093BC;
+	font-family: "Proxima Nova";
+	font-size: 16px;
+	line-height: 19px;
+    margin-top: 1.5rem;
+    margin-left: 3.3rem;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.com-text{
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }

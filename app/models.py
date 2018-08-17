@@ -132,6 +132,17 @@ class MeetingNotes(Posts):
         self.next_meeting_note_taker = next_meeting_note_taker
         self.meeting_type = meeting_type
         self.meeting_division = division
+        self.content = content
+        self.title = title
+        self.tags = tags
+        self.author = author
+
+    # @property
+    # def get_user_name(self):
+    #     user = Users.query.filter_by(id=).one()
+    #     # if user == self.meeting_leader:
+    #     #     return user.full_name
+
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id

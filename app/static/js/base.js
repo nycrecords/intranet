@@ -1,9 +1,26 @@
 $(function () {
     // $("#datepicker").datepicker();
     // $(".datepicker").datepicker();
-    $("#meeting-date-datepicker").datepicker();
-    $("#next-meeting-date-datepicker").datepicker();
+    // $("#meeting-date-datepicker").datepicker();
+    // $("#next-meeting-date-datepicker").datepicker();
+    $("#meeting-date-datepicker").datepicker({
+        dateFormat: "mm/dd/yy",
+        maxDate: 0
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
 
+    $("#next-meeting-date-datepicker").datepicker({
+        dateFormat: "mm/dd/yy",
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
     try {
         // render timepicker plugins
         $(".timepicker").timepicker({
@@ -53,100 +70,30 @@ $(function () {
     $("#basics").easyAutocomplete(options);
 
 
-    // $('#textarea')
-    //     .textext({
-    //         plugins: 'tags autocomplete',
-    //     })
-    //     .bind('getSuggestions', function (e, data) {
-    //         var list = [
-    //                 'Basic',
-    //                 'Closure',
-    //                 'Cobol',
-    //                 'Delphi',
-    //                 'Erlang',
-    //                 'Fortran',
-    //                 'Go',
-    //                 'Groovy',
-    //                 'Haskel',
-    //                 'Java',
-    //                 'JavaScript',
-    //                 'OCAML',
-    //                 'PHP',
-    //                 'Perl',
-    //                 'Python',
-    //                 'Ruby',
-    //                 'Scala'
-    //             ],
-    //             textext = $(e.target).textext()[0],
-    //             query = (data ? data.query : '') || ''
-    //         ;
-    //
-    //         $(this).trigger(
-    //             'setSuggestions',
-    //             {result: textext.itemManager().filter(list, query)}
-    //         );
-    //     });
-
-    // tinymce.init({
-    //     max_chars: 10,
-    //     selector: 'textarea',
-    //     entity_encoding: 'raw',
-    //     setup: function (editor) {
-    //         editor.on('change', function () {
-    //             // tinymce.triggerSave();
-    //             editor.save()
-    //         });
-    //     }
-    // });
-
+    //Getting content from the tinymce text-editor and saving it's characters to the datebase
     window.onload = function () {
         tinymce.init({
             selector: 'textarea',
+            // plugins: 'paste',
+            // paste_auto_cleanup_on_paste: true,
+            // paste_remove_styles: true,
+            // paste_remove_styles_if_webkit: true,
+            // paste_strip_class_attributes: true,
+            // remove_trailing_brs: false,
+            // paste_as_text: true,
+            // forced_root_block: "",
             setup: function (ed) {
                 ed.on('keyup', function (e) {
-                    ed.save()
-                    var count = CountCharacters();
-                    document.getElementById("content").innerHTML = "Characters: " + count;
-                    document.getElementById("content").onclick = function () {
-                        ValidateCharacterLength;
-                    };
-
+                    ed.save();
+                    var element = document.getElementById('content');
+                    var text = element.innerText || element.textContent;
+                    element.innerHTML = text;
                 });
             }
         });
     }
 
-    function CountCharacters() {
-        var body = tinymce.get("content").getBody();
-        var description = tinymce.trim(body.innerText || body.textContent);
-        console.log(description.length)
-        return description.length;
-    };
-
-    function ValidateCharacterLength() {
-        var max = 20;
-        var count = CountCharacters();
-        if (count > max) {
-            alert("Maximum " + max + " characters allowed.")
-            return false;
-        }
-        return;
-    }
-
-    // window.Parsley
-    //     .addValidator('custom', {
-    //         requirementType: 'integer',
-    //         validateNumber: function () {
-    //             var max = 10
-    //             var count = CountCharacters();
-    //             return count <= max;
-    //         },
-    //         messages: {
-    //             en: 'This value is too long. It should have 10 characters or less.'
-    //         }
-    //     });
-
-
+    //autocomplete using ajax for meeting leader and next meeting leader
     var users = [];
     $.ajax({
         url: "/get_user_list/",
@@ -215,6 +162,7 @@ $(function () {
         }
     });
 
+    //required validation for the StringFields
     var requiredFields = ["title", "meeting-type", "division", "meeting-date-datepicker", "meeting-location",
         "start-time", "end-time", "attendees", "tags", "content", "next-meeting-date-datepicker"]
 
@@ -222,20 +170,11 @@ $(function () {
         $("#" + requiredFields[i]).attr("data-parsley-required", "");
     }
 
+    //max and min length validation
     $("#title").attr("data-parsley-maxlength", 100);
     $("#title").attr("data-parsley-minlength", 10);
     $("#meeting-location").attr("data-parsley-maxlength", 100);
-    $("#content").attr("data-parsley-custom", "");
-//
-//     window.Parsley.addValidator('dateformat', {
-//     validate: function(value, id) {
-//         var isValid = moment(value, "MM/DD/YYYY", true).isValid();
-//         return isValid;
-//     },
-//     messages: {
-//         en: 'Please provide date in format dd/mm/yyyy'
-//     }
-// })
+
 
 });
 

@@ -54,7 +54,12 @@ def create_meeting_notes(meeting_date,
                          next_meeting_leader,
                          next_meeting_note_taker,
                          meeting_type,
-                         division):
+                         division,
+                         content,
+                         title,
+                         tags,
+                         author
+                         ):
     meeting_notes = MeetingNotes(meeting_date=meeting_date,
                                  meeting_location=meeting_location,
                                  meeting_leader=meeting_leader,
@@ -66,7 +71,11 @@ def create_meeting_notes(meeting_date,
                                  next_meeting_leader=next_meeting_leader,
                                  next_meeting_note_taker=next_meeting_note_taker,
                                  meeting_type=meeting_type,
-                                 division=division)
-    print(meeting_note_taker)
+                                 division=division,
+                                 content=content,
+                                 title=title,
+                                 tags=tags,
+                                 author=author
+                                 )
     create_object(meeting_notes)
     return meeting_notes.id
