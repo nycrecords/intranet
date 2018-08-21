@@ -27,6 +27,7 @@
                 <div class="col-sm-4 "
                      id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
             </form>
+            <a href="{{ url_for('main.staff_directory') }}">go back</a>
         </div>
         <div class="panel-body panel-body-style">
             <table class="table table-bordered table-styles">
@@ -86,12 +87,13 @@
                 {% endfor %}
                 </tbody>
             </table>
-        {{ filter }}{{ input }}
+
+             {{ filter }}{{ input }}
             <nav aria-label="Page navigation" class="style-pagination-links">
                 <ul class="pagination">
 {#                    {% if prev_url %}#}
 {#                        <li class="page-item">#}
-{#                            <a class="page-link" href="{{ url_for('main.staff_directory', page=prev_url) }}"#}
+{#                            <a class="page-link" href="{{ url_for('main.show_result',filter=filter, input=input, page=prev_url) }}"#}
 {#                               aria-label="Previous">#}
 {#                                <span aria-hidden="true">&laquo;</span>#}
 {#                                <span class="sr-only">Previous</span>#}
@@ -101,20 +103,20 @@
 
                     {% for page_num in users.iter_pages() %}
                         {% if page_num %}
-                            <li class="page-item"><a class="page-link" href="{{ url_for('main.staff_directory',page=page_num) }}">{{ page_num }}</a>
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('main.show_result',filter=filter, input=input, page=page_num) }}">{{ page_num }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
 
 {#                    {% if next_url %}#}
 {#                        <li class="page-item">#}
-{#                            <a class="page-link" href="{{ url_for('main.staff_directory', page=next_url) }}"#}
-{#                               aria-label="Next">#}
+{#                            <a class="page-link" href="{{ url_for('main.show_result',filter=filter, input=input, page=next_url) }}" aria-label="Next">#}
 {#                                <span aria-hidden="true">&raquo;</span>#}
 {#                                <span class="sr-only">Next</span>#}
 {#                            </a>#}
 {#                        </li>#}
-{#                    {% endif  %}#}
+{#                    {% endif %}#}
                 </ul>
             </nav>
 
