@@ -39,10 +39,7 @@ def staff_directory():
 
     if form.search.data is "":
         users = Users.query.order_by(Users.last_name).paginate(page=page, per_page=10)
-        next_url = url_for('main.staff_directory', page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('main.staff_directory', page=users.prev_num) \
-            if users.has_prev else None
+
     elif form.filters.data == 'First Name':
         return redirect('/search/'+form.filters.data+'/'+form.search.data)
     elif form.filters.data == 'Last Name':
@@ -53,12 +50,8 @@ def staff_directory():
         return redirect('/search/' + form.filters.data + '/' + form.search.data)
     else:
         users = Users.query.order_by(Users.last_name).paginate(page=page, per_page=10)
-        next_url = url_for('main.staff_directory', page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('main.staff_directory', page=users.prev_num) \
-            if users.has_prev else None
 
-    return render_template('staff_directory.html', users=users, form=form, page=page, next_url=next_url, prev_url=prev_url)
+    return render_template('staff_directory.html', users=users, form=form, page=page)
 
 @main.route('/search/<string:filter>/<string:input>', methods=['GET', 'POST'])
 def show_result(filter,input):
@@ -67,33 +60,20 @@ def show_result(filter,input):
 
     if filter == 'First Name':
         users = Users.query.filter(Users.first_name.ilike('%' + input + '%')).paginate(page=page, per_page=10)
-        next_url = url_for('search', filter=filter, input=input, page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('search', filter=filter, input=input,  page=users.prev_num) \
-            if users.has_prev else None
 
     elif filter == 'Last Name':
         users = Users.query.filter(Users.last_name.ilike('%' + input + '%')).paginate(page=page, per_page=10)
-        next_url = url_for('search', filter=filter, input=input, page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('search', filter=filter, input=input, page=users.prev_num) \
-            if users.has_prev else None
 
     elif filter == 'Division':
         users = Users.query.filter(Users.division.ilike('%' + input + '%')).paginate(page=page, per_page=10)
-        next_url = url_for('search', filter=filter, input=input, page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('search', filter=filter, input=input, page=users.prev_num) \
-            if users.has_prev else None
 
     elif filter == 'Title':
         users = Users.query.filter(Users.title.ilike('%' + input + '%')).paginate(page=page, per_page=10)
-        next_url = url_for('search', filter=filter, input=input, page=users.next_num) \
-            if users.has_next else None
-        prev_url = url_for('search', filter=filter, input=input, page=users.prev_num) \
-            if users.has_prev else None
 
-    return render_template('search.html', users=users, form=form, page=page, filter=filter, input=input, next_url=next_url, prev_url=prev_url)
+    elif form.filters.data == 'First Name':
+        return redirect('/search/' + form.filters.data + '/' + form.search.data)
+
+    return render_template('search.html', users=users, form=form, page=page, filter=filter, input=input)
 
 
 @main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
