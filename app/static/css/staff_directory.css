@@ -1,0 +1,145 @@
+.panel-default>.panel-header-style {
+    background-color:#FFFFFF;
+    height:125px;
+    padding-top:40px;
+}
+
+.panel-body-style {
+    padding:0;
+}
+
+.table-styles{
+    margin-bottom:0;
+}
+
+.staff-directory-search-options {
+    font-family: Helvetica Neue;
+    font-size: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#filter-menu>select {
+    width: 290px;
+    height: 38px;
+}
+
+#staff-directory-submit>input[type=submit] {
+    height: 38px;
+    border: 1px solid #979797;
+    margin-right: 200px;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color:#FFFFFF;
+}
+
+#staff-directory-search>input[type=text] {
+    width:290px;
+    height:35px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color:#FFFFFF;
+}
+
+.th-styles {
+    color: #FFFFFF;
+    font-family:Helvetica Neue;
+    font-size: 18px;
+    letter-spacing: 0.82px;
+    font-weight: 400;
+    background-color:#5C95A3;
+}
+
+.td-styles {
+    color: #333333;
+    font-family: Helvetica Neue;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.76px;
+    text-align: left;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+/*if the image for the popover is focus or hover on*/
+.popper:focus, .popper:hover {
+    text-decoration: none;
+}
+
+.avatar-style {
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.table-styles>tbody>tr>th{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.table>#staff-directory-table>tr>td {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        vertical-align: middle;
+}
+
+.popover {
+    max-width: 500px;
+}
+
+.popover-content {
+    background-color: #FFFFFF;
+}
+
+.popover-img {
+    margin-top:20px;
+    border-radius: 50%;
+    height: 156px;
+    width: 156px;
+}
+
+#popover-name-styles {
+    margin-top:20px;
+    font-size: 36px;
+    letter-spacing: 0.91px;
+    font-family: "Helvetica Neue";
+    padding-left: 10px;
+}
+
+#popover-titles-styles {
+    color: #39393A;
+    font-family: "Helvetica Neue";
+    font-size: 24px;
+    letter-spacing: 0.61px;
+    padding-left: 10px;
+}
+
+#popover-division-styles {
+    color: #656565;
+    font-family: "Helvetica Neue";
+	font-size: 18px;
+    padding-left: 10px;
+}
+
+#popover-information-styles {
+    color: #333333;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.popover-close-link {
+    height: 16px;
+    width: 14px;
+    margin-right:10px;
+}
+
+.style-pagination-links{
+    text-align:center;
+    font-size:16px;
+}

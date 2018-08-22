@@ -43,47 +43,53 @@ $(function () {
         // TODO: find a better way to handle this error
     }
 
-    var options = {
-        data: ["blue", "green", "pink", "red", "yellow"]
-    };
-
-    $("#basics").easyAutocomplete(options);
-
-
-    $('#textarea')
-        .textext({
-            plugins: 'tags autocomplete'
-        })
-        .bind('getSuggestions', function (e, data) {
-            var list = [
-                    'Basic',
-                    'Closure',
-                    'Cobol',
-                    'Delphi',
-                    'Erlang',
-                    'Fortran',
-                    'Go',
-                    'Groovy',
-                    'Haskel',
-                    'Java',
-                    'JavaScript',
-                    'OCAML',
-                    'PHP',
-                    'Perl',
-                    'Python',
-                    'Ruby',
-                    'Scala'
-                ],
-                textext = $(e.target).textext()[0],
-                query = (data ? data.query : '') || ''
-            ;
-
-            $(this).trigger(
-                'setSuggestions',
-                {result: textext.itemManager().filter(list, query)}
-            );
+    // ON FIRST PAGE load
+    $(document).ready(function () {
+        $.ajax({
+            url: '/get_filter_options_list/' + $('#filter-data').val(),
+            type: "GET",
+            success: function (data) {
+                $("#test").autocomplete({
+                    source: data
+                });
+            }
         });
+    });
 
-    tinymce.init({ selector:'textarea' });
+
+    // handles on filter change
+    $(document).on("focus", "#filter-data", function () {
+        $("#filter-data").off().change(function () {
+            $.ajax({
+                url: '/get_filter_options_list/' + $('#filter-data').val(),
+                type: "GET",
+                success: function (data) {
+                    $("#test").autocomplete({
+                        source: data
+                    });
+                }
+            });
+        });
+    });
+
+    tinymce.init({selector: 'textarea'});
+
+
+    $('.popper').popover({
+        placement: 'right',
+        html: true,
+        container: "body",
+        content: function () {
+            return $(this).next('.popper-content').html();
+
+        }
+    });
+    $(document).on("click", ".popover-content .close", function () {
+        $(this).parents(".popover").popover('hide');
+    });
+    $('[data-toggle="popover"]').on('click', function () {
+        $('[data-toggle=popover]').not(this).popover('hide');
+    });
+
 });
 
