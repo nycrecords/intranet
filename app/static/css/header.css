@@ -1,5 +1,17 @@
 /* Header Styles */
 
+.top-header {
+    min-height: 4.5rem;
+    background-color: #000000;
+    margin-bottom: 0;
+}
+
+.blue-overlay {
+    min-height: 22rem;
+    background-image: linear-gradient(to bottom right, rgba(80, 148, 165, 0.6), rgba(12, 72, 87, 0.6)), url("/static/img/intranet_header_background.jpg");
+    background-size: cover;
+}
+
 .header-current-date {
     height: 22px;
     width: 305px;
