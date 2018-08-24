@@ -95,6 +95,14 @@ body {
     margin-left: 15px;
 }
 
+#Doris-link-style{
+    color: #FFFFFF;
+}
+
+.header-doris-style, a:hover{
+    text-decoration: none;
+}
+
 .header-intranet-style {
     height: 35px;
     width: 144px;
