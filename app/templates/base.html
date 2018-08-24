@@ -18,6 +18,8 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}"/>
 {% endblock %}
 <body>
 {% block navbar %}
@@ -118,7 +120,88 @@
         {% endfor %}
         {% block page_content %}{% endblock %}
     </div>
-    <div class="intranet-footer">
+    <div class="wrap">
+        <div class="intranet-footer">
+            <div class="container col-sm-12">
+                <div class="center-footer">
+                    <div class="footer-left col-sm-3 line">
+                        <div class="footer-box">
+                            <img class="doris-banner" src="{{ url_for('static', filename='img/doris_banner.png') }}">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 line">
+                        <div class="footer-box">
+                            <h1>ABOUT</h1>
+                            <ul>
+                                <li>
+                                    <a href="#">Our Mission</a>
+                                </li>
+                                <li>
+                                    <a href="#">Divisions</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 line">
+                        <div class="footer-box">
+                            <h1>DORIS SITES</h1>
+                            <ul>
+                                <li>
+                                    <a href="http://www.archives.nyc/">Archives.nyc</a>
+                                </li>
+                                <li>
+                                    <a href="https://a860-openrecords.nyc.gov/">OpenRecords</a>
+                                </li>
+                                <li>
+                                    <a href="http://nycma.lunaimaging.com/luna/servlet">Online Gallary</a>
+                                </li>
+                                <li>
+                                    <a href="http://www.womensactivism.nyc/">Women's Activism.nyc</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 line">
+                        <div class="social-media-box">
+                            <div class="social-media-box-centered">
+                                </ul>
+                                <h1>SOCIAL MEDIA</h1>
+                                <ul>
+                                    <li>
+                                        <img class="social-media-logo"
+                                             src="{{ url_for('static', filename='img/facebook_logo.png') }}">
+                                        <a href="https://www.facebook.com/nycrecords"> Facebook</a>
+                                    </li>
+                                    <li>
+                                        <img class="social-media-logo"
+                                             src="{{ url_for('static', filename='img/instagram_logo.png') }}">
+                                        <a href="https://www.instagram.com/nycarchives/"> Instagram</a>
+                                    </li>
+                                    <li>
+                                        <img class="social-media-logo"
+                                             src="{{ url_for('static', filename='img/twitter_logo.png') }}">
+                                        <a href="https://twitter.com/nycrecords"> Twitter</a>
+                                    </li>
+                                    <li>
+                                        <img class="social-media-logo"
+                                             src="{{ url_for('static', filename='img/tumblr_logo.png') }}">
+                                        <a href="http://nycrecords.tumblr.com/"> Tumblr</a>
+                                    </li>
+                                    <li>
+                                        <img class="social-media-logo"
+                                             src="{{ url_for('static', filename='img/youtube_logo.png') }}">
+                                        <a href="https://www.youtube.com/user/NYCDeptofRecords"> YouTube</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
