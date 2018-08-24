@@ -1,0 +1,139 @@
+/* footer work */
+
+.intranet-footer {
+    height: 35rem;
+    background-color: #77A0A9;
+}
+
+.footer-styles {
+    width: 260px;
+    height: auto;
+    margin: auto;
+}
+
+.doris-banner {
+    /* dimensions are 60% of actual png dimensions */
+    height: 40px;
+    width: 293px;
+    margin-top: 75px;
+}
+
+.social-media-logo {
+    height: 24px;
+    width: 24px;
+    position: relative;
+    top: -4px;
+    margin-right: 10px;
+    margin-left: 25px;
+}
+
+.social-media-box {
+    width: 260px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 25px;
+    border: 1px solid transparent;
+    margin-top: -15px;
+}
+
+.social-media-box h1 {
+    height: 24px;
+    width: 250px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.social-media-box ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.social-media-box ul li {
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.social-media-box ul li a {
+    height: 23px;
+    width: 108px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.footer-box {
+    width: 260px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 25px;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.footer-box h1 {
+    height: 24px;
+    width: 250px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
+    margin-top: -15px;
+}
+
+.footer-box ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer-box ul li {
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.footer-box ul li a {
+    height: 23px;
+    width: 108px;
+    color: #212020;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    line-height: 24px;
+}
+.social-media-box-centered {
+    width: 92.5%;
+    text-align: left;
+    margin-left: 35px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+.container {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.line{
+    top:35px;
+    width: 25%;
+    height:280px;
+    z-index:10;
+    display:table-cell;
+    border-right:solid rgba(33,32,32,0.5) 1px;
+}
+
+.line:last-child{
+    border:0px;
+}
