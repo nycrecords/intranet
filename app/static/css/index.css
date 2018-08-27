@@ -2,19 +2,14 @@
     margin-bottom: 2.3rem;
 }
 
-.well {
+.well.quick-links-well {
     background: #ffffff;
     width: 291px;
     border-radius: 0;
-}
-.quick-links {
-    margin-top: 2rem;
 }
 
-.well {
-    background: #ffffff;
-    width: 291px;
-    border-radius: 0;
+.quick-links {
+    margin-top: 2rem;
 }
 
 glyphicon {
