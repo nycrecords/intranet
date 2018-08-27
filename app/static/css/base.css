@@ -58,12 +58,12 @@ body {
     padding-bottom: 1.5rem;
 }
 
-.header-style {
+.intranet-footer {
     height: 30rem;
     background-color: #77A0A9;
 }
 
-/* Header Style */
+/* Header Styles */
 
 .header-current-date {
     height: 22px;
@@ -159,6 +159,7 @@ body {
 }
 
 /* Style Changes to the nav bar */
+
 .nav {
     top: 3.6rem;
 }
@@ -180,7 +181,8 @@ body {
     margin-bottom: 2rem;
 }
 
-/*If the navbar link is focus or hover*/
+/* If the navbar link is focus or hover */
+
 .nav > li > a:focus, .nav > li > a:hover {
     text-decoration: none;
     background-color: transparent;
@@ -197,7 +199,8 @@ body {
     padding-bottom: 30px;
 }
 
-/*if you hover on a link for a drop down menuß*/
+/* If you hover on a link for a drop down menu */
+
 .dropdown-menu > li > a:hover {
     background-color: #d4d7db;
     padding-bottom: 30px;
@@ -207,6 +210,6 @@ body {
     border-bottom: 1rem solid #F9B52B;
 }
 
-#navbar-bottom-boder-style{
+#navbar-bottom-boder-style {
     padding-bottom: 30px;
 }
