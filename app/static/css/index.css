@@ -1,0 +1,99 @@
+.container {
+    margin-bottom: 2.3rem;
+}
+
+.well.quick-links-well {
+    background: #ffffff;
+    width: 291px;
+    border-radius: 0;
+}
+
+.quick-links {
+    margin-top: 2rem;
+}
+
+glyphicon {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.quick-links-header {
+    height: 48px;
+    width: 291px;
+    border-radius: 3px 3px 0 0;
+    background-color: #53818C;
+    text-align: center;
+}
+
+.quick-links-title {
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 46px;
+    text-align: left;
+    margin-left: 17px;
+}
+
+.quick-links-anchors {
+    padding-left: 10px;
+}
+
+.quick-links-anchors > li {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.quick-links-anchors > li > a {
+	color: #4A4A4A;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    letter-spacing: 0.35px;
+    line-height: 24px;
+}
+
+.quick-links-anchors > li > a:hover, a:focus {
+    text-decoration: none;
+}
+
+.date-styles {
+    color: #9B9B9B;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+}
+
+.event-styles > a {
+    color: #4A4A4A;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 23px;
+}
+
+.event-styles > a:hover {
+    text-decoration: none;
+}
+
+.calender-view-style {
+    color: #ECAC2A;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 22px;
+    float: right;
+    margin-right: 1.6rem;
+}
+
+.calender-view-style:hover, .calender-view-style:focus {
+    text-decoration: none;
+    color: #ECAC2A;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-top: 2px solid #eee;
+}
