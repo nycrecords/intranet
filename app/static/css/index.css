@@ -17,7 +17,7 @@ glyphicon {
     margin-right: 5px;
 }
 
-.quick-link-header {
+.quick-links-header {
     height: 48px;
     width: 291px;
     border-radius: 3px 3px 0 0;
@@ -25,7 +25,7 @@ glyphicon {
     text-align: center;
 }
 
-.quick-link-title {
+.quick-links-title {
     color: #FFFFFF;
     font-family: "Helvetica Neue";
     font-size: 22px;
@@ -46,7 +46,7 @@ glyphicon {
 }
 
 .quick-links-anchors > li > a {
-    color: #000000;
+	color: #4A4A4A;
     font-family: "Helvetica Neue";
     font-size: 18px;
     letter-spacing: 0.35px;
@@ -66,7 +66,7 @@ glyphicon {
 }
 
 .event-styles > a {
-    color: #000000;
+    color: #4A4A4A;
     font-family: "Helvetica Neue";
     font-size: 18px;
     font-weight: normal;
