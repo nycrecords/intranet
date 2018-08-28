@@ -158,7 +158,7 @@ hr {
 
 }
 .scrollablediv{
-    height: 400px;
+    height: 535px;
     padding: 10px;
     overflow-y: scroll;
     background-color: lightgray;
@@ -171,7 +171,7 @@ hr {
 }
 .scrollholder{
     background-color: white;
-    height: 550px;
+    height: 685px;
 }
 .viewmore{
     border-radius: 6px;
