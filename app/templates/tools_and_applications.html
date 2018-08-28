@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
-<div class="col-sm-12">
+<div class="col-sm-12 bottom-margin">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="{{ url_for('main.index') }}">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">IT Support</li>
             </ol>

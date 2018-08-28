@@ -43,7 +43,10 @@ body {
 
 .top-padding {
     padding-top: 2rem;
-    padding-bottom: 1.5rem;
+}
+
+.bottom-margin {
+    margin-bottom: 50px;
 }
 
 .no-left-padding {
