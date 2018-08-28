@@ -1,5 +1,5 @@
 /*.container {*/
-    /*margin-bottom: 2.3rem;*/
+/*margin-bottom: 2.3rem;*/
 /*}*/
 
 .well.quick-links-well {
@@ -49,7 +49,7 @@ glyphicon {
 }
 
 .quick-links-anchors > li > a {
-	color: #4A4A4A;
+    color: #4A4A4A;
     font-family: "Helvetica Neue";
     font-size: 18px;
     letter-spacing: 0.35px;
@@ -114,7 +114,7 @@ hr {
     margin-left: 40px;
 }
 
-.carousel-caption{
+.carousel-caption {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -125,21 +125,22 @@ hr {
     padding-left: 40px;
     color: #fff;
     text-align: left;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
 }
-.carousel-indicators
-{
+
+.carousel-indicators {
     bottom: -3px;
     text-align: center;
 }
-.carousel-indicators li.active{
+
+.carousel-indicators li.active {
     display: inline-block;
     width: 15px;
     height: 15px;
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #000\9;
+    background-color: #000 \9;
     border: 1px solid #16a085;
     border-radius: 50%;
     background: white;
@@ -163,18 +164,21 @@ hr {
     margin: 1px;
     text-indent: -999px;
     cursor: pointer;
-	background-color: #3F72E6;
+    background-color: #3F72E6;
     border-radius: 50%;
     border: 1px solid #3F72E6;
 }
-.caption-text{
+
+.caption-text {
     color: white;
     font-style: italic;
 }
-.caption-title{
+
+.caption-title {
     font-size: 18pt;
 }
-.scrolldown{
+
+.scrolldown {
     background-color: #53818C;
     border-radius: 3px 3px 0 0;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
@@ -182,21 +186,23 @@ hr {
     padding: 0;
 
 }
-.scrollablediv{
+
+.scrollablediv {
     height: 535px;
     padding: 10px;
     overflow-y: scroll;
     background-color: lightgray;
 }
-.entry{
+
+.entry {
     height: 120px;
     margin-top: 10px;
     padding: 10px;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     background-color: white;
 }
 
-.scrollholder{
+.scrollholder {
     background-color: white;
     height: 685px;
     margin-bottom: 50px;
@@ -217,50 +223,58 @@ hr {
     margin-right: 40px;
 }
 
-.datenlocation{
+.datenlocation {
     font-family: "Helvetica Neue";
     color: dimgray;
     float: top;
     font-size: 12px;
     margin: 0;
 }
-.entrytitle{
+
+.entrytitle {
     margin: 0;
     font-size: 16px;
     color: #4A4A4A;
     padding-bottom: 5px;
 }
-.entrytext{
-        font-family: "Helvetica Neue";
-	color: #787878;
+
+.entrytext {
+    font-family: "Helvetica Neue";
+    color: #787878;
     overflow: hidden;
     height: 45px;
     font-size: 16px;
 }
-.scrolllink{
+
+.scrolllink {
     color: inherit;
 }
-.scrolllink:hover{
+
+.scrolllink:hover {
     color: inherit;
 }
-.entry-pic{
+
+.entry-pic {
     font-family: "Helvetica Neue";
     font-size: 14px;
     font-weight: 400;
     text-align: center;
     padding-top: 15px;
 }
-.meetings{
+
+.meetings {
     padding-top: 5px;
     padding-right: 5px;
     color: #6b93b8;
 }
-.events{
+
+.events {
     padding-top: 5px;
     padding-right: 5px;
     color: #d46452;
 }
-.news{
+
+.news {
     padding-top: 5px;
     padding-right: 5px;
     color: #589fa3;
