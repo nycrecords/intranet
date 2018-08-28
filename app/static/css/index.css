@@ -1,11 +1,13 @@
-.container {
-    margin-bottom: 2.3rem;
-}
+/*.container {*/
+    /*margin-bottom: 2.3rem;*/
+/*}*/
 
 .well.quick-links-well {
     background: #ffffff;
     width: 291px;
-    border-radius: 0;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .quick-links {
@@ -22,6 +24,7 @@ glyphicon {
     width: 291px;
     border-radius: 3px 3px 0 0;
     background-color: #53818C;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -100,6 +103,17 @@ hr {
 
 /*carousel styles start here*/
 
+.whats-new-title {
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 46px;
+    text-align: left;
+    margin-left: 40px;
+}
+
 .carousel-caption{
     position: absolute;
     right: 0;
@@ -153,6 +167,7 @@ hr {
 .scrolldown{
     background-color: #53818C;
     border-radius: 3px 3px 0 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     margin-bottom: -10px;
     padding: 0;
 
@@ -167,35 +182,50 @@ hr {
     height: 120px;
     margin-top: 10px;
     padding: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.5);
     background-color: white;
 }
+
 .scrollholder{
     background-color: white;
     height: 685px;
+    margin-bottom: 50px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
-.viewmore{
-    border-radius: 6px;
-    background-color: orange;
-    font-size: 24px;
-    padding: 14px 40px;
+
+.view-more-button {
+    border: 1px solid #F9B52B;
+    border-radius: 5px;
+    background-color: #F9B52B;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    padding: 15px 40px;
     color: white;
     float: right;
     margin-right: 40px;
 }
+
 .datenlocation{
+    font-family: "Helvetica Neue";
     color: dimgray;
     float: top;
-    font-size: 8pt;
+    font-size: 12px;
     margin: 0;
 }
 .entrytitle{
     margin: 0;
-    font-size: 14pt;
+    font-size: 16px;
+    color: #4A4A4A;
+    padding-bottom: 5px;
 }
 .entrytext{
+        font-family: "Helvetica Neue";
+	color: #787878;
     overflow: hidden;
     height: 45px;
-    font-size: 12pt;
+    font-size: 16px;
 }
 .scrolllink{
     color: inherit;
@@ -204,16 +234,24 @@ hr {
     color: inherit;
 }
 .entry-pic{
-    font-size: 15pt;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: 400;
     text-align: center;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 .meetings{
+    padding-top: 5px;
+    padding-right: 5px;
     color: #6b93b8;
 }
 .events{
+    padding-top: 5px;
+    padding-right: 5px;
     color: #d46452;
 }
 .news{
+    padding-top: 5px;
+    padding-right: 5px;
     color: #589fa3;
 }
