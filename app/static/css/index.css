@@ -1,11 +1,13 @@
-.container {
-    margin-bottom: 2.3rem;
+.index-top-padding {
+    padding-top: 3rem;
 }
 
 .well.quick-links-well {
     background: #ffffff;
     width: 291px;
-    border-radius: 0;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .quick-links {
@@ -22,6 +24,7 @@ glyphicon {
     width: 291px;
     border-radius: 3px 3px 0 0;
     background-color: #53818C;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
@@ -46,7 +49,7 @@ glyphicon {
 }
 
 .quick-links-anchors > li > a {
-	color: #4A4A4A;
+    color: #4A4A4A;
     font-family: "Helvetica Neue";
     font-size: 18px;
     letter-spacing: 0.35px;
@@ -96,4 +99,183 @@ hr {
     margin-top: 10px;
     margin-bottom: 15px;
     border-top: 2px solid #eee;
+}
+
+/*carousel styles start here*/
+
+.whats-new-title {
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 46px;
+    text-align: left;
+    margin-left: 40px;
+}
+
+.carousel-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-left: 40px;
+    color: #fff;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.carousel-indicators {
+    bottom: -3px;
+    text-align: center;
+}
+
+.carousel-indicators li.active {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000 \9;
+    border: 1px solid #16a085;
+    border-radius: 50%;
+    background: white;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+}
+
+.carousel-indicators li.active {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #3F72E6;
+    border-radius: 50%;
+    border: 1px solid #3F72E6;
+}
+
+.caption-text {
+    color: white;
+    font-style: italic;
+}
+
+.caption-title {
+    font-size: 18pt;
+}
+
+.scrolldown {
+    background-color: #53818C;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: -10px;
+    padding: 0;
+
+}
+
+.scrollablediv {
+    height: 535px;
+    padding: 10px;
+    overflow-y: scroll;
+    background-color: lightgray;
+}
+
+.entry {
+    height: 120px;
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    background-color: white;
+}
+
+.scrollholder {
+    background-color: white;
+    height: 685px;
+    margin-bottom: 50px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.view-more-button {
+    border: 1px solid #F9B52B;
+    border-radius: 5px;
+    background-color: #F9B52B;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    padding: 15px 40px;
+    color: white;
+    float: right;
+    margin-right: 40px;
+}
+
+.datenlocation {
+    font-family: "Helvetica Neue";
+    color: dimgray;
+    float: top;
+    font-size: 12px;
+    margin: 0;
+}
+
+.entrytitle {
+    margin: 0;
+    font-size: 16px;
+    color: #4A4A4A;
+    padding-bottom: 5px;
+}
+
+.entrytext {
+    font-family: "Helvetica Neue";
+    color: #787878;
+    overflow: hidden;
+    height: 45px;
+    font-size: 16px;
+}
+
+.scrolllink {
+    color: inherit;
+}
+
+.scrolllink:hover {
+    color: inherit;
+}
+
+.entry-pic {
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.meetings {
+    padding-top: 5px;
+    padding-right: 5px;
+    color: #6b93b8;
+}
+
+.events {
+    padding-top: 5px;
+    padding-right: 5px;
+    color: #d46452;
+}
+
+.news {
+    padding-top: 5px;
+    padding-right: 5px;
+    color: #589fa3;
 }
