@@ -13,7 +13,6 @@ def index():
 
 @main.route('/news-updates', methods=['GET', 'POST'])
 def news_and_updates():
-
     return render_template('news_and_updates.html')
 
 
@@ -31,7 +30,13 @@ def new_post():
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
 
+
 @main.route('/tools', methods=['GET', 'POST'])
 def tools():
 
     return render_template('tools.html')
+
+
+@main.route('/it-support', methods=['GET', 'POST'])
+def it_support():
+    return render_template('it_support.html')
