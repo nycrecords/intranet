@@ -31,9 +31,9 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
-@main.route('/resources', methods=['GET', 'POST'])
-def resources():
-    return render_template('resources.html')
+@main.route('/employee-resources', methods=['GET', 'POST'])
+def employee_resources():
+    return render_template('employee_resources.html')
 
 
 @main.route('/tools-and-applications', methods=['GET', 'POST'])
