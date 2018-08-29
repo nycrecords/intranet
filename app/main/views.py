@@ -31,6 +31,11 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
+@main.route('/tools-and-applications', methods=['GET', 'POST'])
+def tools_and_applications():
+    return render_template('tools_and_applications.html')
+
+
 @main.route('/it-support', methods=['GET', 'POST'])
 def it_support():
     return render_template('it_support.html')

@@ -20,6 +20,9 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}"/>
+
+    {% block custom_css %}
+    {% endblock %}
 {% endblock %}
 <body>
 {% block navbar %}

@@ -1,0 +1,44 @@
+.it-support-option-boxes {
+    height: 200px;
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools-and-applications-title {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.tools-and-applications-text {
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    padding: 25px 25px 25px 25px;
+    color: #4A4A4A;
+    text-align: center;
+}
+
+.online-order-trackin {
+    height: 63px;
+    width: 314.81px;
+    color: #4A4A4A;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.tools-and-applications-icon {
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.tools-and-applications-section {
+    padding-top: 50px;
+}
