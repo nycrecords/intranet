@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/tools-and-applications.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Tools and Applications</h1>
+    </div>
+    <div class="col-sm-12 well content-area tools-and-applications-section">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="http://epayments.records.nycnet/">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="tools-and-applications-title">LABEL GENERATOR<br>(EPAYMENTS)</h4>
+                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/creditcard.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="tools-and-applications-title">LETTER GENERATOR</h4>
+                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/letter.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="http://procurement.records.nycnet/">
+                    <div class="it-support-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="tools-and-applications-title">PROCUREMENT</h4>
+                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/procurement.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="tools-and-applications-text">
+                    <p>Online order tracking for reference room and photo unit staff. Login to access.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="tools-and-applications-text">
+                    <p>Letter generator for Reference Room staff. Login to access.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="tools-and-applications-text">
+                    <p>Agency purchase requests, permission based on role in agency (external site).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
