@@ -1,54 +1,3 @@
-.card-content {
-    position: relative;
-    height: 256px;
-    width: 256px;
-    border-radius: 5px;
-    left: 47px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border: 1px solid dimgray;
-    background-color: #F1F1F1;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.sitecard {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    overflow: hidden;
-}
-
-.siteimage {
-    text-align: center;
-    width: 225px;
-    height: 70px;
-    padding-top: 10px;
-}
-
-.cardclick {
-    color: inherit;
-    text-decoration: none;
-}
-
-.cardclick:hover {
-    color: inherit;
-    text-decoration: none;
-}
-
-hr {
-    color: #D8D8D8;
-    border-width: 2px;
-}
-
-.sitetext {
-    overflow: hidden;
-    height: 140px;
-    word-wrap: break-word;
-}
-
-
-
-
-
 .employee-resources-option-boxes {
     height: 200px;
     border-radius: 5px;
@@ -84,3 +33,60 @@ hr {
 .employee-resources-section {
     padding-top: 50px;
 }
+
+.external-site-card {
+    height: 250px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid dimgray;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #FBFBFB;
+    /* styles to center cards */
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
+    text-align: center;
+}
+
+.external-site-image {
+    text-align: center;
+    height: 50px;
+    width: 180px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.external-site-text {
+    margin: auto;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: normal;
+    color: #4A4A4A;
+}
+
+.cardclick {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cardclick:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+hr {
+    color: #D8D8D8;
+    border-width: 2px;
+}
+
+.center-site-cards {
+    text-align: center;
+}
+
+
