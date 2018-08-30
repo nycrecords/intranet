@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">IT Support</h1>
+    </div>
+    <div class="col-sm-12 well content-area it-support-section">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">DORIS HELP DESK</h4>
+                            <div class="col-sm-4 doris-help-desk-icon"><span
+                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                            <div class="col-sm-8 doris-help-desk-text">
+                                <p>Phone: 212-788-8606</p>
+                                <p>Email: <a href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov</a></p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">CITYWIDE SERVICE DESK</h4>
+                            <div class="col-sm-4 city-wide-service-desk-icon"><span
+                                    class="glyphicon glyphicon-globe it-support-glyphicon"></span></div>
+                            <div class="col-sm-8 city-wide-service-desk-text">
+                                <a href="http://cityshare.nycnet/mydesk">http://cityshare.nycnet/mydesk</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">TRAINING</h4>
+                            <div class="col-sm-4 training-icon"><span
+                                    class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
+                            <div class="col-sm-8 training-text">
+                                <p><a href="">MS Office Training</a></p>
+                                <p><a href="">Password Security</a></p>
+                                <p><a href="">Social Engineering</a></p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For DORIS related requests, contact Kenneth Chan in the Management and Information Services
+                        division.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For an immediate ticket and faster turnaround, users and IT staff can submit their incidents or
+                        requests to the <a href="http://cityshare.nycnet/mydesk">CityWide Service Desk</a> using the
+                        Self Service Portal My Desk.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Get hands on tranining with MS Office as well as cybersecurity awareness.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 it-support-faq-text">
+                <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
+                    page.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

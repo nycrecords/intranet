@@ -1,18 +1,72 @@
-.linklist {
-    font-size: 24pt;
-    color: dimgray;
+.it-support-option-boxes {
+    height: 200px;
+    border-radius: 5px;
+    background-color: #F1F1F1;
 }
-.link{
-    color: dimgray;
-    text-decoration: none;
+
+.it-support-title {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 30px;
 }
-.link:hover{
-    text-decoration: none;
-}
-.tagline{
-    color: dimgray;
-}
-.somewords{
-    color: dimgray;
+
+.it-support-text {
+    font-family: "Helvetica Neue";
     font-size: 18px;
+    font-weight: normal;
+    padding: 25px 25px 25px 25px;
+    color: #4A4A4A;
+    text-align: center;
 }
+
+.it-support-icon {
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.it-support-section {
+    padding-top: 50px;
+}
+
+.it-support-faq-text {
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    padding: 25px 25px 25px 25px;
+    color: #4A4A4A;
+}
+
+.it-support-glyphicon {
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.doris-help-desk-icon {*/
+    /*padding-right: 0;*/
+/*}*/
+
+.doris-help-desk-text {
+    padding-left: 0;
+}
+
+/*.city-wide-service-desk-icon {*/
+    /*padding-right: 0;*/
+/*}*/
+
+.city-wide-service-desk-text {
+    padding-top: 15px;
+    padding-left: 0;
+}
+
+.training-icon {
+    padding-left: 30px;
+}
+
+/*.training-text {*/
+    /*padding-left: 0;*/
+/*}*/
