@@ -31,7 +31,7 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
-@main.route('/faq', methods=['GET', 'POST'])
+@main.route('/it-support/faq', methods=['GET', 'POST'])
 def faq():
     return render_template('faq.html')
 
