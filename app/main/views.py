@@ -31,6 +31,10 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form)
 
 
+@main.route('/it-support/faq', methods=['GET', 'POST'])
+def faq():
+    return render_template('faq.html')
+
 @main.route('/employee-resources', methods=['GET', 'POST'])
 def employee_resources():
     return render_template('employee_resources.html')
