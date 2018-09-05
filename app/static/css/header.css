@@ -1,0 +1,154 @@
+/* Header Styles */
+
+.top-header {
+    min-height: 4.5rem;
+    background-color: #000000;
+    margin-bottom: 0;
+}
+
+.blue-overlay {
+    min-height: 22rem;
+    background-image: linear-gradient(to bottom right, rgba(80, 148, 165, 0.6), rgba(12, 72, 87, 0.6)), url("/static/img/intranet_header_background.jpg");
+    background-size: cover;
+}
+
+.header-current-date {
+    height: 22px;
+    width: 305px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 22px;
+    text-align: right;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    float: right;
+    margin-right: 1.15rem;
+}
+
+.header-doris-style {
+    height: 57px;
+    width: 142px;
+    color: #FFFFFF;
+    font-family: "Phosphate";
+    font-size: 48px;
+    letter-spacing: 3px;
+    line-height: 59px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    margin-left: 15px;
+}
+
+.header-intranet-style {
+    height: 35px;
+    width: 144px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 30px;
+    letter-spacing: 5.1px;
+    line-height: 65px;
+    margin-left: 1.5rem;
+    margin-top: 10.0rem;
+}
+
+.rectangle-2 {
+    height: 40px;
+    width: 296px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+}
+
+.navbar-searchbar {
+    height: 40px;
+    width: 75px;
+    color: #ACACAC;
+    font-size: 30px;
+    font-family: "Helvetica Neue";
+    line-height: 26px;
+    padding: 15px;
+}
+
+#search-bar {
+    font-size: 18px;
+    display: inline-block;
+    width: 280px;
+    font-family: "Helvetica Neue";
+    font-weight: 400;
+}
+
+.navbar-option:hover > .dropdown-menu {
+    display: block;
+}
+
+.nav-magnification-style {
+    padding: 9px 10px;
+    color: #696969;
+    background-color: lightgray;
+    border-color: #979797;
+}
+
+.nav-caret {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #FFFFFF;
+}
+
+/* Style Changes to the nav bar */
+
+.nav {
+    top: 3.6rem;
+}
+
+.navbar-nav ul {
+    justify-content: space-around;
+}
+
+.navbar-option a {
+    text-align: center;
+    width: auto;
+    height: 25px;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+/* If the navbar link is focus or hover */
+
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.dropdown-menu {
+    width: 19em;
+    border-top: 1rem solid #F9B52B;
+}
+
+.dropdown-menu > li > a {
+    text-align: left;
+    margin: 10px 0;
+    padding-bottom: 30px;
+}
+
+/* If you hover on a link for a drop down menu */
+
+.dropdown-menu > li > a:hover {
+    background-color: #d4d7db;
+    padding-bottom: 30px;
+}
+
+#navbar-bottom-boder-style:hover {
+    border-bottom: 1rem solid #F9B52B;
+}
+
+#navbar-bottom-boder-style {
+    padding-bottom: 30px;
+}
