@@ -1,9 +1,11 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block head %} {{ super() }}
+{% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
 {% endblock %}
 
+{% block page_content %}
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -16,86 +18,109 @@
         </nav>
         <h1 class="breadcrumb-header">Divisions</h1>
     </div>
-    <div class="well content-area container">
+    <div class="col-sm-12 well content-area divisions-section">
         <div class="row">
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Administration
-                </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Executive
-                </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    External Affairs
-                </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Grant Unit
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Administration</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Executive</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">External Affairs</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Grant Unit</h4>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="row">
-            <a href="">
-                <div class="divisioncard col-sm-3" style="padding-top: 50px">
-                    Manangement and <br>
-                    Information Services
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
                 </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Municipal Archives
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
                 </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Municipal Library
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
                 </div>
-            </a>
-            <a href="">
-                <div class="divisioncard col-sm-3">
-                    Municipal Records
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
                 </div>
-            </a>
+            </div>
         </div>
         <div class="row">
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Management & Information Services</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Archives</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Library</h4>
+                    </div>
+                </a>
             </div>
-            <div class="division-description col-sm-3">
-                <p>WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS
-                    WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS WORDS </p>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Records</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
             </div>
         </div>
     </div>
