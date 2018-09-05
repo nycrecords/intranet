@@ -1,9 +1,11 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block page_content %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block head %} {{ super() }}
+{% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/contact.css') }}"/>
 {% endblock %}
 
+{% block page_content %}
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -11,16 +13,17 @@
                 <li class="breadcrumb-item">
                     <a href="#">Home</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Divisions</li>
+                <li class="breadcrumb-item active" aria-current="page">Contact</li>
             </ol>
         </nav>
         <h1 class="breadcrumb-header">Contact</h1>
     </div>
-    <div class="well content-area container">
-        <p style="color: darkgrey; font-size: 14pt">To find contact information for a Department of Records staff member, visit the <a href="">Staff Directory</a></p>
+    <div class="col-sm-12 well content-area contact-section">
+        <p class="contact-heading-text">To find contact information for a Department of Records staff member, visit the
+            <a href="">Staff Directory</a></p>
         <br>
         <div class="row">
-            <div class="textcol col-sm-6">
+            <div class="contact-text col-sm-6">
                 <h3>Building Security</h3>
                 <p>212-788-8548</p>
                 <br>
@@ -34,7 +37,7 @@
                 <h3>Bush</h3>
                 <p>212-788-8563</p>
             </div>
-            <div class="textcol col-sm-6">
+            <div class="contact-text col-sm-6">
                 <h3>Reading Room</h3>
                 <p>212-788-8590</p>
                 <br>
