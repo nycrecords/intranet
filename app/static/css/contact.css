@@ -1,0 +1,19 @@
+.contact-text {
+    padding-left: 50px;
+    padding-right: -25px;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    color: dimgrey;
+}
+
+.contact-section {
+    padding-top: 50px;
+}
+
+.contact-heading-text {
+    color: dimgrey;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+}
