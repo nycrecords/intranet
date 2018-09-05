@@ -1,7 +1,23 @@
-.words{
-    font-size: 14pt;
-    color: #787878;
+.our-mission-section {
+    padding-top: 10px;
 }
-.divisionlist{
-    font-size: 14pt;
+
+.our-mission-image {
+    /* 70% of the original image size */
+    height: 385px;
+    width: 488px;
+    margin-top: 25px;
+}
+
+.our-mission-text {
+    color: #787878;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.division-list{
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
 }

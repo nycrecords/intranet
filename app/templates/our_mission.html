@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-
-{% block head %} {{ super() }}
+{% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/our_mission.css') }}"/>
 {% endblock %}
 
@@ -11,30 +11,37 @@
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
                 <li class="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <a href="{{ url_for('main.index') }}">Home</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">Divisions</li>
+                <li class="breadcrumb-item active" aria-current="page">Our Mission</li>
             </ol>
         </nav>
         <h1 class="breadcrumb-header">Our Mission</h1>
     </div>
-    <div class="well content-area container">
+    <div class="col-sm-12 well content-area our-mission-section">
         <div class="row">
             <div class="col-sm-6">
-                <img src="https://i.pinimg.com/originals/f1/01/c6/f101c6151dc7fd2a20c93a6ece18b807.jpg" style="width: 525px; margin-top: 50px; margin-left: 5px">
+                <img class="our-mission-image" src="{{ url_for('static', filename='img/our_mission.jpg') }}">
             </div>
             <div class="col-sm-6">
                 <br>
                 <div>
-                    <p class="words">Established in 1977, the Department of Records and Information Services (DORIS) preserves and provides public access to historical and
-                        contemporary records and information about New York City government. We operate the Municipal Archives, the Municipal Library, and the Records Center.</p>
-                    <br>
-                    <p class="words">The mission of the NYC Department of Records and Information Services is to foster civic life by preserving and providing access to the historical
-                        and contemporary records of New York City government, to ensure that City records are properly maintained following professional archival
-                        and record management practices and to make materials available to diverse communities both online and in person.  </p>
-                    <br>
-                    <p class="words">Currently, the agency has eight divisions: </p>
-                    <ul class="divisionlist">
+                    <p class="our-mission-text">Established in 1977, the Department of Records and Information Services
+                        (DORIS) preserves and provides public access to historical and
+                        contemporary records and information about New York City government. We operate the Municipal
+                        Archives, the Municipal Library, and the Records Center.
+                        <br>
+                        <br>
+                        The mission of the NYC Department of Records and Information Services is to foster civic life by
+                        preserving and providing access to the historical
+                        and contemporary records of New York City government, to ensure that City records are properly
+                        maintained following professional archival
+                        and record management practices and to make materials available to diverse communities both
+                        online and in person.
+                        <br>
+                        <br>
+                        Currently, the agency has eight divisions:</p>
+                    <ul class="division-list">
                         <a href="">
                             <li>
                                 Administration
