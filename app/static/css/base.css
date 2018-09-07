@@ -190,6 +190,8 @@ body {
 
 .dropdown-menu {
     width: 19em;
+    border-left:0;
+    border-right:0;
     border-top: 1rem solid #F9B52B;
 }
 
