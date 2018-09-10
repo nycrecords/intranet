@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block page_content %}
+{% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/staff_directory.css') }}"/>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}
+
+{% block page_content %}
     <div>
         <div class="breadcrumb-section">
             <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -19,24 +20,24 @@
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading panel-header-style col-sm-12">
+    <div class="panel panel-default content-area col-sm-12">
+        <div class="panel-heading panel-header-style">
             <form class="staff-directory-search-options" method="post">
                 <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="test") }}</div>
                 <div class="col-sm-4 menu" id="filter-menu">{{ form.filters (id="filter-data") }}</div>
-                <div class="col-sm-4 "
-                     id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
+                <div class="col-sm-1" id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
+                <div class="col-sm-2"> <button id="staff-directory-reset" href="{{ url_for('main.staff_directory') }}" >Reset</button> </div>
             </form>
         </div>
         <div class="panel-body panel-body-style">
             <table class="table table-bordered table-styles">
                 <tr>
-                    <th class="th-styles">First</th>
-                    <th class="th-styles">Last</th>
-                    <th class="th-styles">Division</th>
-                    <th class="th-styles">Title</th>
-                    <th class="th-styles">Phone</th>
-                    <th class="th-styles">Email</th>
+                    <th class="staff-directory-column-header">First</th>
+                    <th class="staff-directory-column-header">Last</th>
+                    <th class="staff-directory-column-header">Division</th>
+                    <th class="staff-directory-column-header">Title</th>
+                    <th class="staff-directory-column-header">Phone</th>
+                    <th class="staff-directory-column-header">Email</th>
                 </tr>
                 <tbody id="staff-directory-table">
                 {% for user in users %}
@@ -45,12 +46,13 @@
                             <a class="popover-right  popper" data-toggle="popover">
                                 {% if user.profile_picture_path %}
                                     <img class="avatar-style"
-                                         src="{{ url_for('static', filename=user.profile_picture_path) }}" alt="avatar">
+                                         src="{{ url_for('static', filename='img/'+user.profile_picture_path) }}" alt="avatar">
                                 {% else %}
                                     <img class="avatar-style"
                                          src="{{ url_for('static', filename='img/avatar.png') }}">
                                 {% endif %}
                             </a>
+                            <span class="staff-directory-row">{{ user.first_name }}</span>
 
                             <div class="popper-content hide">
                                 <div class="row">
@@ -65,23 +67,22 @@
                                         {% endif %}
                                     </div>
                                     <div class="col-sm-7">
-                                        <p id="popover-name-styles">{{ user.first_name }} {{ user.last_name }}</p>
-                                        <p id="popover-titles-styles">{{ user.title }}</p>
-                                        <p id="popover-division-styles">{{ user.division }}</p>
+                                        <p class="popover-name">{{ user.first_name }} {{ user.last_name }}</p>
+                                        <p class="popover-titles">{{ user.title }}</p>
+                                        <p class="popover-division">{{ user.division }}</p>
                                     </div>
                                     <a href="#" class="close popover-close-link" data-dismiss="alert">&times;</a>
                                 </div>
-                                <div class="row" id="popover-information-styles">Phone: {{ user.phone_number }}</div>
-                                <div class="row" id="popover-information-styles">Email: {{ user.email }}</div>
-                                <div class="row" id="popover-information-styles"> Office: {{ user.room }}</div>
+                                <div class="row popover-information">Phone: {{ user.phone_number }}</div>
+                                <div class="row popover-information">Email: {{ user.email }}</div>
+                                <div class="row popover-information">Office: {{ user.room }}</div>
                             </div>
-                            <span class="td-styles">{{ user.first_name }}</span>
                         </td>
-                        <td class="td-styles">{{ user.last_name }}</td>
-                        <td class="td-styles">{{ user.division }}</td>
-                        <td class="td-styles">{{ user.title }}</td>
-                        <td class="td-styles">{{ user.phone_number }}</td>
-                        <td class="td-styles">{{ user.email }}</td>
+                        <td class="staff-directory-row">{{ user.last_name }}</td>
+                        <td class="staff-directory-row">{{ user.division }}</td>
+                        <td class="staff-directory-row">{{ user.title }}</td>
+                        <td class="staff-directory-row">{{ user.phone_number }}</td>
+                        <td class="staff-directory-row">{{ user.email }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

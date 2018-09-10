@@ -82,6 +82,8 @@
 
 .navbar-option:hover > .dropdown-menu {
     display: block;
+    border-left: 0;
+    border-right: 0;
 }
 
 .nav-magnification-style {

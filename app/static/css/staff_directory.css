@@ -13,7 +13,7 @@
 }
 
 .staff-directory-search-options {
-    font-family: Helvetica Neue;
+    font-family: "Helvetica Neue";
     font-size: 20px;
     text-align: center;
     font-weight: normal;
@@ -42,7 +42,15 @@
     background-color:#FFFFFF;
 }
 
-.th-styles {
+#staff-directory-reset {
+    height: 38px;
+    margin-right: 10px;
+    border: 1px solid #979797;
+    background-color:#FFFFFF;
+    border-radius: 5px;
+}
+
+.staff-directory-column-header {
     color: #FFFFFF;
     font-family:Helvetica Neue;
     font-size: 18px;
@@ -51,7 +59,7 @@
     background-color:#5C95A3;
 }
 
-.td-styles {
+.staff-directory-row {
     color: #333333;
     font-family: Helvetica Neue;
     font-size: 18px;
@@ -101,7 +109,7 @@
     width: 156px;
 }
 
-#popover-name-styles {
+.popover-name {
     margin-top:20px;
     font-size: 36px;
     letter-spacing: 0.91px;
@@ -109,7 +117,7 @@
     padding-left: 10px;
 }
 
-#popover-titles-styles {
+.popover-titles {
     color: #39393A;
     font-family: "Helvetica Neue";
     font-size: 24px;
@@ -117,14 +125,14 @@
     padding-left: 10px;
 }
 
-#popover-division-styles {
+.popover-division {
     color: #656565;
     font-family: "Helvetica Neue";
 	font-size: 18px;
     padding-left: 10px;
 }
 
-#popover-information-styles {
+.popover-information {
     color: #333333;
     font-family: "Helvetica Neue";
     font-size: 20px;
@@ -137,4 +145,8 @@
     height: 16px;
     width: 14px;
     margin-right:10px;
+}
+
+.content-area{
+    padding:0;
 }
