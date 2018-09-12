@@ -1,18 +1,19 @@
 $(function () {
+    console.log("test");
     // ON FIRST PAGE load
     $(document).ready(function () {
         $.ajax({
             url: '/get_filter_options_list/' + $('#filter-data').val(),
             type: "GET",
             success: function (data) {
-                $("#test").autocomplete({
+                $("#staff-directory-search-data").autocomplete({
                     source: data
                 });
             }
         });
     });
 
-
+    console.log("test");
     // handles on filter change
     $(document).on("focus", "#filter-data", function () {
         $("#filter-data").off().change(function () {
@@ -20,7 +21,7 @@ $(function () {
                 url: '/get_filter_options_list/' + $('#filter-data').val(),
                 type: "GET",
                 success: function (data) {
-                    $("#test").autocomplete({
+                    $("#staff-directory-search-data").autocomplete({
                         source: data
                     });
                 }
