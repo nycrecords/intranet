@@ -1,9 +1,9 @@
 $(function () {
-  $('#target').popover({
-        content: $('.popover-content'), // set the content to be the 'blah' div
-        placement: 'bottom',
-        html: true
-    });
+  // $('#target').popover({
+  //       content: $('.popover-content'), // set the content to be the 'blah' div
+  //       placement: 'bottom',
+  //       html: true
+  //   });
 
     // console.log("test");
     // // ON FIRST PAGE load
