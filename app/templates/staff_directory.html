@@ -21,12 +21,12 @@
     </div>
 
     <div class="panel panel-default content-area col-sm-12">
-        <div class="panel-heading panel-header-style">
+        <div class="panel-heading panel-header-style col-sm-12">
             <form class="staff-directory-search-options" method="post">
                 <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="staff-directory-search-data") }}</div>
                 <div class="col-sm-4 menu" id="filter-menu">{{ form.filters (id="filter-data") }}</div>
                 <div class="col-sm-1" id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
-                <div class="col-sm-2"> <a href="{{ url_for('main.staff_directory') }}"  class="btn "> Reset</a> </div>
+                <div class="col-sm-2"> <button id="staff-directory-reset"><a href="{{ url_for('main.staff_directory')}}">Reset</a></button></div>
             </form>
         </div>
         <div class="panel-body panel-body-style">
@@ -43,7 +43,7 @@
                 {% for user in users %}
                     <tr>
                         <td class="col-sm-2">
-                            <a class="popover-right  popper" rel="popover" data-toggle="popover">
+                            <a class="popover-right " id="popper" data-toggle="popover">
                                 {% if user.profile_picture_path %}
                                     <img class="avatar-style"
                                          src="{{ url_for('static', filename='img/'+user.profile_picture_path) }}" alt="avatar">

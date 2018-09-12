@@ -24,6 +24,8 @@
 #filter-menu>select {
     width: 290px;
     height: 38px;
+    background-color:#FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 
 #staff-directory-submit>input[type=submit] {
@@ -33,6 +35,7 @@
     border-radius: 5px;
     padding-left: 10px;
     background-color:#FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 
 #staff-directory-search>input[type=text] {
@@ -42,6 +45,7 @@
     border-radius: 5px;
     padding-left: 10px;
     background-color:#FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 
 #staff-directory-reset {
@@ -49,7 +53,17 @@
     margin-right: 10px;
     border: 1px solid #979797;
     background-color:#FFFFFF;
+    color:#000000;
     border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+}
+
+#staff-directory-reset>a{
+    color:#000000;
+}
+
+#staff-directory-reset>a:hover {
+    decoration:none;
 }
 
 .staff-directory-column-header {
@@ -151,4 +165,5 @@
 
 .content-area{
     padding:0;
+    width: 1156px;
 }

@@ -213,23 +213,19 @@
     {{ super() }}
     {{ moment.include_moment() }}
 
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/staff_directory.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.easy-autocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.core.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='js/plugins/textext.plugin.autocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.tags.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
-    <script type="text/javascript"
-            src="{{ url_for('static', filename='js/plugins/jquery.easy-autocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/staff_directory.js') }}"></script>
 
 {% endblock %}
 
