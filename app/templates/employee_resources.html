@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Employee Resources</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Employee Resources</h1>
+    </div>
+    <div class="col-sm-12 well content-area employee-resources-section">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#">
+                    <div class="employee-resources-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="employee-resources-title">STAFF DIRECTORY</h4>
+                            <img class="employee-resources-icon"
+                                 src="{{ url_for('static', filename='img/staff_directory.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#">
+                    <div class="employee-resources-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="employee-resources-title">EMPLOYEE BENEFITS</h4>
+                            <img class="employee-resources-icon"
+                                 src="{{ url_for('static', filename='img/employee_benefits.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#">
+                    <div class="employee-resources-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="employee-resources-title">DOCUMENTS</h4>
+                            <img class="employee-resources-icon"
+                                 src="{{ url_for('static', filename='img/documents.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="employee-resources-text">
+                    <p>Look up contact information for Department of Records staff members.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="employee-resources-text">
+                    <p>Find information on employee benefits for DORIS and NYC.gov employees.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="employee-resources-text">
+                    <p>Looking for templates, instructions or information on Policies and Procedures? Download files here.</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h3>External Sites</h3>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4 center-site-cards">
+                <a href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://i.imgur.com/TttNPSZ.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 center-site-cards">
+                <a href="https://prod.citytime.nycnet/">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://i.imgur.com/OLA3Qdp.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 center-site-cards">
+                <a href="http://timeclock.records.nycnet/auth/login">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://i.imgur.com/nl8TK3I.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4 center-site-cards">
+                <a href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://a127-ess.nyc.gov/prdess/images/OPSE_logo.gif" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 center-site-cards">
+                <a href="https://www.nycers.org/">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://www.nycers.org/sites/default/themes/dtheme/img/logo-theme.svg" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 center-site-cards">
+                <a href="https://www1.nyc.gov/site/opa/index.page">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://www1.nyc.gov/assets/opa/images/content/header/logo.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4 center-site-cards">
+                <a href="https://www1.nyc.gov/site/olr/index.page">
+                    <div class="external-site-card col-sm-12">
+                        <img src="https://www1.nyc.gov/assets/olr/images/content/header/logo.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4 center-site-cards">
+                <a href="http://www.nyc.gov/html/dcas/html/home/home.shtml">
+                    <div class="external-site-card col-sm-12">
+                        <img src="http://www.nyc.gov/html/dcas/includes/site_images/branding/logo.png" class="external-site-image">
+                        <div class="external-site-text">
+                            <p>This is some text This is some text This is some text This is some text This is some
+                                text</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br><br>
+    </div>
+</div>
+{% endblock %}

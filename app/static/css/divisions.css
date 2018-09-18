@@ -1,0 +1,31 @@
+.divisions-section {
+    padding-top: 50px;
+}
+
+.division-card {
+    height: 200px;
+    border: 1px solid #D8D8D8;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divisions-title {
+    color: #5C95A3;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.division-description-text {
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: normal;
+    padding: 25px 25px 25px 25px;
+    color: #4A4A4A;
+    text-align: center;
+}

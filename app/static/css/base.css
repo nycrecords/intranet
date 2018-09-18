@@ -4,17 +4,6 @@ body {
     background: #F0F0F0;
 }
 
-.top-header {
-    min-height: 4.5rem;
-    background-color: #000000;
-    margin-bottom: 0;
-}
-
-.blue-overlay {
-    min-height: 18.5rem;
-    background: linear-gradient(180deg, #5094A5 0%, #0C4857 100%);
-}
-
 .breadcrumb-header {
     color: #5C95A3;
     font-family: "Helvetica Neue";
@@ -38,7 +27,7 @@ body {
     margin-top: 10px;
 }
 
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
     content: "> ";
 }
 
@@ -54,10 +43,8 @@ body {
 
 .top-padding {
     padding-top: 2rem;
-    padding-bottom: 1.5rem;
 }
 
-.blue-footer {
-    height: 30rem;
-    background-color: #77A0A9;
+.no-left-padding {
+    padding-left: 0;
 }

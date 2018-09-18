@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Divisions</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Divisions</h1>
+    </div>
+    <div class="col-sm-12 well content-area divisions-section">
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Administration</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Executive</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">External Affairs</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Grant Unit</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Management & Information Services</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Archives</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Library</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-3">
+                <a href="">
+                    <div class="division-card col-sm-12">
+                        <h4 class="divisions-title">Municipal Records</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="division-description-text">
+                    <p>Some text about this division. Some text about this division.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

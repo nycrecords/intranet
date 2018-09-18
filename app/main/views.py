@@ -13,7 +13,6 @@ def index():
 
 @main.route('/news-updates', methods=['GET', 'POST'])
 def news_and_updates():
-
     return render_template('news_and_updates.html')
 
 
@@ -36,3 +35,38 @@ def new_post():
 def login():
     form = Login_Form()
     return render_template('login.html',form=form)
+
+
+@main.route('/our-mission', methods=['GET', 'POST'])
+def our_mission():
+    return render_template('our_mission.html')
+
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+    return render_template('contact.html')
+
+
+@main.route('/divisions', methods=['GET', 'POST'])
+def divisions():
+    return render_template('divisions.html')
+
+
+@main.route('/it-support/faq', methods=['GET', 'POST'])
+def faq():
+    return render_template('faq.html')
+
+
+@main.route('/employee-resources', methods=['GET', 'POST'])
+def employee_resources():
+    return render_template('employee_resources.html')
+
+
+@main.route('/tools-and-applications', methods=['GET', 'POST'])
+def tools_and_applications():
+    return render_template('tools_and_applications.html')
+
+
+@main.route('/it-support', methods=['GET', 'POST'])
+def it_support():
+    return render_template('it_support.html')

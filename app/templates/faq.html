@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/faq.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="#">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#">IT Support</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">FAQ</h1>
+    </div>
+    <div class="col-sm-12 well content-area faq-section">
+        <h1 class="faq-header">Find answers to common computing problems below!</h1>
+        <br>
+        <div class="common-questions-list">
+            <ul>
+                <li class="common-question-link"><a href="#common-question-answer-1" class="common-question-anchor">My computer won't start.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-2" class="common-question-anchor">I can't access the network or Internet.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-3" class="common-question-anchor">I'm getting an error message.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-4" class="common-question-anchor">My computer is frozen.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-5" class="common-question-anchor">I can only see a blue screen.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-6" class="common-question-anchor">My computer is on but there's no sound.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-7" class="common-question-anchor">The keyboard won't work.</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-8" class="common-question-anchor">What is CNTRL-ALT-DEL?</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-9" class="common-question-anchor">Should I reboot my computer?</a></li>
+                <li class="common-question-link"><a href="#common-question-answer-10" class="common-question-anchor">I'm stumped and nothing is working.</a></li>
+            </ul>
+        </div>
+        <br>
+        <hr class="faq-seperator">
+        <div class="common-question-answer" id="common-question-answer-1">
+            <h1 class="common-question-answer-header">My computer won't start.</h1>
+            <p class="common-question-answer-text">First, check the basics. Examine the cables, connectors, and power
+                cords to make sure
+                they're plugged in securely. Often times a loose cable or connector (power, network, keyboard,
+                mouse, speaker, monitor cable, etc.) is the cause. If you're using a power strip or surge protector,
+                make sure its on and that it works.
+                <br><br>
+                Remember that a surge protector may not be working because it is designed to
+                self-destruct. When an
+                electric jolt is too much, your surge protector takes the hit saving your more expensive hardware
+                from the voltage. Try plugging something else directly into the electrical outlet to make sure there
+                isn't a power problem. Check to see if your monitor is on. Sounds silly, but has often solved the
+                problem more than once.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-2">
+            <h1 class="common-question-answer-header">I can't access the network or Internet.</h1>
+            <p class="common-question-answer-text">1. Check to see if anyone else around you is having a similar
+                problem. If so, there
+                may be a service outage affecting a wider area
+                <br>
+                <br>
+                2. Check to make sure the network cable is connected to both the computer and the wall or
+                modem.
+                <br>
+                <br>
+                3. Check where the network cable connection is made to the back of the computer. You should see a
+                little green light
+                right where the cable connects. If the light isn’t on or flashing, then you are not getting a signal to
+                the computer.
+                If rebooting doesn't fix it, contact the Help Desk or your ISP.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-3">
+            <h1 class="common-question-answer-header">I'm getting an error message.</h1>
+            <p class="common-question-answer-text">What tipped you off to the problem? Sometimes it's an error code or
+                message displayed on screen. Be sure to write it down — it may describe the problem
+                and how serious it is. Be sure to document the exact wording of any error messages. This can make the
+                job of the Help Desk much faster.
+                <br>
+                <br> Other times you get no warning — everything just freezes. Message or no message, be sure note what
+                was going on when the problem occurred. Were you starting your computer?
+                Were you on the Windows Desktop? Were you in a particular application? Surfing the Web?
+                <br>
+                <br>
+                Think about what changed recently on your computer and try to pinpoint when the trouble first
+                started. Did the problem coincide with any recent changes?
+                Did you change any settings? If you did you might want to change them back the way they were.
+                <br>
+                <br>
+                Have any peripherals been added or removed recently such as a printer or external Memory Card
+                reader? Has anyone else been using your computer recently?
+                Have downloaded anything off the Web? File sharing and free MP3’s are an easy way to get a virus on your
+                machine.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-4">
+            <h1 class="common-question-answer-header">My computer is frozen.</h1>
+            <p class="common-question-answer-text">If the computer is on but everything on the screen is frozen and the
+                keyboard and mouse are not responding,
+                try tapping on the Num Lock key. It’s located on the right-hand side of the keyboard above the number 7.
+                While tapping the Num Lock key, notice whether or not the Num Lock light goes on and off.
+                If it doesn’t, the computer is completely locked up. You’ll have to REBOOT the computer. If the light
+                does go off and on, then wait a minute before giving up hope. It may come back to life on its own.
+                <br>
+                <br>
+                Pressing Alt + F4
+                If a software program stops working or freezes up, try pressing the ALT+F4 keys to close the window that
+                you’re currently working in. This can shut down a frozen window and bring the computer back to life. If
+                the keyboard is frozen as well, you’ll have to reboot.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-5">
+            <h1 class="common-question-answer-header">I can only see a blue screen.</h1>
+            <p class="common-question-answer-text">If the dreaded “Blue Screen of death” has appeared, there’s not a lot
+                to be done except to reboot the machine. If it keeps occurring, this is an indication of a major problem
+                with the computer.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-6">
+            <h1 class="common-question-answer-header">My computer is on but there's no sound.</h1>
+            <p class="common-question-answer-text">If the computer is on but everything on the screen is frozen and the
+                keyboard and mouse are not responding,
+                try tapping on the Num Lock key. It’s located on the right-hand side of the keyboard above the number 7.
+                While tapping the Num Lock key, notice whether or not the Num Lock light goes on and off.
+                If it doesn’t, the computer is completely locked up. You’ll have to REBOOT the computer. If the light
+                does go off and on, then wait a minute before giving up hope. It may come back to life on its own.
+                <br>
+                <br>
+                Pressing Alt + F4 If a software program stops working or freezes up, try pressing the ALT+F4 keys to
+                close the window that
+                you’re currently working in. This can shut down a frozen window and bring the computer back to life. If
+                the keyboard is frozen as well, you’ll have to reboot.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-7">
+            <h1 class="common-question-answer-header">The keyboard won't work.</h1>
+            <p class="common-question-answer-text">Swap the keyboard or try plugging the keyboard into another computer.
+                If it doesn't work on the other computer, there is likely something wrong with the keyboard. If it does
+                work on the other computer, there is likely something wrong on the computer or the connection to the
+                computer.
+            </p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-8">
+            <h1 class="common-question-answer-header">What is CNTRL-ALT-DEL?</h1>
+            <p class="common-question-answer-text">When you press the Ctrl-Alt-Delete buttons together, you will bring
+                up a control panel where you can select “Task Manager” and see if any of the programs are shown as “not
+                responding”. You may be able to shut down the offending program from there.
+                <br>
+                <br>
+                If you can’t get to this screen, you’ll have to reboot.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-9">
+            <h1 class="common-question-answer-header">Should I reboot my computer?</h1>
+            <p class="common-question-answer-text">Rebooting can do wonders. Don’t just pull the plug!
+                <br>
+                <br>
+                A simple reboot may clear up the problem. Go to the Start Menu and select Shutdown. Didn't work? It's
+                time to try a forced reboot — with, unfortunately, no way to save your work — by pressing the keys
+                CTRL-ALT-DEL simultaneously twice in a row.
+                <br>
+                <br>
+                If that didn't work, you have no choice: you have to turn the computer off manually with the power
+                switch. Hold the power button down (for about 5 -10 seconds) and the computer will shut down. Wait at
+                least 10 seconds for the hard drive to stop spinning and then restart the machine.
+                <br>
+                <br>
+                If the computer starts up, start the applications you were using when the crash occurred. Some programs,
+                like Microsoft Word, make timed backups of your work and may bring up recovered files. If the program
+                notifies you that there is a “recovered document” save the file under a different name and compare them
+                to your previously saved files.</p>
+        </div>
+        <div class="common-question-answer" id="common-question-answer-10">
+            <h1 class="common-question-answer-header">I'm stumped and nothing is working.</h1>
+            <p class="common-question-answer-text">
+                Contact Us!
+                <br>
+                <br>
+                Records Help Desk is ready to assist you with computer problems.
+                Please contact Kenneth at 212-788-8606 or <a
+                    href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov.</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

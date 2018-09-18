@@ -1,0 +1,92 @@
+.employee-resources-option-boxes {
+    height: 200px;
+    border-radius: 5px;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.employee-resources-title {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.employee-resources-text {
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+    padding: 25px 25px 25px 25px;
+    color: #4A4A4A;
+    text-align: center;
+}
+
+.employee-resources-icon {
+    display: block;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.employee-resources-section {
+    padding-top: 50px;
+}
+
+.external-site-card {
+    height: 250px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid dimgray;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #FBFBFB;
+    /* styles to center cards */
+    display: inline-block;
+    float: none;
+    /* reset the text-align */
+    text-align: left;
+    /* inline-block space fix */
+    margin-right: -4px;
+    text-align: center;
+}
+
+.external-site-image {
+    text-align: center;
+    height: 50px;
+    width: 180px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.external-site-text {
+    margin: auto;
+    overflow: hidden;
+    word-wrap: break-word;
+    font-family: "Helvetica Neue";
+    font-size: 14px;
+    font-weight: normal;
+    color: #4A4A4A;
+}
+
+.cardclick {
+    color: inherit;
+    text-decoration: none;
+}
+
+.cardclick:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+hr {
+    color: #D8D8D8;
+    border-width: 2px;
+}
+
+.center-site-cards {
+    text-align: center;
+}
+
+
