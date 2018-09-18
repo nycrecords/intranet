@@ -18,22 +18,22 @@
             <form action="" class="login-form-styles" method="post">
                 <p>
                 <div class="label-login-style">Login</div>
-                <div class="login-input-style ">{{ form.email(size=64, placeholder="Enter your email address") }}</div>
+                <div class="login-input-style ">{{ login_form.email(size=64, placeholder="Enter your email address") }}</div>
                 <br>
                 </p>
                 <p>
                 <div class="label-login-style"> Password</div>
-                <div class="login-input-style">   {{ form.password(size=32, placeholder="Enter your password") }}<br></div>
+                <div class="login-input-style">   {{ login_form.password(size=32, placeholder="Enter your password") }}<br></div>
                 </p>
 
                 <p>
 
                     <br>
-                <div class="label-login-style"> {{ form.remember_me() }} Remember Me</div>
+                <div class="label-login-style"> {{ login_form.remember_me() }} Remember Me</div>
                 <br>
                 </p>
                 <p>
-                <div id="login-submit-style">{{ form.submit }}</div>
+                <div id="login-submit-style">{{ login_form.submit }}</div>
                 </p>
             </form>
             <p id="registration-link-style">Don't have an account yet?<br>

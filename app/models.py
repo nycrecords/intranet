@@ -4,6 +4,9 @@ from sqlalchemy.dialects.postgresql import (
     ARRAY,
     JSONB
 )
+from flask_login import (
+    UserMixin
+)
 
 
 class Roles(db.Model):
@@ -17,7 +20,7 @@ class Roles(db.Model):
         return '<Roles %r>' % self.id
 
 
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)

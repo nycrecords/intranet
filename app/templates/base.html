@@ -5,6 +5,8 @@
 
 {% block head %}
     {{ super() }}
+    <title>{% block title %}{% endblock title %} - Intranet</title>
+
     <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
@@ -23,11 +25,17 @@
     {% block custom_css %}
     {% endblock %}
 {% endblock %}
+
 <body>
 {% block navbar %}
     <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
         <div class="container">
             <div class="navbar-header">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" style="color: white;">{{ current_user.first_name }}</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" style="color: white;">LOGIN</a>
+                {% endif %}
             </div>
         </div>
     </div>
