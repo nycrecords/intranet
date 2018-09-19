@@ -5,8 +5,8 @@
 
 .inner {
     position: relative;
-    top: 40%;
-    transform: translateY(-40%);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .centered {
@@ -66,11 +66,8 @@
     background-color: #ECAC2A;
 }
 
-.doris-logo {
-    /*text-align: center;*/
-}
-
 .doris-text {
+    text-align: center;
     color: #FFFFFF;
     font-family: Phosphate;
     font-size: 72px;
@@ -81,6 +78,7 @@
 }
 
 .intranet-text {
+    text-align: center;
     color: #FFFFFF;
     font-family: "Helvetica Neue";
     font-size: 48px;
