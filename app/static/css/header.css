@@ -1,9 +1,11 @@
 /* Header Styles */
 
-.top-header {
-    min-height: 4.5rem;
+.login-header {
     background-color: #000000;
     margin-bottom: 0;
+}
+.nav.navbar-nav.navbar-right li a.login-button {
+    color: white;
 }
 
 .blue-overlay {
@@ -127,12 +129,12 @@
     background-color: transparent;
 }
 
-.dropdown-menu {
+.blue-nav-dropdown.dropdown-menu {
     width: 19em;
     border-top: 1rem solid #F9B52B;
 }
 
-.dropdown-menu > li > a {
+.blue-nav-dropdown.dropdown-menu > li > a {
     text-align: left;
     margin: 10px 0;
     padding-bottom: 30px;
@@ -140,7 +142,7 @@
 
 /* If you hover on a link for a drop down menu */
 
-.dropdown-menu > li > a:hover {
+.blue-nav-dropdown.dropdown-menu > li > a:hover {
     background-color: #d4d7db;
     padding-bottom: 30px;
 }
