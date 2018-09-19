@@ -7,7 +7,8 @@ from flask import (
 )
 from flask_login import (
     login_user,
-    logout_user
+    logout_user,
+    current_user
 )
 from app.auth import auth
 from app.auth.forms import LoginForm
@@ -26,6 +27,8 @@ def login():
     """
     View function to login users using LDAP
     """
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
     login_form = LoginForm()
     if request.method == 'POST':
         email = login_form.email.data
@@ -34,11 +37,10 @@ def login():
         user = Users.query.filter_by(email=email).first()
 
         if user is not None:
-            # authenticated = True
             authenticated = ldap_authentication(email, password)
 
             if authenticated:
-                login_user(user)
+                login_user(user, remember=login_form.remember_me.data)
                 return redirect(url_for('main.index'))
 
             flash("Invalid username/password combination.", category="danger")
