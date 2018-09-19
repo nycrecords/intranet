@@ -1,47 +1,64 @@
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
+<!--{% extends "bootstrap/base.html" %}-->
 
-{% block navbar %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+{% block head %}
+    {{ super() }}
+    <title>Login - Intranet</title>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/login.css') }}"/>
 {% endblock %}
 
-{% block page_content %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/login.css') }}"/>
+<body>
+{% block content %}
     <div class="container">
-        <div class="col-sm-6 test">
-            <img src="../static/img/Surrogate%20Court%20new.png" class="doris">
-            <div class="imagetext">
-                <p class="doristext">DORIS</p>
-                <p class="intranet">intranet</p>
+        {% block page_content %}
+        <div class="col-sm-12 outer">
+            <div class="col-sm-6 inner login-background">
+                <img src="{{ url_for('static', filename='img/login_background.png') }}">
+                <div class="doris-logo centered">
+                    <p class="doris-text">DORIS</p>
+                    <p class="intranet-text">intranet</p>
+                </div>
+            </div>
+            <div class="col-sm-6 inner">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger login-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                <form method="post" class="login-form">
+                    <div class="form-group login-field">
+                        {{ login_form.email.label (class="login-form-label") }}
+                        {{ login_form.email(class="form-control", placeholder="Enter your email address") }}
+                    </div>
+
+                    <div class="form-group login-field">
+                        {{ login_form.password.label (class="login-form-label") }}
+                        {{ login_form.password(class="form-control", placeholder="Enter your password") }}
+                    </div>
+
+                    <div class="form-group remember-me-field">
+                        {{ login_form.remember_me(class="remember-me") }} Remember me
+                    </div>
+
+                    <div class="form-group login-field">
+                        {{ login_form.submit(class="form-control login-submit-button") }}
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="col-sm-6">
-            <form action="" class="login-form-styles" method="post">
-                <p>
-                <div class="label-login-style">Login</div>
-                <div class="login-input-style ">{{ login_form.email(size=64, placeholder="Enter your email address") }}</div>
-                <br>
-                </p>
-                <p>
-                <div class="label-login-style"> Password</div>
-                <div class="login-input-style">   {{ login_form.password(size=32, placeholder="Enter your password") }}<br></div>
-                </p>
-
-                <p>
-
-                    <br>
-                <div class="label-login-style"> {{ login_form.remember_me() }} Remember Me</div>
-                <br>
-                </p>
-                <p>
-                <div id="login-submit-style">{{ login_form.submit }}</div>
-                </p>
-            </form>
-            <p id="registration-link-style">Don't have an account yet?<br>
-                <a href="#">Create an account?</a>
-            </p>
-        </div>
+        {% endblock %}
     </div>
 {% endblock %}
 
-{% block footer %}
+{% block scripts %}
+    {{ super() }}
 {% endblock %}
+
+</body>
+
+</html>

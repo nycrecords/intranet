@@ -12,7 +12,7 @@ from wtforms.validators import (
 
 
 class LoginForm(Form):
-    email = StringField('Login', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    email = StringField('EMAIL', validators=[DataRequired(), Email()])
+    password = PasswordField('PASSWORD', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Log In')

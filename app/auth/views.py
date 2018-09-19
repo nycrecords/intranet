@@ -32,7 +32,6 @@ def login():
         password = login_form.password.data
 
         user = Users.query.filter_by(email=email).first()
-        # user = Users.query.filter_by(email='jyu@records.nyc.gov').first()
 
         if user is not None:
             # authenticated = True
@@ -45,8 +44,7 @@ def login():
             flash("Invalid username/password combination.", category="danger")
             return render_template('login.html', login_form=login_form)
         else:
-            flash("User not found. Please contact your agency FOIL Officer to gain access to the system.",
-                  category="warning")
+            flash("User not found. Please contact IT to gain access to the system.", category="warning")
             return render_template('login.html', login_form=login_form)
     return render_template('login.html', login_form=login_form)
 
