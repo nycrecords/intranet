@@ -32,12 +32,12 @@
         <div class="container">
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_authenticated %}
-                    <li class="dropdown">
-                        <a class="dropdown-toggle login-button" data-toggle="dropdown" href="#">Hello, {{
-                            current_user.first_name }} {{ current_user.last_name }}&nbsp;<span
-                                    class="glyphicon glyphicon-triangle-bottom"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle login-button" data-toggle="dropdown" href="#">Hello, {{ current_user.name
+                        }}&nbsp;<span
+                                class="glyphicon glyphicon-triangle-bottom"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                         </ul>
                     </li>
                 {% else %}

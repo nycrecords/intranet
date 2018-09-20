@@ -7,6 +7,7 @@ from sqlalchemy.dialects.postgresql import (
 from flask_login import (
     UserMixin
 )
+import csv
 
 
 class Roles(db.Model):
@@ -31,8 +32,34 @@ class Users(UserMixin, db.Model):
     division = db.Column(db.String)
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
+    room = db.Column(db.String(3))
     profile_picture_path = db.Column(db.String)
     permissions = db.Column(db.BigInteger)
+
+    @property
+    def name(self):
+        return self.first_name + " " + self.last_name
+
+    @classmethod
+    def populate(cls):
+        with open('data/users.csv', 'r') as data:
+            dictreader = csv.DictReader(data)
+
+            for row in dictreader:
+                user = cls(
+                    first_name=row['first_name'],
+                    middle_initial=row['middle_initial'],
+                    last_name=row['last_name'],
+                    email=row['email'],
+                    division=row['division'],
+                    phone_number=row['phone_number'],
+                    title=row['title'],
+                    room=row['room'],
+                    profile_picture_path=row['profile_picture_path'],
+                    permissions=row['permissions']
+                )
+                db.session.add(user)
+        db.session.commit()
 
     def __repr__(self):
         return '<Users %r>' % self.id
