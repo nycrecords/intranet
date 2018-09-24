@@ -30,7 +30,6 @@ class Users(db.Model):
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
     room = db.Column(db.String(3))
-    profile_picture_path = db.Column(db.String)
     permissions = db.Column(db.BigInteger)
 
     def __repr__(self):
@@ -51,7 +50,6 @@ class Users(db.Model):
                     phone_number=row['phone_number'],
                     title=row['title'],
                     room=row['room'],
-                    profile_picture_path=row['profile_picture_path'],
                     permissions=row['permissions']
                 )
                 db.session.add(user)

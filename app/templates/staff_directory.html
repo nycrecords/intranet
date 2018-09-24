@@ -44,26 +44,17 @@
                     <tr>
                         <td class="col-sm-2">
                             <a class="popover-right popper" data-toggle="popover">
-                                {% if user.profile_picture_path %}
-                                    <img class="avatar-style"
-                                         src="{{ url_for('static', filename='img/'+user.profile_picture_path) }}" alt="avatar">
-                                {% else %}
-                                    <img class="avatar-style"
-                                         src="{{ url_for('static', filename='img/avatar.png') }}">
-                                {% endif %}
+                                <img class="avatar-style"
+                                     src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}"
+                                     onerror="this.src='/static/img/avatar.png'" alt="avatar">
                             </a>
 
                             <div class="popper-content hide">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        {% if user.profile_picture_path %}
-                                            <img class="popover-img"
-                                                 src="{{ url_for('static', filename=user.profile_picture_path) }}"
-                                                 alt="avatar">
-                                        {% else %}
-                                            <img class="popover-img"
-                                                 src="{{ url_for('static', filename='img/avatar.png') }}">
-                                        {% endif %}
+                                        <img class="popover-img"
+                                             src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}"
+                                             onerror="this.src='/static/img/avatar.png'" alt="avatar">
                                     </div>
                                     <div class="col-sm-7">
                                         <p class="popover-name">{{ user.first_name }} {{ user.last_name }}</p>

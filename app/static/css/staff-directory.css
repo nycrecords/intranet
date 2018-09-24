@@ -95,10 +95,12 @@
 }
 
 .avatar-style {
+    /* These dimensions are 15% of the original image (335 x 446) */
     width: 50px;
-    height: 50px;
+    height: 67px;
     border-radius: 50%;
     margin-right: 20px;
+    margin-left: 10px;
 }
 
 .table-styles > tbody > tr > th {
@@ -124,8 +126,9 @@
 .popover-img {
     margin-top: 20px;
     border-radius: 50%;
-    height: 156px;
-    width: 156px;
+    /* These dimensions are 45% of the original image (335 x 446) */
+    width: 150px;
+    height: 200px;
 }
 
 .popover-name {
