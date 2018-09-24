@@ -43,7 +43,7 @@
                 {% for user in users %}
                     <tr>
                         <td class="col-sm-2">
-                            <a class="popover-right popper"  data-toggle="popover">
+                            <a class="popover-right popper" data-toggle="popover">
                                 {% if user.profile_picture_path %}
                                     <img class="avatar-style"
                                          src="{{ url_for('static', filename='img/'+user.profile_picture_path) }}" alt="avatar">
@@ -89,4 +89,8 @@
             </table>
         </div>
     </div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/staff_directory.js') }}"></script>
 {% endblock %}

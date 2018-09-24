@@ -1,7 +1,5 @@
 $(function () {
-
-
-    // ON FIRST PAGE load
+    // On first page load get autocomplete options for default filters
     $(document).ready(function () {
         $.ajax({
             url: '/get_filter_options_list/' + $('#filter-data').val(),
@@ -14,7 +12,7 @@ $(function () {
         });
     });
 
-    // handles on filter change
+    // handles autocomplete options on filter change
     $(document).on("focus", "#filter-data", function () {
         $("#filter-data").off().change(function () {
             $.ajax({
@@ -29,7 +27,6 @@ $(function () {
         });
     });
 
-
     $('.popper').popover({
         placement: 'right',
         html: true,
@@ -38,11 +35,12 @@ $(function () {
             return $(this).next('.popper-content').html();
         }
     });
-    console.log("test");
-    // $(document).on("click", ".popover-content .close", function () {
-    //     $(this).parents(".popover").popover('hide');
-    // });
-    // $('[data-toggle="popover"]').on('click', function () {
-    //     $('[data-toggle=popover]').not(this).popover('hide');
-    // });
+
+    $(document).on("click", ".popover-content .close", function () {
+        $(this).parents(".popover").popover('hide');
+    });
+
+    $('[data-toggle="popover"]').on('click', function () {
+        $('[data-toggle=popover]').not(this).popover('hide');
+    });
 });
