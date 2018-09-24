@@ -1,5 +1,6 @@
 .page-container {
-    width: 50%;
+    width: 1300px;
+    padding-bottom: 20px;
 }
 
 .panel-default > .panel-header-style {
