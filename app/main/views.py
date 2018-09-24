@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request as flask_re
 from app import db
 from app.models import Users
 from . import main
-from app.main.forms import Meeting_Notes_Form, Staff_Directory_Search_Form
+from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm
 from datetime import datetime
 from app.main.utils import create_post
 
@@ -19,7 +19,7 @@ def news_and_updates():
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
 def new_post():
-    form = Meeting_Notes_Form()
+    form = MeetingNotesForm()
 
     if flask_request.method == 'POST':
         post_id = create_post(title=form.title.data,
@@ -37,7 +37,7 @@ def staff_directory():
     """
     Searches the Users table based on the filter and returns a list of users matching the input
     """
-    form = Staff_Directory_Search_Form()
+    form = StaffDirectorySearchForm()
 
     if form.search.data is "":
         users = Users.query.order_by(Users.last_name)

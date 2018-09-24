@@ -10,7 +10,10 @@ from wtforms.validators import DataRequired, Optional
 from app.constants import choices
 
 
-class Meeting_Notes_Form(FlaskForm):
+class MeetingNotesForm(FlaskForm):
+    """
+    Form for posting meeting notes
+    """
     title = StringField('TITLE')
     meeting_type = SelectField("MEETING TYPE", choices=choices.MEETING_TYPES)
     division = SelectField("DIVISION", choices=choices.DIVISIONS)
@@ -29,7 +32,10 @@ class Meeting_Notes_Form(FlaskForm):
     submit = SubmitField()
 
 
-class Staff_Directory_Search_Form(FlaskForm):
+class StaffDirectorySearchForm(FlaskForm):
+    """
+    Form for searching the staff directory
+    """
     search = StringField('Search')
     filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
     submit = SubmitField('Search')
