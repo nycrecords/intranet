@@ -82,7 +82,7 @@
                         <td class="staff-directory-row">{{ user.division }}</td>
                         <td class="staff-directory-row">{{ user.title }}</td>
                         <td class="staff-directory-row">{{ user.phone_number }}</td>
-                        <td class="staff-directory-row">{{ user.email }}</td>
+                        <td class="staff-directory-row"><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
