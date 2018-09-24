@@ -34,6 +34,9 @@ def new_post():
 
 @main.route('/staff-directory', methods=['GET', 'POST'])
 def staff_directory():
+    """
+    Searches the Users table based on the filter and returns a list of users matching the input
+    """
     form = Staff_Directory_Search_Form()
 
     if form.search.data is "":
@@ -54,26 +57,34 @@ def staff_directory():
 
 @main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
 def get_filter_options_list(filter_value):
+    """
+    Sets the autocomplete choices for each filter option
+
+    :param filter_value: string containing which filter is currently selected
+    :return: a JSON with all possible choices that can be searched for with autocomplete
+    """
     users = Users.query.all()
-    users_array = []
+    choices_array = []
+
     if filter_value == "First Name":
         for user in users:
-            users_array.append(user.first_name)
-        users_array=list(set(users_array))
+            choices_array.append(user.first_name)
+
     if filter_value == "Last Name":
         for user in users:
-            if user not in users_array:
-                users_array.append(user.last_name)
+            choices_array.append(user.last_name)
+
     if filter_value == "Division":
         for user in users:
-            users_array.append(user.division)
-        users_array = list(set(users_array))
+            choices_array.append(user.division)
+
     if filter_value == "Title":
         for user in users:
-            users_array.append(user.title)
-        users_array = list(set(users_array))
+            choices_array.append(user.title)
 
-    return jsonify(users_array), 200
+    # Remove duplicates in the list
+    choices_array = list(set(choices_array))
+    return jsonify(choices_array), 200
 
 
 @main.route('/it-support/faq', methods=['GET', 'POST'])
