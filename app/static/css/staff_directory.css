@@ -1,17 +1,19 @@
-.panel-default>.panel-header-style {
-    background-color:#FFFFFF;
-    height:125px;
-    padding-top:40px;
-    width: 1155px;
+.page-container {
+    width: 50%;
+}
+
+.panel-default > .panel-header-style {
+    background-color: #FFFFFF;
+    height: 125px;
+    padding-top: 40px;
 }
 
 .panel-body-style {
-    padding:0;
-    width: 1155px;
+    padding: 0;
 }
 
-.table-styles{
-    margin-bottom:0;
+.table-styles {
+    margin-bottom: 0;
 }
 
 .staff-directory-search-options {
@@ -21,58 +23,58 @@
     font-weight: normal;
 }
 
-#filter-menu>select {
+#filter-menu > select {
     width: 290px;
     height: 38px;
-    background-color:#FFFFFF;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
-#staff-directory-submit>input[type=submit] {
+#staff-directory-submit > input[type=submit] {
     height: 38px;
     border: 1px solid #979797;
     margin-right: 200px;
     border-radius: 5px;
     padding-left: 10px;
-    background-color:#FFFFFF;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
-#staff-directory-search>input[type=text] {
-    width:290px;
-    height:35px;
+#staff-directory-search > input[type=text] {
+    width: 290px;
+    height: 35px;
     border: 1px solid #979797;
     border-radius: 5px;
     padding-left: 10px;
-    background-color:#FFFFFF;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 #staff-directory-reset {
     height: 38px;
     margin-right: 10px;
     border: 1px solid #979797;
-    background-color:#FFFFFF;
-    color:#000000;
+    background-color: #FFFFFF;
+    color: #000000;
     border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
-#staff-directory-reset>a{
-    color:#000000;
+#staff-directory-reset > a {
+    color: #000000;
 }
 
-#staff-directory-reset>a:hover {
-    decoration:none;
+#staff-directory-reset > a:hover {
+    decoration: none;
 }
 
 .staff-directory-column-header {
     color: #FFFFFF;
-    font-family:Helvetica Neue;
+    font-family: Helvetica Neue;
     font-size: 18px;
     letter-spacing: 0.82px;
     font-weight: 400;
-    background-color:#5C95A3;
+    background-color: #5C95A3;
 }
 
 .staff-directory-row {
@@ -92,22 +94,22 @@
 }
 
 .avatar-style {
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin-right: 20px;
 }
 
-.table-styles>tbody>tr>th{
+.table-styles > tbody > tr > th {
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
 }
 
-.table>#staff-directory-table>tr>td {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        vertical-align: middle;
+.table > #staff-directory-table > tr > td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
 }
 
 .popover {
@@ -119,14 +121,14 @@
 }
 
 .popover-img {
-    margin-top:20px;
+    margin-top: 20px;
     border-radius: 50%;
     height: 156px;
     width: 156px;
 }
 
 .popover-name {
-    margin-top:20px;
+    margin-top: 20px;
     font-size: 36px;
     letter-spacing: 0.91px;
     font-family: "Helvetica Neue";
@@ -144,7 +146,7 @@
 .popover-division {
     color: #656565;
     font-family: "Helvetica Neue";
-	font-size: 18px;
+    font-size: 18px;
     padding-left: 10px;
 }
 
@@ -160,10 +162,5 @@
 .popover-close-link {
     height: 16px;
     width: 14px;
-    margin-right:10px;
-}
-
-.content-area{
-    padding:0;
-    width: 1156px;
+    margin-right: 10px;
 }

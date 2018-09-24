@@ -11,7 +11,7 @@
             <nav class="breadcrumb-nav" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-ol">
                     <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.index') }}">Employee
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.employee_resources') }}">Employee
                         Resource</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Staff Directory</li>
                 </ol>
@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="panel panel-default content-area col-sm-12">
+    <div class="panel panel-default">
         <div class="panel-heading panel-header-style col-sm-12">
             <form class="staff-directory-search-options" method="post">
                 <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="staff-directory-search-data") }}</div>
