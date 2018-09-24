@@ -52,7 +52,6 @@
                                          src="{{ url_for('static', filename='img/avatar.png') }}">
                                 {% endif %}
                             </a>
-                            <span class="staff-directory-row">{{ user.first_name }}</span>
 
                             <div class="popper-content hide">
                                 <div class="row">
@@ -74,9 +73,10 @@
                                     <a href="#" class="close popover-close-link" data-dismiss="alert">&times;</a>
                                 </div>
                                 <div class="row popover-information">Phone: {{ user.phone_number }}</div>
-                                <div class="row popover-information">Email: {{ user.email }}</div>
+                                <div class="row popover-information">Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
                                 <div class="row popover-information">Office: {{ user.room }}</div>
                             </div>
+                            <span class="staff-directory-row">{{ user.first_name }}</span>
                         </td>
                         <td class="staff-directory-row">{{ user.last_name }}</td>
                         <td class="staff-directory-row">{{ user.division }}</td>
