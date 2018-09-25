@@ -1,11 +1,27 @@
 import os
+from dotenv import load_dotenv
+
 basedir = os.path.abspath(os.path.dirname(__file__))
+
+dotenv_path = os.path.join(basedir, '.env')
+load_dotenv(dotenv_path)
 
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    LDAP_SERVER = os.environ.get('LDAP_SERVER') or None
+    LDAP_PORT = os.environ.get('LDAP_PORT') or None
+    LDAP_USE_TLS = os.environ.get('LDAP_USE_TLS') == "True"
+    LDAP_KEY_PATH = os.environ.get('LDAP_KEY_PATH') or None
+    LDAP_SA_BIND_DN = os.environ.get('LDAP_SA_BIND_DN') or None
+    LDAP_SA_PASSWORD = os.environ.get('LDAP_SA_PASSWORD') or None
+    LDAP_BASE_DN = os.environ.get('LDAP_BASE_DN') or None
+
+    USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
+                                                             'users.csv'))
 
     @staticmethod
     def init_app(app):
@@ -33,6 +49,5 @@ config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }

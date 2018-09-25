@@ -1,0 +1,87 @@
+.outer {
+    position: relative;
+    height: 100%;
+}
+
+.inner {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-error {
+    margin-left: 50px;
+}
+
+.login-form {
+    padding-left: 50px;
+}
+
+.login-field {
+    padding-bottom: 15px;
+}
+
+.login-form-label {
+    color: #2A2C2E;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.form-control {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+}
+
+.remember-me-field {
+    color: #2A2C2E;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    padding-bottom: 15px;
+}
+
+.remember-me {
+    height: 16px;
+    width: 16px;
+    border-radius: 2px;
+    background-color: #359BE0;
+}
+
+.login-submit-button {
+    color: white;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-weight: normal;
+    border: 1px solid #ECAC2A;
+    border-radius: 4px;
+    background-color: #ECAC2A;
+}
+
+.doris-text {
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Phosphate;
+    font-size: 72px;
+    letter-spacing: 4.5px;
+    line-height: 91px;
+    text-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    margin-bottom: 0;
+}
+
+.intranet-text {
+    text-align: center;
+    color: #FFFFFF;
+    font-family: "Helvetica Neue";
+    font-size: 48px;
+    letter-spacing: 8.16px;
+    line-height: 57px;
+}
