@@ -8,6 +8,7 @@ from flask_login import (
     UserMixin
 )
 import csv
+from flask import current_app
 
 
 class Roles(db.Model):
@@ -42,7 +43,7 @@ class Users(UserMixin, db.Model):
 
     @classmethod
     def populate(cls):
-        with open('data/users.csv', 'r') as data:
+        with open(current_app.config['USER_DATA'], 'r') as data:
             dictreader = csv.DictReader(data)
 
             for row in dictreader:
