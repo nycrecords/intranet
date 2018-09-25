@@ -28,9 +28,3 @@ class Meeting_Notes_Form(FlaskForm):
     next_meeting_leader = StringField('NEXT MEETING LEADER')
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
     submit = SubmitField()
-
-class Login_Form(FlaskForm):
-    email = StringField('Login', validators=[DataRequired(), Email()])
-    password = PasswordField('Password',validators=[DataRequired()])
-    remember_me = BooleanField('Remember Me')
-    submit =SubmitField('Log In')
