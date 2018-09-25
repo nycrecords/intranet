@@ -40,4 +40,3 @@ class StaffDirectorySearchForm(FlaskForm):
     search = StringField('Search')
     filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
     submit = SubmitField('Search')
-    submit = SubmitField()
