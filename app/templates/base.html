@@ -5,6 +5,8 @@
 
 {% block head %}
     {{ super() }}
+    <title>{% block title %}{% endblock title %} - Intranet</title>
+
     <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap.min.css') }}"/>-->
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
     <link rel=stylesheet type=text/css
@@ -25,14 +27,27 @@
     {% block custom_css %}
     {% endblock %}
 {% endblock %}
+
 <body>
 {% block navbar %}
-    <div class="navbar navbar-inverse navbar-static-top top-header" role="navigation">
+    <nav class="navbar navbar-inverse navbar-static-top login-header">
         <div class="container">
-            <div class="navbar-header">
-            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle login-button" data-toggle="dropdown" href="#">Hello, {{ current_user.name
+                        }}&nbsp;<span
+                                class="glyphicon glyphicon-triangle-bottom"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a class="login-button" href="{{ url_for('auth.login') }}">Login</a></li>
+                {% endif %}}
+            </ul>
         </div>
-    </div>
+    </nav>
     <div class="blue-overlay">
         <div class="container">
             <div class=" header-current-date">{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
@@ -62,7 +77,7 @@
                                 News & Updates
                                 <span class="caret nav-caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="blue-nav-dropdown dropdown-menu">
                                 <li>
                                     <a href="#">News</a>
                                 </li>
@@ -79,7 +94,7 @@
                                 Employee Resources
                                 <span class="caret nav-caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="blue-nav-dropdown dropdown-menu">
                                 <li>
                                     <a href="{{ url_for('main.staff_directory') }}">Staff Directory</a>
                                 </li>
@@ -102,7 +117,7 @@
                                 IT Support
                                 <span class="caret nav-caret"></span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="blue-nav-dropdown dropdown-menu">
                                 <li>
                                     <a href="{{ url_for('main.faq') }}">FAQ</a>
                                 </li>

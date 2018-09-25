@@ -34,6 +34,7 @@ def upgrade():
     sa.Column('division', sa.String(), nullable=True),
     sa.Column('title', sa.String(length=64), nullable=True),
     sa.Column('phone_number', sa.String(length=25), nullable=True),
+    sa.Column('room', sa.String(), nullable=True),
     sa.Column('profile_picture_path', sa.String(), nullable=True),
     sa.Column('permissions', sa.BigInteger(), nullable=True),
     sa.PrimaryKeyConstraint('id')

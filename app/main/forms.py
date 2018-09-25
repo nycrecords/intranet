@@ -4,9 +4,10 @@ from wtforms.fields import (
     TextAreaField,
     SelectField,
     SubmitField,
-    BooleanField
+    BooleanField,
+    PasswordField
 )
-from wtforms.validators import DataRequired, Optional
+from wtforms.validators import DataRequired, Optional, Email
 from app.constants import choices
 
 
@@ -39,3 +40,4 @@ class StaffDirectorySearchForm(FlaskForm):
     search = StringField('Search')
     filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
     submit = SubmitField('Search')
+    submit = SubmitField()

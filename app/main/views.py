@@ -1,9 +1,9 @@
 from flask import render_template, redirect, url_for, flash, request as flask_request, jsonify
+from flask_login import login_required
 from app import db
 from app.models import Users
 from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm
-from datetime import datetime
 from app.main.utils import create_post
 
 
@@ -18,6 +18,7 @@ def news_and_updates():
 
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
+@login_required
 def new_post():
     form = MeetingNotesForm()
 
