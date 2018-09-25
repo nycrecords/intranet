@@ -93,7 +93,7 @@ class Users(UserMixin, db.Model):
     phone_number = db.Column(db.String(25))
     room = db.Column(db.String(3))
     profile_picture_path = db.Column(db.String)
-    permissions = db.Column(db.BigInteger)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @property
     def name(self):
@@ -101,6 +101,11 @@ class Users(UserMixin, db.Model):
 
     @classmethod
     def populate(cls):
+        roles_dict = {}
+        roles = Roles.query.all()
+        for role in roles:
+            roles_dict[role.name] = role.id
+
         with open(current_app.config['USER_DATA'], 'r') as data:
             dictreader = csv.DictReader(data)
 
@@ -115,7 +120,7 @@ class Users(UserMixin, db.Model):
                     title=row['title'],
                     room=row['room'],
                     profile_picture_path=row['profile_picture_path'],
-                    permissions=row['permissions']
+                    role_id=roles_dict[row['role']]
                 )
                 db.session.add(user)
         db.session.commit()
