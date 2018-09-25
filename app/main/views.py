@@ -87,6 +87,21 @@ def get_filter_options_list(filter_value):
     return jsonify(choices_array), 200
 
 
+@main.route('/our-mission', methods=['GET', 'POST'])
+def our_mission():
+    return render_template('our_mission.html')
+
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+    return render_template('contact.html')
+
+
+@main.route('/divisions', methods=['GET', 'POST'])
+def divisions():
+    return render_template('divisions.html')
+
+
 @main.route('/it-support/faq', methods=['GET', 'POST'])
 def faq():
     return render_template('faq.html')
