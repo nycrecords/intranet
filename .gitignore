@@ -1,5 +1,6 @@
 # Project Specific
 *.pem
+app/static/img/employee_photos
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
