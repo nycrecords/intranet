@@ -1,4 +1,5 @@
 from flask import render_template, redirect, url_for, flash, request as flask_request
+from flask_login import login_required
 from app import db
 from . import main
 from app.main.forms import Meeting_Notes_Form
@@ -16,6 +17,7 @@ def news_and_updates():
 
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
+@login_required
 def new_post():
     form = Meeting_Notes_Form()
 

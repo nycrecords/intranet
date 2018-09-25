@@ -5,18 +5,76 @@ from sqlalchemy.dialects.postgresql import (
     JSONB
 )
 from flask_login import (
-    UserMixin
+    UserMixin,
+    AnonymousUserMixin
 )
 import csv
 from flask import current_app
+from app.constants import (
+    permission,
+    role_name,
+)
 
 
 class Roles(db.Model):
+    """
+    Define the Roles class with the following columns and relationships:
+
+    Roles - Default sets of permissions
+
+    id -- Column: Integer, PrimaryKey
+    name -- Column: String(64), Unique
+    default -- Column: Boolean, Default = False
+    permissions -- Column: Integer
+    users -- Relationship: 'Users', 'Roles'
+    """
     __tablename__ = 'roles'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
     permissions = db.Column(db.BigInteger)
+
+    @classmethod
+    def populate(cls):
+        """
+        Insert permissions for each role.
+        """
+        roles = {
+            role_name.ANONYMOUS: (
+                permission.NONE
+            ),
+            role_name.EMPLOYEE: (
+                permission.CREATE_POST |
+                permission.UPLOAD_DOCUMENT
+            ),
+            role_name.ADMINISTRATOR: (
+                    permission.CREATE_POST |
+                    permission.EDIT_POST |
+                    permission.DELETE_POST |
+                    permission.UPLOAD_DOCUMENT |
+                    permission.EDIT_DOCUMENT |
+                    permission.DELETE_DOCUMENT
+            ),
+            role_name.SUPER_USER: (
+                    permission.CREATE_POST |
+                    permission.EDIT_POST |
+                    permission.DELETE_POST |
+                    permission.UPLOAD_DOCUMENT |
+                    permission.EDIT_DOCUMENT |
+                    permission.DELETE_DOCUMENT |
+                    permission.CREATE_USER |
+                    permission.EDIT_USER |
+                    permission.DELETE_USER
+            )
+        }
+
+        for name, value in roles.items():
+            role = Roles.query.filter_by(name=name).first()
+            if role is None:
+                role = cls(name=name)
+            role.permissions = value
+            db.session.add(role)
+        db.session.commit()
 
     def __repr__(self):
         return '<Roles %r>' % self.id
@@ -64,6 +122,12 @@ class Users(UserMixin, db.Model):
 
     def __repr__(self):
         return '<Users %r>' % self.id
+
+
+class Anonymous(AnonymousUserMixin):
+
+    def __repr__(self):
+        return '<Anonymous User>'
 
 
 class Posts(db.Model):
