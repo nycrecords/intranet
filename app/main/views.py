@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, flash, request as flask_re
 from flask_login import login_required
 from app import db
 from . import main
-from app.main.forms import Meeting_Notes_Form
+from app.main.forms import Meeting_Notes_Form, EnfgForm
 from app.main.utils import create_post
 
 
@@ -65,3 +65,13 @@ def tools_and_applications():
 @main.route('/it-support', methods=['GET', 'POST'])
 def it_support():
     return render_template('it_support.html')
+
+
+@main.route('/enfg', methods=['GET', 'POST'])
+def enfg():
+    form = EnfgForm()
+
+    if flask_request.method == 'POST':
+        pass
+
+    return render_template('enfg.html', form=form)

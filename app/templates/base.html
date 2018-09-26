@@ -241,6 +241,9 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
+
+    {% block custom_scripts %}
+    {% endblock %}
 {% endblock %}
 
 </body>

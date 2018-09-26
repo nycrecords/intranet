@@ -5,8 +5,10 @@ from wtforms.fields import (
     SelectField,
     SubmitField,
     BooleanField,
-    PasswordField
+    SelectMultipleField
 )
+from wtforms import widgets
+
 from wtforms.validators import DataRequired, Optional, Email
 from app.constants import choices
 
@@ -28,3 +30,13 @@ class Meeting_Notes_Form(FlaskForm):
     next_meeting_leader = StringField('NEXT MEETING LEADER')
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
     submit = SubmitField()
+
+
+class EnfgForm(FlaskForm):
+    type = SelectField('Type *', choices=choices.CERT_TYPE, validators=[DataRequired()])
+    name = StringField('Name *', validators=[DataRequired()])
+    bride_name = StringField('Bride\'s Name:')
+    year = StringField('Year *', validators=[DataRequired()])
+    borough = SelectMultipleField('Borough', choices=choices.BOROUGHS)
+    signature = BooleanField('Print without signature')
+    submit = SubmitField('Print')
