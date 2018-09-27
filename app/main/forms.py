@@ -36,6 +36,10 @@ class MeetingNotesForm(FlaskForm):
 class StaffDirectorySearchForm(FlaskForm):
     """
     Form for searching the staff directory
+
+    search: input field with the search term being entered
+    filters: dropdown containing the different filters you can search on (first name, last name, division, title)
+    submit: submit button for search form
     """
     search = StringField('Search')
     filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
