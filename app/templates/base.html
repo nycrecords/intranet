@@ -53,7 +53,7 @@
             <div class=" header-current-date">{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
             <div class="header-doris-style">
                 <div>
-                    <span>Doris</span>
+                    <span><a id="doris-link-style" href="{{ url_for('main.index') }}">Doris</a></span>
                 </div>
             </div>
             <a href="{{ url_for('main.index') }}"><span class="header-intranet-style">intranet</span></a>
