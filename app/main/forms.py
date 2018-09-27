@@ -33,6 +33,17 @@ class Meeting_Notes_Form(FlaskForm):
 
 
 class EnfgForm(FlaskForm):
+    """
+    Form for the Easy Not Found Generator page
+
+    type: Select dropdown with choices for different certificate types
+    name: String for the name on the certificate you are looking for
+    bride_name: String for the bride name on the certificate you are looking for
+    year: String for the year on the certificate you are looking for
+    borough: String for the boroughs on the certificate you are looking for
+    signature: Boolean to determine if a signature should appear on the letter when printing
+    submit: submit button for the form
+    """
     type = SelectField('Type *', choices=choices.CERT_TYPE, validators=[DataRequired()])
     name = StringField('Name *', validators=[DataRequired()])
     bride_name = StringField('Bride\'s Name:')
