@@ -167,11 +167,6 @@ def tools_and_applications():
     return render_template('tools_and_applications.html')
 
 
-@main.route('/it-support', methods=['GET', 'POST'])
-def it_support():
-    return render_template('it_support.html')
-
-
 @main.route('/enfg', methods=['GET', 'POST'])
 def enfg():
     """
