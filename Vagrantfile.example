@@ -1,8 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$redhat_username = <REDHAT USERNAME>
-$redhat_password = <REDHAT PASSWORD>
+$default_system_name = "intranet-" + Time.now.strftime("%Y%m%d-%H%M")
+
+$redhat_username = ENV['RH_USER'].to_s.empty? ? "<REDHAT USERNAME>" || "<REDHAT USERNAME>"
+$redhat_password = ENV['RH_PASSWORD'].to_s.empty? ? "<REDHAT PASSWORD>" : ENV['RH_PASSWORD']
+$rhsn_system_name = ENV['RHSN_SYSTEM_NAME'].to_s.empty? ? $default_system_name : ENV['RHSN_SYSTEM_NAME']
 
 Vagrant.configure("2") do |config|
   config.vm.box = "rhel-6.8_vb-5.1.32"

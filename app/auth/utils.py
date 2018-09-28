@@ -22,7 +22,7 @@ def ldap_authentication(email, password):
 def _ldap_server_connect():
     """
     Connect to an LDAP server
-    :return: LDAP Context
+    :return: LDAP Connection
     """
     ldap_server = current_app.config['LDAP_SERVER']
     ldap_port = int(current_app.config['LDAP_PORT'])

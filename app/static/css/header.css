@@ -30,6 +30,14 @@
     margin-right: 1.15rem;
 }
 
+#doris-link-style {
+    color: #FFFFFF;
+}
+
+.header-doris-style, a:hover {
+    text-decoration: none;
+}
+
 .header-doris-style {
     height: 57px;
     width: 142px;
@@ -84,6 +92,8 @@
 
 .navbar-option:hover > .dropdown-menu {
     display: block;
+    border-left: 0;
+    border-right: 0;
 }
 
 .nav-magnification-style {

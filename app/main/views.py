@@ -1,65 +1,169 @@
-from flask import render_template, redirect, url_for, flash, session, request as flask_request
+from flask import render_template, redirect, url_for, flash, request as flask_request, jsonify
 from flask_login import login_required
 from app import db
+from app.models import Users
 from . import main
-from app.main.forms import Meeting_Notes_Form, EnfgForm
+from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_post
 from datetime import datetime
 
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    View function to handle the home page
+    :return: HTML template for home page
+    """
     return render_template('index.html')
 
 
 @main.route('/news-updates', methods=['GET', 'POST'])
 def news_and_updates():
+    """
+    View function to handle the new and updates landing page
+    :return: HTML template for new and updates landing page
+    """
     return render_template('news_and_updates.html')
 
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
 @login_required
 def new_post():
-    form = Meeting_Notes_Form()
+    form = MeetingNotesForm()
 
     if flask_request.method == 'POST':
         post_id = create_post(title=form.title.data,
                               meeting_date=form.meeting_date.data)
         print(post_id)
 
-    # if form.validate_on_submit():
+        # if form.validate_on_submit():
         flash('Form submitted.')
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
 
 
+@main.route('/staff-directory', methods=['GET', 'POST'])
+def staff_directory():
+    """
+    View function to handle the staff directory page.
+    Searches the Users table based on the filter and returns a list of users matching the input.
+
+    GET Request:
+    Returns HTML template for the staff directory page
+
+    POST Request:
+    Expects dat from the staff directory search form
+    On initial page load it will return a list of all users
+    Following POST requests will use what is inputted in the search field and what filter is used in order to query
+    """
+    form = StaffDirectorySearchForm()
+
+    if form.search.data is "":
+        users = Users.query.order_by(Users.last_name)
+    elif form.filters.data == 'First Name':
+        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%'))
+    elif form.filters.data == 'Last Name':
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%'))
+    elif form.filters.data == 'Division':
+        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'))
+    elif form.filters.data == 'Title':
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'))
+    else: # on initial page load return all users
+        users = Users.query.order_by(Users.last_name)
+
+    return render_template('staff_directory.html', users=users, form=form)
+
+
+@main.route('/get_filter_options_list/<string:filter_value>', methods=['GET'])
+def get_filter_options_list(filter_value):
+    """
+    AJAX endpoint to retrieve a list of autocomplete choices for each filter option
+
+    GET Request:
+    Uses filter_value which is passed in, in order to return a list of choices
+
+    :param filter_value: string containing which filter is currently selected
+    :return: a JSON with all possible choices that can be searched for with autocomplete
+    """
+    choices_list = []
+
+    if filter_value == "First Name":
+        choices_list = [u[0] for u in Users.query.with_entities(Users.first_name).all()]
+
+    if filter_value == "Last Name":
+        choices_list = [u[0] for u in Users.query.with_entities(Users.last_name).all()]
+
+    if filter_value == "Division":
+        choices_list = [u[0] for u in Users.query.with_entities(Users.division).all()]
+
+    if filter_value == "Title":
+        choices_list = [u[0] for u in Users.query.with_entities(Users.title).all()]
+
+    # Remove duplicates in the list
+    choices_list = list(set(choices_list))
+    return jsonify(choices_list), 200
+
+
 @main.route('/our-mission', methods=['GET', 'POST'])
 def our_mission():
+    """
+    View function to handle the Our Mission page
+    :return: HTML template for the Our Mission page
+    """
     return render_template('our_mission.html')
 
 
 @main.route('/contact', methods=['GET', 'POST'])
 def contact():
+    """
+    View function to handle the contact page
+    :return: HTML template for the contact page
+    """
     return render_template('contact.html')
 
 
 @main.route('/divisions', methods=['GET', 'POST'])
 def divisions():
+    """
+    View function to handle the divisions page
+    :return: HTML template for the divisions page
+    """
     return render_template('divisions.html')
+
+
+@main.route('/it-support', methods=['GET', 'POST'])
+def it_support():
+    """
+    View function to handle the IT support page
+    :return: HTML template for the IT support page
+    """
+    return render_template('it_support.html')
 
 
 @main.route('/it-support/faq', methods=['GET', 'POST'])
 def faq():
+    """
+    View function to handle the FAQ page
+    :return: HTML template for the FAQ page
+    """
     return render_template('faq.html')
 
 
 @main.route('/employee-resources', methods=['GET', 'POST'])
 def employee_resources():
+    """
+    View function to handle the employee resources page
+    :return: HTML template for the employee resources page
+    """
     return render_template('employee_resources.html')
 
 
 @main.route('/tools-and-applications', methods=['GET', 'POST'])
 def tools_and_applications():
+    """
+    View function to handle the tools and applications page
+    :return: HTML template for the toold and applications page
+    """
     return render_template('tools_and_applications.html')
 
 

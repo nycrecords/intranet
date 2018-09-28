@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
+{% block title %}Employee Resources{% endblock %}
+
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}"/>
 {% endblock %}
@@ -21,7 +23,7 @@
     <div class="col-sm-12 well content-area employee-resources-section">
         <div class="row">
             <div class="col-sm-4">
-                <a href="#">
+                <a href="{{ url_for('main.staff_directory') }}">
                     <div class="employee-resources-option-boxes col-sm-12">
                         <div class="row">
                             <h4 class="employee-resources-title">STAFF DIRECTORY</h4>

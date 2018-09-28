@@ -1,0 +1,171 @@
+.page-container {
+    width: 1300px;
+    padding-bottom: 20px;
+}
+
+.panel-default > .panel-header-style {
+    background-color: #FFFFFF;
+    height: 125px;
+    padding-top: 40px;
+}
+
+.panel-body-style {
+    padding: 0;
+}
+
+.table-styles {
+    margin-bottom: 0;
+}
+
+.staff-directory-search-options {
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+#filter-menu > select {
+    width: 290px;
+    height: 38px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#staff-directory-submit > input[type=submit] {
+    height: 38px;
+    border: 1px solid #979797;
+    margin-right: 200px;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#staff-directory-search > input[type=text] {
+    width: 290px;
+    height: 35px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#staff-directory-reset {
+    height: 38px;
+    margin-right: 10px;
+    border: 1px solid #979797;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+#staff-directory-reset > a {
+    color: #000000;
+}
+
+#staff-directory-reset > a:hover {
+    decoration: none;
+}
+
+.staff-directory-column-header {
+    color: #FFFFFF;
+    font-family: Helvetica Neue;
+    font-size: 18px;
+    letter-spacing: 0.82px;
+    font-weight: 400;
+    background-color: #5C95A3;
+}
+
+.staff-directory-row {
+    color: #333333;
+    font-family: Helvetica Neue;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.76px;
+    text-align: left;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+
+/*if the image for the popover is focus or hover on*/
+.popper:focus, .popper:hover {
+    text-decoration: none;
+}
+
+.avatar-style {
+    /* These dimensions are 15% of the original image (335 x 446) */
+    width: 50px;
+    height: 67px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.table-styles > tbody > tr > th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.table > #staff-directory-table > tr > td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    vertical-align: middle;
+}
+
+.popover {
+    max-width: 500px;
+}
+
+.popover-content {
+    background-color: #FFFFFF;
+    padding-bottom: 25px;
+}
+
+.popover-img {
+    margin-top: 20px;
+    border-radius: 50%;
+    /* These dimensions are 45% of the original image (335 x 446) */
+    width: 150px;
+    height: 200px;
+}
+
+.popover-name {
+    margin-top: 20px;
+    font-size: 36px;
+    letter-spacing: 0.91px;
+    font-family: "Helvetica Neue";
+    padding-left: 10px;
+}
+
+.popover-titles {
+    color: #39393A;
+    font-family: "Helvetica Neue";
+    font-size: 24px;
+    letter-spacing: 0.61px;
+    padding-left: 10px;
+}
+
+.popover-division {
+    color: #656565;
+    font-family: "Helvetica Neue";
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.popover-information {
+    color: #333333;
+    font-family: "Helvetica Neue";
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.popover-close-link {
+    height: 16px;
+    width: 14px;
+    margin-right: 10px;
+}

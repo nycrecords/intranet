@@ -13,7 +13,10 @@ from wtforms.validators import DataRequired, Optional, Email
 from app.constants import choices
 
 
-class Meeting_Notes_Form(FlaskForm):
+class MeetingNotesForm(FlaskForm):
+    """
+    Form for posting meeting notes
+    """
     title = StringField('TITLE')
     meeting_type = SelectField("MEETING TYPE", choices=choices.MEETING_TYPES)
     division = SelectField("DIVISION", choices=choices.DIVISIONS)
@@ -30,6 +33,19 @@ class Meeting_Notes_Form(FlaskForm):
     next_meeting_leader = StringField('NEXT MEETING LEADER')
     next_meeting_note_taker = StringField('NEXT MEETING NOTETAKER')
     submit = SubmitField()
+
+
+class StaffDirectorySearchForm(FlaskForm):
+    """
+    Form for searching the staff directory
+
+    search: input field with the search term being entered
+    filters: dropdown containing the different filters you can search on (first name, last name, division, title)
+    submit: submit button for search form
+    """
+    search = StringField('Search')
+    filters = SelectField("Filters", choices=choices.STAFF_DIRECTORY_FILTERS)
+    submit = SubmitField('Search')
 
 
 class EnfgForm(FlaskForm):

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Staff Directory{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/staff-directory.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+    <div>
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.employee_resources') }}">Employee
+                        Resource</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Staff Directory</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">Staff Directory</h1>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading panel-header-style col-sm-12">
+            <form class="staff-directory-search-options" method="post">
+                <div class="col-sm-4 ui-widget" id="staff-directory-search">{{ form.search (id="staff-directory-search-data") }}</div>
+                <div class="col-sm-4 menu" id="filter-menu">{{ form.filters (id="filter-data") }}</div>
+                <div class="col-sm-1" id="staff-directory-submit">{{ form.submit (id="staff-directory-submit-test") }}</div>
+                <div class="col-sm-2"> <button id="staff-directory-reset"><a href="{{ url_for('main.staff_directory')}}">Reset</a></button></div>
+            </form>
+        </div>
+        <div class="panel-body panel-body-style">
+            <table class="table table-bordered table-styles">
+                <tr>
+                    <th class="staff-directory-column-header">First</th>
+                    <th class="staff-directory-column-header">Last</th>
+                    <th class="staff-directory-column-header">Division</th>
+                    <th class="staff-directory-column-header">Title</th>
+                    <th class="staff-directory-column-header">Phone</th>
+                    <th class="staff-directory-column-header">Email</th>
+                </tr>
+                <tbody id="staff-directory-table">
+                {% for user in users %}
+                    <tr>
+                        <td class="col-sm-2">
+                            <a class="popover-right popper" data-toggle="popover">
+                                <img class="avatar-style"
+                                     src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}"
+                                     onerror="this.src='/static/img/avatar.png'" alt="avatar">
+                            </a>
+
+                            <div class="popover-content hide">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <img class="popover-img"
+                                             src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}"
+                                             onerror="this.src='/static/img/avatar.png'" alt="avatar">
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <p class="popover-name">{{ user.first_name }} {{ user.last_name }}</p>
+                                        <p class="popover-titles">{{ user.title }}</p>
+                                        <p class="popover-division">{{ user.division }}</p>
+                                    </div>
+                                    <a href="#" class="close popover-close-link" data-dismiss="alert">&times;</a>
+                                </div>
+                                <div class="row popover-information">Phone: {{ user.phone_number }}</div>
+                                <div class="row popover-information">Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
+                                <div class="row popover-information">Office: {{ user.room }}</div>
+                            </div>
+                            <span class="staff-directory-row">{{ user.first_name }}</span>
+                        </td>
+                        <td class="staff-directory-row">{{ user.last_name }}</td>
+                        <td class="staff-directory-row">{{ user.division }}</td>
+                        <td class="staff-directory-row">{{ user.title }}</td>
+                        <td class="staff-directory-row">{{ user.phone_number }}</td>
+                        <td class="staff-directory-row"><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/staff_directory.js') }}"></script>
+{% endblock %}

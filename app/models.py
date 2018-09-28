@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+import csv
 from sqlalchemy.dialects.postgresql import (
     ARRAY,
     JSONB
@@ -92,7 +93,6 @@ class Users(UserMixin, db.Model):
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
     room = db.Column(db.String(3))
-    profile_picture_path = db.Column(db.String)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @property
@@ -119,7 +119,6 @@ class Users(UserMixin, db.Model):
                     phone_number=row['phone_number'],
                     title=row['title'],
                     room=row['room'],
-                    profile_picture_path=row['profile_picture_path'],
                     role_id=roles_dict[row['role']]
                 )
                 db.session.add(user)
