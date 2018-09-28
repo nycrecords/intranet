@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=us-ascii">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.3  (FreeBSD/amd64)">
+	<META NAME="CREATED" CONTENT="20140818;8450000">
+	<META NAME="CHANGEDBY" CONTENT="Administrator">
+	<META NAME="CHANGED" CONTENT="20140818;8460000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin-right: .75in; margin-top: .5in; margin-bottom: 1in }
+		P { margin-bottom: 0.08in; direction: ltr; color: #000000; widows: 2;
+            orphans: 2; text-align: left; line-height: 115%}
+		P.western { font-family: "Times New Roman", sans-serif; font-size: 12pt;
+            so-language: en-US }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 11pt; so-language: en-US }
+		P.ctl { font-family: "Calibri", sans-serif; font-size: 11pt; so-language: ar-SA }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR" STYLE="border: none; padding: 0in">
+<P CLASS="western" STYLE="margin-bottom: 0in; widows: 0; orphans: 0">
+<IMG SRC="{{ url_for('static', filename='img/city_seal.png') }}" NAME="graphics1" ALIGN=LEFT HSPACE=12 WIDTH=156 HEIGHT=135 BORDER=0>
+<B>NEW YORK CITY<br />
+DEPARTMENT OF RECORDS AND INFORMATION SERVICES<br />
+MUNICIPAL ARCHIVES</B><br />
+31 Chambers Street, Rm. 103<br />
+New York, N.Y.  10007<br />
+Call: 311 or (212) 639-9675 (outside NYC)<br />
+<I>www.nyc.gov/records</I></P>
+<br />
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT SIZE=3><B>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ date }}</B>
+    <br /><br /><B>This
+is to certify that a search was made of the records</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT FACE="Courier New, monospace"><FONT SIZE=3><B>listed
+below and that the following name was </B></FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=3><U><B>NOT
+FOUND.</B></U></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT
+        SIZE=3><B>&nbsp;&nbsp;&nbsp;&nbsp;NAME(S) SEARCHED:
+    {{ name }}</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT
+        SIZE=3><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {{ bride_name }}</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT SIZE=3><B>&nbsp;&nbsp;&nbsp;
+    YEAR(S) SEARCHED: {{ year }}</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT
+        SIZE=3><B>&nbsp;&nbsp;RECORD(S) SEARCHED: {{ type }}</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT SIZE=3><B>
+    &nbsp;BOROUGH(S) SEARCHED: {{ borough }}</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT FACE="Courier New, monospace"><FONT SIZE=3><B>Sincerely,
+</B></FONT></FONT>
+</P>
+{% if not signature %}
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT SIZE=3><B><img src="
+        {{ url_for('static', filename='img/signature.bmp') }}" width="250"/>
+</B></FONT></FONT></P>
+{% endif %}
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT FACE="Courier New, monospace"><FONT SIZE=3><B>Sylvia
+Kollar</B></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT
+        FACE="Courier New, monospace"><FONT
+        SIZE=3><I>&nbsp;&nbsp;&nbsp;Director <br /></I></FONT></FONT></P>
+<br />
+
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT FACE="Courier New, monospace"><FONT SIZE=3>Please
+note that the fee paid is for the search and </FONT></FONT>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%"><FONT FACE="Courier New, monospace"><FONT SIZE=3>search
+results and is </FONT></FONT><FONT FACE="Courier New, monospace"><FONT SIZE=3><U>NON
+REFUNDABLE.</U></FONT></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; line-height: 100%">
+                                  <FONT FACE="Courier New,
+                                  monospace"><FONT SIZE=3><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MA-28
+(12/13/05)</B></FONT></FONT></P>
+</BODY>
+
+<script>
+    window.onload = function () {
+    window.print();
+    }
+</script>
+
+</HTML>

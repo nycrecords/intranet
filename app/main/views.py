@@ -3,8 +3,9 @@ from flask_login import login_required
 from app import db
 from app.models import Users
 from . import main
-from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm
+from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_post
+from datetime import datetime
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -164,3 +165,48 @@ def tools_and_applications():
     :return: HTML template for the toold and applications page
     """
     return render_template('tools_and_applications.html')
+
+
+@main.route('/it-support', methods=['GET', 'POST'])
+def it_support():
+    return render_template('it_support.html')
+
+
+@main.route('/enfg', methods=['GET', 'POST'])
+def enfg():
+    """
+    View function to handle the Easy Not Found Generator page
+
+    GET Request:
+    Returns the html template for the ENFG page
+
+    POST Request:
+    Handles submission of ENFG form. If it is validated, redirect to the enfg_result function
+    """
+    form = EnfgForm()
+
+    if form.validate_on_submit():
+        session['type'] = form.type.data
+        session['name'] = form.name.data
+        session['bride_name'] = form.bride_name.data
+        session['year'] = form.year.data
+        session['borough'] = ', '.join(form.borough.data)
+        session['signature'] = form.signature.data
+        return redirect(url_for('main.enfg_result'))
+    return render_template('enfg.html', form=form)
+
+
+@main.route('/enfg/result', methods=['GET'])
+def enfg_result():
+    """
+    View function to display the output of the Easy Not Found Generator form
+    :return: HTML template for the ENFG result with data passed in from the successful form submission
+    """
+    return render_template('enfg_result.html',
+                           date=datetime.today().strftime("%m/%d/%y "),
+                           type=session.get('type'),
+                           name=session.get('name'),
+                           bride_name=session.get('bride_name'),
+                           year=session.get('year'),
+                           borough=session.get('borough'),
+                           signature=session.get('signature'))
