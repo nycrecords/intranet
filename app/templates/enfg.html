@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Easy Not Found Generator{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.it_support') }}">IT Support</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Easy Not Found Generator</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Easy Not Found Generator</h1>
+    </div>
+    <div class="col-sm-12 well content-area">
+        <form class="enfg-form" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.type.label (class="control-label") }}
+                {{ form.type (class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.name.label (class="control-label") }}
+                {{ form.name (class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.bride_name.label (class="control-label") }}
+                {{ form.bride_name (class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.year.label (class="control-label") }}
+                {{ form.year (class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.borough.label (class="control-label") }}
+                {{ form.borough (class="form-control", size="5") }}
+            </div>
+            <div class="form-group">
+                <a class="btn btn-default" id="all-boroughs"   >All Boroughs</a>
+            </div>
+            <div class="checkbox">
+                <label>
+                    {{ form.signature() }} Print without signature
+                </label>
+            </div>
+            {{ form.submit (class="btn btn-default") }}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/enfg.js') }}"></script>
+{% endblock %}
