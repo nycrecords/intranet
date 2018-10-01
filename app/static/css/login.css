@@ -30,7 +30,7 @@
 
 .login-form-label {
     color: #2A2C2E;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
 }
@@ -43,7 +43,7 @@
 
 .remember-me-field {
     color: #2A2C2E;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
     padding-bottom: 15px;
@@ -58,7 +58,7 @@
 
 .login-submit-button {
     color: white;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
     border: 1px solid #ECAC2A;
@@ -80,7 +80,7 @@
 .intranet-text {
     text-align: center;
     color: #FFFFFF;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 48px;
     letter-spacing: 8.16px;
     line-height: 57px;

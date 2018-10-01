@@ -1,7 +1,7 @@
 .all-posts-link {
     color: #3F72E6;
     padding-left: 0;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
 }
@@ -9,7 +9,7 @@
 .sort-by-label {
     padding-left: 11rem;
     color: #787878;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
 }
@@ -20,7 +20,7 @@
     height: 40px;
     width: 270px;
     color: #4A4A4A;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
     border: 1px solid #979797;
@@ -35,7 +35,7 @@
 
 .filter-by {
     color: #787878;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
 }
@@ -66,7 +66,7 @@ hr.panel-divider {
 
 .filter-heading {
     color: #5C95A3;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 11px;
     font-weight: bold;
 }
@@ -87,7 +87,7 @@ form.filter-form {
 .filter-option-label {
     color: #4A90E2;
     margin-left: 20px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0.8px;
@@ -116,21 +116,21 @@ form.filter-form {
 
 .post-title {
     color: #4A4A4A;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: bold;
 }
 
 .post-date-author {
     color: #787878;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
 }
 
 .post-preview {
     color: #787878;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
 }
@@ -144,7 +144,7 @@ form.filter-form {
 .read-more {
     float: right;
     color: #3F72E6;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
 }

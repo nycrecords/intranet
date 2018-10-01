@@ -4,14 +4,14 @@
 
 .faq-header {
     color: #4A4A4A;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-weight: normal;
     font-size: 20px;
     margin-top: 0;
 }
 
 .common-questions-list {
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 30px;
     font-weight: bold;
 }
@@ -41,7 +41,7 @@ a:hover.common-question-anchor {
 .common-question-answer-header {
     padding-top: 30px;
     padding-bottom: 15px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 30px;
     font-weight: bold;
     color: #787878;
@@ -50,7 +50,7 @@ a:hover.common-question-anchor {
 .common-question-answer-text {
     padding-bottom: 15px;
     color: #787878;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-weight: normal;
     font-size: 18px;
 }

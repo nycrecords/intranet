@@ -6,7 +6,7 @@ body {
 
 .breadcrumb-header {
     color: #5C95A3;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 28px;
     letter-spacing: 0.5px;
     margin-bottom: 2.5rem;
@@ -14,7 +14,7 @@ body {
 
 .breadcrumb-nav {
     color: #4A4A4A;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 14px;
 }
 

@@ -18,7 +18,7 @@
 }
 
 .staff-directory-search-options {
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 20px;
     text-align: center;
     font-weight: normal;
@@ -71,7 +71,7 @@
 
 .staff-directory-column-header {
     color: #FFFFFF;
-    font-family: Helvetica Neue;
+    font-family: Helvetica;
     font-size: 18px;
     letter-spacing: 0.82px;
     font-weight: 400;
@@ -80,7 +80,7 @@
 
 .staff-directory-row {
     color: #333333;
-    font-family: Helvetica Neue;
+    font-family: Helvetica;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.76px;
@@ -136,13 +136,13 @@
     margin-top: 20px;
     font-size: 36px;
     letter-spacing: 0.91px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     padding-left: 10px;
 }
 
 .popover-titles {
     color: #39393A;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 24px;
     letter-spacing: 0.61px;
     padding-left: 10px;
@@ -150,14 +150,14 @@
 
 .popover-division {
     color: #656565;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 18px;
     padding-left: 10px;
 }
 
 .popover-information {
     color: #333333;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 20px;
     line-height: 24px;
     margin-top: 15px;
