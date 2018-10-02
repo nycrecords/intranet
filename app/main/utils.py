@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import Posts
+from app.models import MeetingNotes
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -28,9 +28,41 @@ def create_object(obj):
         return None
 
 
-def create_post(title,
-                meeting_date):
-    post = Posts(title=title,
-                 date_created=meeting_date)
-    create_object(post)
-    return post.id
+def create_meeting_notes(meeting_date,
+                         meeting_location,
+                         meeting_leader,
+                         meeting_note_taker,
+                         start_time,
+                         end_time,
+                         attendees,
+                         next_meeting_date,
+                         next_meeting_leader,
+                         next_meeting_note_taker,
+                         meeting_type,
+                         division,
+                         author,
+                         title,
+                         content,
+                         tags):
+    meeting_notes = MeetingNotes(meeting_date=meeting_date,
+                                 meeting_location=meeting_location,
+                                 meeting_leader=meeting_leader,
+                                 meeting_note_taker=meeting_note_taker,
+                                 start_time=start_time,
+                                 end_time=end_time,
+                                 attendees=attendees,
+                                 next_meeting_date=next_meeting_date,
+                                 next_meeting_leader=next_meeting_leader,
+                                 next_meeting_note_taker=next_meeting_note_taker,
+                                 meeting_type=meeting_type,
+                                 division=division,
+                                 author=author,
+                                 title=title,
+                                 content=content,
+                                 tags=tags)
+    create_object(meeting_notes)
+    create_meeting_notes_event()
+
+
+def create_meeting_notes_event():
+    pass

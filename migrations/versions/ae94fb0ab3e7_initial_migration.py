@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: a1755712ae71
+Revision ID: ae94fb0ab3e7
 Revises: 
-Create Date: 2018-06-28 14:08:42.867596
+Create Date: 2018-10-02 18:56:52.729135
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'a1755712ae71'
+revision = 'ae94fb0ab3e7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,15 +34,15 @@ def upgrade():
     sa.Column('division', sa.String(), nullable=True),
     sa.Column('title', sa.String(length=64), nullable=True),
     sa.Column('phone_number', sa.String(length=25), nullable=True),
-    sa.Column('room', sa.String(), nullable=True),
-    sa.Column('profile_picture_path', sa.String(), nullable=True),
-    sa.Column('permissions', sa.BigInteger(), nullable=True),
+    sa.Column('room', sa.String(length=3), nullable=True),
+    sa.Column('role_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('author', sa.Integer(), nullable=True),
-    sa.Column('type', sa.Enum('News', 'Event', 'Meeting Notes', name='post_type'), nullable=True),
+    sa.Column('post_type', sa.Enum('news', 'event_posts', 'meeting_notes', name='post_type'), nullable=True),
     sa.Column('title', sa.String(), nullable=True),
     sa.Column('content', sa.String(), nullable=True),
     sa.Column('tags', postgresql.ARRAY(sa.String()), nullable=True),
@@ -84,19 +84,16 @@ def upgrade():
     sa.Column('meeting_date', sa.DateTime(), nullable=True),
     sa.Column('meeting_location', sa.String(), nullable=True),
     sa.Column('meeting_leader', sa.String(), nullable=True),
-    sa.Column('note_taker', sa.Integer(), nullable=True),
+    sa.Column('meeting_note_taker', sa.String(), nullable=True),
     sa.Column('start_time', sa.String(), nullable=True),
     sa.Column('end_time', sa.String(), nullable=True),
-    sa.Column('attendees', postgresql.ARRAY(sa.Integer()), nullable=True),
+    sa.Column('attendees', postgresql.ARRAY(sa.String()), nullable=True),
     sa.Column('next_meeting_date', sa.DateTime(), nullable=True),
-    sa.Column('next_meeting_leader', sa.Integer(), nullable=True),
-    sa.Column('next_meeting_note_taker', sa.Integer(), nullable=True),
+    sa.Column('next_meeting_leader', sa.String(), nullable=True),
+    sa.Column('next_meeting_note_taker', sa.String(), nullable=True),
     sa.Column('meeting_type', sa.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'), nullable=True),
-    sa.Column('meeting_division', sa.Enum('Admin', 'Executive', 'IT', name='divisions'), nullable=True),
+    sa.Column('division', sa.Enum('Admin', 'Executive', 'IT', name='divisions'), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
-    sa.ForeignKeyConstraint(['next_meeting_leader'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['next_meeting_note_taker'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['note_taker'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('news',

@@ -1,5 +1,23 @@
 $(function () {
-    $("#datepicker").datepicker();
+    // initialize datepickers
+    $('#meeting-date').datepicker({
+        dateFormat: 'mm/dd/yy',
+        maxDate: 0
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
+
+    $('#next-meeting-date').datepicker({
+        dateFormat: 'mm/dd/yy'
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
 
     try {
         // render timepicker plugins
@@ -44,5 +62,23 @@ $(function () {
     }
 
     tinymce.init({selector: 'textarea'});
+    
+    // set parsley for required fields
+    var requiredFields = ['title',
+                          'meeting-type',
+                          'division',
+                          'meeting-date',
+                          'meeting-location',
+                          'meeting-note-taker',
+                          'start-time',
+                          'end-time',
+                          'attendees',
+                          'tags',
+                          'next-meeting-date',
+                          'next-meeting-leader',
+                          'next-meeting-note-taker'];
+    for (var i = 0; i < requiredFields.length; i++) {
+        $('#' + requiredFields[i]).attr('data-parsley-required', '');
+    }
 });
 

@@ -1,10 +1,10 @@
 from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app import db
 from app.models import Users
 from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
-from app.main.utils import create_post
+from app.main.utils import create_meeting_notes
 from datetime import datetime
 
 
@@ -32,14 +32,36 @@ def new_post():
     form = MeetingNotesForm()
 
     if flask_request.method == 'POST':
-        post_id = create_post(title=form.title.data,
-                              meeting_date=form.meeting_date.data)
-        print(post_id)
-
-        # if form.validate_on_submit():
-        flash('Form submitted.')
+        create_meeting_notes(meeting_date=form.meeting_date.data,
+                             meeting_location=form.meeting_location.data,
+                             meeting_leader=form.meeting_leader.data,
+                             meeting_note_taker=form.meeting_note_taker.data,
+                             start_time=form.start_time.data,
+                             end_time=form.end_time.data,
+                             attendees=[],
+                             next_meeting_date=form.next_meeting_date.data,
+                             next_meeting_leader=form.next_meeting_leader.data,
+                             next_meeting_note_taker=form.next_meeting_note_taker.data,
+                             meeting_type=form.meeting_type.data,
+                             division=form.division.data,
+                             author=current_user.id,
+                             title=form.title.data,
+                             content=form.content.data,
+                             tags=[])
+        flash('Post submitted.')
         return redirect(url_for('main.news_and_updates'))
     return render_template('new_meeting_notes.html', form=form)
+
+
+@main.route('/get_user_list/', methods=['GET'])
+def get_user_list():
+    """
+    AJAX endpoint to retrieve a list of all users for autocomplete choices
+
+    :return: a JSON with all users that can be entered using autocomplete
+    """
+    users_list = [u[0] for u in Users.query.all()]
+    return jsonify(users_list), 200
 
 
 @main.route('/staff-directory', methods=['GET', 'POST'])
