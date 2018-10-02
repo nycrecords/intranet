@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
+{% block title %}New Meeting Notes{% endblock title %}
+
 {% block page_content %}
 <div class="col-sm-12">
     <div class="breadcrumb-section">
@@ -15,7 +17,7 @@
         <h1 class="breadcrumb-header">New Post</h1>
     </div>
     <div class="col-sm-12 well content-area">
-        <form class="new-post-form" method="post">
+        <form class="new-post-form" method="post" data-parsley-validate>
             {{ form.csrf_token }}
             <div class="form-group">
                     {{ form.title.label (class="post-form-label") }}
@@ -24,67 +26,67 @@
 
             <div class="form-group">
                     {{ form.meeting_type.label (class="post-form-label") }}
-                    {{ form.meeting_type (class="form-control post-form-field post-form-select", id="title") }}
+                    {{ form.meeting_type (class="form-control post-form-field post-form-select", id="meeting-type") }}
             </div>
 
             <div class="form-group">
                     {{ form.division.label (class="post-form-label") }}
-                    {{ form.division (class="form-control post-form-field post-form-select", id="title") }}
+                    {{ form.division (class="form-control post-form-field post-form-select", id="division") }}
             </div>
 
             <div class="form-group">
                     {{ form.meeting_date.label (class="post-form-label") }}
-                    {{ form.meeting_date (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date-datepicker") }}
             </div>
 
             <div class="form-group">
                     {{ form.meeting_location.label (class="post-form-label") }}
-                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location") }}
             </div>
 
             <div class="form-group">
                     {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
-                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker", data_role="tagsinput") }}
+                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="meeting-note-taker") }}
             </div>
 
             <div class="form-group">
                     {{ form.start_time.label (class="post-form-label") }}
-                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="datepicker") }}
+                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time") }}
             </div>
 
             <div class="form-group">
                     {{ form.end_time.label (class="post-form-label") }}
-                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="datepicker") }}
+                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time") }}
             </div>
 
             <div class="form-group">
                     {{ form.attendees.label (class="post-form-label") }}<br>
-                    {{ form.attendees (class="form-control post-form-field post-form-input", id="", data_role="tagsinput") }}
+                    {{ form.attendees (class="form-control post-form-field post-form-input", id="attendees", data_role="tagsinput") }}
             </div>
 
             <div class="form-group">
                     {{ form.content.label (class="post-form-label") }}<br>
-                    {{ form.content (class="form-control post-form-field post-form-textarea", id="", rows="2") }}
+                    {{ form.content (class="form-control post-form-field post-form-textarea", id="", rows="10") }}
             </div>
 
             <div class="form-group">
                     {{ form.tags.label (class="post-form-label") }}
-                    {{ form.tags (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.tags (class="form-control post-form-field post-form-input", id="tags") }}
             </div>
 
             <div class="form-group">
                     {{ form.next_meeting_date.label (class="post-form-label") }}
-                    {{ form.next_meeting_date (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.next_meeting_date (class="form-control post-form-field post-form-input datepicker", id="next-meeting-date-datepicker") }}
             </div>
 
             <div class="form-group">
                     {{ form.next_meeting_leader.label (class="post-form-label") }}
-                    {{ form.next_meeting_leader (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.next_meeting_leader (class="form-control post-form-field post-form-input", id="next-meeting-leader") }}
             </div>
 
             <div class="form-group">
                     {{ form.next_meeting_note_taker.label (class="post-form-label") }}
-                    {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="datepicker") }}
+                    {{ form.next_meeting_note_taker (class="form-control post-form-field post-form-input", id="next-meeting-note-taker") }}
             </div>
 
             <div class="center-submit-button">

@@ -97,6 +97,8 @@ class Users(UserMixin, db.Model):
 
     @property
     def name(self):
+        if self.middle_initial:
+            return self.first_name + " " + self.middle_initial + " " + self.last_name
         return self.first_name + " " + self.last_name
 
     @classmethod
@@ -139,7 +141,7 @@ class Posts(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
-    type = db.Column(db.Enum('News', 'Event', 'Meeting Notes', name='post_type'))
+    post_type = db.Column(db.Enum('News', 'Event', 'Meeting Notes', name='post_type'))
     title = db.Column(db.String)
     content = db.Column(db.String)
     tags = db.Column(ARRAY(db.String))
@@ -148,7 +150,7 @@ class Posts(db.Model):
     visible = db.Column(db.Boolean, default=True)
     deleted = db.Column(db.Boolean, default=False)
 
-    __mapper_args__ = {'polymorphic_on': type}
+    __mapper_args__ = {'polymorphic_on': post_type}
 
     # def __init__(self,
     #              author,
@@ -166,11 +168,27 @@ class Posts(db.Model):
     #     self.visible = True
     #     self.deleted = False
 
+    def __init__(self,
+                 author,
+                 post_type,
+                 title,
+                 content,
+                 tags):
+        self.author = author
+        self.post_type = post_type
+        self.title = title
+        self.content = content
+        self.tags = tags
+        self.date_created = datetime.utcnow()
+        self.date_modified = None
+        self.visible = True
+        self.deleted = False
+
     def __repr__(self):
         return '<Posts %r>' % self.id
 
 
-class MeetingNotes(db.Model):
+class MeetingNotes(Posts):
     __tablename__ = 'meeting_notes'
     __mapper_args__ = {'polymorphic_identity': 'meeting_notes'}
 
@@ -178,15 +196,55 @@ class MeetingNotes(db.Model):
     meeting_date = db.Column(db.DateTime)
     meeting_location = db.Column(db.String)
     meeting_leader = db.Column(db.String)
-    note_taker = db.Column(db.Integer, db.ForeignKey('users.id'))
+    note_taker = db.Column(db.String)
     start_time = db.Column(db.String)
     end_time = db.Column(db.String)
     attendees = db.Column(ARRAY(db.Integer))
     next_meeting_date = db.Column(db.DateTime, nullable=True)
-    next_meeting_leader = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    next_meeting_note_taker = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    next_meeting_leader = db.Column(db.String, nullable=True)
+    next_meeting_note_taker = db.Column(db.String, nullable=True)
     meeting_type = db.Column(db.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'))
     meeting_division = db.Column(db.Enum('Admin', 'Executive', 'IT', name='divisions'), nullable=True)
+
+    def __init__(self,
+                 meeting_date,
+                 meeting_location,
+                 meeting_leader,
+                 meeting_note_taker,
+                 start_time,
+                 end_time,
+                 attendees,
+                 next_meeting_date,
+                 next_meeting_leader,
+                 next_meeting_note_taker,
+                 meeting_type,
+                 division,
+                 post_type=None,
+                 author=None,
+                 title=None,
+                 content=None,
+                 tags=None):
+        super(MeetingNotes, self).__init__(author,
+                                           post_type,
+                                           title,
+                                           content,
+                                           tags)
+        self.meeting_date = meeting_date
+        self.meeting_location = meeting_location
+        self.meeting_leader = meeting_leader
+        self.note_taker = meeting_note_taker
+        self.start_time = start_time
+        self.end_time = end_time
+        self.attendees = attendees
+        self.next_meeting_date = next_meeting_date
+        self.next_meeting_leader = next_meeting_leader
+        self.next_meeting_note_taker = next_meeting_note_taker
+        self.meeting_type = meeting_type
+        self.meeting_division = division
+        self.content = content
+        self.title = title
+        self.tags = tags
+        self.author = author
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id
