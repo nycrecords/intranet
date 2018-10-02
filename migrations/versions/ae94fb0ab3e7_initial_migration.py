@@ -92,7 +92,10 @@ def upgrade():
     sa.Column('next_meeting_leader', sa.String(), nullable=True),
     sa.Column('next_meeting_note_taker', sa.String(), nullable=True),
     sa.Column('meeting_type', sa.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'), nullable=True),
-    sa.Column('division', sa.Enum('Admin', 'Executive', 'IT', name='divisions'), nullable=True),
+                    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs',
+                                                  'Grants Unit', 'Information Technology', 'Municipal Archives',
+                                                  'Municipal Library', "Municipal Records Management",
+                                                  name='divisions'), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

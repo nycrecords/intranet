@@ -7,9 +7,14 @@ MEETING_TYPES = [
 
 DIVISIONS = [
     ('', ''),
+    ('Administration & Human Resources', 'Administration & Human Resources'),
     ('Executive', 'Executive'),
-    ('Administration', 'Administration'),
-    ('IT', 'IT')
+    ('External Affairs', 'External Affairs'),
+    ('Grants Unit', 'Grants Unit'),
+    ('Information Technology', 'Information Technology'),
+    ('Municipal Archives', 'Municipal Archives'),
+    ('Municipal Library', 'Municipal Library'),
+    ('Municipal Records Management', 'Municipal Records Management'),
 ]
 
 STAFF_DIRECTORY_FILTERS = [

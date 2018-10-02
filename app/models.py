@@ -186,7 +186,9 @@ class MeetingNotes(Posts):
     next_meeting_leader = db.Column(db.String)
     next_meeting_note_taker = db.Column(db.String)
     meeting_type = db.Column(db.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'))
-    division = db.Column(db.Enum('Admin', 'Executive', 'IT', name='divisions'))
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+                                 'Information Technology', 'Municipal Archives', 'Municipal Library',
+                                 "Municipal Records Management", name='divisions'))
 
     def __init__(self,
                  meeting_date,
@@ -212,7 +214,7 @@ class MeetingNotes(Posts):
         self.meeting_date = meeting_date
         self.meeting_location = meeting_location
         self.meeting_leader = meeting_leader
-        self.note_taker = meeting_note_taker
+        self.meeting_note_taker = meeting_note_taker
         self.start_time = start_time
         self.end_time = end_time
         self.attendees = attendees
@@ -221,10 +223,6 @@ class MeetingNotes(Posts):
         self.next_meeting_note_taker = next_meeting_note_taker
         self.meeting_type = meeting_type
         self.division = division
-        self.content = content
-        self.title = title
-        self.tags = tags
-        self.author = author
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id
