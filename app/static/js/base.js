@@ -61,6 +61,7 @@ $(function () {
         // TODO: find a better way to handle this error
     }
 
+    // initialize tinymce editor
     tinymce.init({selector: 'textarea'});
     
     // set parsley for required fields
@@ -80,5 +81,25 @@ $(function () {
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
+
+    // set user choices for autocomplete using ajax
+    $.ajax({
+        url: "/get_user_list/",
+        type: "GET",
+        success: function (data) {
+            $("#meeting-leader").autocomplete({
+                source: data
+            });
+            $("#meeting-note-taker").autocomplete({
+                source: data
+            });
+            $("#next-meeting-leader").autocomplete({
+                source: data
+            });
+            $("#next-meeting-note-taker").autocomplete({
+                source: data
+            });
+        }
+    });
 });
 

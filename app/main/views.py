@@ -60,7 +60,9 @@ def get_user_list():
 
     :return: a JSON with all users that can be entered using autocomplete
     """
-    users_list = [u[0] for u in Users.query.all()]
+    users_list = []
+    for user in Users.query.all():
+        users_list.append(user.name)
     return jsonify(users_list), 200
 
 

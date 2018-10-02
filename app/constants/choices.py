@@ -1,7 +1,7 @@
 MEETING_TYPES = [
     ('', ''),
     ('Division', 'Division'),
-    ('Strategic', 'Strategic'),
+    ('Strategic Planning', 'Strategic Planning'),
     ('Senior Staff', 'Senior Staff')
 ]
 

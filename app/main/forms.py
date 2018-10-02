@@ -7,9 +7,7 @@ from wtforms.fields import (
     BooleanField,
     SelectMultipleField
 )
-from wtforms import widgets
-
-from wtforms.validators import DataRequired, Optional, Email
+from wtforms.validators import DataRequired
 from app.constants import choices
 
 
