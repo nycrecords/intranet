@@ -18,7 +18,7 @@
     height: 22px;
     width: 305px;
     color: #FFFFFF;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
     letter-spacing: 1px;
@@ -42,25 +42,25 @@
     height: 57px;
     width: 142px;
     color: #FFFFFF;
-    font-family: "Phosphate";
-    font-size: 48px;
-    letter-spacing: 3px;
+    font-family: "Arial Black";
+    font-size: 40px;
+    letter-spacing: 1px;
     line-height: 59px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-left: 23px;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
-    margin-left: 15px;
 }
 
 .header-intranet-style {
     height: 35px;
     width: 144px;
     color: #FFFFFF;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-size: 30px;
-    letter-spacing: 5.1px;
+    letter-spacing: 5px;
     line-height: 65px;
-    margin-left: 1.5rem;
+    margin-left: 25px;
     margin-top: 10.0rem;
 }
 
@@ -77,7 +77,7 @@
     width: 75px;
     color: #ACACAC;
     font-size: 30px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     line-height: 26px;
     padding: 15px;
 }
@@ -86,7 +86,7 @@
     font-size: 18px;
     display: inline-block;
     width: 280px;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-weight: 400;
 }
 
@@ -124,12 +124,16 @@
     width: auto;
     height: 25px;
     color: #FFFFFF;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
     font-weight: normal;
     font-size: 20px;
     line-height: 24px;
     padding: 0;
     margin-bottom: 2rem;
+}
+
+.navbar-option.employee-resources-navbar-option a {
+    width: 245px;
 }
 
 /* If the navbar link is focus or hover */
@@ -142,6 +146,10 @@
 .blue-nav-dropdown.dropdown-menu {
     width: 19em;
     border-top: 1rem solid #F9B52B;
+}
+
+.blue-nav-dropdown.dropdown-menu.employee-resources-dropdown > li > a:hover{
+    width: auto;
 }
 
 .blue-nav-dropdown.dropdown-menu > li > a {
