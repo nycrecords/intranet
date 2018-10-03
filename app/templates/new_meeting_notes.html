@@ -70,49 +70,10 @@
 
             <div class="form-group">
                 {{ form.attendees.label (class="post-form-label") }}<br>
-                <!--{{ form.attendees (class="form-control post-form-field post-form-input", id="attendees") }}-->
-                <select id="attendees" multiple="multiple">
-                    <option value="cheese">Cheese</option>
-                    <option value="tomatoes">Tomatoes</option>
-                    <option value="mozarella">Mozzarella</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="pepperoni">Pepperoni</option>
-                    <option value="onions">Onions</option>
-
-                    <option value="cheese1">Cheese1</option>
-                    <option value="tomatoes1">Tomatoes1</option>
-                    <option value="mozarella1">Mozzarella1</option>
-                    <option value="mushrooms1">Mushrooms1</option>
-                    <option value="pepperoni1">Pepperoni1</option>
-                    <option value="onions1">Onions1</option>
-
-                    <option value="cheese2">Cheese2</option>
-                    <option value="tomatoes2">Tomatoes2</option>
-                    <option value="mozarella2">Mozzarella2</option>
-                    <option value="mushrooms2">Mushrooms2</option>
-                    <option value="pepperoni2">Pepperoni2</option>
-                    <option value="onions2">Onions2</option>
-
-                    <option value="cheese3">Cheese3</option>
-                    <option value="tomatoes3">Tomatoes3</option>
-                    <option value="mozarella3">Mozzarella3</option>
-                    <option value="mushrooms3">Mushrooms3</option>
-                    <option value="pepperoni3">Pepperoni3</option>
-                    <option value="onions3">Onions3</option>
-
-                    <option value="cheese4">Cheese4</option>
-                    <option value="tomatoes4">Tomatoes4</option>
-                    <option value="mozarella4">Mozzarella4</option>
-                    <option value="mushrooms4">Mushrooms4</option>
-                    <option value="pepperoni4">Pepperoni4</option>
-                    <option value="onions4">Onions4</option>
-
-                    <option value="cheese5">Cheese5</option>
-                    <option value="tomatoes5">Tomatoes5</option>
-                    <option value="mozarella5">Mozzarella5</option>
-                    <option value="mushrooms5">Mushrooms5</option>
-                    <option value="pepperoni5">Pepperoni5</option>
-                    <option value="onions5">Onions5</option>
+                <select name="attendees" id="attendees" multiple="multiple">
+                    {% for user in users %}
+                        <option value="{{ user }}">{{ user }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
@@ -124,48 +85,10 @@
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
-                <select id="tags" multiple="multiple">
-                    <option value="cheese">Cheese</option>
-                    <option value="tomatoes">Tomatoes</option>
-                    <option value="mozarella">Mozzarella</option>
-                    <option value="mushrooms">Mushrooms</option>
-                    <option value="pepperoni">Pepperoni</option>
-                    <option value="onions">Onions</option>
-
-                    <option value="cheese1">Cheese1</option>
-                    <option value="tomatoes1">Tomatoes1</option>
-                    <option value="mozarella1">Mozzarella1</option>
-                    <option value="mushrooms1">Mushrooms1</option>
-                    <option value="pepperoni1">Pepperoni1</option>
-                    <option value="onions1">Onions1</option>
-
-                    <option value="cheese2">Cheese2</option>
-                    <option value="tomatoes2">Tomatoes2</option>
-                    <option value="mozarella2">Mozzarella2</option>
-                    <option value="mushrooms2">Mushrooms2</option>
-                    <option value="pepperoni2">Pepperoni2</option>
-                    <option value="onions2">Onions2</option>
-
-                    <option value="cheese3">Cheese3</option>
-                    <option value="tomatoes3">Tomatoes3</option>
-                    <option value="mozarella3">Mozzarella3</option>
-                    <option value="mushrooms3">Mushrooms3</option>
-                    <option value="pepperoni3">Pepperoni3</option>
-                    <option value="onions3">Onions3</option>
-
-                    <option value="cheese4">Cheese4</option>
-                    <option value="tomatoes4">Tomatoes4</option>
-                    <option value="mozarella4">Mozzarella4</option>
-                    <option value="mushrooms4">Mushrooms4</option>
-                    <option value="pepperoni4">Pepperoni4</option>
-                    <option value="onions4">Onions4</option>
-
-                    <option value="cheese5">Cheese5</option>
-                    <option value="tomatoes5">Tomatoes5</option>
-                    <option value="mozarella5">Mozzarella5</option>
-                    <option value="mushrooms5">Mushrooms5</option>
-                    <option value="pepperoni5">Pepperoni5</option>
-                    <option value="onions5">Onions5</option>
+                <select name="tags" id="tags" multiple="multiple">
+                    {% for tag in tags %}
+                        <option value="{{ tag }}">{{ tag }}</option>
+                    {% endfor %}
                 </select>
             </div>
 

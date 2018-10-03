@@ -6,7 +6,7 @@ from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_meeting_notes
 from datetime import datetime
-
+from app.constants import choices
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -30,6 +30,10 @@ def news_and_updates():
 @login_required
 def new_post():
     form = MeetingNotesForm()
+    users = []
+    for user in Users.query.order_by(Users.last_name):
+        users.append(user.name)
+    tags = choices.TAGS
 
     if flask_request.method == 'POST':
         create_meeting_notes(meeting_date=form.meeting_date.data,
@@ -38,7 +42,7 @@ def new_post():
                              meeting_note_taker=form.meeting_note_taker.data,
                              start_time=form.start_time.data,
                              end_time=form.end_time.data,
-                             attendees=[],
+                             attendees=flask_request.form.getlist('attendees'),
                              next_meeting_date=form.next_meeting_date.data,
                              next_meeting_leader=form.next_meeting_leader.data,
                              next_meeting_note_taker=form.next_meeting_note_taker.data,
@@ -47,10 +51,10 @@ def new_post():
                              author=current_user.id,
                              title=form.title.data,
                              content=form.content.data,
-                             tags=[])
+                             tags=flask_request.form.getlist('tags'))
         flash('Post submitted.')
         return redirect(url_for('main.news_and_updates'))
-    return render_template('new_meeting_notes.html', form=form)
+    return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
 @main.route('/get_user_list/', methods=['GET'])

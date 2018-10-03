@@ -103,6 +103,7 @@ $(function () {
         }
     });
 
+    // initialize multiselect plugin for tags
     $('#tags').multiselect({
         maxHeight: 400,
         buttonText: function (options, select) {
@@ -132,6 +133,7 @@ $(function () {
         buttonWidth: '50%'
     });
 
+    // initialize multiselect plugin for attendees
     $('#attendees').multiselect({
         maxHeight: 400,
         buttonText: function (options, select) {
