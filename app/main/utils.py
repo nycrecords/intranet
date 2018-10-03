@@ -44,6 +44,10 @@ def create_meeting_notes(meeting_date,
                          title,
                          content,
                          tags):
+    """
+    Util function for creating a Meeting Notes object. Function will take parameters passed in from the form
+    and create a meeting notes along with the event object.
+    """
     meeting_notes = MeetingNotes(meeting_date=meeting_date,
                                  meeting_location=meeting_location,
                                  meeting_leader=meeting_leader,
