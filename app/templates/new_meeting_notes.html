@@ -3,6 +3,10 @@
 
 {% block title %}New Meeting Notes{% endblock title %}
 
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-multiselect.css') }}"/>
+{% endblock %}
+
 {% block page_content %}
 <div class="col-sm-12">
     <div class="breadcrumb-section">
@@ -20,63 +24,149 @@
         <form class="new-post-form" method="post" data-parsley-validate>
             {{ form.csrf_token }}
             <div class="form-group">
-                    {{ form.title.label (class="post-form-label") }}
-                    {{ form.title (class="form-control post-form-field post-form-input", id="title", maxlength="100") }}
+                {{ form.title.label (class="post-form-label") }}
+                {{ form.title (class="form-control post-form-field post-form-input", id="title", maxlength="100") }}
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_type.label (class="post-form-label") }}
-                    {{ form.meeting_type (class="form-control post-form-field post-form-select", id="meeting-type") }}
+                {{ form.meeting_type.label (class="post-form-label") }}
+                {{ form.meeting_type (class="form-control post-form-field post-form-select", id="meeting-type") }}
             </div>
 
             <div class="form-group">
-                    {{ form.division.label (class="post-form-label") }}
-                    {{ form.division (class="form-control post-form-field post-form-select", id="division") }}
+                {{ form.division.label (class="post-form-label") }}
+                {{ form.division (class="form-control post-form-field post-form-select", id="division") }}
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_date.label (class="post-form-label") }}
-                    {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date") }}
+                {{ form.meeting_date.label (class="post-form-label") }}
+                {{ form.meeting_date (class="form-control post-form-field post-form-input datepicker", id="meeting-date") }}
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_location.label (class="post-form-label") }}
-                    {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location", maxlength="50") }}
+                {{ form.meeting_location.label (class="post-form-label") }}
+                {{ form.meeting_location (class="form-control post-form-field post-form-input", id="meeting-location", maxlength="50") }}
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_leader.label (class="post-form-label") }}<br>
-                    {{ form.meeting_leader (class="form-control post-form-field post-form-input", id="meeting-leader") }}
+                {{ form.meeting_leader.label (class="post-form-label") }}<br>
+                {{ form.meeting_leader (class="form-control post-form-field post-form-input", id="meeting-leader") }}
             </div>
 
             <div class="form-group">
-                    {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
-                    {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="meeting-note-taker") }}
+                {{ form.meeting_note_taker.label (class="post-form-label") }}<br>
+                {{ form.meeting_note_taker (class="form-control post-form-field post-form-input", id="meeting-note-taker") }}
             </div>
 
             <div class="form-group">
-                    {{ form.start_time.label (class="post-form-label") }}
-                    {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time") }}
+                {{ form.start_time.label (class="post-form-label") }}
+                {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time") }}
             </div>
 
             <div class="form-group">
-                    {{ form.end_time.label (class="post-form-label") }}
-                    {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time") }}
+                {{ form.end_time.label (class="post-form-label") }}
+                {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time") }}
             </div>
 
             <div class="form-group">
-                    {{ form.attendees.label (class="post-form-label") }}<br>
-                    {{ form.attendees (class="form-control post-form-field post-form-input", id="attendees") }}
+                {{ form.attendees.label (class="post-form-label") }}<br>
+                <!--{{ form.attendees (class="form-control post-form-field post-form-input", id="attendees") }}-->
+                <select id="attendees" multiple="multiple">
+                    <option value="cheese">Cheese</option>
+                    <option value="tomatoes">Tomatoes</option>
+                    <option value="mozarella">Mozzarella</option>
+                    <option value="mushrooms">Mushrooms</option>
+                    <option value="pepperoni">Pepperoni</option>
+                    <option value="onions">Onions</option>
+
+                    <option value="cheese1">Cheese1</option>
+                    <option value="tomatoes1">Tomatoes1</option>
+                    <option value="mozarella1">Mozzarella1</option>
+                    <option value="mushrooms1">Mushrooms1</option>
+                    <option value="pepperoni1">Pepperoni1</option>
+                    <option value="onions1">Onions1</option>
+
+                    <option value="cheese2">Cheese2</option>
+                    <option value="tomatoes2">Tomatoes2</option>
+                    <option value="mozarella2">Mozzarella2</option>
+                    <option value="mushrooms2">Mushrooms2</option>
+                    <option value="pepperoni2">Pepperoni2</option>
+                    <option value="onions2">Onions2</option>
+
+                    <option value="cheese3">Cheese3</option>
+                    <option value="tomatoes3">Tomatoes3</option>
+                    <option value="mozarella3">Mozzarella3</option>
+                    <option value="mushrooms3">Mushrooms3</option>
+                    <option value="pepperoni3">Pepperoni3</option>
+                    <option value="onions3">Onions3</option>
+
+                    <option value="cheese4">Cheese4</option>
+                    <option value="tomatoes4">Tomatoes4</option>
+                    <option value="mozarella4">Mozzarella4</option>
+                    <option value="mushrooms4">Mushrooms4</option>
+                    <option value="pepperoni4">Pepperoni4</option>
+                    <option value="onions4">Onions4</option>
+
+                    <option value="cheese5">Cheese5</option>
+                    <option value="tomatoes5">Tomatoes5</option>
+                    <option value="mozarella5">Mozzarella5</option>
+                    <option value="mushrooms5">Mushrooms5</option>
+                    <option value="pepperoni5">Pepperoni5</option>
+                    <option value="onions5">Onions5</option>
+                </select>
             </div>
 
             <div class="form-group">
-                    {{ form.content.label (class="post-form-label") }}<br>
-                    {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10") }}
+                {{ form.content.label (class="post-form-label") }}<br>
+                {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10") }}
             </div>
 
             <div class="form-group">
-                    {{ form.tags.label (class="post-form-label") }}
-                    {{ form.tags (class="form-control post-form-field post-form-input", id="tags") }}
+                {{ form.tags.label (class="post-form-label") }}<br>
+                <p>Select tags that best describe this post</p>
+                <select id="tags" multiple="multiple">
+                    <option value="cheese">Cheese</option>
+                    <option value="tomatoes">Tomatoes</option>
+                    <option value="mozarella">Mozzarella</option>
+                    <option value="mushrooms">Mushrooms</option>
+                    <option value="pepperoni">Pepperoni</option>
+                    <option value="onions">Onions</option>
+
+                    <option value="cheese1">Cheese1</option>
+                    <option value="tomatoes1">Tomatoes1</option>
+                    <option value="mozarella1">Mozzarella1</option>
+                    <option value="mushrooms1">Mushrooms1</option>
+                    <option value="pepperoni1">Pepperoni1</option>
+                    <option value="onions1">Onions1</option>
+
+                    <option value="cheese2">Cheese2</option>
+                    <option value="tomatoes2">Tomatoes2</option>
+                    <option value="mozarella2">Mozzarella2</option>
+                    <option value="mushrooms2">Mushrooms2</option>
+                    <option value="pepperoni2">Pepperoni2</option>
+                    <option value="onions2">Onions2</option>
+
+                    <option value="cheese3">Cheese3</option>
+                    <option value="tomatoes3">Tomatoes3</option>
+                    <option value="mozarella3">Mozzarella3</option>
+                    <option value="mushrooms3">Mushrooms3</option>
+                    <option value="pepperoni3">Pepperoni3</option>
+                    <option value="onions3">Onions3</option>
+
+                    <option value="cheese4">Cheese4</option>
+                    <option value="tomatoes4">Tomatoes4</option>
+                    <option value="mozarella4">Mozzarella4</option>
+                    <option value="mushrooms4">Mushrooms4</option>
+                    <option value="pepperoni4">Pepperoni4</option>
+                    <option value="onions4">Onions4</option>
+
+                    <option value="cheese5">Cheese5</option>
+                    <option value="tomatoes5">Tomatoes5</option>
+                    <option value="mozarella5">Mozzarella5</option>
+                    <option value="mushrooms5">Mushrooms5</option>
+                    <option value="pepperoni5">Pepperoni5</option>
+                    <option value="onions5">Onions5</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -100,4 +190,8 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-multiselect.js') }}"></script>
 {% endblock %}

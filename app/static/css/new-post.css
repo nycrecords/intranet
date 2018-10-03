@@ -54,3 +54,11 @@
     font-weight: normal;
     font-size: 18px;
 }
+
+.glyphicon.glyphicon-remove-circle {
+    line-height: 1.42857143;
+}
+
+.multiselect-reset {
+    padding-left: 20px !important;
+}
