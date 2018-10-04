@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify
 from flask_login import login_required, current_user
 from app import db
-from app.models import Users
+from app.models import Users, Posts, MeetingNotes
 from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_meeting_notes
@@ -14,7 +14,9 @@ def index():
     View function to handle the home page
     :return: HTML template for home page
     """
-    return render_template('index.html')
+    posts = Posts.query.all()
+    print(posts)
+    return render_template('index.html', posts=posts)
 
 
 @main.route('/news-updates', methods=['GET', 'POST'])

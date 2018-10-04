@@ -139,6 +139,24 @@
                                 </div>
                             </div>
                         </a>
+                        {% for post in posts %}
+                        <a href="" class="scrolllink">
+                            <div class="entry">
+                                <div class="col-sm-2 entry-pic">
+                                    <img src="https://i.imgur.com/MCcE4gt.png">
+                                    <br>
+                                    <p class="meetings">MEETINGS</p>
+                                </div>
+                                <div class="col-sm-10 entry-info">
+                                    <h4 class="entrytitle">{{ post.title }}</h4>
+                                    <p class="datenlocation">{{ post.date_created }}</p>
+                                    <p class="datenlocation">Posted in Meeting Notes</p>
+                                    <div class="entrytext">Discussion: {{ post.content }}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
                     </div>
                 </div>
                 <button class="view-more-button" type="button" onclick="window.location.href='#'">View More</button>
