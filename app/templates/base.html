@@ -13,18 +13,13 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
     <link rel=stylesheet type=text/css
           href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.core.css') }}"/>
-    <link rel=stylesheet type=text/css
-          href="{{ url_for('static', filename='css/plugins/textext.plugin.autocomplete.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/textext.plugin.tags.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-tagsinput.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/parsley.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/parsley.css') }}"/>
 
     {% block custom_css %}
     {% endblock %}
@@ -228,13 +223,10 @@
     {{ super() }}
     {{ moment.include_moment() }}
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-tagsinput.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.core.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/textext.plugin.tags.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
