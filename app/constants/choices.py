@@ -1,7 +1,7 @@
 MEETING_TYPES = [
     ('', ''),
     ('Division', 'Division'),
-    ('Strategic Planning', 'Strategic Planning'),
+    ('Strategic', 'Strategic'),
     ('Senior Staff', 'Senior Staff')
 ]
 
@@ -24,6 +24,7 @@ STAFF_DIRECTORY_FILTERS = [
     ('Title', 'Title')
 
 ]
+
 CERT_TYPE = [
     ('', ''),
     ('Birth', 'Birth'),

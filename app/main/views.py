@@ -38,7 +38,7 @@ def new_post():
     tags = choices.TAGS
 
     if flask_request.method == 'POST':
-        create_meeting_notes(meeting_date=form.meeting_date.data,
+        post_id = create_meeting_notes(meeting_date=form.meeting_date.data,
                              meeting_location=form.meeting_location.data,
                              meeting_leader=form.meeting_leader.data,
                              meeting_note_taker=form.meeting_note_taker.data,
@@ -54,9 +54,15 @@ def new_post():
                              title=form.title.data,
                              content=form.content.data,
                              tags=flask_request.form.getlist('tags'))
-        flash('Post submitted.')
-        return redirect(url_for('main.news_and_updates'))
+        return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
+
+
+@main.route('/news-updates/view/<int:post_id>', methods=['GET', 'POST'])
+def view_post(post_id):
+    post = Posts.query.filter_by(id=post_id).first()
+    author = Users.query.filter_by(id=post.author).first()
+    return render_template('view_post.html', post=post, author=author)
 
 
 @main.route('/get_user_list/', methods=['GET'])

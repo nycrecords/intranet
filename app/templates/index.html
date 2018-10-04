@@ -140,7 +140,7 @@
                             </div>
                         </a>
                         {% for post in posts %}
-                        <a href="" class="scrolllink">
+                        <a href="{{ url_for('main.view_post', post_id = post.id) }}" class="scrolllink">
                             <div class="entry">
                                 <div class="col-sm-2 entry-pic">
                                     <img src="https://i.imgur.com/MCcE4gt.png">

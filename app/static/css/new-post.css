@@ -62,3 +62,15 @@
 .multiselect-reset {
     padding-left: 20px !important;
 }
+
+.view-post-section {
+    padding-top: 25px;
+}
+
+.post-title {
+    color: #5C95A3;
+    font-family: "Helvetica";
+    font-weight: normal;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+}

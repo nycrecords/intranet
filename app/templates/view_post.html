@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}New Meeting Notes{% endblock title %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
+                    & Updates</a></li>
+                <li class="breadcrumb-item active" aria-current="page">View Post</li>
+            </ol>
+        </nav>
+        <h1 class="post-title">{{ post.title }}</h1>
+        {% if post.post_type == 'meeting_notes' %}
+            <p>Posted in <a href="{{ url_for('main.news_and_updates') }}">Meeting Notes</a></p>
+        {% endif %}
+        <p>By {{ author.name }} on {{ post.date_created.strftime('%m/%d/%Y') }}</p>
+    </div>
+    <div class="col-sm-12 well content-area view-post-section">
+        {% if post.post_type == 'meeting_notes' %}
+            <p><strong>Meeting Type: </strong>{{ post.meeting_type }}</p>
+            <p><strong>Division: </strong>{{ post.division }}</p>
+            <p><strong>Meeting Date: </strong>{{ post.meeting_date.strftime('%m/%d/%Y') }}</p>
+            <p><strong>Location: </strong>{{ post.meeting_location }}</p>
+            <p><strong>Meeting Leader: </strong>{{ post.meeting_leader }}</p>
+            <p><strong>Meeting Notetaker: </strong>{{ post.meeting_note_taker }}</p>
+            <p><strong>Start Time: </strong>{{ post.start_time }}</p>
+            <p><strong>End Time: </strong>{{ post.end_time }}</p>
+            <p><strong>Attendees: </strong>{% for attendee in post.attendees %}{{ attendee }}{{ ", " if not loop.last }}{% endfor %}</p>
+            <p><strong>Discussion: </strong>{{ post.content }}</p>
+            <p><strong>Tags: </strong>{% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
+            <p><strong>Next Meeting Date: </strong>{{ post.next_meeting_date.strftime('%m/%d/%Y') }}</p>
+            <p><strong>Next Meeting Leader: </strong>{{ post.next_meeting_leader }}</p>
+            <p><strong>Next Meeting Notetaker: </strong>{{ post.next_meeting_note_taker }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+{% endblock %}

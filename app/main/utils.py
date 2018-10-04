@@ -66,6 +66,7 @@ def create_meeting_notes(meeting_date,
                                  tags=tags)
     create_object(meeting_notes)
     create_meeting_notes_event()
+    return meeting_notes.id
 
 
 def create_meeting_notes_event():
