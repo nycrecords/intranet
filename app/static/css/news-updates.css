@@ -139,6 +139,8 @@ form.filter-form {
     border: 1px solid #ACACAC;
     margin-left: 2rem;
     margin-right: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .read-more {
@@ -147,4 +149,13 @@ form.filter-form {
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
+}
+
+.post-section {
+    padding-top: 30px;
+}
+
+.post-icon-text {
+    padding-top: 10px;
+    color: #6093BC;
 }

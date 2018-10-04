@@ -166,6 +166,11 @@ class Posts(db.Model):
         self.visible = True
         self.deleted = False
 
+    @property
+    def author_name(self):
+        user = Users.query.filter_by(id=self.author).first()
+        return user.name
+
     def __repr__(self):
         return '<Posts %r>' % self.id
 

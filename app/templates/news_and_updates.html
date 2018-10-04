@@ -131,45 +131,24 @@
             </div>
         </div>
         <div class="col-sm-9 post-section">
-            <div class="col-sm-12 first-post-row">
-                <div class="col-sm-3 post-icon">
-                </div>
-                <div class="col-sm-9 post-description">
-                    <p class="post-title">IT Department Weekly Status Meeting</p>
-                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
-                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
-                        review of current status.
-                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
-                        of the</p>
-                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
-                </div>
-            </div>
-            <div class="col-sm-12 post-row">
-                <div class="col-sm-3 post-icon">
-                </div>
-                <div class="col-sm-9 post-description">
-                    <p class="post-title">IT Department Weekly Status Meeting</p>
-                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
-                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
-                        review of current status.
-                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
-                        of the</p>
-                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
-                </div>
-            </div>
-            <div class="col-sm-12 post-row">
-                <div class="col-sm-3 post-icon">
-                </div>
-                <div class="col-sm-9 post-description">
-                    <p class="post-title">IT Department Weekly Status Meeting</p>
-                    <p class="post-date-author">October 18, 2017 by LaTonya Jones<br>Posted in Meeting Notes</p>
-                    <p class="post-preview">Discussion: Thank you cards given/received. Agenda Items: project list
-                        review of current status.
-                        IT support and upgrades. Division/Unit updates. Applications Development. Discussed the status
-                        of the</p>
-                    <p class="read-more">Read more<span class="glyphicon glyphicon-menu-right"></span></p>
-                </div>
-            </div>
+            {% for post in posts %}
+                {% if post.post_type == "meeting_notes" %}
+                    <div class="col-sm-12 post-row">
+                        <div class="col-sm-3 post-icon">
+                            <img class="meeting-notes-icon"
+                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
+                            <p class="post-icon-text">MEETINGS</p>
+                        </div>
+                        <div class="col-sm-9 post-description">
+                            <p class="post-title">{{ post.title }}</p>
+                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
+                            <p class="post-preview">Discussion: {{ post.content }}</p>
+                            <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
+                        </div>
+                        <div class="col-sm-12 post-divider"></div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>

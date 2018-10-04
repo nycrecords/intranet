@@ -20,7 +20,7 @@
         </nav>
         <h1 class="post-title">{{ post.title }}</h1>
         {% if post.post_type == 'meeting_notes' %}
-            <p>Posted in <a href="{{ url_for('main.news_and_updates') }}">Meeting Notes</a></p>
+            <p>Posted in <a href="{{ url_for('main.meeting_notes') }}">Meeting Notes</a></p>
         {% endif %}
         <!--TODO: Need to convert this EST-->
         <p>By {{ author.name }} on {{ post.date_created.strftime('%B %d, %Y at %-I:%M %p') }}</p>

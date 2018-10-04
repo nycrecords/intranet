@@ -25,7 +25,8 @@ def news_and_updates():
     View function to handle the new and updates landing page
     :return: HTML template for new and updates landing page
     """
-    return render_template('news_and_updates.html')
+    posts = Posts.query.all()
+    return render_template('news_and_updates.html', posts=posts)
 
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
