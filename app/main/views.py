@@ -58,6 +58,12 @@ def new_post():
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
+@main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
+def meeting_notes():
+    posts = Posts.query.filter_by(post_type='meeting_notes').all()
+    return render_template('meeting_notes.html', posts=posts)
+
+
 @main.route('/news-updates/view/<int:post_id>', methods=['GET', 'POST'])
 def view_post(post_id):
     post = Posts.query.filter_by(id=post_id).first()

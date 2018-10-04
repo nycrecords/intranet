@@ -22,7 +22,8 @@
         {% if post.post_type == 'meeting_notes' %}
             <p>Posted in <a href="{{ url_for('main.news_and_updates') }}">Meeting Notes</a></p>
         {% endif %}
-        <p>By {{ author.name }} on {{ post.date_created.strftime('%m/%d/%Y') }}</p>
+        <!--TODO: Need to convert this EST-->
+        <p>By {{ author.name }} on {{ post.date_created.strftime('%B %d, %Y at %-I:%M %p') }}</p>
     </div>
     <div class="col-sm-12 well content-area view-post-section">
         {% if post.post_type == 'meeting_notes' %}

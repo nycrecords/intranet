@@ -11,8 +11,7 @@
     <title>{% block title %}{% endblock title %} - Intranet</title>
 
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
-    <link rel=stylesheet type=text/css
-          href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/parsley.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
@@ -76,7 +75,7 @@
                                     <a href="#">News</a>
                                 </li>
                                 <li>
-                                    <a href="#">Meeting Notes</a>
+                                    <a href="{{ url_for('main.meeting_notes') }}">Meeting Notes</a>
                                 </li>
                                 <li>
                                     <a href="#">Events</a>
