@@ -132,7 +132,7 @@
         </div>
         <div class="col-sm-9 post-section">
             {% for post in posts %}
-                {% if post.post_type == "meeting_notes" %}
+                {% if post.post_type == "meeting_notes" and post.deleted == False %}
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
                             <img class="meeting-notes-icon"

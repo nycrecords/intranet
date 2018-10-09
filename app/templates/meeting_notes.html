@@ -8,7 +8,8 @@
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Meeting Notes</li>
             </ol>
         </nav>
@@ -132,20 +133,22 @@
         </div>
         <div class="col-sm-9 post-section">
             {% for post in posts %}
-                <div class="col-sm-12 post-row">
-                    <div class="col-sm-3 post-icon">
-                        <img class="meeting-notes-icon"
-                             src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                        <p class="post-icon-text">MEETINGS</p>
+                {% if post.deleted == False %}
+                    <div class="col-sm-12 post-row">
+                        <div class="col-sm-3 post-icon">
+                            <img class="meeting-notes-icon"
+                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
+                            <p class="post-icon-text">MEETINGS</p>
+                        </div>
+                        <div class="col-sm-9 post-description">
+                            <p class="post-title">{{ post.title }}</p>
+                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
+                            <p class="post-preview">Discussion: {{ post.content }}</p>
+                            <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
+                        </div>
+                        <div class="col-sm-12 post-divider"></div>
                     </div>
-                    <div class="col-sm-9 post-description">
-                        <p class="post-title">{{ post.title }}</p>
-                        <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
-                        <p class="post-preview">Discussion: {{ post.content }}</p>
-                        <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    </div>
-                    <div class="col-sm-12 post-divider"></div>
-                </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>

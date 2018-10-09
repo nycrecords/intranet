@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import MeetingNotes
+from app.models import MeetingNotes, Events
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -65,9 +65,13 @@ def create_meeting_notes(meeting_date,
                                  content=content,
                                  tags=tags)
     create_object(meeting_notes)
-    create_meeting_notes_event()
+
+    # Create meeting_notes_created Event
+    event = Events(post_id=meeting_notes.id,
+                   user_id=author,
+                   type="meeting_notes_created",
+                   previous_value={},
+                   new_value=meeting_notes.val_for_events)
+    create_object(event)
+
     return meeting_notes.id
-
-
-def create_meeting_notes_event():
-    pass

@@ -50,7 +50,7 @@
                 <div style="background-color: white; padding: 30px 40px;">
                     <div class="scrollablediv">
                         {% for post in posts %}
-                            {% if post.post_type == "meeting_notes" %}
+                            {% if post.post_type == "meeting_notes" and post.deleted == False %}
                                 <a href="{{ url_for('main.view_post', post_id = post.id) }}" class="scrolllink">
                                     <div class="entry">
                                         <div class="col-sm-2 entry-pic">

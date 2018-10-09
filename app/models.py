@@ -229,6 +229,26 @@ class MeetingNotes(Posts):
         self.meeting_type = meeting_type
         self.division = division
 
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+        return {
+            'meeting_date': self.meeting_date.isoformat(),
+            'meeting_location': self.meeting_location,
+            'meeting_leader': self.meeting_leader,
+            'meeting_note_taker': self.meeting_note_taker,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'attendees': self.attendees,
+            'next_meeting_date': self.next_meeting_date.isoformat(),
+            'next_meeting_leader': self.next_meeting_leader,
+            'next_meeting_note_taker': self.next_meeting_note_taker,
+            'meeting_type': self.meeting_type,
+            'division': self.division
+        }
+
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id
 
