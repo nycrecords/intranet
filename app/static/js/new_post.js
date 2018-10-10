@@ -21,12 +21,12 @@ $(function () {
 
     try {
         // render timepicker plugins
-        $(".timepicker").timepicker({
-            timeFormat: "h:mm p",
+        $('.timepicker').timepicker({
+            timeFormat: 'h:mm p',
             interval: 5,
-            minTime: "12:00am",
-            maxTime: "11:59pm",
-            startTime: "9:00am",
+            minTime: '12:00am',
+            maxTime: '11:59pm',
+            startTime: '9:00am',
             dynamic: false,
             dropdown: true,
             scrollbar: true
@@ -62,7 +62,10 @@ $(function () {
     }
 
     // initialize tinymce editor
-    tinymce.init({selector: 'textarea'});
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'lists'
+    });
 
     // set parsley for required fields
     var requiredFields = ['title',
@@ -85,19 +88,19 @@ $(function () {
 
     // set user choices for autocomplete using ajax
     $.ajax({
-        url: "/get_user_list/",
-        type: "GET",
+        url: '/get_user_list/',
+        type: 'GET',
         success: function (data) {
-            $("#meeting-leader").autocomplete({
+            $('#meeting-leader').autocomplete({
                 source: data
             });
-            $("#meeting-note-taker").autocomplete({
+            $('#meeting-note-taker').autocomplete({
                 source: data
             });
-            $("#next-meeting-leader").autocomplete({
+            $('#next-meeting-leader').autocomplete({
                 source: data
             });
-            $("#next-meeting-note-taker").autocomplete({
+            $('#next-meeting-note-taker').autocomplete({
                 source: data
             });
         }
@@ -129,7 +132,7 @@ $(function () {
         enableCaseInsensitiveFiltering: true,
         includeResetOption: true,
         includeResetDivider: true,
-        resetText: "Clear all",
+        resetText: 'Clear all',
         buttonWidth: '50%'
     });
 
@@ -159,7 +162,7 @@ $(function () {
         enableCaseInsensitiveFiltering: true,
         includeResetOption: true,
         includeResetDivider: true,
-        resetText: "Clear all",
+        resetText: 'Clear all',
         buttonWidth: '50%'
     });
 });
