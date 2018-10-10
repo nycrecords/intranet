@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // // initializes popovers
+    // initializes popovers
     $('.new-post-popover').popover({
         placement: 'right',
         html: true,

@@ -8,7 +8,7 @@ from datetime import datetime
 import pytz
 from app.constants import choices
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/', methods=['GET'])
 def index():
     """
     View function to handle the home page
@@ -18,12 +18,15 @@ def index():
     posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
     return render_template('index.html', posts=posts)
 
+# Start view functions for posting
+# TODO: Make a Post blueprint
 
-@main.route('/news-updates', methods=['GET', 'POST'])
+@main.route('/news-updates', methods=['GET'])
 def news_and_updates():
     """
-    View function to handle the new and updates landing page
-    :return: HTML template for new and updates landing page
+    View function to handle the news and updates landing page
+    Queries for all Post types that are visible and paginates them
+    :return: HTML template for news and updates landing page
     """
     # Set up pagination
     page = flask_request.args.get('page', 1, type=int)
@@ -36,8 +39,13 @@ def news_and_updates():
     return render_template('news_and_updates.html', posts=posts, post_types=post_types, tags=tags)
 
 
-@main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
+@main.route('/news-updates/meeting-notes', methods=['GET'])
 def meeting_notes():
+    """
+    View function to handle the meeting notes landing page
+    Queries for posts that are type meeting_notes and visible and paginates them
+    :return: HTML template for meeting notes landing page
+    """
     # Set up pagination
     page = flask_request.args.get('page', 1, type=int)
     posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
@@ -52,6 +60,15 @@ def meeting_notes():
 @main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
+    """
+    View function to handle creating a new MeetingNotes post
+
+    GET Request:
+    Returns HTML template to render the Meeting Notes form
+
+    POST Request:
+    Expects a properly validated Meeting Notes form to create a MeetingNotes object
+    """
     form = MeetingNotesForm()
     users = []
     for user in Users.query.order_by(Users.last_name):
@@ -79,8 +96,14 @@ def new_meeting_notes():
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
-@main.route('/news-updates/view-post/<int:post_id>', methods=['GET', 'POST'])
+@main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])
 def view_post(post_id):
+    """
+    View function to handle viewing a single post
+    Convert the date_created to EST when passed to the front end
+    :param post_id: ID of the Post object being viewed
+    :return: HTML template to view a single post
+    """
     post = Posts.query.filter_by(id=post_id).first()
     post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
     post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
@@ -100,6 +123,7 @@ def get_user_list():
         users_list.append(user.name)
     return jsonify(users_list), 200
 
+# End view functions for posting
 
 @main.route('/staff-directory', methods=['GET', 'POST'])
 def staff_directory():
@@ -111,7 +135,7 @@ def staff_directory():
     Returns HTML template for the staff directory page
 
     POST Request:
-    Expects dat from the staff directory search form
+    Expects data from the staff directory search form
     On initial page load it will return a list of all users
     Following POST requests will use what is inputted in the search field and what filter is used in order to query
     """
