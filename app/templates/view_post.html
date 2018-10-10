@@ -23,7 +23,8 @@
             <p>Posted in <a href="{{ url_for('main.meeting_notes') }}">Meeting Notes</a></p>
         {% endif %}
         <!--TODO: Need to convert this EST-->
-        <p>By {{ author.name }} on {{ post.date_created.strftime('%B %d, %Y at %-I:%M %p') }}</p>
+        <p>By {{ author.name }} on {{ post_timestamp.strftime('%B %d, %Y at %-I:%M %p') }}</p>
+        <!--<p>By {{ author.name }} on {{ moment(post.date_created, local=True).format('MMMM DD, YYYY \aat h:mm') }}</p>-->
     </div>
     <div class="col-sm-12 well content-area view-post-section">
         {% if post.post_type == 'meeting_notes' %}
