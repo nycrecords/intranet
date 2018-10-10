@@ -80,7 +80,7 @@ glyphicon {
     text-decoration: none;
 }
 
-.calender-view-style {
+.calendar-view-style {
     color: #ECAC2A;
     font-family: "Helvetica";
     font-size: 18px;
@@ -90,7 +90,7 @@ glyphicon {
     margin-right: 1.6rem;
 }
 
-.calender-view-style:hover, .calender-view-style:focus {
+.calendar-view-style:hover, .calender-view-style:focus {
     text-decoration: none;
     color: #ECAC2A;
 }
