@@ -12,7 +12,7 @@
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
             </ol>
         </nav>
@@ -21,7 +21,10 @@
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <a class="btn btn-primary" href="{{ url_for('main.new_post') }}">New Post</a>
+                <button class="btn btn-primary new-post-popover" data-toggle="popover" title="Select a Post Type"
+                        data-content="<a href='#' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='#' type='button' class='btn btn-primary'>News</a>">
+                    Create New Post
+                </button>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
@@ -95,4 +98,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/news_updates.js') }}"></script>
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify
+from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify, Markup
 from flask_login import login_required, current_user
 from app import db
 from app.models import Users, Posts, MeetingNotes
@@ -32,9 +32,9 @@ def news_and_updates():
     return render_template('news_and_updates.html', posts=posts, post_types=post_types,meeting_types=meeting_types, tags=tags)
 
 
-@main.route('/news-updates/new', methods=['GET', 'POST'])
+@main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
 @login_required
-def new_post():
+def new_meeting_notes():
     form = MeetingNotesForm()
     users = []
     for user in Users.query.order_by(Users.last_name):
@@ -74,7 +74,8 @@ def meeting_notes():
 def view_post(post_id):
     post = Posts.query.filter_by(id=post_id).first()
     author = Users.query.filter_by(id=post.author).first()
-    return render_template('view_post.html', post=post, author=author)
+    content = Markup(post.content)
+    return render_template('view_post.html', post=post, content=content, author=author)
 
 
 @main.route('/get_user_list/', methods=['GET'])
