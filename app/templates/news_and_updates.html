@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="col-sm-9 post-section">
-            {% for post in posts %}
+            {% for post in posts.items %}
                 {% if post.post_type == "meeting_notes" and post.deleted == False %}
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
@@ -95,6 +95,33 @@
                     </div>
                 {% endif %}
             {% endfor %}
+        </div>
+        <div class="post-pagination">
+            <ul class="pagination">
+                {% if posts.has_prev %}
+                    <li><a href="{{ url_for('main.news_and_updates', page=posts.prev_num) }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+
+                {% for page_num in posts.iter_pages() %}
+                    {% if page_num %}
+                        {% if page_num != posts.page %}
+                            <li><a href="{{ url_for('main.news_and_updates', page=page_num) }}">{{ page_num }}</a></li>
+                        {% else %}
+                            <li class="active"><span>{{ page_num }}</span></li>
+                        {% endif %}
+                    {% else %}
+                            <li class="disabled"><span>...</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                    <li><a href="{{ url_for('main.news_and_updates', page=posts.next_num) }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ $(function () {
     });
 
     try {
-        // render timepicker plugins
+        // initialize timepicker plugins
         $('.timepicker').timepicker({
             timeFormat: 'h:mm p',
             interval: 5,

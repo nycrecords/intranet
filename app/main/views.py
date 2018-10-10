@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session, request as flask_request, jsonify
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app
 from flask_login import login_required, current_user
 from app.models import Users, Posts
 from . import main
@@ -25,18 +25,27 @@ def news_and_updates():
     View function to handle the new and updates landing page
     :return: HTML template for new and updates landing page
     """
-    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).all()
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
     post_types = choices.POST_TYPES
-    meeting_types = choices.MEETING_TYPES[1::]
     tags = choices.TAGS
-    return render_template('news_and_updates.html', posts=posts, post_types=post_types,meeting_types=meeting_types, tags=tags)
+
+    return render_template('news_and_updates.html', posts=posts, post_types=post_types, tags=tags)
 
 
 @main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
 def meeting_notes():
-    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).all()
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
     meeting_types = choices.MEETING_TYPES[1::]
     tags = choices.TAGS
+
     return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
 
 

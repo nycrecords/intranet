@@ -164,3 +164,7 @@ form.filter-form {
 .new-post-button {
 
 }
+
+.post-pagination {
+    text-align: center;
+}

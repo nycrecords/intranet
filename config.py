@@ -23,6 +23,8 @@ class Config:
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))
 
+    POSTS_PER_PAGE = 10
+
     @staticmethod
     def init_app(app):
         pass
