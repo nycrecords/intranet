@@ -1,5 +1,7 @@
 # Project Specific
 *.pem
+*.crt
+*.key
 app/static/img/employee_photos/
 
 # Byte-compiled / optimized / DLL files

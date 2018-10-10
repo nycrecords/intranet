@@ -29,7 +29,7 @@
                             <div class="col-sm-4 doris-help-desk-icon"><span
                                     class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
                             <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: 212-788-8606</p>
+                                <p>Phone: (212) 788-8606</p>
                                 <p>Email: <a href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov</a></p>
                             </div>
                     </div>
@@ -41,8 +41,9 @@
                         <h4 class="it-support-title">CITYWIDE SERVICE DESK</h4>
                             <div class="col-sm-4 city-wide-service-desk-icon"><span
                                     class="glyphicon glyphicon-globe it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 city-wide-service-desk-text">
-                                <a href="http://cityshare.nycnet/mydesk">http://cityshare.nycnet/mydesk</a>
+                            <div class="col-sm-8 doris-help-desk-text">
+                                <p>Phone: (718) 403-8888</p>
+                                <p>Email: <a href="mailto:nychelp@doitt.nyc.gov">nychelp@doitt.nyc.gov</a></p>
                             </div>
                     </div>
                 </div>
@@ -54,9 +55,12 @@
                             <div class="col-sm-4 training-icon"><span
                                     class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
                             <div class="col-sm-8 training-text">
-                                <p><a href="">MS Office Training</a></p>
-                                <p><a href="">Password Security</a></p>
-                                <p><a href="">Social Engineering</a></p>
+                                <p><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
+                                      target="_blank">MS Office Training</a></p>
+                                <p>
+                                    <a href="http://cityshare.nycnet/portal/site/cityshare/menuitem.c523e8a3e0abc9d4e6fd1e10aca088a0/"
+                                       rel="noopener"
+                                       target="_blank">Password Security and Social Engineering</a></p>
                             </div>
                     </div>
                 </div>
@@ -65,20 +69,61 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="it-support-text">
-                    <p>For DORIS related requests, contact Kenneth Chan in the Management and Information Services
+                    <p>For DORIS related requests, contact Kenneth Chan in the Information Technology
                         division.</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="it-support-text">
                     <p>For an immediate ticket and faster turnaround, users and IT staff can submit their incidents or
-                        requests to the <a href="http://cityshare.nycnet/mydesk">CityWide Service Desk</a> using the
+                        requests to the <a href="http://cityshare.nycnet/mydesk" rel="noopener" target="_blank">CityWide
+                            Service Desk</a> using the
                         Self Service Portal My Desk.</p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="it-support-text">
-                    <p>Get hands on tranining with MS Office as well as cybersecurity awareness.</p>
+                    <p>Get hands on tranining with MS Office as well as cybersecurity awareness resources.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">APPLICATION SUPPORT</h4>
+                            <div class="col-sm-4 doris-help-desk-icon"><span
+                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                            <div class="col-sm-8 doris-help-desk-text">
+                                <p>Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a></p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">RESOURCES</h4>
+                        <div class="col-sm-4 training-icon"><span
+                                class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 training-text">
+                            <p><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS Public Wi-Fi</a></p>
+                            <p><a href="{{ url_for('static', filename='files/outlook_web_access_instructions.pdf') }}">Outlook Web Access</a></p>
+                            <p><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail Instructions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For support on internal DORIS Applications, email the Application Development Team.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Get instructions for accessing public wifi, outlook, and voicemail.</p>
                 </div>
             </div>
         </div>
