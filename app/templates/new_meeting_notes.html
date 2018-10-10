@@ -22,7 +22,7 @@
         <h1 class="breadcrumb-header">New Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area">
-        <form class="new-post-form" method="post" data-parsley-validate>
+        <form id="new-meeting-notes-form" class="new-post-form" method="post" data-parsley-validate>
             {{ form.csrf_token }}
             <div class="form-group">
                 {{ form.title.label (class="post-form-label") }}
@@ -80,7 +80,8 @@
 
             <div class="form-group">
                 {{ form.content.label (class="post-form-label") }}<br>
-                {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="10") }}
+                {{ form.content (class="form-control post-form-field post-form-textarea", id="content", rows="15") }}
+                <p id="content-error">This value is required.</p>
             </div>
 
             <div class="form-group">
