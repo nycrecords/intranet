@@ -62,7 +62,7 @@
                                             <h4 class="entrytitle">{{ post.title }}</h4>
                                             <p class="datenlocation">{{ post.date_created.strftime('%B %d, %Y') }}</p>
                                             <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">Discussion: {{ post.content }}
+                                            <div class="entrytext">{{ post.content | safe }}
                                             </div>
                                         </div>
                                     </div>

@@ -1,7 +1,6 @@
-from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify, Markup
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify
 from flask_login import login_required, current_user
-from app import db
-from app.models import Users, Posts, MeetingNotes
+from app.models import Users, Posts
 from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_meeting_notes
@@ -12,10 +11,10 @@ from app.constants import choices
 def index():
     """
     View function to handle the home page
+    Queries for the 20 most recent posts to display in the What's New section
     :return: HTML template for home page
     """
-    posts = Posts.query.all()
-    print(posts)
+    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
     return render_template('index.html', posts=posts)
 
 
@@ -25,11 +24,19 @@ def news_and_updates():
     View function to handle the new and updates landing page
     :return: HTML template for new and updates landing page
     """
-    posts = Posts.query.all()
+    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).all()
     post_types = choices.POST_TYPES
     meeting_types = choices.MEETING_TYPES[1::]
     tags = choices.TAGS
     return render_template('news_and_updates.html', posts=posts, post_types=post_types,meeting_types=meeting_types, tags=tags)
+
+
+@main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
+def meeting_notes():
+    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).all()
+    meeting_types = choices.MEETING_TYPES[1::]
+    tags = choices.TAGS
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
 
 
 @main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
@@ -41,17 +48,17 @@ def new_meeting_notes():
         users.append(user.name)
     tags = choices.TAGS
 
-    if flask_request.method == 'POST':
+    if flask_request.method == 'POST' and form.validate_on_submit():
         post_id = create_meeting_notes(meeting_date=form.meeting_date.data,
                              meeting_location=form.meeting_location.data,
-                             meeting_leader=form.meeting_leader.data,
-                             meeting_note_taker=form.meeting_note_taker.data,
+                             meeting_leader=form.meeting_leader.data.title(),
+                             meeting_note_taker=form.meeting_note_taker.data.title(),
                              start_time=form.start_time.data,
                              end_time=form.end_time.data,
                              attendees=flask_request.form.getlist('attendees'),
                              next_meeting_date=form.next_meeting_date.data,
-                             next_meeting_leader=form.next_meeting_leader.data,
-                             next_meeting_note_taker=form.next_meeting_note_taker.data,
+                             next_meeting_leader=form.next_meeting_leader.data.title(),
+                             next_meeting_note_taker=form.next_meeting_note_taker.data.title(),
                              meeting_type=form.meeting_type.data,
                              division=form.division.data,
                              author=current_user.id,
@@ -62,20 +69,11 @@ def new_meeting_notes():
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
-@main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
-def meeting_notes():
-    posts = Posts.query.filter_by(post_type='meeting_notes').all()
-    meeting_types = choices.MEETING_TYPES[1::]
-    tags = choices.TAGS
-    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
-
-
-@main.route('/news-updates/view/<int:post_id>', methods=['GET', 'POST'])
+@main.route('/news-updates/view-post/<int:post_id>', methods=['GET', 'POST'])
 def view_post(post_id):
     post = Posts.query.filter_by(id=post_id).first()
     author = Users.query.filter_by(id=post.author).first()
-    content = Markup(post.content)
-    return render_template('view_post.html', post=post, content=content, author=author)
+    return render_template('view_post.html', post=post, author=author)
 
 
 @main.route('/get_user_list/', methods=['GET'])

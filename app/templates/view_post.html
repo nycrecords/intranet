@@ -36,7 +36,7 @@
             <p><strong>Start Time: </strong>{{ post.start_time }}</p>
             <p><strong>End Time: </strong>{{ post.end_time }}</p>
             <p><strong>Attendees: </strong>{% for attendee in post.attendees %}{{ attendee }}{{ ", " if not loop.last }}{% endfor %}</p>
-            <p><strong>Discussion: </strong>{{ content }}</p>
+            <p><strong>Discussion: </strong>{{ post.content | safe }}</p>
             <p><strong>Tags: </strong>{% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
             <p><strong>Next Meeting Date: </strong>{{ post.next_meeting_date.strftime('%m/%d/%Y') }}</p>
             <p><strong>Next Meeting Leader: </strong>{{ post.next_meeting_leader }}</p>
