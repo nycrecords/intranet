@@ -190,10 +190,11 @@ class MeetingNotes(Posts):
     next_meeting_date = db.Column(db.DateTime)
     next_meeting_leader = db.Column(db.String)
     next_meeting_note_taker = db.Column(db.String)
-    meeting_type = db.Column(db.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'))
+    meeting_type = db.Column(db.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project',
+                                     'Agency', name='meeting_type'))
     division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
-                                 'Information Technology', 'Municipal Archives', 'Municipal Library',
-                                 "Municipal Records Management", name='divisions'))
+                                 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
+                                 'Municipal Records Management', 'Operations',  name='divisions'))
 
     def __init__(self,
                  meeting_date,

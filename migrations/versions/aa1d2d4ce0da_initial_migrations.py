@@ -1,8 +1,8 @@
-"""Initial Migration
+"""Initial Migrations
 
-Revision ID: ae94fb0ab3e7
+Revision ID: aa1d2d4ce0da
 Revises: 
-Create Date: 2018-10-02 18:56:52.729135
+Create Date: 2018-10-10 15:10:57.647943
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'ae94fb0ab3e7'
+revision = 'aa1d2d4ce0da'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -91,11 +91,8 @@ def upgrade():
     sa.Column('next_meeting_date', sa.DateTime(), nullable=True),
     sa.Column('next_meeting_leader', sa.String(), nullable=True),
     sa.Column('next_meeting_note_taker', sa.String(), nullable=True),
-    sa.Column('meeting_type', sa.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'), nullable=True),
-                    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs',
-                                                  'Grants Unit', 'Information Technology', 'Municipal Archives',
-                                                  'Municipal Library', "Municipal Records Management",
-                                                  name='divisions'), nullable=True),
+    sa.Column('meeting_type', sa.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project', 'Agency', name='meeting_type'), nullable=True),
+    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

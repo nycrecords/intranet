@@ -1,8 +1,16 @@
+POST_TYPES = [
+    'Events',
+    'Meeting Notes',
+    'News'
+]
+
 MEETING_TYPES = [
     ('', ''),
     ('Division', 'Division'),
-    ('Strategic', 'Strategic'),
-    ('Senior Staff', 'Senior Staff')
+    ('Strategic Planning', 'Strategic Planning'),
+    ('Senior Staff', 'Senior Staff'),
+    ('Project', 'Project'),
+    ('Agency', 'Agency')
 ]
 
 DIVISIONS = [
@@ -12,9 +20,11 @@ DIVISIONS = [
     ('External Affairs', 'External Affairs'),
     ('Grants Unit', 'Grants Unit'),
     ('Information Technology', 'Information Technology'),
+    ('Legal', 'Legal'),
     ('Municipal Archives', 'Municipal Archives'),
     ('Municipal Library', 'Municipal Library'),
     ('Municipal Records Management', 'Municipal Records Management'),
+    ('Operations', 'Operations')
 ]
 
 STAFF_DIRECTORY_FILTERS = [

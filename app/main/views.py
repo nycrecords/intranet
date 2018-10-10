@@ -26,7 +26,10 @@ def news_and_updates():
     :return: HTML template for new and updates landing page
     """
     posts = Posts.query.all()
-    return render_template('news_and_updates.html', posts=posts)
+    post_types = choices.POST_TYPES
+    meeting_types = choices.MEETING_TYPES[1::]
+    tags = choices.TAGS
+    return render_template('news_and_updates.html', posts=posts, post_types=post_types,meeting_types=meeting_types, tags=tags)
 
 
 @main.route('/news-updates/new', methods=['GET', 'POST'])
@@ -62,7 +65,9 @@ def new_post():
 @main.route('/news-updates/meeting-notes', methods=['GET', 'POST'])
 def meeting_notes():
     posts = Posts.query.filter_by(post_type='meeting_notes').all()
-    return render_template('meeting_notes.html', posts=posts)
+    meeting_types = choices.MEETING_TYPES[1::]
+    tags = choices.TAGS
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
 
 
 @main.route('/news-updates/view/<int:post_id>', methods=['GET', 'POST'])
