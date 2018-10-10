@@ -1,7 +1,7 @@
 {
   "name": "intranet",
   "scripts": {
-    "postdeploy": "python tutorial-project/manage.py runserver"
+    "postdeploy": "python manage.py runserver"
   },
   "env": {
     "ADMIN": {
