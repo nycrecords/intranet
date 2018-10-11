@@ -22,7 +22,7 @@
         <h1 class="breadcrumb-header">New Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area">
-        <form id="new-meeting-notes-form" class="new-post-form" method="post" data-parsley-validate>
+        <form id="new-post-form" class="new-post-form" method="post" data-parsley-validate>
             {{ form.csrf_token }}
             <div class="form-group">
                 {{ form.title.label (class="post-form-label") }}
