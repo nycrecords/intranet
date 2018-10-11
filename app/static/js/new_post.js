@@ -170,4 +170,12 @@ $(function () {
             e.preventDefault()
         }
     });
+
+    $("#new-news-form").submit(function (e) {
+        // Validate that content has been filled out
+        if (tinyMCE.activeEditor.getContent() === '') {
+            $('#content-error').show();
+            e.preventDefault()
+        }
+    });
 });

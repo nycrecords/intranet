@@ -76,12 +76,12 @@
         </div>
         <div class="col-sm-9 post-section">
             {% for post in posts.items %}
-                {% if post.post_type == "meeting_notes" and post.deleted == False %}
+                {% if post.deleted == False %}
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
                             <img class="meeting-notes-icon"
                                  src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                            <p class="post-icon-text">MEETINGS</p>
+                            <p class="post-icon-text meeting_notes_icon_text">MEETINGS</p>
                         </div>
                         <div class="col-sm-9 post-description">
                             <p class="post-title">{{ post.title }}</p>

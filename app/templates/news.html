@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}News & Updates{% endblock %}
+{% block title %}News{% endblock %}
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
@@ -13,18 +13,16 @@
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a></li>
+                <li class="breadcrumb-item active" aria-current="page">News</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">News & Updates</h1>
+        <h1 class="breadcrumb-header">News</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <button class="btn btn-primary new-post-popover" data-toggle="popover" title="Select a Post Type"
-                        data-content="<a href='#' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='{{ url_for('main.new_news') }}' type='button' class='btn btn-primary'>News</a>">
-                    Create New Post
-                </button>
+                <a class="btn btn-primary" href="{{ url_for('main.new_news') }}">Create New News</a>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
@@ -39,24 +37,6 @@
         <div class="col-sm-3 filter-section">
             <p class="filter-by">Filter by:</p>
             <div class="panel-group">
-                <div class="panel filter-border">
-                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POST
-                        TYPE
-                    </div>
-                    <hr class="panel-divider"/>
-                    <div class="panel-body filter-choices">
-                        <form class="filter-form">
-                            {% for post_type in post_types %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ post_type }}">
-                                    <label class="filter-option-label">
-                                        {{ post_type }}
-                                    </label>
-                                </div>
-                            {% endfor %}
-                        </form>
-                    </div>
-                </div>
                 <div class="panel filter-border">
                     <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
                     </div>
@@ -78,33 +58,17 @@
         </div>
         <div class="col-sm-9 post-section">
             {% for post in posts.items %}
-                {% if post.post_type == "meeting_notes" and post.deleted == False %}
+                {% if post.deleted == False %}
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
                             <img class="meeting-notes-icon"
-                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                            <p class="post-icon-text meeting_notes_icon_text">MEETINGS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
-                            <p class="post-preview">Discussion: {{ post.content | safe }}</p>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% endif %}
-                {% if post.post_type == "news" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="news-icon"
                                  src="{{ url_for('static', filename='img/news_icon.png') }}">
                             <p class="post-icon-text news_icon_text">NEWS</p>
                         </div>
                         <div class="col-sm-9 post-description">
                             <p class="post-title">{{ post.title }}</p>
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
-                            <p class="post-preview">Discussion: {{ post.content | safe }}</p>
+                            <p class="post-preview">Announcement: {{ post.content | safe }}</p>
                         </div>
                     </div>
                     <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
@@ -115,7 +79,7 @@
         <div class="post-pagination">
             <ul class="pagination">
                 {% if posts.has_prev %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.prev_num) }}">&laquo;</a></li>
+                    <li><a href="{{ url_for('main.news', page=posts.prev_num) }}">&laquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&laquo;</span></li>
                 {% endif %}
@@ -123,7 +87,7 @@
                 {% for page_num in posts.iter_pages() %}
                     {% if page_num %}
                         {% if page_num != posts.page %}
-                            <li><a href="{{ url_for('main.news_and_updates', page=page_num) }}">{{ page_num }}</a></li>
+                            <li><a href="{{ url_for('main.news', page=page_num) }}">{{ page_num }}</a></li>
                         {% else %}
                             <li class="active"><span>{{ page_num }}</span></li>
                         {% endif %}
@@ -133,7 +97,7 @@
                 {% endfor %}
 
                 {% if posts.has_next %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.next_num) }}">&raquo;</a></li>
+                    <li><a href="{{ url_for('main.news', page=posts.next_num) }}">&raquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&raquo;</span></li>
                 {% endif %}
@@ -141,8 +105,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block custom_scripts %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/news_updates.js') }}"></script>
 {% endblock %}

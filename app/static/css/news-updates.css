@@ -161,7 +161,14 @@ form.filter-form {
 
 .post-icon-text {
     padding-top: 10px;
+}
+
+.meeting_notes_icon_text {
     color: #6093BC;
+}
+
+.news_icon_text {
+    color: #589fa3;
 }
 
 .post-pagination {

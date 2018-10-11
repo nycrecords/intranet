@@ -302,7 +302,13 @@ class MeetingNotes(Posts):
             'next_meeting_leader': self.next_meeting_leader,
             'next_meeting_note_taker': self.next_meeting_note_taker,
             'meeting_type': self.meeting_type,
-            'division': self.division
+            'division': self.division,
+            'title': self.title,
+            'content': self.content,
+            'tags': self.tags,
+            'date_modified': None,
+            'visible': self.visible,
+            'deleted': self.deleted
         }
 
     def __repr__(self):
@@ -327,11 +333,36 @@ class EventPosts(db.Model):
         return '<Events %r>' % self.id
 
 
-class News(db.Model):
+class News(Posts):
     __tablename__ = 'news'
     __mapper_args__ = {'polymorphic_identity': 'news'}
 
     id = db.Column(db.Integer, db.ForeignKey(Posts.id), primary_key=True)
+
+    def __init__(self,
+                 author,
+                 title,
+                 content,
+                 tags):
+        super(News, self).__init__(author,
+                                   title,
+                                   content,
+                                   tags)
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+
+        return {
+            'title': self.title,
+            'content': self.content,
+            'tags': self.tags,
+            'date_modified': None,
+            'visible': self.visible,
+            'deleted': self.deleted
+        }
 
     def __repr__(self):
         return '<News %r>' % self.id
