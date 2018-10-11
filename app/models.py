@@ -288,6 +288,8 @@ class MeetingNotes(Posts):
         """
         JSON to store in Events 'new_value' field.
         """
+        next_meeting_date = self.next_meeting_date.isoformat() if self.next_meeting_date else None
+
         return {
             'meeting_date': self.meeting_date.isoformat(),
             'meeting_location': self.meeting_location,
@@ -296,7 +298,7 @@ class MeetingNotes(Posts):
             'start_time': self.start_time,
             'end_time': self.end_time,
             'attendees': self.attendees,
-            'next_meeting_date': self.next_meeting_date.isoformat(),
+            'next_meeting_date': next_meeting_date,
             'next_meeting_leader': self.next_meeting_leader,
             'next_meeting_note_taker': self.next_meeting_note_taker,
             'meeting_type': self.meeting_type,
@@ -360,18 +362,18 @@ class Events(db.Model):
     previous_value = db.Column(JSONB)
     new_value = db.Column(JSONB)
 
-    # def __init__(self,
-    #              post_id=None,
-    #              user_id=None,
-    #              type, # TODO: 'type' causing an error in __init__ function. Possibly because it is a reserved word.
-    #              previous_value=None,
-    #              new_value=None):
-    #     self.post_id = post_id
-    #     self.user_id = user_id
-    #     self.type = type
-    #     self.timestamp = datetime.utcnow()
-    #     self.previous_value = previous_value
-    #     self.new_value = new_value
+    def __init__(self,
+                 type,
+                 post_id=None,
+                 user_id=None,
+                 previous_value=None,
+                 new_value=None):
+        self.post_id = post_id
+        self.user_id = user_id
+        self.type = type
+        self.timestamp = datetime.utcnow()
+        self.previous_value = previous_value
+        self.new_value = new_value
 
     def __repr__(self):
         return '<Events %r>' % self.id

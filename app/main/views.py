@@ -112,6 +112,7 @@ def view_post(post_id):
 
 
 @main.route('/get_user_list/', methods=['GET'])
+@login_required
 def get_user_list():
     """
     AJAX endpoint to retrieve a list of all users for autocomplete choices

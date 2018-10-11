@@ -78,10 +78,7 @@ $(function () {
                           'start-time',
                           'end-time',
                           'attendees',
-                          'tags',
-                          'next-meeting-date',
-                          'next-meeting-leader',
-                          'next-meeting-note-taker'];
+                          'tags'];
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
