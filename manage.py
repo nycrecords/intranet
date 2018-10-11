@@ -25,6 +25,51 @@ manager.add_command('db', MigrateCommand)
 
 
 @manager.command
+def reset_database():
+    """Setup the database."""
+    from flask_migrate import upgrade
+    from subprocess import call
+
+    # Reset the database
+    call(['sudo', 'service', 'rh-postgresql95-postgresql', 'restart'])
+    call(['sudo', '-u', 'postgres', '/opt/rh/rh-postgresql95/root/usr/bin/dropdb', 'intranet'])
+    call(['sudo', '-u', 'postgres', '/opt/rh/rh-postgresql95/root/usr/bin/createdb', 'intranet'])
+
+    # Run migrations
+    upgrade()
+
+    # pre-populate
+    list(
+        map(
+            lambda x: x.populate(),
+            (
+                Roles,
+                Users
+            )
+        )
+    )
+
+
+@manager.command
+def deploy():
+    """Upgrade and pre-populate database"""
+    from flask_migrate import upgrade
+    # Run migrations
+    upgrade()
+
+    # pre-populate
+    list(
+        map(
+            lambda x: x.populate(),
+            (
+                Roles,
+                Users
+            )
+        )
+    )
+
+
+@manager.command
 def test():
     """Run the unit tests."""
     import unittest
