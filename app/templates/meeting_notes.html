@@ -87,10 +87,10 @@
                             <p class="post-title">{{ post.title }}</p>
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
                             <p class="post-preview">Discussion: {{ post.content | safe }}</p>
-                            <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
                         </div>
-                        <div class="col-sm-12 post-divider"></div>
                     </div>
+                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
+                    <div class="col-sm-12 post-divider"></div>
                 {% endif %}
             {% endfor %}
         </div>

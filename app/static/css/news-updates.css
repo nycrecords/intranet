@@ -104,6 +104,8 @@ form.filter-form {
 .post-row {
     padding-left: 2rem;
     padding-right: 2rem;
+    height: 250px;
+    overflow: hidden;
 }
 
 .post-icon {
@@ -145,6 +147,7 @@ form.filter-form {
 }
 
 .read-more {
+    padding-top: 20px;
     float: right;
     color: #3F72E6;
     font-family: "Helvetica";
