@@ -88,7 +88,9 @@
                         <div class="col-sm-9 post-description">
                             <p class="post-title">{{ post.title }}</p>
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
-                            <p class="post-preview">Discussion: {{ post.content | safe }}</p>
+                            <div class="post-preview">
+                                <p>Discussion: {{ post.content | safe | truncate(500) }}</p>
+                            </div>
                         </div>
                     </div>
                     <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
@@ -104,7 +106,9 @@
                         <div class="col-sm-9 post-description">
                             <p class="post-title">{{ post.title }}</p>
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
-                            <p class="post-preview">Discussion: {{ post.content | safe }}</p>
+                            <div class="post-preview">
+                                <p>Announcement: {{ post.content | safe }}</p>
+                            </div>
                         </div>
                     </div>
                     <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>

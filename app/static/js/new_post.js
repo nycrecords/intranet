@@ -64,7 +64,8 @@ $(function () {
     // initialize tinymce editor
     tinymce.init({
         selector: 'textarea',
-        plugins: 'lists'
+        oninit: "setPlainText",
+        plugins: "paste lists"
     });
 
     // set parsley for required fields
@@ -131,6 +132,37 @@ $(function () {
         includeResetDivider: true,
         resetText: 'Clear all',
         buttonWidth: '50%'
+    });
+
+    // display news tags with drop up instead of down
+    $('#news-tags').multiselect({
+        maxHeight: 400,
+        buttonText: function (options, select) {
+            if (options.length === 0) {
+                return 'None Selected';
+            }
+            else if (options.length > 4) {
+                return options.length + ' tags selected';
+            }
+            else {
+                var labels = [];
+                options.each(function () {
+                    if ($(this).attr('label') !== undefined) {
+                        labels.push($(this).attr('label'));
+                    }
+                    else {
+                        labels.push($(this).html());
+                    }
+                });
+                return labels.join(', ') + '';
+            }
+        },
+        enableCaseInsensitiveFiltering: true,
+        includeResetOption: true,
+        includeResetDivider: true,
+        resetText: 'Clear all',
+        buttonWidth: '50%',
+        dropUp: true
     });
 
     // initialize multiselect plugin for attendees

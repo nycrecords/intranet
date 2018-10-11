@@ -62,7 +62,8 @@
                                             <h4 class="entrytitle">{{ post.title }}</h4>
                                             <p class="datenlocation">{{ post.date_created.strftime('%B %d, %Y') }}</p>
                                             <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">{{ post.content | safe }}
+                                            <div class="entrytext">
+                                                {{ post.content | safe }}
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +81,8 @@
                                             <h4 class="entrytitle">{{ post.title }}</h4>
                                             <p class="datenlocation">{{ post.date_created.strftime('%B %d, %Y') }}</p>
                                             <p class="datenlocation">Posted in News</p>
-                                            <div class="entrytext">{{ post.content | safe }}
+                                            <div class="entrytext">
+                                                {{ post.content | safe }}
                                             </div>
                                         </div>
                                     </div>

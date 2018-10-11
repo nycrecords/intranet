@@ -38,7 +38,7 @@
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
-                <select name="tags" id="tags" multiple="multiple">
+                <select name="tags" id="news-tags" multiple="multiple">
                     {% for tag in tags %}
                         <option value="{{ tag }}">{{ tag }}</option>
                     {% endfor %}
