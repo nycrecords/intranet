@@ -22,7 +22,7 @@
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
                 <button class="btn btn-primary new-post-popover" data-toggle="popover" title="Select a Post Type"
-                        data-content="<a href='#' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='{{ url_for('main.new_news') }}' type='button' class='btn btn-primary'>News</a>">
+                        data-content="<a href='{{ url_for('main.new_event_post') }}' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='{{ url_for('main.new_news') }}' type='button' class='btn btn-primary'>News</a>">
                     Create New Post
                 </button>
             </div>
@@ -95,8 +95,7 @@
                     </div>
                     <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
                     <div class="col-sm-12 post-divider"></div>
-                {% endif %}
-                {% if post.post_type == "news" and post.deleted == False %}
+                {% elif post.post_type == "news" and post.deleted == False %}
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
                             <img class="news-icon"
@@ -108,6 +107,23 @@
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
                             <div class="post-preview">
                                 <p>Announcement: {{ post.content | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
+                    <div class="col-sm-12 post-divider"></div>
+                {% elif post.post_type == "event_posts" and post.deleted == False %}
+                    <div class="col-sm-12 post-row">
+                        <div class="col-sm-3 post-icon">
+                            <img class="news-icon"
+                                 src="{{ url_for('static', filename='img/events_icon.png') }}">
+                            <p class="post-icon-text events_icon_text">EVENTS</p>
+                        </div>
+                        <div class="col-sm-9 post-description">
+                            <p class="post-title">{{ post.title }}</p>
+                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Events</p>
+                            <div class="post-preview">
+                                <p>Description: {{ post.content | safe }}</p>
                             </div>
                         </div>
                     </div>

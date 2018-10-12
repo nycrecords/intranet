@@ -2,8 +2,8 @@ from flask import render_template, redirect, url_for, session, request as flask_
 from flask_login import login_required, current_user
 from app.models import Users, Posts
 from . import main
-from app.main.forms import MeetingNotesForm, NewsForm, StaffDirectorySearchForm, EnfgForm
-from app.main.utils import create_meeting_notes, create_news
+from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm
+from app.main.utils import create_meeting_notes, create_news, create_event_post
 from datetime import datetime
 import pytz
 from app.constants import choices
@@ -74,6 +74,23 @@ def news():
     return render_template('news.html', posts=posts, tags=tags)
 
 
+@main.route('/news-updates/events', methods=['GET'])
+def events():
+    """
+    View function to handle the events landing page
+    Queries for posts that are type events and visible and paginates them
+    :return: HTML template for events landing page
+    """
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(post_type='event_posts', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
+    tags = choices.TAGS
+
+    return render_template('events.html', posts=posts, tags=tags)
+
+
 @main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
@@ -135,6 +152,39 @@ def new_news():
                               tags=flask_request.form.getlist('tags'))
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_news.html', form=form, tags=tags)
+
+
+@main.route('/news-updates/events/new', methods=['GET', 'POST'])
+@login_required
+def new_event_post():
+    """
+    View function to handle creating a new EventPost post
+
+    GET Request:
+    Returns HTML template to render the Event form
+
+    POST Request:
+    Expects a properly validated Event form to create a EventPosts object
+    """
+    form = EventForm()
+    users = []
+    for user in Users.query.order_by(Users.last_name):
+        users.append(user.name)
+    tags = choices.TAGS
+
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        post_id = create_event_post(event_date=form.event_date.data,
+                                    event_location=form.event_location.data,
+                                    event_leader=form.event_leader.data.title(),
+                                    start_time=form.start_time.data,
+                                    end_time=form.end_time.data,
+                                    sponsor=form.sponsor.data,
+                                    author=current_user.id,
+                                    title=form.title.data,
+                                    content=form.content.data,
+                                    tags=flask_request.form.getlist('tags'))
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('new_event_post.html', form=form, users=users, tags=tags)
 
 
 @main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])

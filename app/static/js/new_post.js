@@ -19,6 +19,16 @@ $(function () {
         }
     });
 
+    $('#event-date').datepicker({
+        dateFormat: 'mm/dd/yy',
+        minDate: 0
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
+
     try {
         // initialize timepicker plugins
         $('.timepicker').timepicker({
@@ -76,10 +86,15 @@ $(function () {
                           'meeting-location',
                           'meeting-leader',
                           'meeting-note-taker',
+                          'event-date',
+                          'event-location',
+                          'event-leader',
                           'start-time',
                           'end-time',
                           'attendees',
-                          'tags'];
+                          'tags',
+                          'news-tags',
+                          'event-tags'];
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
@@ -99,6 +114,9 @@ $(function () {
                 source: data
             });
             $('#next-meeting-note-taker').autocomplete({
+                source: data
+            });
+            $('#event-leader').autocomplete({
                 source: data
             });
         }
@@ -134,8 +152,8 @@ $(function () {
         buttonWidth: '50%'
     });
 
-    // display news tags with drop up instead of down
-    $('#news-tags').multiselect({
+    // display tags with drop up instead of down
+    $('.drop-up-tags').multiselect({
         maxHeight: 400,
         buttonText: function (options, select) {
             if (options.length === 0) {
