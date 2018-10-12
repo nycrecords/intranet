@@ -245,6 +245,7 @@ hr {
     overflow: hidden;
     height: 90px;
     font-size: 16px;
+    word-wrap: break-word;
 }
 
 .scrolllink {
