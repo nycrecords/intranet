@@ -236,6 +236,7 @@ hr {
     font-size: 16px;
     color: #4A4A4A;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 
 .entrytext {
