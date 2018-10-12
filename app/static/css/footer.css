@@ -1,7 +1,7 @@
 /* footer work */
 
 .intranet-footer {
-    height: 35rem;
+    height: 37rem;
     background-color: #77A0A9;
 }
 
@@ -15,7 +15,7 @@
     /* dimensions are 60% of actual png dimensions */
     height: 40px;
     width: 293px;
-    margin-top: 75px;
+    margin-top: 110px;
 }
 
 .social-media-logo {
@@ -127,7 +127,7 @@ a {
 .line {
     top: 35px;
     width: 25%;
-    height: 280px;
+    height: 310px;
     z-index: 10;
     display: table-cell;
     border-right: solid rgba(33, 32, 32, 0.5) 1px;

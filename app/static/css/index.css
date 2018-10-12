@@ -236,6 +236,7 @@ hr {
     font-size: 16px;
     color: #4A4A4A;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 
 .entrytext {
@@ -244,6 +245,7 @@ hr {
     overflow: hidden;
     height: 90px;
     font-size: 16px;
+    word-wrap: break-word;
 }
 
 .scrolllink {
