@@ -74,7 +74,7 @@ def news():
     return render_template('news.html', posts=posts, tags=tags)
 
 
-@main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
+@main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
     """
@@ -113,7 +113,7 @@ def new_meeting_notes():
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
-@main.route('/news-updates/new-news', methods=['GET', 'POST'])
+@main.route('/news-updates/news/new', methods=['GET', 'POST'])
 @login_required
 def new_news():
     """

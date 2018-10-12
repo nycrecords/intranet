@@ -89,7 +89,7 @@
                             <p class="post-title">{{ post.title }}</p>
                             <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
                             <div class="post-preview">
-                                <p>Discussion: {{ post.content | safe | truncate(500) }}</p>
+                                <p>Discussion: {{ post.content | safe }}</p>
                             </div>
                         </div>
                     </div>

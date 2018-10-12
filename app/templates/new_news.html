@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}New News{% endblock title %}
+{% block title %}New News Post{% endblock title %}
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
@@ -16,10 +16,10 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
                     & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New News</li>
+                <li class="breadcrumb-item active" aria-current="page">New News Post</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">New News</h1>
+        <h1 class="breadcrumb-header">New News Post</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <form id="new-post-form" class="new-post-form" method="post" data-parsley-validate>
