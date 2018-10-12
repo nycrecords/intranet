@@ -334,6 +334,11 @@ class EventPosts(db.Model):
 
 
 class News(Posts):
+    """
+    Define the News class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    """
     __tablename__ = 'news'
     __mapper_args__ = {'polymorphic_identity': 'news'}
 
