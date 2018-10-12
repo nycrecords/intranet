@@ -51,7 +51,7 @@ class MeetingNotesForm(FlaskForm):
 
 class NewsForm(FlaskForm):
     """
-    Form for posting meeting notes
+    Form for posting news announcements
 
     title: Input field for the title of the post
     content: HTML formatted string that contains the news announcement
