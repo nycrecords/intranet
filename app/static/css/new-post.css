@@ -54,3 +54,31 @@
     font-weight: normal;
     font-size: 18px;
 }
+
+.glyphicon.glyphicon-remove-circle {
+    line-height: 1.42857143;
+}
+
+.multiselect-reset {
+    padding-left: 20px !important;
+}
+
+.view-post-section {
+    padding-top: 25px;
+    word-wrap: break-word;
+}
+
+.post-title {
+    color: #5C95A3;
+    font-family: "Helvetica";
+    font-weight: normal;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    word-wrap: break-word;
+}
+
+#content-error {
+    color: indianred;
+    font-size: 0.9em;
+    display: none;
+}

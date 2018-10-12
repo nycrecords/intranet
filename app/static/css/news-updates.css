@@ -1,6 +1,7 @@
-.all-posts-link {
+.new-post-button {
     color: #3F72E6;
     padding-left: 0;
+    padding-bottom: 10px;
     font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
@@ -103,6 +104,8 @@ form.filter-form {
 .post-row {
     padding-left: 2rem;
     padding-right: 2rem;
+    height: 250px;
+    overflow: hidden;
 }
 
 .post-icon {
@@ -139,12 +142,28 @@ form.filter-form {
     border: 1px solid #ACACAC;
     margin-left: 2rem;
     margin-right: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .read-more {
+    padding-top: 20px;
     float: right;
     color: #3F72E6;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
+}
+
+.post-section {
+    padding-top: 30px;
+}
+
+.post-icon-text {
+    padding-top: 10px;
+    color: #6093BC;
+}
+
+.post-pagination {
+    text-align: center;
 }

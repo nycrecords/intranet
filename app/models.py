@@ -21,7 +21,7 @@ class Roles(db.Model):
     """
     Define the Roles class with the following columns and relationships:
 
-    Roles - Default sets of permissions
+    Roles - Default sets of permissions.
 
     id -- Column: Integer, PrimaryKey
     name -- Column: String(64), Unique
@@ -82,6 +82,20 @@ class Roles(db.Model):
 
 
 class Users(UserMixin, db.Model):
+    """
+    Define the Users class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    first_name -- Column: String(32)
+    middle_name -- Column: String(1)
+    last_name -- Column: String(64)
+    email -- Column: String(64)
+    division -- Column: String()
+    title -- Column: String(64)
+    phone_number -- Column: String(25)
+    room -- Column: String(3)
+    role_id -- Column: Integer, foreign key to Roles table.
+    """
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -97,6 +111,12 @@ class Users(UserMixin, db.Model):
 
     @property
     def name(self):
+        """
+        Property to return a User's full name, including middle initial if applicable.
+        :return:
+        """
+        if self.middle_initial:
+            return self.first_name + " " + self.middle_initial + " " + self.last_name
         return self.first_name + " " + self.last_name
 
     @classmethod
@@ -135,11 +155,25 @@ class Anonymous(AnonymousUserMixin):
 
 
 class Posts(db.Model):
+    """
+    Define the Posts class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    author -- Column: Integer, foreign key to Users table.
+    post_type -- Column: Enum, contains all types of posts that can be made.
+    title -- Column: String()
+    content -- Column: String()
+    tags - Column: Array of strings containing tags that describe a post. Possible tags are from choices.TAGS.
+    date_created -- Column: DateTime. Date the post was created, auto generated on object creation.
+    date_modified -- Column: DateTime, last timestamp that the post was modified.
+    visible -- Column: Boolean, default = True. Determines if the post is visible on the front end. TODO: Is this redundant?
+    deleted -- Column: Boolean, default = False. Determines if the post has been deleted.
+    """
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
-    type = db.Column(db.Enum('News', 'Event', 'Meeting Notes', name='post_type'))
+    post_type = db.Column(db.Enum('news', 'event_posts', 'meeting_notes', name='post_type'))
     title = db.Column(db.String)
     content = db.Column(db.String)
     tags = db.Column(ARRAY(db.String))
@@ -148,29 +182,53 @@ class Posts(db.Model):
     visible = db.Column(db.Boolean, default=True)
     deleted = db.Column(db.Boolean, default=False)
 
-    __mapper_args__ = {'polymorphic_on': type}
+    __mapper_args__ = {'polymorphic_on': post_type}
 
-    # def __init__(self,
-    #              author,
-    #              type,
-    #              title,
-    #              content,
-    #              tags):
-    #     self.author = author
-    #     self.type = type
-    #     self.title = title,
-    #     self.content = content,
-    #     self.tags = tags,
-    #     self.date_created = datetime.utcnow()
-    #     self.date_modified = None
-    #     self.visible = True
-    #     self.deleted = False
+    def __init__(self,
+                 author,
+                 title,
+                 content,
+                 tags):
+        self.author = author
+        self.title = title
+        self.content = content
+        self.tags = tags
+        self.date_created = datetime.utcnow()
+        self.date_modified = None
+        self.visible = True
+        self.deleted = False
+
+    @property
+    def author_name(self):
+        """
+        Property to get the full name associated with the author's User id
+        :return:
+        """
+        user = Users.query.filter_by(id=self.author).first()
+        return user.name
 
     def __repr__(self):
         return '<Posts %r>' % self.id
 
 
-class MeetingNotes(db.Model):
+class MeetingNotes(Posts):
+    """
+    Define the MeetingNotes class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    meeting_date -- Column: DatetTime
+    meeting_location -- Column: String()
+    meeting_leader -- Column: String(), Contains the name of the meeting leader.
+    meeting_note_taker -- Column: String(), contains the name of the meeting note taker.
+    start_time -- Column: String(), contains a string representation of the meeting start time. Ex) 09:00 AM
+    end_time -- Column: String(), contains a string representation of the meeting end time. Ex) 09:30 AM
+    attendees -- Column: Array of strings containing the names of Users who attended the meeting.
+    next_meeting_date -- Column: DatetTime
+    next_meeting_leader -- Column: String(), Contains the name of the next meeting leader.
+    next_meeting_note_taker -- Column: String(), contains the name of the  next meeting note taker.
+    meeting_type -- Column: Enum, contains all types of meetings notes that can be posted about.
+    division -- Column: Enum, contains all divisions in the agency.
+    """
     __tablename__ = 'meeting_notes'
     __mapper_args__ = {'polymorphic_identity': 'meeting_notes'}
 
@@ -178,15 +236,74 @@ class MeetingNotes(db.Model):
     meeting_date = db.Column(db.DateTime)
     meeting_location = db.Column(db.String)
     meeting_leader = db.Column(db.String)
-    note_taker = db.Column(db.Integer, db.ForeignKey('users.id'))
+    meeting_note_taker = db.Column(db.String)
     start_time = db.Column(db.String)
     end_time = db.Column(db.String)
-    attendees = db.Column(ARRAY(db.Integer))
-    next_meeting_date = db.Column(db.DateTime, nullable=True)
-    next_meeting_leader = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    next_meeting_note_taker = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    meeting_type = db.Column(db.Enum('Division', 'Strategic', 'Senior Staff', name='meeting_type'))
-    meeting_division = db.Column(db.Enum('Admin', 'Executive', 'IT', name='divisions'), nullable=True)
+    attendees = db.Column(ARRAY(db.String))
+    next_meeting_date = db.Column(db.DateTime)
+    next_meeting_leader = db.Column(db.String)
+    next_meeting_note_taker = db.Column(db.String)
+    meeting_type = db.Column(db.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project',
+                                     'Agency', name='meeting_type'))
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+                                 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
+                                 'Municipal Records Management', 'Operations',  name='divisions'))
+
+    def __init__(self,
+                 meeting_date,
+                 meeting_location,
+                 meeting_leader,
+                 meeting_note_taker,
+                 start_time,
+                 end_time,
+                 attendees,
+                 next_meeting_date,
+                 next_meeting_leader,
+                 next_meeting_note_taker,
+                 meeting_type,
+                 division,
+                 author,
+                 title,
+                 content,
+                 tags):
+        super(MeetingNotes, self).__init__(author,
+                                           title,
+                                           content,
+                                           tags)
+        self.meeting_date = meeting_date
+        self.meeting_location = meeting_location
+        self.meeting_leader = meeting_leader
+        self.meeting_note_taker = meeting_note_taker
+        self.start_time = start_time
+        self.end_time = end_time
+        self.attendees = attendees
+        self.next_meeting_date = next_meeting_date
+        self.next_meeting_leader = next_meeting_leader
+        self.next_meeting_note_taker = next_meeting_note_taker
+        self.meeting_type = meeting_type
+        self.division = division
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+        next_meeting_date = self.next_meeting_date.isoformat() if self.next_meeting_date else None
+
+        return {
+            'meeting_date': self.meeting_date.isoformat(),
+            'meeting_location': self.meeting_location,
+            'meeting_leader': self.meeting_leader,
+            'meeting_note_taker': self.meeting_note_taker,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'attendees': self.attendees,
+            'next_meeting_date': next_meeting_date,
+            'next_meeting_leader': self.next_meeting_leader,
+            'next_meeting_note_taker': self.next_meeting_note_taker,
+            'meeting_type': self.meeting_type,
+            'division': self.division
+        }
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id
@@ -221,6 +338,20 @@ class News(db.Model):
 
 
 class Events(db.Model):
+    """
+    Define the Events class with the following columns and relationships:
+
+    Events are a log of all important actions that are performed throughout the system.
+    Ex) Post created, post deleted, post edited.
+
+    id -- Column: Integer, PrimaryKey
+    post_id -- Column: Integer, foreign key to Posts table. Determines which Post the action was performed on.
+    user_id -- Column: Integer, foreign key to Users table. Determines which User performed the action.
+    type -- Column: String(), the type of action that was performed.
+    timestamp -- Column: DateTime, autogenerated on object creation.
+    previous_value -- Column: JSON, contains the previous value of the object before changes were made.
+    new_value -- Column: JSON, contains the new value of the object after changes were made.
+    """
     __tablename__ = 'events'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -230,6 +361,19 @@ class Events(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
     previous_value = db.Column(JSONB)
     new_value = db.Column(JSONB)
+
+    def __init__(self,
+                 type,
+                 post_id=None,
+                 user_id=None,
+                 previous_value=None,
+                 new_value=None):
+        self.post_id = post_id
+        self.user_id = user_id
+        self.type = type
+        self.timestamp = datetime.utcnow()
+        self.previous_value = previous_value
+        self.new_value = new_value
 
     def __repr__(self):
         return '<Events %r>' % self.id

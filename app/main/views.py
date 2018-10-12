@@ -1,46 +1,130 @@
-from flask import render_template, redirect, url_for, flash, session, request as flask_request, jsonify
-from flask_login import login_required
-from app import db
-from app.models import Users
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app
+from flask_login import login_required, current_user
+from app.models import Users, Posts
 from . import main
 from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
-from app.main.utils import create_post
+from app.main.utils import create_meeting_notes
 from datetime import datetime
+import pytz
+from app.constants import choices
 
-
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/', methods=['GET'])
 def index():
     """
     View function to handle the home page
+    Queries for the 20 most recent posts to display in the What's New section
     :return: HTML template for home page
     """
-    return render_template('index.html')
+    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
+    return render_template('index.html', posts=posts)
 
+# Start view functions for posting
+# TODO: Make a Post blueprint
 
-@main.route('/news-updates', methods=['GET', 'POST'])
+@main.route('/news-updates', methods=['GET'])
 def news_and_updates():
     """
-    View function to handle the new and updates landing page
-    :return: HTML template for new and updates landing page
+    View function to handle the news and updates landing page
+    Queries for all Post types that are visible and paginates them
+    :return: HTML template for news and updates landing page
     """
-    return render_template('news_and_updates.html')
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
+    post_types = choices.POST_TYPES
+    tags = choices.TAGS
+
+    return render_template('news_and_updates.html', posts=posts, post_types=post_types, tags=tags)
 
 
-@main.route('/news-updates/new', methods=['GET', 'POST'])
+@main.route('/news-updates/meeting-notes', methods=['GET'])
+def meeting_notes():
+    """
+    View function to handle the meeting notes landing page
+    Queries for posts that are type meeting_notes and visible and paginates them
+    :return: HTML template for meeting notes landing page
+    """
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
+    meeting_types = choices.MEETING_TYPES[1::]
+    tags = choices.TAGS
+
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
+
+
+@main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
 @login_required
-def new_post():
+def new_meeting_notes():
+    """
+    View function to handle creating a new MeetingNotes post
+
+    GET Request:
+    Returns HTML template to render the Meeting Notes form
+
+    POST Request:
+    Expects a properly validated Meeting Notes form to create a MeetingNotes object
+    """
     form = MeetingNotesForm()
+    users = []
+    for user in Users.query.order_by(Users.last_name):
+        users.append(user.name)
+    tags = choices.TAGS
 
-    if flask_request.method == 'POST':
-        post_id = create_post(title=form.title.data,
-                              meeting_date=form.meeting_date.data)
-        print(post_id)
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        post_id = create_meeting_notes(meeting_date=form.meeting_date.data,
+                             meeting_location=form.meeting_location.data,
+                             meeting_leader=form.meeting_leader.data.title(),
+                             meeting_note_taker=form.meeting_note_taker.data.title(),
+                             start_time=form.start_time.data,
+                             end_time=form.end_time.data,
+                             attendees=flask_request.form.getlist('attendees'),
+                             next_meeting_date=form.next_meeting_date.data,
+                             next_meeting_leader=form.next_meeting_leader.data.title(),
+                             next_meeting_note_taker=form.next_meeting_note_taker.data.title(),
+                             meeting_type=form.meeting_type.data,
+                             division=form.division.data,
+                             author=current_user.id,
+                             title=form.title.data,
+                             content=form.content.data,
+                             tags=flask_request.form.getlist('tags'))
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
-        # if form.validate_on_submit():
-        flash('Form submitted.')
-        return redirect(url_for('main.news_and_updates'))
-    return render_template('new_meeting_notes.html', form=form)
 
+@main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])
+def view_post(post_id):
+    """
+    View function to handle viewing a single post
+    Convert the date_created to EST when passed to the front end
+    :param post_id: ID of the Post object being viewed
+    :return: HTML template to view a single post
+    """
+    post = Posts.query.filter_by(id=post_id).first()
+    post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
+    post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
+    author = Users.query.filter_by(id=post.author).first()
+    return render_template('view_post.html', post=post, post_timestamp=post_timestamp, author=author)
+
+
+@main.route('/get_user_list/', methods=['GET'])
+@login_required
+def get_user_list():
+    """
+    AJAX endpoint to retrieve a list of all users for autocomplete choices
+
+    :return: a JSON with all users that can be entered using autocomplete
+    """
+    users_list = []
+    for user in Users.query.all():
+        users_list.append(user.name)
+    return jsonify(users_list), 200
+
+# End view functions for posting
 
 @main.route('/staff-directory', methods=['GET', 'POST'])
 def staff_directory():
@@ -52,7 +136,7 @@ def staff_directory():
     Returns HTML template for the staff directory page
 
     POST Request:
-    Expects dat from the staff directory search form
+    Expects data from the staff directory search form
     On initial page load it will return a list of all users
     Following POST requests will use what is inputted in the search field and what filter is used in order to query
     """

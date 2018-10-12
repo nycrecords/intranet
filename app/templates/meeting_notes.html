@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}News & Updates{% endblock %}
+{% block title %}Meeting Notes{% endblock %}
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
@@ -13,18 +13,16 @@
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Meeting Notes</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">News & Updates</h1>
+        <h1 class="breadcrumb-header">Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <button class="btn btn-primary new-post-popover" data-toggle="popover" title="Select a Post Type"
-                        data-content="<a href='#' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='#' type='button' class='btn btn-primary'>News</a>">
-                    Create New Post
-                </button>
+                <a class="btn btn-primary" href="{{ url_for('main.new_meeting_notes') }}">Create New Meeting Notes</a>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
@@ -40,17 +38,17 @@
             <p class="filter-by">Filter by:</p>
             <div class="panel-group">
                 <div class="panel filter-border">
-                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POST
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;MEETING
                         TYPE
                     </div>
                     <hr class="panel-divider"/>
                     <div class="panel-body filter-choices">
                         <form class="filter-form">
-                            {% for post_type in post_types %}
+                            {% for meeting_type in meeting_types %}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ post_type }}">
+                                    <input class="form-check-input" type="checkbox" value="{{ meeting_type.0 }}">
                                     <label class="filter-option-label">
-                                        {{ post_type }}
+                                        {{ meeting_type.0 }}
                                     </label>
                                 </div>
                             {% endfor %}
@@ -99,7 +97,7 @@
         <div class="post-pagination">
             <ul class="pagination">
                 {% if posts.has_prev %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.prev_num) }}">&laquo;</a></li>
+                    <li><a href="{{ url_for('main.meeting_notes', page=posts.prev_num) }}">&laquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&laquo;</span></li>
                 {% endif %}
@@ -107,7 +105,7 @@
                 {% for page_num in posts.iter_pages() %}
                     {% if page_num %}
                         {% if page_num != posts.page %}
-                            <li><a href="{{ url_for('main.news_and_updates', page=page_num) }}">{{ page_num }}</a></li>
+                            <li><a href="{{ url_for('main.meeting_notes', page=page_num) }}">{{ page_num }}</a></li>
                         {% else %}
                             <li class="active"><span>{{ page_num }}</span></li>
                         {% endif %}
@@ -117,7 +115,7 @@
                 {% endfor %}
 
                 {% if posts.has_next %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.next_num) }}">&raquo;</a></li>
+                    <li><a href="{{ url_for('main.meeting_notes', page=posts.next_num) }}">&raquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&raquo;</span></li>
                 {% endif %}
@@ -125,8 +123,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block custom_scripts %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/news_updates.js') }}"></script>
 {% endblock %}

@@ -195,7 +195,7 @@ hr {
 }
 
 .entry {
-    height: 120px;
+    height: 162px;
     margin-top: 10px;
     padding: 10px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
@@ -236,14 +236,16 @@ hr {
     font-size: 16px;
     color: #4A4A4A;
     padding-bottom: 5px;
+    overflow: hidden;
 }
 
 .entrytext {
     font-family: "Helvetica";
     color: #787878;
     overflow: hidden;
-    height: 45px;
+    height: 90px;
     font-size: 16px;
+    word-wrap: break-word;
 }
 
 .scrolllink {

@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import Posts
+from app.models import MeetingNotes, Events
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -28,9 +28,50 @@ def create_object(obj):
         return None
 
 
-def create_post(title,
-                meeting_date):
-    post = Posts(title=title,
-                 date_created=meeting_date)
-    create_object(post)
-    return post.id
+def create_meeting_notes(meeting_date,
+                         meeting_location,
+                         meeting_leader,
+                         meeting_note_taker,
+                         start_time,
+                         end_time,
+                         attendees,
+                         next_meeting_date,
+                         next_meeting_leader,
+                         next_meeting_note_taker,
+                         meeting_type,
+                         division,
+                         author,
+                         title,
+                         content,
+                         tags):
+    """
+    Util function for creating a Meeting Notes object. Function will take parameters passed in from the form
+    and create a meeting notes along with the event object.
+    """
+    meeting_notes = MeetingNotes(meeting_date=meeting_date,
+                                 meeting_location=meeting_location,
+                                 meeting_leader=meeting_leader,
+                                 meeting_note_taker=meeting_note_taker,
+                                 start_time=start_time,
+                                 end_time=end_time,
+                                 attendees=attendees,
+                                 next_meeting_date=next_meeting_date or None,
+                                 next_meeting_leader=next_meeting_leader or None,
+                                 next_meeting_note_taker=next_meeting_note_taker or None,
+                                 meeting_type=meeting_type,
+                                 division=division,
+                                 author=author,
+                                 title=title,
+                                 content=content,
+                                 tags=tags)
+    create_object(meeting_notes)
+
+    # Create meeting_notes_created Event
+    event = Events(post_id=meeting_notes.id,
+                   user_id=author,
+                   type="meeting_notes_created",
+                   previous_value={},
+                   new_value=meeting_notes.val_for_events)
+    create_object(event)
+
+    return meeting_notes.id
