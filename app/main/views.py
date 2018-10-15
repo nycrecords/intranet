@@ -93,7 +93,8 @@ def events():
 
 @main.route('/calender', methods=['GET', 'POST'])
 def calender():
-     return render_template('calender.html')
+    posts = Posts.query.filter_by(post_type='event_posts', deleted=False).order_by(Posts.date_created.desc()).all()
+    return render_template('calendar.html', posts=posts)
 
 
 @main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
