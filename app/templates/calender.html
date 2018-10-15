@@ -24,96 +24,54 @@
         <h1 class="breadcrumb-header">Calender</h1>
     </div>
 
-    <div class="col-sm-7">
-        <br>
-        <div class="search-container">
+     <div class="col-sm-7 events-table-column">
+        <div>
             <div class="tab">
-                <button class="tablinks firstbutton" onclick="openTab(event, 'Instructions')" id="defaultOpen">
+                <button class="active">
                     Upcoming Events
                 </button>
-                <button class="tablinks secondbutton" onclick="openTab(event, 'Policies & Procedures')">
-                    Past Events
-                </button>
             </div>
         </div>
-        <div id="Instructions" class="tabcontent">
-            <div>
-                <div class="entry">
-                    <div class="date col-sm-1">
-                        <p class="datearrow">
-                            &#9654
-                        </p>
-                    </div>
-                    <div class="date col-sm-2">
-                        <p class="datetext">
-                            Nov <br>
+        <div class="tabcontent container-fluid">
+            <div class="panel-group">
+                <div class="panel panel-default event-panel">
+                    <div class="panel-heading event-panel-heading container-fluid">
+                        <div class="col-sm-1 event-expand-column">
+                            <a data-toggle="collapse" href="#collapse1" class="glyphicon glyphicon-play expand-event-panel"></a>
+                        </div>
+                        <div class="col-sm-2 event-date-column">
+                            NOV
+                            <br>
                             01
-                        </p>
+                        </div>
+                        <div class="col-sm-9 event-info-column">
+                            <p class="event-title">Municipal Library Book Club</p>
+                            <p class="event-location">NYC Department of Records</p>
+                            <p class="event-date">Monday, 6pm</p>
+                        </div>
                     </div>
-                    <div class="event col-sm-9">
-                        <h4>Municipal Library Book Club</h4>
-                        <p>NYC Department of Records<br>
-                            Monday, 6pm</p>
-                    </div>
-                </div>
-                <div class="entry">
-                    <div class="date col-sm-1">
-                        <p class="datearrow">
-                            &#9654
-                        </p>
-                    </div>
-                    <div class="date col-sm-2">
-                        <p class="datetext">
-                            Nov <br>
-                            06
-                        </p>
-                    </div>
-                    <div class="event col-sm-9">
-                        <h4>100 Years! Stay Tuned</h4>
-                        <p>NYC Department of Records<br>
-                            Thursday, 5pm</p>
-                    </div>
-                </div>
-                <div class="entry">
-                    <div class="date col-sm-1">
-                        <p class="datearrow">
-                            &#9654
-                        </p>
-                    </div>
-                    <div class="date col-sm-2">
-                        <p class="datetext">
-                            Nov <br>
-                            08
-                        </p>
-                    </div>
-                    <div class="event col-sm-9">
-                        <h4>Civil Service Exam</h4>
-                        <p>NYC Department of Records<br>
-                            Wednesday, 6:30pm</p>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body event-description">
+                            <p>The department of records will be hosting a book club in the library for 1 hour</p>
+                            <p><a href="#">Click here</a> for full event details</p>
+                        </div>
                     </div>
                 </div>
             </div>
+            <hr class="event-divider">
         </div>
-        <div id="Policies & Procedures" class="tabcontent">
-            <br>
-        </div>
-        <br>
     </div>
 
-
-
-
-
-
-
-    <div class="col-sm-5">
+    <div class="col-sm-5 calender-column">
         <br>
         <div class="btn-group">
-            <button type="button" class="btn btn-secondary" style="font-size: 16pt"><span class="glyphicon glyphicon-menu-hamburger"
-                                                                  aria-hidden="true"></span>
+            <button type="button" class="btn btn-secondary" style="font-size: 16pt"><span
+                    class="glyphicon glyphicon-menu-hamburger"
+                    aria-hidden="true"></span>
             </button>
-            <button type="button" class="btn btn-secondary" style="font-size: 16pt;"><span class="glyphicon glyphicon-calendar"
-                                                                  aria-hidden="true"></span>
+            <button type="button" class="btn btn-secondary" style="font-size: 16pt;"><span
+                    class="glyphicon glyphicon-calendar"
+                    aria-hidden="true"></span>
             </button>
         </div>
         <br>
@@ -129,7 +87,7 @@
                 </li>
             </ul>
         </div>
-         <ul class="weekdays">
+        <ul class="weekdays">
             <li>Mo</li>
             <li>Tu</li>
             <li>We</li>
@@ -138,7 +96,7 @@
             <li>Sa</li>
             <li>Su</li>
         </ul>
-         <ul class="days">
+        <ul class="days">
             <li><span class="event">1</span></li>
             <li>2</li>
             <li>3</li>
@@ -177,23 +135,4 @@
         </div>
     </div>
 </div>
-
-
-
- <script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-     document.getElementById("defaultOpen").click();
-</script>
 {% endblock %}

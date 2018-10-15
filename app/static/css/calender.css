@@ -1,7 +1,82 @@
+.events-table-column {
+    padding-left: 0;
+    padding-bottom: 50px;
+}
+
+.panel > .panel-heading.event-panel-heading {
+    background-color: white;
+}
+
+.expand-event-panel {
+    font-size: 20px;
+    color: dimgrey;
+    padding-top: 50px;
+}
+
+.event-date-column {
+    padding-top: 40px;
+    text-align: center;
+    color: #4C8392;
+    font-family: "Helvetica";
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.event-info-column {
+    padding-top: 15px;
+}
+
+.event-title {
+    word-break: break-word;
+    color: #656565;
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.event-location {
+    word-break: break-word;
+    color: #656565;
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.event-date {
+    word-break: break-word;
+    color: #656565;
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.event-description {
+    word-break: break-word;
+    color: #656565;
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.event-panel {
+    border-color: transparent;
+}
+
+.panel-group {
+    margin-bottom: 0;
+}
+
+.event-divider {
+    margin: 0;
+    padding: 0;
+    border: 1px solid darkgray;
+}
+
 .tab {
     overflow: hidden;
  }
- .tab button {
+
+.tab button {
     background-color: #f1f1f1;
     float: left;
     border: none;
@@ -12,6 +87,7 @@
     border: 2px solid darkgray;
     width: 200px;
     height: 50px;
+    font-size: 16px;
 }
  .tab button:hover {
     background-color: #ddd;
@@ -28,7 +104,6 @@
     border: 2px solid darkgray;
     margin-top: -2px;
     background-color: white;
-    height: 65rem;
 }
  .table-striped {
     vertical-align: middle;
