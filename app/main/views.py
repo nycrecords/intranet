@@ -91,6 +91,11 @@ def events():
     return render_template('events.html', posts=posts, tags=tags)
 
 
+@main.route('/calender', methods=['GET', 'POST'])
+def calender():
+     return render_template('calender.html')
+
+
 @main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
