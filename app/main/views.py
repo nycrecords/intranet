@@ -1,22 +1,26 @@
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app
 from flask_login import login_required, current_user
-from app.models import Users, Posts
+from app.models import Users, Posts, EventPosts
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm
 from app.main.utils import create_meeting_notes, create_news, create_event_post
 from datetime import datetime
 import pytz
 from app.constants import choices
+from sqlalchemy import extract
 
 @main.route('/', methods=['GET'])
 def index():
     """
     View function to handle the home page
     Queries for the 20 most recent posts to display in the What's New section
+    Queries for the next 4 events from today forward to display in the Calendar section
     :return: HTML template for home page
     """
     posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
-    return render_template('index.html', posts=posts)
+    events = EventPosts.query.filter(Posts.deleted == False, EventPosts.event_date >= datetime.utcnow()).order_by(EventPosts.event_date.asc()).limit(4).all()
+
+    return render_template('index.html', posts=posts, events=events)
 
 # Start view functions for posting
 # TODO: Make a Post blueprint
@@ -77,24 +81,64 @@ def news():
 @main.route('/news-updates/events', methods=['GET'])
 def events():
     """
-    View function to handle the events landing page
-    Queries for posts that are type events and visible and paginates them
-    :return: HTML template for events landing page
+    View function to handle the events calendar page
+    :return: HTML template for events calendar page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(post_type='event_posts', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
-
-    # Get filter choices
-    tags = choices.TAGS
-
-    return render_template('events.html', posts=posts, tags=tags)
+    return render_template('calendar.html')
 
 
-@main.route('/calender', methods=['GET', 'POST'])
-def calender():
-    posts = Posts.query.filter_by(post_type='event_posts', deleted=False).order_by(Posts.date_created.desc()).all()
-    return render_template('calendar.html', posts=posts)
+# Alternate view function for a list view of events. Currently not being used but may need to be implemented later on.
+# @main.route('/news-updates/events', methods=['GET'])
+# def events():
+#     """
+#     View function to handle the events landing page
+#     Queries for posts that are type events and visible and paginates them
+#     :return: HTML template for events landing page
+#     """
+#     # Set up pagination
+#     page = flask_request.args.get('page', 1, type=int)
+#     posts = Posts.query.filter_by(post_type='event_posts', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+#
+#     # Get filter choices
+#     tags = choices.TAGS
+#
+#     return render_template('events.html', posts=posts, tags=tags)
+
+
+@main.route('/get_events/', methods=['GET'])
+@login_required
+def get_events():
+    """
+    AJAX endpoint to retrieve all EventPosts for a given month and year
+
+    :return: a JSON containing the dates from the query and HTML templates to the event rows section
+    """
+    # Create JSON to be returned by AJAX
+    data = {
+        'dates': [],
+        'template': ''
+    }
+
+    # Query for all EventPosts in that month and year
+    month = flask_request.args.get('month')
+    year = flask_request.args.get('year')
+    posts = EventPosts.query.filter(extract('month', EventPosts.event_date) == month,
+                                    extract('year', EventPosts.event_date) == year,
+                                    Posts.deleted == False).all()
+
+    # Format dates to be MM/DD/YYYY
+    dates = []
+    for post in posts:
+        dates.append(post.event_date.strftime("%m/%d/%Y "))
+    data['dates'] = dates
+
+    # Render event row templates for frontend
+    if len(dates) > 0:
+        data['template'] = render_template('event_rows.html', posts=posts)
+    else:
+        data['template'] = render_template('no_event_rows_message.html')
+
+    return jsonify(data), 200
 
 
 @main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])

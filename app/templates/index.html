@@ -140,30 +140,18 @@
 
         <div class="col-sm-12 quick-links">
             <div class="quick-links-header">
-                <p class="quick-links-title"> <i class="glyphicon glyphicon-calendar"></i> CALENDAR</p>
+                <a href="{{ url_for('main.events') }}"><p class="quick-links-title"> <i class="glyphicon glyphicon-calendar"></i> CALENDAR</p></a>
             </div>
             <div class="well quick-links-well">
+                {% for event in events %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">{{ event.event_date.strftime('%b') }} {{ event.event_date.strftime('%d') }}</div>
+                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = event.id) }}">{{ event.title }}</a></div>
+                    </div>
+                    <hr>
+                {% endfor %}
                 <div class="row">
-                    <div class="col-sm-2 date-styles">Nov 01</div>
-                    <div class="col-sm-10 event-styles"><a href="#">Municipal Library Book Group</a></div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-2 date-styles">Nov 06</div>
-                    <div class="col-sm-10 event-styles"><a href="#">100 Years! Stay Tuned</a></div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-2 date-styles">Nov 10</div>
-                    <div class="col-sm-10 event-styles"><a href="#">Senior Staff Meeting</a></div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-2 date-styles">Nov 23</div>
-                    <div class="col-sm-10 event-styles"><a href="#">Thanksgiving Parade</a></div>
-                </div>
-                <div class="row">
-                    <a class="calendar-view-style" href="{{ url_for('main.calender') }}">View More</a>
+                    <a class="calendar-view-style" href="{{ url_for('main.events') }}">View More</a>
                 </div>
             </div>
         </div>

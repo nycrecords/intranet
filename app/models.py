@@ -381,7 +381,7 @@ class EventPosts(Posts):
         }
 
     def __repr__(self):
-        return '<Events %r>' % self.id
+        return '<EventPosts %r>' % self.id
 
 
 class News(Posts):
