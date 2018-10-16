@@ -73,6 +73,7 @@
 }
 
 .calendar-column {
+    padding-top: 55px;
     padding-bottom: 50px;
 }
 
@@ -115,6 +116,7 @@
     border: 2px solid darkgray;
     margin-top: -2px;
     background-color: white;
+    height: 75%;
 }
 
 div.ui-datepicker {
