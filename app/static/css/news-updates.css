@@ -85,6 +85,12 @@ form.filter-form {
     padding-bottom: 3px;
 }
 
+.tag-choices {
+    height: 515px;
+    overflow: hidden;
+    overflow-y:auto;
+}
+
 .filter-option-label {
     color: #4A90E2;
     margin-left: 20px;
