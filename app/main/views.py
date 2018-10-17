@@ -215,15 +215,6 @@ def divisions():
     return render_template('divisions.html')
 
 
-@main.route('/divisions', methods=['GET'])
-def divisions():
-    """
-    View function to handle the divisions page
-    :return: HTML template for the divisions page
-    """
-    return render_template('divisions.html')
-
-
 @main.route('/divisions/administration', methods=['GET'])
 def divisions_administration():
     """

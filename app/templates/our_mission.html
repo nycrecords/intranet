@@ -42,46 +42,56 @@
                         online and in person.
                         <br>
                         <br>
-                        Currently, the agency has eight divisions:</p>
+                        Currently, the agency has ten divisions:</p>
                     <ul class="division-list">
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_administration') }}">
                             <li>
                                 Administration
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_executive') }}">
                             <li>
                                 Executive
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_external_affairs') }}">
                             <li>
                                 External Affairs
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_grants_unit') }}">
                             <li>
                                 Grant Unit
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_information_technology') }}">
                             <li>
-                                Management and Information Services
+                                Information Technology
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_legal') }}">
+                            <li>
+                                Legal
+                            </li>
+                        </a>
+                        <a href="{{ url_for('main.divisions_municipal_archives') }}">
                             <li>
                                 Municipal Archives
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_municipal_library') }}">
                             <li>
                                 Municipal Library
                             </li>
                         </a>
-                        <a href="">
+                        <a href="{{ url_for('main.divisions_municipal_records_management') }}">
                             <li>
-                                Municipal Archives
+                                Municipal Records Management
+                            </li>
+                        </a>
+                        <a href="{{ url_for('main.divisions_operations') }}">
+                            <li>
+                                Operations
                             </li>
                         </a>
                     </ul>
