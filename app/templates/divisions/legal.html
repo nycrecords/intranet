@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}Legal{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Legal</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Legal</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p class="division-description-text-full">The Legal unit/Agency Attorney reviews legal matters, conducts
+            interviews, prepares cases and represents the agency at administrative hearings and in court as needed. The
+            Agency Attorney advises the Commissioner and assists the Director of Administration and EEO Officer as
+            required; and serves as the agency MWBE Officer. The Agency Attorney negotiates drafts and reviews
+            contracts, RFPs and other legal agreements and ensures compliance with City guidelines. The Legal
+            unit/Agency Attorney analyzes federal, state and local statutes and regulations and assists in the
+            development of legislation, regulations and policy materials. At all times the Agency Attorney performs
+            duties with a focus on protecting the agency from legal exposure.</p>
+    </div>
+</div>
+{% endblock %}

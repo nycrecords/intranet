@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}Municipal Library{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Municipal Library</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Municipal Library</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p class="division-description-text-full">The Municipal Library is mandated by the New York City Charter as the
+            official repository for New York City agency publications. With access through our print collection and
+            electronic government documents portal, the Library provides a unique set of resources on the history of New
+            York City. Library staff assist researchers with reference requests, catalog print and electronic materials
+            and reach out to city agencies to ensure that they comply with the Charter mandate. Increasingly the Library
+            will be digitizing the collection to expand our user base. Also, of interest to DORIS employees, we maintain
+            a collection of civil service examinations and study guides for various job titles. Although the exams are
+            only current through the 1980’s, they may be of use and study guides might also be available.</p>
+    </div>
+</div>
+{% endblock %}

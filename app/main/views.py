@@ -269,7 +269,7 @@ def divisions_legal():
     return render_template('divisions/legal.html')
 
 
-@main.route('/divisions/municipal_archives', methods=['GET'])
+@main.route('/divisions/municipal-archives', methods=['GET'])
 def divisions_municipal_archives():
     """
     View function to handle the municipal archives division page
@@ -278,7 +278,7 @@ def divisions_municipal_archives():
     return render_template('divisions/municipal_archives.html')
 
 
-@main.route('/divisions/municipal_library', methods=['GET'])
+@main.route('/divisions/municipal-library', methods=['GET'])
 def divisions_municipal_library():
     """
     View function to handle the municipal library division page
@@ -287,7 +287,7 @@ def divisions_municipal_library():
     return render_template('divisions/municipal_library.html')
 
 
-@main.route('/divisions/municipal_records_management', methods=['GET'])
+@main.route('/divisions/municipal-records-management', methods=['GET'])
 def divisions_municipal_records_management():
     """
     View function to handle the municipal records management division page

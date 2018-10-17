@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}Executive{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Executive</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Executive</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p class="division-description-text-full">The Executive Office consists of the Communications, External Affairs,
+            Finance/Procurement, Human Resources, Information Technology, Legal and Operations Management units and the
+            Commissioner’s Office. Collectively, the staff ensures that all of the agency’s operations run smoothly and
+            that we advance DORIS’s mission of preserving and providing access to the historical and contemporary
+            records of New York City government, ensuring that City records are properly maintained following
+            professional archival and record management practices and to making materials available to diverse
+            communities both online and in person. Major functions include planning for the agency’s future growth and
+            needs, overseeing compliance with City policies and directives, directing efforts to increase awareness of
+            the agency, writing grants, ensuring smooth daily operations and conditions, developing and implementing
+            policy and administering resources for the Municipal Archives, Library and Records Management
+            divisions.</p>
+
+    </div>
+</div>
+{% endblock %}

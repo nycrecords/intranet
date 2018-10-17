@@ -2,6 +2,13 @@
     padding-top: 50px;
 }
 
+.individual-division-page {
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
 .division-card {
     height: 200px;
     border: 1px solid #D8D8D8;
@@ -28,4 +35,11 @@
     padding: 25px 25px 25px 25px;
     color: #4A4A4A;
     text-align: center;
+}
+
+.division-description-text-full {
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: normal;
+    color: #4A4A4A;
 }

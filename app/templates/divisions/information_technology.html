@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}Information Technology{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Information Technology</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Information Technology</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p class="division-description-text-full">Technology is an important pillar of the future evolution of DORIS and
+            plays a pivotal role in modernizing the agency. Under this modernization umbrella, the IT division at DORIS
+            is responsible for innovation, automation, achieving operational efficiencies, standardization, using
+            industry best practices and maximizing the use of technology across the agency. The division is divided into
+            three core functions – Infrastructure and Desktop Support, Applications Development and Project Management.
+            Additionally, its peripheral functions are to liaise with DoITT and other City agencies along with Customer
+            Service and Support.</p>
+
+    </div>
+</div>
+{% endblock %}

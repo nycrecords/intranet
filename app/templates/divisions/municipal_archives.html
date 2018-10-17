@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
-</body>
-</html>
+{% block title %}Municipal Archives{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Municipal Archives</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Municipal Archives</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p class="division-description-text-full">The Municipal Archives (MA) preserves and makes available the
+            historical records of New York City government. The MA holds over 200,000 cubic feet and over 50TB of
+            records dating from the early seventeenth century to the present. Acquired from more than one hundred City
+            agencies, the collections comprise office records, manuscript material, still and moving images, ledger
+            volumes, vital records, maps, blueprints, objects, sound recordings, and digital files.
+            <br><br>
+            The MA is an active information center. Our collections are dynamic, and we are in the midst of implementing
+            unparalleled digital access to the municipal collections.
+            <br><br>
+            The collections are used by City agencies and the public (even international audiences). The collections
+            support agency anniversary planning, strategic planning, employee training, and marketing; and the
+            international public with genealogical, political, economic, and social histories of New York.
+            <br><br>
+            As the City’s central archival repository, the MA operates two climate-controlled records storage
+            facilities.
+            <br><br>
+            The Appraisals and Accessions Unit works with RM to transfer records with historical value to the Archives.
+            Once they arrive, either in boxes or on drives, the team verifies the contents, identifies the organization,
+            and conducts a series of tasks to formally transfer the custody of the records to the Archives.
+            <br><br>
+            A Collections Management Unit manages the physical and intellectual control of records. That includes
+            creating guides for the public to use when they are researching our collections, ensuring we have accurate
+            data on the size, formats, and conditions of our collections, and works to further access to our collections
+            through archival tools.
+            <br><br>
+            Conservators at the MA physically repair and/or restore collections at an item level. The MA conservation
+            lab enables professionals to perform assessments and apply various techniques to stabilize objects, apply
+            corrective treatments, and manage long term physical and environmental conditions ensuring preventive
+            conservation efforts in terms of house-keeping, controlling and documenting temperature and humidity,
+            integrated pest management, and creating archival enclosures to reduce damage and deterioration of records.
+            <br><br>
+            Digital Programs Unit manages strategic digital environments for the Municipal Library and Archives
+            divisions. In addition, the digital lab provides state-of-the-art digitization services while ensuring
+            industry standard best practices in description, preservation, and access of historical records.
+        </p>
+    </div>
+</div>
+{% endblock %}
