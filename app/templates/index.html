@@ -138,28 +138,34 @@
             <div class="well quick-links-well">
                 <ul class="quick-links-anchors">
                     <li>
-                        <a href=#>Administration</a>
+                        <a href="{{ url_for('main.divisions_administration') }}">Administration & Human Resources</a>
                     </li>
                     <li>
-                        <a href=#>Executive</a>
+                        <a href="{{ url_for('main.divisions_executive') }}">Executive</a>
                     </li>
                     <li>
-                        <a href=#>External Affairs</a>
+                        <a href="{{ url_for('main.divisions_external_affairs') }}">External Affairs</a>
                     </li>
                     <li>
-                        <a href=#>Grant Unit</a>
+                        <a href="{{ url_for('main.divisions_grants_unit') }}">Grants Unit</a>
                     </li>
                     <li>
-                        <a href=#>Management & Information Services</a>
+                        <a href="{{ url_for('main.divisions_information_technology') }}">Information Technology</a>
                     </li>
                     <li>
-                        <a href=#>Municipal Archives</a>
+                        <a href="{{ url_for('main.divisions_legal') }}">Legal</a>
                     </li>
                     <li>
-                        <a href=#>Municipal Library</a>
+                        <a href="{{ url_for('main.divisions_municipal_archives') }}">Municipal Archives</a>
                     </li>
                     <li>
-                        <a href=#>Municipal Records</a>
+                        <a href="{{ url_for('main.divisions_municipal_library') }}">Municipal Library</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.divisions_municipal_records_management') }}">Municipal Records Management</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.divisions_operations') }}">Operations</a>
                     </li>
                 </ul>
             </div>

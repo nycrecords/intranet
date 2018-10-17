@@ -188,7 +188,7 @@ def get_filter_options_list(filter_value):
     return jsonify(choices_list), 200
 
 
-@main.route('/our-mission', methods=['GET', 'POST'])
+@main.route('/our-mission', methods=['GET'])
 def our_mission():
     """
     View function to handle the Our Mission page
@@ -197,7 +197,7 @@ def our_mission():
     return render_template('our_mission.html')
 
 
-@main.route('/contact', methods=['GET', 'POST'])
+@main.route('/contact', methods=['GET'])
 def contact():
     """
     View function to handle the contact page
@@ -206,7 +206,7 @@ def contact():
     return render_template('contact.html')
 
 
-@main.route('/divisions', methods=['GET', 'POST'])
+@main.route('/divisions', methods=['GET'])
 def divisions():
     """
     View function to handle the divisions page
@@ -215,7 +215,106 @@ def divisions():
     return render_template('divisions.html')
 
 
-@main.route('/it-support', methods=['GET', 'POST'])
+@main.route('/divisions', methods=['GET'])
+def divisions():
+    """
+    View function to handle the divisions page
+    :return: HTML template for the divisions page
+    """
+    return render_template('divisions.html')
+
+
+@main.route('/divisions/administration', methods=['GET'])
+def divisions_administration():
+    """
+    View function to handle the administration division page
+    :return: HTML template for the administration division page
+    """
+    return render_template('divisions/administration.html')
+
+
+@main.route('/divisions/executive', methods=['GET'])
+def divisions_executive():
+    """
+    View function to handle the executive division page
+    :return: HTML template for the executive division page
+    """
+    return render_template('divisions/executive.html')
+
+
+@main.route('/divisions/external_affairs', methods=['GET'])
+def divisions_external_affairs():
+    """
+    View function to handle the external affairs division page
+    :return: HTML template for the external affairs division page
+    """
+    return render_template('divisions/external_affairs.html')
+
+
+@main.route('/divisions/grants-unit', methods=['GET'])
+def divisions_grants_unit():
+    """
+    View function to handle the grants unit division page
+    :return: HTML template for the grants unit division page
+    """
+    return render_template('divisions/grants_unit.html')
+
+
+@main.route('/divisions/information-technology', methods=['GET'])
+def divisions_information_technology():
+    """
+    View function to handle the IT division page
+    :return: HTML template for the IT division page
+    """
+    return render_template('divisions/information_technology.html')
+
+
+@main.route('/divisions/legal', methods=['GET'])
+def divisions_legal():
+    """
+    View function to handle the legal division page
+    :return: HTML template for the legal division page
+    """
+    return render_template('divisions/legal.html')
+
+
+@main.route('/divisions/municipal_archives', methods=['GET'])
+def divisions_municipal_archives():
+    """
+    View function to handle the municipal archives division page
+    :return: HTML template for the municipal archives division page
+    """
+    return render_template('divisions/municipal_archives.html')
+
+
+@main.route('/divisions/municipal_library', methods=['GET'])
+def divisions_municipal_library():
+    """
+    View function to handle the municipal library division page
+    :return: HTML template for the municipal library division page
+    """
+    return render_template('divisions/municipal_library.html')
+
+
+@main.route('/divisions/municipal_records_management', methods=['GET'])
+def divisions_municipal_records_management():
+    """
+    View function to handle the municipal records management division page
+    :return: HTML template for the municipal records management division page
+    """
+    return render_template('divisions/municipal_records_management.html')
+
+
+@main.route('/divisions/operations', methods=['GET'])
+def divisions_operations():
+    """
+    View function to handle the operations division page
+    :return: HTML template for the operations division page
+    """
+    return render_template('divisions/operations.html')
+
+
+@main.route('/it-support', methods=['GET'])
 def it_support():
     """
     View function to handle the IT support page
@@ -224,7 +323,7 @@ def it_support():
     return render_template('it_support.html')
 
 
-@main.route('/it-support/faq', methods=['GET', 'POST'])
+@main.route('/it-support/faq', methods=['GET'])
 def faq():
     """
     View function to handle the FAQ page
@@ -233,7 +332,7 @@ def faq():
     return render_template('faq.html')
 
 
-@main.route('/employee-resources', methods=['GET', 'POST'])
+@main.route('/employee-resources', methods=['GET'])
 def employee_resources():
     """
     View function to handle the employee resources page
@@ -242,7 +341,7 @@ def employee_resources():
     return render_template('employee_resources.html')
 
 
-@main.route('/tools-and-applications', methods=['GET', 'POST'])
+@main.route('/tools-and-applications', methods=['GET'])
 def tools_and_applications():
     """
     View function to handle the tools and applications page
