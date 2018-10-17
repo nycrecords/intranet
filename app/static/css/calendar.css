@@ -132,3 +132,12 @@ div.ui-datepicker {
 .ui-datepicker-calendar {
     pointer-events: none;
 }
+
+/* Adjust color for current day on datepicker */
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	border: 1px solid white;
+	background: #5cb85c;
+	color: white;
+}

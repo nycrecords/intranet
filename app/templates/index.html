@@ -143,13 +143,58 @@
                 <a href="{{ url_for('main.events') }}"><p class="quick-links-title"> <i class="glyphicon glyphicon-calendar"></i> CALENDAR</p></a>
             </div>
             <div class="well quick-links-well">
-                {% for event in events %}
+                {% if events[0] %}
                     <div class="row">
-                        <div class="col-sm-2 date-styles">{{ event.event_date.strftime('%b') }} {{ event.event_date.strftime('%d') }}</div>
-                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = event.id) }}">{{ event.title }}</a></div>
+                        <div class="col-sm-2 date-styles">{{ events[0].event_date.strftime('%b') }} {{ events[0].event_date.strftime('%d') }}</div>
+                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = events[0].id) }}">{{ events[0].title }}</a></div>
                     </div>
                     <hr>
-                {% endfor %}
+                {% else %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">&nbsp;</div>
+                        <div class="col-sm-10 event-styles"><a>&nbsp;</a></div>
+                    </div>
+                    <hr>
+                {% endif %}
+                {% if events[1] %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">{{ events[1].event_date.strftime('%b') }} {{ events[1].event_date.strftime('%d') }}</div>
+                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = events[1].id) }}">{{ events[1].title }}</a></div>
+                    </div>
+                    <hr>
+                {% else %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">&nbsp;</div>
+                        <div class="col-sm-10 event-styles"><a>&nbsp;</a></div>
+                    </div>
+                    <hr>
+                {% endif %}
+                {% if events[2] %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">{{ events[2].event_date.strftime('%b') }} {{ events[2].event_date.strftime('%d') }}</div>
+                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = events[2].id) }}">{{ events[2].title }}</a></div>
+                    </div>
+                    <hr>
+                {% else %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">&nbsp;</div>
+                        <div class="col-sm-10 event-styles"><a>&nbsp;</a></div>
+                    </div>
+                    <hr>
+                {% endif %}
+                {% if events[3] %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">{{ events[3].event_date.strftime('%b') }} {{ events[3].event_date.strftime('%d') }}</div>
+                        <div class="col-sm-10 event-styles"><a href="{{ url_for('main.view_post', post_id = events[3].id) }}">{{ events[3].title }}</a></div>
+                    </div>
+                    <hr>
+                {% else %}
+                    <div class="row">
+                        <div class="col-sm-2 date-styles">&nbsp;</div>
+                        <div class="col-sm-10 event-styles"><a>&nbsp;</a></div>
+                    </div>
+                    <hr>
+                {% endif %}
                 <div class="row">
                     <a class="calendar-view-style" href="{{ url_for('main.events') }}">View More</a>
                 </div>

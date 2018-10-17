@@ -106,7 +106,6 @@ def events():
 
 
 @main.route('/get_events/', methods=['GET'])
-@login_required
 def get_events():
     """
     AJAX endpoint to retrieve all EventPosts for a given month and year
