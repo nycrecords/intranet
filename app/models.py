@@ -245,7 +245,7 @@ class MeetingNotes(Posts):
     next_meeting_note_taker = db.Column(db.String)
     meeting_type = db.Column(db.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project',
                                      'Agency', name='meeting_type'))
-    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grant Unit',
                                  'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
                                  'Municipal Records Management', 'Operations',  name='divisions'))
 

@@ -242,13 +242,13 @@ def divisions_external_affairs():
     return render_template('divisions/external_affairs.html')
 
 
-@main.route('/divisions/grants-unit', methods=['GET'])
-def divisions_grants_unit():
+@main.route('/divisions/grant-unit', methods=['GET'])
+def divisions_grant_unit():
     """
-    View function to handle the grants unit division page
-    :return: HTML template for the grants unit division page
+    View function to handle the grant unit division page
+    :return: HTML template for the grant unit division page
     """
-    return render_template('divisions/grants_unit.html')
+    return render_template('divisions/grant_unit.html')
 
 
 @main.route('/divisions/information-technology', methods=['GET'])
