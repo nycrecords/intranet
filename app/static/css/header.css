@@ -164,10 +164,14 @@
     padding-bottom: 30px;
 }
 
-#navbar-bottom-boder-style:hover {
+.navbar-bottom-boder-style:hover {
     border-bottom: 1rem solid #F9B52B;
 }
 
-#navbar-bottom-boder-style {
+#navbar-bottom-strategic-planning {
+    padding-bottom: 30px;
+}
+
+#navbar-bottom-it-support {
     padding-bottom: 30px;
 }
