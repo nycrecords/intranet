@@ -89,4 +89,10 @@ hr {
     text-align: center;
 }
 
+.employee-benefits-section {
+    padding-top: 40px;
+}
 
+.employee-benefits-text {
+    font-size: 18px;
+}
