@@ -7,6 +7,10 @@
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 40px;
+    font-family: "Helvetica";
+    font-size: 18px;
+    font-weight: normal;
+    color: #4A4A4A;
 }
 
 .division-card {

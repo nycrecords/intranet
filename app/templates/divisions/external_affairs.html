@@ -24,7 +24,7 @@
         <h1 class="breadcrumb-header">External Affairs</h1>
     </div>
     <div class="col-sm-12 well content-area individual-division-page">
-        <p class="division-description-text-full">The Community and External Affairs Unit coordinates the public-facing
+        <p>The Community and External Affairs Unit coordinates the public-facing
             elements of the agency, including its websites, social media, public programs, education, community outreach
             and marketing. The Unit advances the Department of Records and Information Services’ agenda by developing
             external relationships, managing strategic implementation of projects and building community support. It is
@@ -33,12 +33,14 @@
             communities, and government offices and officials at all levels, the unit endeavors to reach ever-expanding
             audiences.
             <br><br>
-            Staff:<br><br>
+            Staff:
+        <ul>
             {% for user in users %}
-                {{ user.name }}, {{ user.title}}<br>
+            <li>{{ user.name }}, {{ user.title}}</li>
             {% endfor %}
-            <br>
-            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </ul>
+        <br>
+        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>

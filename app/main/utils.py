@@ -95,4 +95,5 @@ def get_rooms_by_division(division):
     """
 
     rooms = [u[0] for u in Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
+    rooms = filter(None, rooms)
     return list(set(rooms))

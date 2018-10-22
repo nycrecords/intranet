@@ -24,7 +24,7 @@
         <h1 class="breadcrumb-header">Municipal Archives</h1>
     </div>
     <div class="col-sm-12 well content-area individual-division-page">
-        <p class="division-description-text-full">The Municipal Archives (MA) preserves and makes available the
+        <p>The Municipal Archives (MA) preserves and makes available the
             historical records of New York City government. The MA holds over 200,000 cubic feet and over 50TB of
             records dating from the early seventeenth century to the present. Acquired from more than one hundred City
             agencies, the collections comprise office records, manuscript material, still and moving images, ledger
@@ -59,12 +59,14 @@
             divisions. In addition, the digital lab provides state-of-the-art digitization services while ensuring
             industry standard best practices in description, preservation, and access of historical records.
             <br><br>
-            Staff:<br><br>
+            Staff:
+        <ul>
             {% for user in users %}
-                {{ user.name }}, {{ user.title}}<br>
+            <li>{{ user.name }}, {{ user.title}}</li>
             {% endfor %}
-            <br>
-            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </ul>
+        <br>
+        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>
