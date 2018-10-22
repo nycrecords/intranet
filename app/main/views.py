@@ -265,8 +265,8 @@ def divisions_information_technology():
     View function to handle the IT division page
     :return: HTML template for the IT division page
     """
-    users = get_users_by_division('Technology')
-    rooms = get_rooms_by_division('Technology')
+    users = get_users_by_division('Information Technology')
+    rooms = get_rooms_by_division('Information Technology')
     return render_template('divisions/information_technology.html', users=users, rooms=rooms)
 
 
