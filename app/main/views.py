@@ -282,10 +282,19 @@ def enfg_result():
     :return: HTML template for the ENFG result with data passed in from the successful form submission
     """
     return render_template('enfg_result.html',
-                           date=datetime.today().strftime("%m/%d/%y "),
+                           date=datetime.today().strftime("%m/%d/%y"),
                            type=session.get('type'),
                            name=session.get('name'),
                            bride_name=session.get('bride_name'),
                            year=session.get('year'),
                            borough=session.get('borough'),
                            signature=session.get('signature'))
+
+
+@main.route('/strategic-planning', methods=['GET'])
+def strategic_planning():
+    """
+    View function to handle the Strategic Planning page
+    :return: HTML template for the Strategic Planning page
+    """
+    return render_template('strategic_planning.html')
