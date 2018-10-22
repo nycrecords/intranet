@@ -34,8 +34,15 @@
             needs, overseeing compliance with City policies and directives, directing efforts to increase awareness of
             the agency, writing grants, ensuring smooth daily operations and conditions, developing and implementing
             policy and administering resources for the Municipal Archives, Library and Records Management
-            divisions.</p>
-
+            divisions.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
     </div>
 </div>
 {% endblock %}

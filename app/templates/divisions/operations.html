@@ -28,8 +28,15 @@
             that DORIS staff have safe and comfortable working environments. These means being the liaison to DCAS and
             Industry City facilities personnel, reporting issues, and responding to building emergencies. The Operations
             Manager is part of planning new infrastructure improvements and ongoing maintenance. Custodial staff perform
-            daily cleaning and routine maintenance.</p>
-
+            daily cleaning and routine maintenance.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
     </div>
 </div>
 {% endblock %}

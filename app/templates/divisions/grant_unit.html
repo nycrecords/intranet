@@ -34,8 +34,15 @@
             the first conceptual stages, to the preparation of final application drafts. The unit submits agencies’
             proposals to the State and monitors projects progress for those that receive funding. At the conclusion of
             grant projects, the Grant Administration Unit prepares comprehensive reports for the State Archives and the
-            New York City Comptroller’s office.</p>
-
+            New York City Comptroller’s office.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
     </div>
 </div>
 {% endblock %}

@@ -31,7 +31,15 @@
             contracts, RFPs and other legal agreements and ensures compliance with City guidelines. The Legal
             unit/Agency Attorney analyzes federal, state and local statutes and regulations and assists in the
             development of legislation, regulations and policy materials. At all times the Agency Attorney performs
-            duties with a focus on protecting the agency from legal exposure.</p>
+            duties with a focus on protecting the agency from legal exposure.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
     </div>
 </div>
 {% endblock %}

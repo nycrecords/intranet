@@ -58,6 +58,13 @@
             Digital Programs Unit manages strategic digital environments for the Municipal Library and Archives
             divisions. In addition, the digital lab provides state-of-the-art digitization services while ensuring
             industry standard best practices in description, preservation, and access of historical records.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>

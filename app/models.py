@@ -93,7 +93,7 @@ class Users(UserMixin, db.Model):
     division -- Column: String()
     title -- Column: String(64)
     phone_number -- Column: String(25)
-    room -- Column: String(3)
+    room -- Column: String()
     role_id -- Column: Integer, foreign key to Roles table.
     """
     __tablename__ = 'users'
@@ -106,7 +106,7 @@ class Users(UserMixin, db.Model):
     division = db.Column(db.String)
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
-    room = db.Column(db.String(3))
+    room = db.Column(db.String)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @property

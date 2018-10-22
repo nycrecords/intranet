@@ -30,7 +30,15 @@
             industry best practices and maximizing the use of technology across the agency. The division is divided into
             three core functions – Infrastructure and Desktop Support, Applications Development and Project Management.
             Additionally, its peripheral functions are to liaise with DoITT and other City agencies along with Customer
-            Service and Support.</p>
+            Service and Support.
+            <br><br>
+            Staff:<br><br>
+            {% for user in users %}
+                {{ user.name }}, {{ user.title}}<br>
+            {% endfor %}
+            <br>
+            Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
     </div>
 </div>
 {% endblock %}
