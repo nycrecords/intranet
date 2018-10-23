@@ -2,8 +2,8 @@ from flask import render_template, redirect, url_for, session, request as flask_
 from flask_login import login_required, current_user
 from app.models import Users, Posts
 from . import main
-from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
-from app.main.utils import create_meeting_notes, get_users_by_division, get_rooms_by_division
+from app.main.forms import MeetingNotesForm, NewsForm, StaffDirectorySearchForm, EnfgForm
+from app.main.utils import create_meeting_notes, create_news, get_users_by_division, get_rooms_by_division
 from datetime import datetime
 import pytz
 from app.constants import choices
@@ -57,7 +57,24 @@ def meeting_notes():
     return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
 
 
-@main.route('/news-updates/new-meeting-notes', methods=['GET', 'POST'])
+@main.route('/news-updates/news', methods=['GET'])
+def news():
+    """
+    View function to handle the news landing page
+    Queries for posts that are type news and visible and paginates them
+    :return: HTML template for news landing page
+    """
+    # Set up pagination
+    page = flask_request.args.get('page', 1, type=int)
+    posts = Posts.query.filter_by(post_type='news', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+
+    # Get filter choices
+    tags = choices.TAGS
+
+    return render_template('news.html', posts=posts, tags=tags)
+
+
+@main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
     """
@@ -94,6 +111,30 @@ def new_meeting_notes():
                              tags=flask_request.form.getlist('tags'))
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
+
+
+@main.route('/news-updates/news/new', methods=['GET', 'POST'])
+@login_required
+def new_news():
+    """
+    View function to handle creating a new News post
+
+    GET Request:
+    Returns HTML template to render the News form
+
+    POST Request:
+    Expects a properly validated News form to create a News object
+    """
+    form = NewsForm()
+    tags = choices.TAGS
+
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        post_id = create_news(author=current_user.id,
+                              title=form.title.data,
+                              content=form.content.data,
+                              tags=flask_request.form.getlist('tags'))
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('new_news.html', form=form, tags=tags)
 
 
 @main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])

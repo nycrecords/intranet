@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Meeting Notes{% endblock %}
+{% block title %}News{% endblock %}
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
@@ -14,15 +14,15 @@
             <ol class="breadcrumb breadcrumb-ol">
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Meeting Notes</li>
+                <li class="breadcrumb-item active" aria-current="page">News</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Meeting Notes</h1>
+        <h1 class="breadcrumb-header">News</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <a class="btn btn-primary" href="{{ url_for('main.new_meeting_notes') }}">Create New Meeting Notes</a>
+                <a class="btn btn-primary" href="{{ url_for('main.new_news') }}">Create New News</a>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
@@ -38,28 +38,10 @@
             <p class="filter-by">Filter by:</p>
             <div class="panel-group">
                 <div class="panel filter-border">
-                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;MEETING
-                        TYPE
-                    </div>
-                    <hr class="panel-divider"/>
-                    <div class="panel-body filter-choices">
-                        <form class="filter-form">
-                            {% for meeting_type in meeting_types %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ meeting_type.0 }}">
-                                    <label class="filter-option-label">
-                                        {{ meeting_type.0 }}
-                                    </label>
-                                </div>
-                            {% endfor %}
-                        </form>
-                    </div>
-                </div>
-                <div class="panel filter-border">
                     <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
                     </div>
                     <hr class="panel-divider"/>
-                    <div class="panel-body filter-choices tag-choices">
+                    <div class="panel-body filter-choices">
                         <form class="filter-form">
                             {% for tag in tags %}
                                 <div class="form-check">
@@ -80,16 +62,15 @@
                     <div class="col-sm-12 post-row">
                         <div class="col-sm-3 post-icon">
                             <img class="meeting-notes-icon"
-                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                            <p class="post-icon-text meeting_notes_icon_text">MEETINGS</p>
+                                 src="{{ url_for('static', filename='img/news_icon.png') }}">
+                            <p class="post-icon-text news_icon_text">NEWS</p>
                         </div>
                         <div class="col-sm-9 post-description">
                             <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
+                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
                             <div class="post-preview">
-                                <p>Discussion: {{ post.content | safe }}</p>
+                                <p>Announcement: {{ post.content | safe }}</p>
                             </div>
-
                         </div>
                     </div>
                     <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
@@ -100,7 +81,7 @@
         <div class="post-pagination">
             <ul class="pagination">
                 {% if posts.has_prev %}
-                    <li><a href="{{ url_for('main.meeting_notes', page=posts.prev_num) }}">&laquo;</a></li>
+                    <li><a href="{{ url_for('main.news', page=posts.prev_num) }}">&laquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&laquo;</span></li>
                 {% endif %}
@@ -108,7 +89,7 @@
                 {% for page_num in posts.iter_pages() %}
                     {% if page_num %}
                         {% if page_num != posts.page %}
-                            <li><a href="{{ url_for('main.meeting_notes', page=page_num) }}">{{ page_num }}</a></li>
+                            <li><a href="{{ url_for('main.news', page=page_num) }}">{{ page_num }}</a></li>
                         {% else %}
                             <li class="active"><span>{{ page_num }}</span></li>
                         {% endif %}
@@ -118,7 +99,7 @@
                 {% endfor %}
 
                 {% if posts.has_next %}
-                    <li><a href="{{ url_for('main.meeting_notes', page=posts.next_num) }}">&raquo;</a></li>
+                    <li><a href="{{ url_for('main.news', page=posts.next_num) }}">&raquo;</a></li>
                 {% else %}
                     <li class="disabled"><span>&raquo;</span></li>
                 {% endif %}

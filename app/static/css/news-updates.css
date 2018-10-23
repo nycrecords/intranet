@@ -85,6 +85,12 @@ form.filter-form {
     padding-bottom: 3px;
 }
 
+.tag-choices {
+    height: 515px;
+    overflow: hidden;
+    overflow-y:auto;
+}
+
 .filter-option-label {
     color: #4A90E2;
     margin-left: 20px;
@@ -161,7 +167,14 @@ form.filter-form {
 
 .post-icon-text {
     padding-top: 10px;
+}
+
+.meeting_notes_icon_text {
     color: #6093BC;
+}
+
+.news_icon_text {
+    color: #589fa3;
 }
 
 .post-pagination {

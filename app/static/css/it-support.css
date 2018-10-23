@@ -46,17 +46,9 @@
     align-items: center;
 }
 
-/*.doris-help-desk-icon {*/
-    /*padding-right: 0;*/
-/*}*/
-
 .doris-help-desk-text {
     padding-left: 0;
 }
-
-/*.city-wide-service-desk-icon {*/
-    /*padding-right: 0;*/
-/*}*/
 
 .city-wide-service-desk-text {
     padding-top: 15px;
@@ -66,7 +58,3 @@
 .training-icon {
     padding-left: 30px;
 }
-
-/*.training-text {*/
-    /*padding-left: 0;*/
-/*}*/
