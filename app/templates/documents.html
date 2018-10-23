@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Documents{% endblock title %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/documents.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.employee_resources') }}">Employee Resources</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Documents</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Documents</h1>
+    </div>
+    <div class="col-sm-12 well content-area">
+        <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload</a>
+        <div class="searchform">
+            <form action="/action_page.php">
+                Search by: <input type="text" placeholder="Search.." class="searchbar">
+                <select class="searchdropdown">
+                    <option value="volvo">Name</option>
+                    <option value="saab">Type</option>
+                    <option value="mercedes">Last Modified</option>
+                    <option value="audi">Division</option>
+                </select>
+            </form>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="search-container">
+            <div class="tab">
+                <button class="tablinks firstbutton" onclick="openTab(event, 'Instructions')" id="defaultOpen">
+                    Instructions
+                </button>
+                <button class="tablinks secondbutton" onclick="openTab(event, 'Policies & Procedures')">Policies &
+                    Procedures
+                </button>
+                <button class="tablinks thirdbutton" onclick="openTab(event, 'Templates')">Templates</button>
+            </div>
+        </div>
+        <div id="Instructions" class="tabcontent">
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th style="width: 40%">Name</th>
+                    <th style="width: 30%">Type</th>
+                    <th style="width: 20%;">Last Modified</th>
+                    <th style="width: 10%;">Division</th>
+                </tr>
+                <tr>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                </tr>
+                <tr>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                </tr>
+                <tr>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                    <td>heyeyeye</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/documents.js') }}"></script>
+{% endblock %}

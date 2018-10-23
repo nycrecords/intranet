@@ -1,8 +1,8 @@
-"""Initial Migrations
+"""Initial Migration
 
-Revision ID: aa1d2d4ce0da
+Revision ID: a434fec827dc
 Revises: 
-Create Date: 2018-10-10 15:10:57.647943
+Create Date: 2018-10-23 20:14:07.184213
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'aa1d2d4ce0da'
+revision = 'a434fec827dc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,6 +37,18 @@ def upgrade():
     sa.Column('room', sa.String(length=3), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('documents',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('uploader_id', sa.Integer(), nullable=True),
+    sa.Column('file_title', sa.String(), nullable=True),
+    sa.Column('file_name', sa.String(), nullable=True),
+    sa.Column('type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', name='document_type'), nullable=True),
+    sa.Column('file_type', sa.String(), nullable=True),
+    sa.Column('file_path', sa.String(), nullable=True),
+    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
+    sa.ForeignKeyConstraint(['uploader_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('posts',
@@ -111,6 +123,7 @@ def downgrade():
     op.drop_table('events')
     op.drop_table('event_posts')
     op.drop_table('posts')
+    op.drop_table('documents')
     op.drop_table('users')
     op.drop_table('roles')
     # ### end Alembic commands ###

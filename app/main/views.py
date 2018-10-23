@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, session, request as flask_
 from flask_login import login_required, current_user
 from app.models import Users, Posts
 from . import main
-from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm
+from app.main.forms import MeetingNotesForm, StaffDirectorySearchForm, EnfgForm, UploadForm
 from app.main.utils import create_meeting_notes
 from datetime import datetime
 import pytz
@@ -289,3 +289,27 @@ def enfg_result():
                            year=session.get('year'),
                            borough=session.get('borough'),
                            signature=session.get('signature'))
+
+
+
+@main.route('/documents', methods=['GET'])
+def documents():
+    """
+    """
+    return render_template('documents.html')
+
+
+@main.route('/document', methods=['GET'])
+def upload_document():
+    """
+    """
+    form = UploadForm()
+
+    if flask_request.method == 'POST':
+        file = flask_request.files['file']
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(url_for('data/temporary_file_storage'), filename)
+            return redirect(url_for('/'))
+
+    return render_template('upload_document.html', form=form)

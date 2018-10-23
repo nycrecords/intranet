@@ -377,3 +377,23 @@ class Events(db.Model):
 
     def __repr__(self):
         return '<Events %r>' % self.id
+
+
+class Documents(db.Model):
+    """
+    """
+    __tablename__ = 'documents'
+    id = db.Column(db.Integer, primary_key=True)
+    uploader_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    file_title = db.Column(db.String)
+    file_name = db.Column(db.String)
+    type = db.Column(db.Enum('Instructions',
+                             'Policies and Procedures',
+                             'Templates',
+                             'Training Materials',
+                             name='document_type'))
+    file_type = db.Column(db.String)
+    file_path = db.Column(db.String)
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+                                 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
+                                 'Municipal Records Management', 'Operations', name='divisions'))
