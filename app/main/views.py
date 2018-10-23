@@ -77,7 +77,7 @@ def news():
 
     return render_template('news.html', posts=posts, tags=tags)
 
-
+  
 @main.route('/news-updates/events', methods=['GET'])
 def events():
     """
@@ -202,7 +202,7 @@ def new_news():
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_news.html', form=form, tags=tags)
 
-
+  
 @main.route('/news-updates/events/new', methods=['GET', 'POST'])
 @login_required
 def new_event_post():
@@ -235,7 +235,7 @@ def new_event_post():
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_event_post.html', form=form, users=users, tags=tags)
 
-
+  
 @main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])
 def view_post(post_id):
     """
