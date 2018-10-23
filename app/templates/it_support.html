@@ -114,6 +114,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">FAQ</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span
+                                class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p><a href="{{ url_for('main.faq') }}">Click here to see answers to Frequently Asked Questions</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
@@ -126,11 +138,36 @@
                     <p>Get instructions for accessing public wifi, outlook, and voicemail.</p>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
+                    page.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">TOOLS AND APPLICATIONS</h4>
+                            <div class="col-sm-4 doris-help-desk-icon"><span
+                                    class="glyphicon glyphicon glyphicon-wrench it-support-glyphicon"></span></div>
+                            <div class="col-sm-8 doris-help-desk-text">
+                                <a href="{{ url_for('main.tools_and_applications') }}"><p>Click here for access to
+                                    commonly used DORIS applications</p></a>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 it-support-faq-text">
-                <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
-                    page.</p>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For quick access to commonly used DORIS applications, check out our <a
+                            href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.</p>
+                </div>
             </div>
         </div>
     </div>
