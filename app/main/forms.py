@@ -88,7 +88,7 @@ class EventForm(FlaskForm):
     tags = StringField('TAGS')
     submit = SubmitField()
 
-
+    
 class StaffDirectorySearchForm(FlaskForm):
     """
     Form for searching the staff directory

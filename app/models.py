@@ -387,7 +387,7 @@ class EventPosts(Posts):
 class News(Posts):
     """
     Define the News class with the following columns and relationships:
-
+    
     id -- Column: Integer, PrimaryKey
     """
     __tablename__ = 'news'
