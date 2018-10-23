@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import MeetingNotes, Events
+from app.models import MeetingNotes, News, Events
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -75,3 +75,28 @@ def create_meeting_notes(meeting_date,
     create_object(event)
 
     return meeting_notes.id
+
+
+def create_news(author,
+                title,
+                content,
+                tags):
+    """
+    Util function for creating a News object. Function will take parameters passed in from the form
+    and create a News along with the event object.
+    """
+    news = News(author=author,
+                title=title,
+                content=content,
+                tags=tags)
+    create_object(news)
+
+    # Create news_created Event
+    event = Events(post_id=news.id,
+                   user_id=author,
+                   type="news_created",
+                   previous_value={},
+                   new_value=news.val_for_events)
+    create_object(event)
+
+    return news.id

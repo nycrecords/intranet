@@ -49,6 +49,20 @@ class MeetingNotesForm(FlaskForm):
     submit = SubmitField()
 
 
+class NewsForm(FlaskForm):
+    """
+    Form for posting news announcements
+
+    title: Input field for the title of the post
+    content: HTML formatted string that contains the news announcement
+    tags: List of tags that best describe the post
+    """
+    title = StringField('TITLE')
+    content = TextAreaField('ANNOUNCEMENT')
+    tags = StringField('TAGS')
+    submit = SubmitField()
+
+
 class StaffDirectorySearchForm(FlaskForm):
     """
     Form for searching the staff directory

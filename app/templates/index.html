@@ -62,7 +62,27 @@
                                             <h4 class="entrytitle">{{ post.title }}</h4>
                                             <p class="datenlocation">{{ post.date_created.strftime('%B %d, %Y') }}</p>
                                             <p class="datenlocation">Posted in Meeting Notes</p>
-                                            <div class="entrytext">{{ post.content | safe }}
+                                            <div class="entrytext">
+                                                {{ post.content | safe }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            {% if post.post_type == "news" and post.deleted == False %}
+                                <a href="{{ url_for('main.view_post', post_id = post.id) }}" class="scrolllink">
+                                    <div class="entry">
+                                        <div class="col-sm-2 entry-pic">
+                                            <img src="{{ url_for('static', filename='img/news_icon.png') }}">
+                                            <br>
+                                            <p class="news">NEWS</p>
+                                        </div>
+                                        <div class="col-sm-10 entry-info">
+                                            <h4 class="entrytitle">{{ post.title }}</h4>
+                                            <p class="datenlocation">{{ post.date_created.strftime('%B %d, %Y') }}</p>
+                                            <p class="datenlocation">Posted in News</p>
+                                            <div class="entrytext">
+                                                {{ post.content | safe }}
                                             </div>
                                         </div>
                                     </div>

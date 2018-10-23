@@ -64,7 +64,9 @@ $(function () {
     // initialize tinymce editor
     tinymce.init({
         selector: 'textarea',
-        plugins: 'lists'
+        oninit: "setPlainText",
+        plugins: "paste lists",
+        toolbar: ['undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']
     });
 
     // set parsley for required fields
@@ -133,6 +135,37 @@ $(function () {
         buttonWidth: '50%'
     });
 
+    // display news tags with drop up instead of down
+    $('#news-tags').multiselect({
+        maxHeight: 400,
+        buttonText: function (options, select) {
+            if (options.length === 0) {
+                return 'None Selected';
+            }
+            else if (options.length > 4) {
+                return options.length + ' tags selected';
+            }
+            else {
+                var labels = [];
+                options.each(function () {
+                    if ($(this).attr('label') !== undefined) {
+                        labels.push($(this).attr('label'));
+                    }
+                    else {
+                        labels.push($(this).html());
+                    }
+                });
+                return labels.join(', ') + '';
+            }
+        },
+        enableCaseInsensitiveFiltering: true,
+        includeResetOption: true,
+        includeResetDivider: true,
+        resetText: 'Clear all',
+        buttonWidth: '50%',
+        dropUp: true
+    });
+
     // initialize multiselect plugin for attendees
     $('#attendees').multiselect({
         maxHeight: 400,
@@ -163,7 +196,7 @@ $(function () {
         buttonWidth: '50%'
     });
 
-    $("#new-meeting-notes-form").submit(function (e) {
+    $("#new-post-form").submit(function (e) {
         // Validate that content has been filled out
         if (tinyMCE.activeEditor.getContent() === '') {
             $('#content-error').show();
