@@ -4,8 +4,9 @@
     "postdeploy": "python manage.py deploy"
   },
   "env": {
-    "USER_DATA": "./data/users_prd.csv",
-    "FLASK_CONFIG": "production"
+    "USER_DATA": "./data/users.csv",
+    "FLASK_CONFIG": "production",
+    "LOGIN_REQUIRED": "False"
   },
   "formation": {},
   "addons": [
