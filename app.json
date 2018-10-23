@@ -4,60 +4,8 @@
     "postdeploy": "python manage.py deploy"
   },
   "env": {
-    "ADMIN": {
-      "required": true
-    },
-    "ALLOWED_AVATAR_EXTENSIONS": {
-      "required": true
-    },
-    "ALLOWED_POST_EXTENSIONS": {
-      "required": true
-    },
-    "COMMENTS_PER_PAGE": {
-      "required": true
-    },
-    "consumer_key": {
-      "required": true
-    },
-    "consumer_secret": {
-      "required": true
-    },
-    "MAIL_PASSWORD": {
-      "required": true
-    },
-    "MAIL_PORT": {
-      "required": true
-    },
-    "MAIL_SENDER": {
-      "required": true
-    },
-    "MAIL_SERVER": {
-      "required": true
-    },
-    "MAIL_SUBJECT_PREFIX": {
-      "required": true
-    },
-    "MAIL_USE_TLS": {
-      "required": true
-    },
-    "MAIL_USERNAME": {
-      "required": true
-    },
-    "POSTS_PER_PAGE": {
-      "required": true
-    },
-    "SECRET_KEY": {
-      "required": true
-    },
-    "SQLALCHEMY_DATABASE_URI": {
-      "required": true
-    },
-    "UPLOAD_AVATAR_FOLDER": {
-      "required": true
-    },
-    "UPLOAD_POST_FILE_FOLDER": {
-      "required": true
-    }
+    "USER_DATA": "./data/users_prd.csv",
+    "FLASK_CONFIG": "production"
   },
   "formation": {},
   "addons": [
@@ -67,5 +15,6 @@
     {
       "url": "heroku/python"
     }
-  ]
+  ],
+  "stacks": "heroku-18"
 }
