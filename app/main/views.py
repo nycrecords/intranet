@@ -382,6 +382,15 @@ def employee_resources():
     return render_template('employee_resources.html')
 
 
+@main.route('/employee-resources/employee-benefits', methods=['GET'])
+def employee_benefits():
+    """
+    View function to handle the employee benefits page
+    :return: HTML template for the employee benefits page
+    """
+    return render_template('employee_benefits.html')
+
+
 @main.route('/tools-and-applications', methods=['GET', 'POST'])
 def tools_and_applications():
     """
