@@ -1,8 +1,8 @@
-"""Initial Migrations
+"""Initial Migration
 
-Revision ID: aa1d2d4ce0da
+Revision ID: ead25207925b
 Revises: 
-Create Date: 2018-10-10 15:10:57.647943
+Create Date: 2018-10-12 18:24:49.302106
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'aa1d2d4ce0da'
+revision = 'ead25207925b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -57,14 +57,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('event_date', sa.DateTime(), nullable=True),
     sa.Column('event_location', sa.String(), nullable=True),
-    sa.Column('leader', sa.Integer(), nullable=True),
+    sa.Column('event_leader', sa.String(), nullable=True),
     sa.Column('start_time', sa.String(), nullable=True),
     sa.Column('end_time', sa.String(), nullable=True),
-    sa.Column('title', sa.String(), nullable=True),
-    sa.Column('sponser', sa.String(), nullable=True),
-    sa.Column('description', sa.String(), nullable=True),
+    sa.Column('sponsor', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
-    sa.ForeignKeyConstraint(['leader'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('events',

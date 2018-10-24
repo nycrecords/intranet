@@ -19,6 +19,16 @@ $(function () {
         }
     });
 
+    $('#event-date').datepicker({
+        dateFormat: 'mm/dd/yy',
+        minDate: 0
+    }).keydown(function (e) {
+        // prevent keyboard input except for tab
+        if (e.keyCode !== 9) {
+            e.preventDefault();
+        }
+    });
+
     try {
         // initialize timepicker plugins
         $('.timepicker').timepicker({
@@ -64,7 +74,9 @@ $(function () {
     // initialize tinymce editor
     tinymce.init({
         selector: 'textarea',
-        plugins: 'lists'
+        oninit: "setPlainText",
+        plugins: "paste lists",
+        toolbar: ['undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']
     });
 
     // set parsley for required fields
@@ -75,10 +87,15 @@ $(function () {
                           'meeting-location',
                           'meeting-leader',
                           'meeting-note-taker',
+                          'event-date',
+                          'event-location',
+                          'event-leader',
                           'start-time',
                           'end-time',
                           'attendees',
-                          'tags'];
+                          'tags',
+                          'news-tags',
+                          'event-tags'];
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
@@ -98,6 +115,9 @@ $(function () {
                 source: data
             });
             $('#next-meeting-note-taker').autocomplete({
+                source: data
+            });
+            $('#event-leader').autocomplete({
                 source: data
             });
         }
@@ -133,6 +153,37 @@ $(function () {
         buttonWidth: '50%'
     });
 
+    // display tags with drop up instead of down
+    $('.drop-up-tags').multiselect({
+        maxHeight: 400,
+        buttonText: function (options, select) {
+            if (options.length === 0) {
+                return 'None Selected';
+            }
+            else if (options.length > 4) {
+                return options.length + ' tags selected';
+            }
+            else {
+                var labels = [];
+                options.each(function () {
+                    if ($(this).attr('label') !== undefined) {
+                        labels.push($(this).attr('label'));
+                    }
+                    else {
+                        labels.push($(this).html());
+                    }
+                });
+                return labels.join(', ') + '';
+            }
+        },
+        enableCaseInsensitiveFiltering: true,
+        includeResetOption: true,
+        includeResetDivider: true,
+        resetText: 'Clear all',
+        buttonWidth: '50%',
+        dropUp: true
+    });
+
     // initialize multiselect plugin for attendees
     $('#attendees').multiselect({
         maxHeight: 400,
@@ -163,7 +214,7 @@ $(function () {
         buttonWidth: '50%'
     });
 
-    $("#new-meeting-notes-form").submit(function (e) {
+    $("#new-post-form").submit(function (e) {
         // Validate that content has been filled out
         if (tinyMCE.activeEditor.getContent() === '') {
             $('#content-error').show();
