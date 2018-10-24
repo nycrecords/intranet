@@ -355,114 +355,18 @@ def divisions():
     return render_template('divisions.html')
 
 
-@main.route('/divisions/administration', methods=['GET'])
-def divisions_administration():
+@main.route('/divisions/<string:division_name>', methods=['GET'])
+def division_pages(division_name):
     """
-    View function to handle the administration division page
-    :return: HTML template for the administration division page
+    View function to handle an individual division page
+    :param division_name: String for the division name in the URL. Uses '-' in place of spaces
+    :return: HTML template for an individual division page
     """
-    users = get_users_by_division('Administration')
-    rooms = get_rooms_by_division('Administration')
-    return render_template('divisions/administration.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/executive', methods=['GET'])
-def divisions_executive():
-    """
-    View function to handle the executive division page
-    :return: HTML template for the executive division page
-    """
-    users = get_users_by_division('Executive')
-    rooms = get_rooms_by_division('Executive')
-    return render_template('divisions/executive.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/external_affairs', methods=['GET'])
-def divisions_external_affairs():
-    """
-    View function to handle the external affairs division page
-    :return: HTML template for the external affairs division page
-    """
-    users = get_users_by_division('External Affairs')
-    rooms = get_rooms_by_division('External Affairs')
-    return render_template('divisions/external_affairs.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/grant-unit', methods=['GET'])
-def divisions_grant_unit():
-    """
-    View function to handle the grant unit division page
-    :return: HTML template for the grant unit division page
-    """
-    users = get_users_by_division('Grant Unit')
-    rooms = get_rooms_by_division('Grant Unit')
-    return render_template('divisions/grant_unit.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/information-technology', methods=['GET'])
-def divisions_information_technology():
-    """
-    View function to handle the IT division page
-    :return: HTML template for the IT division page
-    """
-    users = get_users_by_division('Information Technology')
-    rooms = get_rooms_by_division('Information Technology')
-    return render_template('divisions/information_technology.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/legal', methods=['GET'])
-def divisions_legal():
-    """
-    View function to handle the legal division page
-    :return: HTML template for the legal division page
-    """
-    users = get_users_by_division('Legal')
-    rooms = get_rooms_by_division('Legal')
-    return render_template('divisions/legal.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/municipal-archives', methods=['GET'])
-def divisions_municipal_archives():
-    """
-    View function to handle the municipal archives division page
-    :return: HTML template for the municipal archives division page
-    """
-    users = get_users_by_division('Municipal Archives')
-    rooms = get_rooms_by_division('Municipal Archives')
-    return render_template('divisions/municipal_archives.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/municipal-library', methods=['GET'])
-def divisions_municipal_library():
-    """
-    View function to handle the municipal library division page
-    :return: HTML template for the municipal library division page
-    """
-    users = get_users_by_division('Municipal Library')
-    rooms = get_rooms_by_division('Municipal Library')
-    return render_template('divisions/municipal_library.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/municipal-records-management', methods=['GET'])
-def divisions_municipal_records_management():
-    """
-    View function to handle the municipal records management division page
-    :return: HTML template for the municipal records management division page
-    """
-    users = get_users_by_division('Municipal Records Management')
-    rooms = get_rooms_by_division('Municipal Records Management')
-    return render_template('divisions/municipal_records_management.html', users=users, rooms=rooms)
-
-
-@main.route('/divisions/operations', methods=['GET'])
-def divisions_operations():
-    """
-    View function to handle the operations division page
-    :return: HTML template for the operations division page
-    """
-    users = get_users_by_division('Operations')
-    rooms = get_rooms_by_division('Operations')
-    return render_template('divisions/operations.html', users=users, rooms=rooms)
+    users = get_users_by_division(choices.DIVISION_PAGES[division_name]['plain_text'])
+    rooms = get_rooms_by_division(choices.DIVISION_PAGES[division_name]['plain_text'])
+    return render_template(
+        'divisions/{division_name}.html'.format(division_name=choices.DIVISION_PAGES[division_name]['template_name']),
+        users=users, rooms=rooms)
 
 
 @main.route('/it-support', methods=['GET'])
