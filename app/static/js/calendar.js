@@ -45,26 +45,12 @@ $(function () {
                             $("#datepicker").datepicker("refresh");
                             // render the template to the events row section
                             $('#event-rows').html(data['template']);
-                            if (data['dates'].length >= 4) {
-                                $('#event-rows').css('height', 'auto');
-                            }
-                            else {
-                                $('#event-rows').css('height', '75%');
-                            }
                         }
                     });
                 }
             });
             // render the template to the event rows section
             $('#event-rows').html(data['template']);
-            // adjust height for a smoother transition when loading
-            // on initial load only a maximum of 4 rows are visible to the user
-            if (data['dates'].length >= 4) {
-                $('#event-rows').css('height', 'auto');
-            }
-            else {
-                $('#event-rows').css('height', '75%');
-            }
         }
     });
 });

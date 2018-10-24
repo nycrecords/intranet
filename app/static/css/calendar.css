@@ -116,7 +116,8 @@
     border: 2px solid darkgray;
     margin-top: -2px;
     background-color: white;
-    height: 75%;
+    min-height: 75%;
+    height: auto;
 }
 
 div.ui-datepicker {
