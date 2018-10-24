@@ -27,6 +27,51 @@ DIVISIONS = [
     ('Operations', 'Operations')
 ]
 
+# Key is the division name to be used in the URL, '-' in place of spaces
+# Value is a dictionary containing the division's HTML template name and plain text name for querying the database
+DIVISION_PAGES = {
+    'administration-and-human-resources': {
+        'template_name': 'administration_and_human_resources',
+        'plain_text': 'Administration & Human Resources'
+    },
+    'executive': {
+        'template_name': 'executive',
+        'plain_text': 'Executive'
+    },
+    'external-affairs': {
+        'template_name': 'external_affairs',
+        'plain_text': 'External Affairs'
+    },
+    'grant-unit': {
+        'template_name': 'grant_unit',
+        'plain_text': 'Grant Unit'
+    },
+    'information-technology': {
+        'template_name': 'information_technology',
+        'plain_text': 'Information Technology'
+    },
+    'legal': {
+        'template_name': 'legal',
+        'plain_text': 'Legal'
+    },
+    'municipal-archives': {
+        'template_name': 'municipal_archives',
+        'plain_text': 'Municipal Archives'
+    },
+    'municipal-library': {
+        'template_name': 'municipal_library',
+        'plain_text': 'Municipal Library'
+    },
+    'municipal-records-management': {
+        'template_name': 'municipal_records_management',
+        'plain_text': 'Municipal Records Management'
+    },
+    'operations': {
+        'template_name': 'operations',
+        'plain_text': 'Operations'
+    }
+}
+
 STAFF_DIRECTORY_FILTERS = [
     ('First Name', 'First Name'),
     ('Last Name', 'Last Name'),
