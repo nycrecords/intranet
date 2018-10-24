@@ -302,36 +302,123 @@ class MeetingNotes(Posts):
             'next_meeting_leader': self.next_meeting_leader,
             'next_meeting_note_taker': self.next_meeting_note_taker,
             'meeting_type': self.meeting_type,
-            'division': self.division
+            'division': self.division,
+            'title': self.title,
+            'content': self.content,
+            'tags': self.tags,
+            'date_modified': None,
+            'visible': self.visible,
+            'deleted': self.deleted
         }
 
     def __repr__(self):
         return '<MeetingNotes %r>' % self.id
 
 
-class EventPosts(db.Model):
+class EventPosts(Posts):
+    """
+    Define the EventPosts class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    event_date -- Column: DatetTime
+    event_location -- Column: String()
+    event_leader -- Column: String(), Contains the name of the event leader.
+    start_time -- Column: String(), contains a string representation of the event start time. Ex) 09:00 AM
+    end_time -- Column: String(), contains a string representation of the event end time. Ex) 09:30 AM
+    sponsor -- Column: String()
+    """
     __tablename__ = 'event_posts'
     __mapper_args__ = {'polymorphic_identity': 'event_posts'}
 
     id = db.Column(db.Integer, db.ForeignKey(Posts.id), primary_key=True)
     event_date = db.Column(db.DateTime)
     event_location = db.Column(db.String)
-    leader = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_leader = db.Column(db.String)
     start_time = db.Column(db.String)
     end_time = db.Column(db.String)
-    title = db.Column(db.String)
-    sponser = db.Column(db.String)
-    description = db.Column(db.String)
+    sponsor = db.Column(db.String)
+
+    def __init__(self,
+                 event_date,
+                 event_location,
+                 event_leader,
+                 start_time,
+                 end_time,
+                 sponsor,
+                 author,
+                 title,
+                 content,
+                 tags):
+        super(EventPosts, self).__init__(author,
+                                           title,
+                                           content,
+                                           tags)
+        self.event_date = event_date
+        self.event_location = event_location
+        self.event_leader = event_leader
+        self.start_time = start_time
+        self.end_time = end_time
+        self.sponsor = sponsor
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+        return {
+            'event_date': self.event_date.isoformat(),
+            'event_location': self.event_location,
+            'event_leader': self.event_leader,
+            'start_time': self.start_time,
+            'end_time': self.end_time,
+            'sponsor': self.sponsor,
+            'title': self.title,
+            'content': self.content,
+            'tags': self.tags,
+            'date_modified': None,
+            'visible': self.visible,
+            'deleted': self.deleted
+        }
 
     def __repr__(self):
-        return '<Events %r>' % self.id
+        return '<EventPosts %r>' % self.id
 
 
-class News(db.Model):
+class News(Posts):
+    """
+    Define the News class with the following columns and relationships:
+    
+    id -- Column: Integer, PrimaryKey
+    """
     __tablename__ = 'news'
     __mapper_args__ = {'polymorphic_identity': 'news'}
 
     id = db.Column(db.Integer, db.ForeignKey(Posts.id), primary_key=True)
+
+    def __init__(self,
+                 author,
+                 title,
+                 content,
+                 tags):
+        super(News, self).__init__(author,
+                                   title,
+                                   content,
+                                   tags)
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+
+        return {
+            'title': self.title,
+            'content': self.content,
+            'tags': self.tags,
+            'date_modified': None,
+            'visible': self.visible,
+            'deleted': self.deleted
+        }
 
     def __repr__(self):
         return '<News %r>' % self.id

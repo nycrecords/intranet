@@ -49,6 +49,46 @@ class MeetingNotesForm(FlaskForm):
     submit = SubmitField()
 
 
+class NewsForm(FlaskForm):
+    """
+    Form for posting news announcements
+
+    title: Input field for the title of the post
+    content: HTML formatted string that contains the news announcement
+    tags: List of tags that best describe the post
+    """
+    title = StringField('TITLE')
+    content = TextAreaField('ANNOUNCEMENT')
+    tags = StringField('TAGS')
+    submit = SubmitField()
+
+
+class EventForm(FlaskForm):
+    """
+    Form for posting events
+
+    event_date: The date of the event
+    event_location: The location of the event
+    event_leader: The leader of the event
+    start_time: The start time of the event
+    end_time: The end time of the event
+    title: Input field for the title of the post
+    sponsor: The sponsor of the event (Optional)
+    content: HTML formatted string that contains the event description
+    tags: List of tags that best describe the post
+    """
+    event_date = StringField('EVENT DATE')
+    event_location = StringField('EVENT LOCATION')
+    event_leader = StringField('EVENT LEADER')
+    start_time = StringField('START TIME')
+    end_time = StringField('END TIME')
+    title = StringField ('TITLE')
+    sponsor = StringField ('SPONSOR')
+    content = TextAreaField('DESCRIPTION')
+    tags = StringField('TAGS')
+    submit = SubmitField()
+
+    
 class StaffDirectorySearchForm(FlaskForm):
     """
     Form for searching the staff directory

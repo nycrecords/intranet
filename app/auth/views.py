@@ -4,11 +4,12 @@ from flask import (
     render_template,
     url_for,
     flash,
+    current_app
 )
 from flask_login import (
     login_user,
     logout_user,
-    current_user
+    current_user,
 )
 from app.auth import auth
 from app.auth.forms import LoginForm
@@ -37,8 +38,10 @@ def login():
         user = Users.query.filter_by(email=email).first()
 
         if user is not None:
-            authenticated = ldap_authentication(email, password)
-
+            if current_app.config['LOGIN_REQUIRED']:
+                authenticated = ldap_authentication(email, password)
+            else:
+                authenticated = True
             if authenticated:
                 login_user(user, remember=login_form.remember_me.data)
                 return redirect(url_for('main.index'))

@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import MeetingNotes, Events
+from app.models import MeetingNotes, News, EventPosts, Events
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -45,7 +45,7 @@ def create_meeting_notes(meeting_date,
                          content,
                          tags):
     """
-    Util function for creating a Meeting Notes object. Function will take parameters passed in from the form
+    Util function for creating a MeetingNotes object. Function will take parameters passed in from the form
     and create a meeting notes along with the event object.
     """
     meeting_notes = MeetingNotes(meeting_date=meeting_date,
@@ -75,3 +75,65 @@ def create_meeting_notes(meeting_date,
     create_object(event)
 
     return meeting_notes.id
+
+
+def create_news(author,
+                title,
+                content,
+                tags):
+    """
+    Util function for creating a News object. Function will take parameters passed in from the form
+    and create a News along with the event object.
+    """
+    news = News(author=author,
+                title=title,
+                content=content,
+                tags=tags)
+    create_object(news)
+
+    # Create news_created Event
+    event = Events(post_id=news.id,
+                   user_id=author,
+                   type="news_created",
+                   previous_value={},
+                   new_value=news.val_for_events)
+    create_object(event)
+
+    return news.id
+
+
+def create_event_post(event_date,
+                      event_location,
+                      event_leader,
+                      start_time,
+                      end_time,
+                      sponsor,
+                      author,
+                      title,
+                      content,
+                      tags):
+    """
+    Util function for creating a EventPost object. Function will take parameters passed in from the form
+    and create a event post along with the event object.
+    """
+    event_post = EventPosts(event_date=event_date,
+                            event_location=event_location,
+                            event_leader=event_leader,
+                            start_time=start_time,
+                            end_time=end_time,
+                            sponsor=sponsor,
+                            author=author,
+                            title=title,
+                            content=content,
+                            tags=tags)
+    create_object(event_post)
+
+    # Create event_post_created Event
+    event = Events(post_id=event_post.id,
+                   user_id=author,
+                   type="event_post_created",
+                   previous_value={},
+                   new_value=event_post.val_for_events)
+    create_object(event)
+
+    return event_post.id
