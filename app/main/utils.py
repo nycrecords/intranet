@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import MeetingNotes, News, EventPosts, Events
+from app.models import MeetingNotes, News, EventPosts, Events, Users
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -137,3 +137,25 @@ def create_event_post(event_date,
     create_object(event)
 
     return event_post.id
+
+
+def get_users_by_division(division):
+    """
+    Query the database for a list of users based on the division passed in
+    :param division: Division to filter by
+    :return: A list of users sorted by last name and filtered by division
+    """
+
+    return Users.query.filter_by(division=division).order_by(Users.last_name).all()
+
+
+def get_rooms_by_division(division):
+    """
+    Query the database for a list of rooms based on the division passed in
+    :param division: Division to filter by
+    :return: A list of rooms that a division uses
+    """
+
+    rooms = [u[0] for u in Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
+    rooms = filter(None, rooms)
+    return list(set(rooms))

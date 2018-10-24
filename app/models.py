@@ -93,7 +93,7 @@ class Users(UserMixin, db.Model):
     division -- Column: String()
     title -- Column: String(64)
     phone_number -- Column: String(25)
-    room -- Column: String(3)
+    room -- Column: String()
     role_id -- Column: Integer, foreign key to Roles table.
     """
     __tablename__ = 'users'
@@ -106,7 +106,7 @@ class Users(UserMixin, db.Model):
     division = db.Column(db.String)
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
-    room = db.Column(db.String(3))
+    room = db.Column(db.String)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     @property
@@ -245,7 +245,7 @@ class MeetingNotes(Posts):
     next_meeting_note_taker = db.Column(db.String)
     meeting_type = db.Column(db.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project',
                                      'Agency', name='meeting_type'))
-    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grant Unit',
                                  'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
                                  'Municipal Records Management', 'Operations',  name='divisions'))
 

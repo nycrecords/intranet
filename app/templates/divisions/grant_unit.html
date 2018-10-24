@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Grant Unit{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Grant Unit</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Grant Unit</h1>
+    </div>
+    <div class="col-sm-12 well content-area individual-division-page">
+        <p>Each year, the New York State Archives’ Local Government Records
+            Management Improvement Fund (LGRMIF) awards up to $1 million dollars to New York City mayoral agencies. The
+            grants are intended to help establish or improve records management programs. The Grant Administration Unit
+            (GAU) of the Department of Records and Information Services administers the LGRMIF program for city mayoral
+            agencies.
+            <br><br>
+            The Grant Administration Unit provides guidance to the agencies in the development of grant projects from
+            the first conceptual stages, to the preparation of final application drafts. The unit submits agencies’
+            proposals to the State and monitors projects progress for those that receive funding. At the conclusion of
+            grant projects, the Grant Administration Unit prepares comprehensive reports for the State Archives and the
+            New York City Comptroller’s office.
+            <br><br>
+            Staff:
+        <ul>
+            {% for user in users %}
+            <li><a href="mailto:{{ user.email }}">{{ user.name }}</a>, {{ user.title}}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
+        </p>
+    </div>
+</div>
+{% endblock %}

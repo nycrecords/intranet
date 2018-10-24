@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm
-from app.main.utils import create_meeting_notes, create_news, create_event_post
+from app.main.utils import create_meeting_notes, create_news, create_event_post, get_users_by_division, get_rooms_by_division
 from datetime import datetime
 import pytz
 from app.constants import choices
@@ -123,7 +123,7 @@ def get_events():
     year = flask_request.args.get('year')
     posts = EventPosts.query.filter(extract('month', EventPosts.event_date) == month,
                                     extract('year', EventPosts.event_date) == year,
-                                    Posts.deleted == False).all()
+                                    Posts.deleted == False).order_by(EventPosts.event_date.asc()).all()
 
     # Format dates to be MM/DD/YYYY
     dates = []
@@ -328,7 +328,7 @@ def get_filter_options_list(filter_value):
     return jsonify(choices_list), 200
 
 
-@main.route('/our-mission', methods=['GET', 'POST'])
+@main.route('/our-mission', methods=['GET'])
 def our_mission():
     """
     View function to handle the Our Mission page
@@ -337,7 +337,7 @@ def our_mission():
     return render_template('our_mission.html')
 
 
-@main.route('/contact', methods=['GET', 'POST'])
+@main.route('/contact', methods=['GET'])
 def contact():
     """
     View function to handle the contact page
@@ -346,7 +346,7 @@ def contact():
     return render_template('contact.html')
 
 
-@main.route('/divisions', methods=['GET', 'POST'])
+@main.route('/divisions', methods=['GET'])
 def divisions():
     """
     View function to handle the divisions page
@@ -355,7 +355,21 @@ def divisions():
     return render_template('divisions.html')
 
 
-@main.route('/it-support', methods=['GET', 'POST'])
+@main.route('/divisions/<string:division_name>', methods=['GET'])
+def division_pages(division_name):
+    """
+    View function to handle an individual division page
+    :param division_name: String for the division name in the URL. Uses '-' in place of spaces
+    :return: HTML template for an individual division page
+    """
+    users = get_users_by_division(choices.DIVISION_PAGES[division_name]['plain_text'])
+    rooms = get_rooms_by_division(choices.DIVISION_PAGES[division_name]['plain_text'])
+    return render_template(
+        'divisions/{division_name}.html'.format(division_name=choices.DIVISION_PAGES[division_name]['template_name']),
+        users=users, rooms=rooms)
+
+
+@main.route('/it-support', methods=['GET'])
 def it_support():
     """
     View function to handle the IT support page
@@ -364,7 +378,7 @@ def it_support():
     return render_template('it_support.html')
 
 
-@main.route('/it-support/faq', methods=['GET', 'POST'])
+@main.route('/it-support/faq', methods=['GET'])
 def faq():
     """
     View function to handle the FAQ page
@@ -373,7 +387,7 @@ def faq():
     return render_template('faq.html')
 
 
-@main.route('/employee-resources', methods=['GET', 'POST'])
+@main.route('/employee-resources', methods=['GET'])
 def employee_resources():
     """
     View function to handle the employee resources page
@@ -391,7 +405,7 @@ def employee_benefits():
     return render_template('employee_benefits.html')
 
 
-@main.route('/tools-and-applications', methods=['GET', 'POST'])
+@main.route('/tools-and-applications', methods=['GET'])
 def tools_and_applications():
     """
     View function to handle the tools and applications page
