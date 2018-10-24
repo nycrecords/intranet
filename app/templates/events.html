@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Events{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/news-updates.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Events</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Events</h1>
+    </div>
+    <div class="col-sm-12 well content-area">
+        <div class="col-sm-12 top-padding">
+            <div class="col-sm-6 new-post-button">
+                <a class="btn btn-primary" href="{{ url_for('main.new_event_post') }}">Create New Event</a>
+            </div>
+            <div class="col-sm-6">
+                <p class="sort-by-label">Sort by:</p>
+                <select class="sort-by-dropdown">
+                    <option value="Date">Date</option>
+                    <option value="Author">Author A-Z</option>
+                    <option value="Author">Author Z-A</option>
+                    <option value="Type">Type</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-3 filter-section">
+            <p class="filter-by">Filter by:</p>
+            <div class="panel-group">
+                <div class="panel filter-border">
+                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
+                    </div>
+                    <hr class="panel-divider"/>
+                    <div class="panel-body filter-choices">
+                        <form class="filter-form">
+                            {% for tag in tags %}
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ tag }}">
+                                    <label class="filter-option-label">
+                                        {{ tag }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 post-section">
+            {% for post in posts.items %}
+                {% if post.deleted == False %}
+                    <div class="col-sm-12 post-row">
+                        <div class="col-sm-3 post-icon">
+                            <img class="events-icon"
+                                 src="{{ url_for('static', filename='img/events_icon.png') }}">
+                            <p class="post-icon-text events_icon_text">EVENTS</p>
+                        </div>
+                        <div class="col-sm-9 post-description">
+                            <p class="post-title">{{ post.title }}</p>
+                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Events</p>
+                            <div class="post-preview">
+                                <p>Description: {{ post.content | safe }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
+                    <div class="col-sm-12 post-divider"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="post-pagination">
+            <ul class="pagination">
+                {% if posts.has_prev %}
+                    <li><a href="{{ url_for('main.events', page=posts.prev_num) }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+
+                {% for page_num in posts.iter_pages() %}
+                    {% if page_num %}
+                        {% if page_num != posts.page %}
+                            <li><a href="{{ url_for('main.events', page=page_num) }}">{{ page_num }}</a></li>
+                        {% else %}
+                            <li class="active"><span>{{ page_num }}</span></li>
+                        {% endif %}
+                    {% else %}
+                            <li class="disabled"><span>...</span></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if posts.has_next %}
+                    <li><a href="{{ url_for('main.events', page=posts.next_num) }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
