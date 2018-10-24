@@ -123,7 +123,7 @@ def get_events():
     year = flask_request.args.get('year')
     posts = EventPosts.query.filter(extract('month', EventPosts.event_date) == month,
                                     extract('year', EventPosts.event_date) == year,
-                                    Posts.deleted == False).all()
+                                    Posts.deleted == False).order_by(EventPosts.event_date.asc()).all()
 
     # Format dates to be MM/DD/YYYY
     dates = []
