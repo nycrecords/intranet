@@ -1,3 +1,7 @@
+.new-post-section {
+    padding-top: 30px;
+}
+
 .new-post-form {
     margin-top: 3rem;
     margin-left: 3rem;
@@ -81,4 +85,8 @@
     color: indianred;
     font-size: 0.9em;
     display: none;
+}
+
+.intranet-use-policy-close-button {
+    float: right;
 }
