@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}New News Post{% endblock title %}
+{% block title %}New Event{% endblock title %}
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}"/>
@@ -16,10 +16,10 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
                     & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New News Post</li>
+                <li class="breadcrumb-item active" aria-current="page">New Event</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">New News Post</h1>
+        <h1 class="breadcrumb-header">New Event</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <form id="new-post-form" class="new-post-form" method="post" data-parsley-validate>
@@ -27,6 +27,36 @@
             <div class="form-group">
                 {{ form.title.label (class="post-form-label") }}
                 {{ form.title (class="form-control post-form-field post-form-input", id="title", maxlength="100") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.event_date.label (class="post-form-label") }}
+                {{ form.event_date (class="form-control post-form-field post-form-input datepicker", id="event-date") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.event_location.label (class="post-form-label") }}
+                {{ form.event_location (class="form-control post-form-field post-form-input", id="event-location", maxlength="50") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.event_leader.label (class="post-form-label") }}<br>
+                {{ form.event_leader (class="form-control post-form-field post-form-input", id="event-leader") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.start_time.label (class="post-form-label") }}
+                {{ form.start_time (class="form-control post-form-field post-form-input timepicker", id="start-time") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.end_time.label (class="post-form-label") }}
+                {{ form.end_time (class="form-control post-form-field post-form-input timepicker", id="end-time") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.sponsor.label (class="post-form-label") }}
+                {{ form.sponsor (class="form-control post-form-field post-form-input", id="sponsor", maxlength="100") }}
             </div>
 
             <div class="form-group">
@@ -38,7 +68,7 @@
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
-                <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple">
+                <select name="tags" id="event-tags" class="drop-up-tags" multiple="multiple">
                     {% for tag in tags %}
                         <option value="{{ tag }}">{{ tag }}</option>
                     {% endfor %}
