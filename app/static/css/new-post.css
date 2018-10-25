@@ -89,4 +89,14 @@
 
 .intranet-use-policy-close-button {
     float: right;
+    font-size: 18px;
+}
+
+.panel-heading-text {
+    font-size: 18px;
+    padding-left: 0;
+    color: black;
+    background: none;
+    border-color: #f5f5f5;
+    pointer-events: none;
 }
