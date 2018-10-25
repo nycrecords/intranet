@@ -1,4 +1,14 @@
 $(function () {
+    // handle close button text on use policy
+    $('.intranet-use-policy-close-button').click(function () {
+        if ($('#intranet-use-policy').hasClass('in')) {
+            $('.intranet-use-policy-close-button').text('Open');
+        }
+        else {
+            $('.intranet-use-policy-close-button').text('Close');
+        }
+    });
+
     // initialize datepickers
     $('#meeting-date').datepicker({
         dateFormat: 'mm/dd/yy',
