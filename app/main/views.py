@@ -470,14 +470,15 @@ def documents():
     return render_template('documents.html')
 
 
-@main.route('/document', methods=['GET'])
+@main.route('/documents/upload', methods=['GET', 'POST'])
 def upload_document():
     """
     """
     form = UploadForm()
 
     if flask_request.method == 'POST':
-        file = flask_request.files['file']
+        redirect(url_for('main.documents'))
+        # file = flask_request.files['file']
         # if file:
         #     filename = secure_filename(file.filename)
         #     file.save(url_for('data/temporary_file_storage'), filename)
