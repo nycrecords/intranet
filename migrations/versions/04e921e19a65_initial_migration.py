@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: a434fec827dc
+Revision ID: 04e921e19a65
 Revises: 
-Create Date: 2018-10-23 20:14:07.184213
+Create Date: 2018-10-25 16:44:06.569488
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'a434fec827dc'
+revision = '04e921e19a65'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -34,7 +34,7 @@ def upgrade():
     sa.Column('division', sa.String(), nullable=True),
     sa.Column('title', sa.String(length=64), nullable=True),
     sa.Column('phone_number', sa.String(length=25), nullable=True),
-    sa.Column('room', sa.String(length=3), nullable=True),
+    sa.Column('room', sa.String(), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -69,14 +69,11 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('event_date', sa.DateTime(), nullable=True),
     sa.Column('event_location', sa.String(), nullable=True),
-    sa.Column('leader', sa.Integer(), nullable=True),
+    sa.Column('event_leader', sa.String(), nullable=True),
     sa.Column('start_time', sa.String(), nullable=True),
     sa.Column('end_time', sa.String(), nullable=True),
-    sa.Column('title', sa.String(), nullable=True),
-    sa.Column('sponser', sa.String(), nullable=True),
-    sa.Column('description', sa.String(), nullable=True),
+    sa.Column('sponsor', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
-    sa.ForeignKeyConstraint(['leader'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('events',
@@ -104,7 +101,7 @@ def upgrade():
     sa.Column('next_meeting_leader', sa.String(), nullable=True),
     sa.Column('next_meeting_note_taker', sa.String(), nullable=True),
     sa.Column('meeting_type', sa.Enum('Division', 'Strategic Planning', 'Senior Staff', 'Project', 'Agency', name='meeting_type'), nullable=True),
-    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
+    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grant Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['posts.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

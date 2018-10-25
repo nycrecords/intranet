@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Events{% endblock %}
+
+{% block custom_css %}
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/calendar.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.news_and_updates') }}">News and Updates</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Events</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Calendar</h1>
+    </div>
+
+    <div class="col-sm-7 events-table-column">
+        <a class="btn btn-primary" href="{{ url_for('main.new_event_post') }}">Create New Event</a><br><br>
+        <div>
+            <div class="tab">
+                <button class="active events-this-month">
+                    Events This Month
+                </button>
+            </div>
+        </div>
+        <div id="event-rows" class="tabcontent container-fluid">
+        </div>
+    </div>
+
+    <div class="col-sm-5 calendar-column">
+        <div id="datepicker"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/calendar.js') }}"></script>
+{% endblock %}

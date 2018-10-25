@@ -29,7 +29,7 @@
             <p><strong>Meeting Type: </strong>{{ post.meeting_type }}</p>
             <p><strong>Division: </strong>{{ post.division }}</p>
             <p><strong>Meeting Date: </strong>{{ post.meeting_date.strftime('%m/%d/%Y') }}</p>
-            <p><strong>Location: </strong>{{ post.meeting_location }}</p>
+            <p><strong>Meeting Location: </strong>{{ post.meeting_location }}</p>
             <p><strong>Meeting Leader: </strong>{{ post.meeting_leader }}</p>
             <p><strong>Meeting Notetaker: </strong>{{ post.meeting_note_taker }}</p>
             <p><strong>Start Time: </strong>{{ post.start_time }}</p>
@@ -43,10 +43,20 @@
             {% if post.next_meeting_leader %}
                 <p><strong>Next Meeting Leader: </strong>{{ post.next_meeting_leader }}</p>
             {% endif %}
-
             {% if post.next_meeting_note_taker %}
                 <p><strong>Next Meeting Notetaker: </strong>{{ post.next_meeting_note_taker }}</p>
             {% endif %}
+        {% elif post.post_type == 'news' %}
+            <p><strong>Announcement: </strong>{{ post.content | safe }}</p>
+            <p><strong>Tags: </strong>{% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
+        {% elif post.post_type == 'event_posts' %}
+            <p><strong>Event Date: </strong>{{ post.event_date.strftime('%m/%d/%Y') }}</p>
+            <p><strong>Event Location: </strong>{{ post.event_location }}</p>
+            <p><strong>Event Leader: </strong>{{ post.event_leader }}</p>
+            <p><strong>Start Time: </strong>{{ post.start_time }}</p>
+            <p><strong>End Time: </strong>{{ post.end_time }}</p>
+            <p><strong>Description: </strong>{{ post.content | safe }}</p>
+            <p><strong>Tags: </strong>{% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
         {% endif %}
     </div>
 </div>
