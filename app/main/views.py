@@ -1,6 +1,6 @@
-from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts
+from app.models import Users, Posts, EventPosts, Documents
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm
 from app.main.utils import (create_meeting_notes,
@@ -8,7 +8,8 @@ from app.main.utils import (create_meeting_notes,
                             create_event_post,
                             get_users_by_division,
                             get_rooms_by_division,
-                            create_document)
+                            create_document,
+                            allowed_file)
 from datetime import datetime
 import pytz
 from app.constants import choices
@@ -475,7 +476,9 @@ def strategic_planning():
 def documents():
     """
     """
-    return render_template('documents.html')
+    instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.last_modified.asc()).all()
+    print(instructions)
+    return render_template('documents.html', instructions=instructions)
 
 
 @main.route('/documents/upload', methods=['GET', 'POST'])
@@ -487,13 +490,20 @@ def upload_document():
     if flask_request.method == 'POST' and form.validate_on_submit():
         file = flask_request.files['file_object']
         filename = secure_filename(file.filename)
+        file_exists = Documents.query.filter_by(file_name=filename).first() or None
+        if file_exists:
+            flash("This file has already been uploaded. Please select another file.")
+            return render_template('upload_document.html', form=form)
+        elif not allowed_file(filename):
+            flash("Invalid file type.")
+            return render_template('upload_document.html', form=form)
         file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
         file.save(file_path)
         create_document(uploader_id=current_user.id,
                         file_title=form.file_title.data,
                         file_name=filename,
                         document_type=form.document_type.data,
-                        file_type='pdf',
+                        file_type=filename.rsplit('.', 1)[1].lower(),
                         file_path=file_path,
                         division=form.division.data)
         return redirect(url_for('main.documents'))

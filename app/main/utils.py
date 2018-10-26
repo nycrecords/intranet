@@ -2,6 +2,7 @@ from flask import current_app
 from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
+from app.constants import file_types
 
 
 def create_object(obj):
@@ -184,3 +185,8 @@ def create_document(uploader_id,
                    previous_value={},
                    new_value=document.val_for_events)
     create_object(event)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in file_types.ALLOWED_EXTENSIONS

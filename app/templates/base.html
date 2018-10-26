@@ -17,7 +17,6 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}"/>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/documents.css') }}"/>
 
     {% block custom_css %}
     {% endblock %}
@@ -101,12 +100,6 @@
 {% endblock %}
 {% block content %}
     <div class="container page-container">
-        {% for message in get_flashed_messages() %}
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ message }}
-            </div>
-        {% endfor %}
         {% block page_content %}{% endblock %}
     </div>
     <div class="wrap">

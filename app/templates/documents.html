@@ -20,9 +20,9 @@
         <h1 class="breadcrumb-header">Documents</h1>
     </div>
     <div class="col-sm-12 well content-area">
-        <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload</a>
+        <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
         <div class="searchform">
-            <form action="/action_page.php">
+            <form>
                 Search by: <input type="text" placeholder="Search.." class="searchbar">
                 <select class="searchdropdown">
                     <option value="volvo">Name</option>
@@ -45,38 +45,28 @@
                     Procedures
                 </button>
                 <button class="tablinks thirdbutton" onclick="openTab(event, 'Templates')">Templates</button>
+                <button class="tablinks fourthbutton" onclick="openTab(event, 'Training Materials')">Training Materials</button>
             </div>
         </div>
         <div id="Instructions" class="tabcontent">
             <br>
             <table class="table table-striped">
                 <tr>
-                    <th style="width: 40%">Name</th>
-                    <th style="width: 30%">Type</th>
-                    <th style="width: 20%;">Last Modified</th>
-                    <th style="width: 10%;">Division</th>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Last Modified</th>
                 </tr>
+                {% for instruction in instructions %}
                 <tr>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
+                    <td><a href="{{ url_for('static', filename='documents/' + instruction.file_name ) }}">{{ instruction.file_title }}</a></td>
+                    <td>{{ instruction.uploader }}</td>
+                    <td>{{ instruction.division}}</td>
+                    <td>{{ instruction.last_modified.strftime("%m/%d/%Y ") }}</td>
                 </tr>
-                <tr>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                </tr>
-                <tr>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                    <td>heyeyeye</td>
-                </tr>
+                {% endfor %}
             </table>
         </div>
-
     </div>
 </div>
 

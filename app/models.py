@@ -487,6 +487,31 @@ class Documents(db.Model):
     division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
                                  'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
                                  'Municipal Records Management', 'Operations', name='divisions'))
+    last_modified = db.Column(db.DateTime)
+
+    def __init__(self,
+                 uploader_id,
+                 file_title,
+                 file_name,
+                 document_type,
+                 file_type,
+                 file_path,
+                 division):
+        self.uploader_id = uploader_id
+        self.file_title = file_title
+        self.file_name = file_name
+        self.document_type = document_type
+        self.file_type = file_type
+        self.file_path = file_path
+        self.division = division
+        self.last_modified = datetime.utcnow()
+
+    @property
+    def uploader(self):
+        """
+        """
+        user = Users.query.filter_by(id=self.uploader_id).first()
+        return user.name
 
     @property
     def val_for_events(self):
@@ -498,7 +523,8 @@ class Documents(db.Model):
             'file_title': self.file_title,
             'file_name': self.file_name,
             'document_type': self.document_type,
-            'division': self.division
+            'division': self.division,
+            'last_modified': self.last_modified
         }
 
     def __repr__(self):
