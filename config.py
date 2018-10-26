@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from flask import url_for
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,6 +26,8 @@ class Config:
                                                              'users.csv'))
 
     POSTS_PER_PAGE = 10
+
+    FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or url_for('static/documents')
 
     @staticmethod
     def init_app(app):

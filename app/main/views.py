@@ -3,11 +3,19 @@ from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm
-from app.main.utils import create_meeting_notes, create_news, create_event_post, get_users_by_division, get_rooms_by_division
+from app.main.utils import (create_meeting_notes,
+                            create_news,
+                            create_event_post,
+                            get_users_by_division,
+                            get_rooms_by_division,
+                            create_document)
 from datetime import datetime
 import pytz
 from app.constants import choices
 from sqlalchemy import extract
+from werkzeug.utils import secure_filename
+import os
+
 
 @main.route('/', methods=['GET'])
 def index():
@@ -471,17 +479,22 @@ def documents():
 
 
 @main.route('/documents/upload', methods=['GET', 'POST'])
+@login_required
 def upload_document():
     """
     """
     form = UploadForm()
-
-    if flask_request.method == 'POST':
-        redirect(url_for('main.documents'))
-        # file = flask_request.files['file']
-        # if file:
-        #     filename = secure_filename(file.filename)
-        #     file.save(url_for('data/temporary_file_storage'), filename)
-        #     return redirect(url_for('/'))
-
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        file = flask_request.files['file_object']
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
+        file.save(file_path)
+        create_document(uploader_id=current_user.id,
+                        file_title=form.file_title.data,
+                        file_name=filename,
+                        document_type=form.document_type.data,
+                        file_type='pdf',
+                        file_path=file_path,
+                        division=form.division.data)
+        return redirect(url_for('main.documents'))
     return render_template('upload_document.html', form=form)

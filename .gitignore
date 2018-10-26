@@ -3,6 +3,7 @@
 *.crt
 *.key
 app/static/img/employee_photos/
+app/static/documents/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

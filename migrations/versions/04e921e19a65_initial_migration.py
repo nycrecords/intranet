@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('uploader_id', sa.Integer(), nullable=True),
     sa.Column('file_title', sa.String(), nullable=True),
     sa.Column('file_name', sa.String(), nullable=True),
-    sa.Column('type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', name='document_type'), nullable=True),
+    sa.Column('document_type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', name='document_type'), nullable=True),
     sa.Column('file_type', sa.String(), nullable=True),
     sa.Column('file_path', sa.String(), nullable=True),
     sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
@@ -79,12 +79,14 @@ def upgrade():
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=True),
+    sa.Column('document_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('type', sa.String(), nullable=True),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('previous_value', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.Column('new_value', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
+    sa.ForeignKeyConstraint(['document_id'], ['documents.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

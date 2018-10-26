@@ -23,7 +23,7 @@
     </div>
     <div class="col-sm-12 well content-area new-post-section">
         {% include "intranet_use_policy.html" %}
-        <form id="new-meeting-notes-form" class="new-post-form" method="post" data-parsley-validate>
+        <form id="upload-document-form" class="new-post-form" method="post" enctype="multipart/form-data" data-parsley-validate>
             {{ form.csrf_token }}
             <div class="form-group">
                 {{ form.file_title.label (class="post-form-label") }}

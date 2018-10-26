@@ -1,5 +1,5 @@
 from flask import current_app
-from app.models import MeetingNotes, News, EventPosts, Events, Users
+from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -159,3 +159,28 @@ def get_rooms_by_division(division):
     rooms = [u[0] for u in Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
     rooms = filter(None, rooms)
     return list(set(rooms))
+
+
+def create_document(uploader_id,
+                    file_title,
+                    file_name,
+                    document_type,
+                    file_type,
+                    file_path,
+                    division):
+    document = Documents(uploader_id=uploader_id,
+                         file_title=file_title,
+                         file_name=file_name,
+                         document_type=document_type,
+                         file_type=file_type,
+                         file_path=file_path,
+                         division=division)
+    create_object(document)
+
+    # Create document_uploaded Event
+    event = Events(document_id=document.id,
+                   user_id=uploader_id,
+                   type="document_uploaded",
+                   previous_value={},
+                   new_value=document.val_for_events)
+    create_object(event)

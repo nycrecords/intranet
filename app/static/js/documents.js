@@ -14,7 +14,7 @@ $(function () {
                           'document-type',
                           'division',
                           'file-object'];
-    for (var i = 0; i < requiredFields.length; i++) {
-        $('#' + requiredFields[i]).attr('data-parsley-required', '');
-    }
+    // for (var i = 0; i < requiredFields.length; i++) {
+    //     $('#' + requiredFields[i]).attr('data-parsley-required', '');
+    // }
 });

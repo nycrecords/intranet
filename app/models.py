@@ -443,6 +443,7 @@ class Events(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    document_id = db.Column(db.Integer, db.ForeignKey('documents.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     type = db.Column(db.String)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
@@ -452,10 +453,12 @@ class Events(db.Model):
     def __init__(self,
                  type,
                  post_id=None,
+                 document_id=None,
                  user_id=None,
                  previous_value=None,
                  new_value=None):
         self.post_id = post_id
+        self.document_id = document_id
         self.user_id = user_id
         self.type = type
         self.timestamp = datetime.utcnow()
@@ -474,13 +477,29 @@ class Documents(db.Model):
     uploader_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     file_title = db.Column(db.String)
     file_name = db.Column(db.String)
-    type = db.Column(db.Enum('Instructions',
-                             'Policies and Procedures',
-                             'Templates',
-                             'Training Materials',
-                             name='document_type'))
+    document_type = db.Column(db.Enum('Instructions',
+                                      'Policies and Procedures',
+                                      'Templates',
+                                      'Training Materials',
+                                      name='document_type'))
     file_type = db.Column(db.String)
     file_path = db.Column(db.String)
     division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
                                  'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
                                  'Municipal Records Management', 'Operations', name='divisions'))
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+
+        return {
+            'file_title': self.file_title,
+            'file_name': self.file_name,
+            'document_type': self.document_type,
+            'division': self.division
+        }
+
+    def __repr__(self):
+        return '<Documents %r>' % self.id
