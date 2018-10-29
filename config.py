@@ -26,6 +26,7 @@ class Config:
                                                              'users.csv'))
 
     POSTS_PER_PAGE = 10
+    DOCUMENTS_PER_PAGE = 10
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or url_for('static/documents')
 

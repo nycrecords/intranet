@@ -19,73 +19,236 @@
         </nav>
         <h1 class="breadcrumb-header">Documents</h1>
     </div>
-    <div class="col-sm-12 well content-area">
+    <div class="col-sm-12 well content-area documents-section">
         <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
         <div class="searchform">
-            <form>
-                Search by: <input type="text" placeholder="Search.." class="searchbar">
-                <select class="searchdropdown">
-                    <option value="volvo">Name</option>
-                    <option value="saab">Type</option>
-                    <option value="mercedes">Last Modified</option>
-                    <option value="audi">Division</option>
+            <form class="documents-search-form">
+                Search by:<input type="text" class="searchbar">
+                <button type="submit" class="btn btn-default documents-search-button">Submit</button>
+                Sort By:
+                <select class="sort-dropdown">
+                    <option>All</option>
+                    <option>Name (A - Z)</option>
+                    <option>Name (Z - A)</option>
+                    <option>Date (Newest)</option>
+                    <option>Date (Oldest)</option>
                 </select>
             </form>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="search-container">
+        <div class="document-tabs">
             <div class="tab">
-                <button class="tablinks firstbutton" onclick="openTab(event, 'Instructions')" id="defaultOpen">
+                <button class="tablinks" onclick="openTab(event, 'instructions')" id="{{ 'default-open' if default_open == 'instructions' }}">
                     Instructions
                 </button>
-                <button class="tablinks secondbutton" onclick="openTab(event, 'Policies & Procedures')">Policies &
+                <button class="tablinks" onclick="openTab(event, 'policies_and_procedures')" id="{{ 'default-open' if default_open == 'policies_and_procedures' }}">Policies &
                     Procedures
                 </button>
-                <button class="tablinks thirdbutton" onclick="openTab(event, 'Templates')">Templates</button>
-                <button class="tablinks fourthbutton" onclick="openTab(event, 'Training Materials')">Training Materials</button>
+                <button class="tablinks" onclick="openTab(event, 'templates')" id="{{ 'default-open' if default_open == 'templates' }}">Templates</button>
+                <button class="tablinks" onclick="openTab(event, 'training_materials')" id="{{ 'default-open' if default_open == 'training_materials' }}">Training Materials</button>
             </div>
         </div>
-        <div id="Instructions" class="tabcontent">
+        <div id="instructions" class="tabcontent">
             <br>
             <table class="table table-striped">
                 <tr>
                     <th class="col-sm-3">Name</th>
-                    <th class="col-sm-3">Uploaded By</th>
                     <th class="col-sm-3">Division</th>
-                    <th class="col-sm-3">Last Modified</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
                 </tr>
-                {% for instruction in instructions %}
+                {% for document in instructions.items %}
+                {% if document.deleted == False %}
                 <tr>
-                    <td><a href="{{ url_for('static', filename='documents/' + instruction.file_name ) }}">{{ instruction.file_title }}</a></td>
-                    <td>{{ instruction.uploader }}</td>
-                    <td>{{ instruction.division}}</td>
-                    <td>{{ instruction.last_modified.strftime("%m/%d/%Y ") }}</td>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
                 </tr>
+                {% endif %}
                 {% endfor %}
             </table>
+            <div class="documents-pagination">
+                <ul class="pagination">
+                    {% if instructions.has_prev %}
+                        <li><a href="{{ url_for('main.documents', instructions_page=instructions.prev_num, default_open='instructions') }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for page_num in instructions.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != instructions.page %}
+                                <li><a href="{{ url_for('main.documents', instructions_page=page_num, default_open='instructions') }}">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="active"><span>{{ page_num }}</span></li>
+                            {% endif %}
+                        {% else %}
+                                <li class="disabled"><span>...</span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if instructions.has_next %}
+                        <li><a href="{{ url_for('main.documents', instructions_page=instructions.next_num, default_open='instructions') }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div id="policies_and_procedures" class="tabcontent">
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in policies_and_procedures.items %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+            <div class="documents-pagination">
+                <ul class="pagination">
+                    {% if policies_and_procedures.has_prev %}
+                        <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.prev_num, default_open='policies_and_procedures') }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for page_num in policies_and_procedures.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != policies_and_procedures.page %}
+                                <li><a href="{{ url_for('main.documents', policies_and_procedures_page=page_num, default_open='policies_and_procedures') }}">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="active"><span>{{ page_num }}</span></li>
+                            {% endif %}
+                        {% else %}
+                                <li class="disabled"><span>...</span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if policies_and_procedures.has_next %}
+                        <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.next_num, default_open='policies_and_procedures') }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div id="templates" class="tabcontent">
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in templates.items %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+            <div class="documents-pagination">
+                <ul class="pagination">
+                    {% if templates.has_prev %}
+                        <li><a href="{{ url_for('main.documents', templates_page=templates.prev_num, default_open='templates') }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for page_num in templates.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != templates.page %}
+                                <li><a href="{{ url_for('main.documents', templates_page=page_num, default_open='templates') }}">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="active"><span>{{ page_num }}</span></li>
+                            {% endif %}
+                        {% else %}
+                                <li class="disabled"><span>...</span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if templates.has_next %}
+                        <li><a href="{{ url_for('main.documents', templates_page=templates.next_num, default_open='templates') }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <div id="training_materials" class="tabcontent">
+            <br>
+            <table class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in training_materials.items %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+            <div class="documents-pagination">
+                <ul class="pagination">
+                    {% if training_materials.has_prev %}
+                        <li><a href="{{ url_for('main.documents', training_materials_page=training_materials.prev_num, default_open='training_materials') }}">&laquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for page_num in training_materials.iter_pages() %}
+                        {% if page_num %}
+                            {% if page_num != training_materials.page %}
+                                <li><a href="{{ url_for('main.documents', training_materials_page=page_num, default_open='training_materials') }}">{{ page_num }}</a></li>
+                            {% else %}
+                                <li class="active"><span>{{ page_num }}</span></li>
+                            {% endif %}
+                        {% else %}
+                                <li class="disabled"><span>...</span></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if training_materials.has_next %}
+                        <li><a href="{{ url_for('main.documents', training_materials_page=training_materials.next_num, default_open='training_materials') }}">&raquo;</a></li>
+                    {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-    document.getElementById("defaultOpen").click();
-</script>
 {% endblock %}
 
 {% block custom_scripts %}

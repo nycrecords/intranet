@@ -49,6 +49,7 @@ def upgrade():
     sa.Column('file_path', sa.String(), nullable=True),
     sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
     sa.Column('last_modified', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['uploader_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

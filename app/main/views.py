@@ -13,7 +13,7 @@ from app.main.utils import (create_meeting_notes,
 from datetime import datetime
 import pytz
 from app.constants import choices
-from sqlalchemy import extract
+from sqlalchemy import extract, or_
 from werkzeug.utils import secure_filename
 import os
 
@@ -476,9 +476,19 @@ def strategic_planning():
 def documents():
     """
     """
-    instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.last_modified.asc()).all()
-    print(instructions)
-    return render_template('documents.html', instructions=instructions)
+    default_open = flask_request.args.get('default_open', 'instructions')
+
+    instructions_page = flask_request.args.get('instructions_page', 1, type=int)
+    policies_and_procedures_page = flask_request.args.get('policies_and_procedures_page', 1, type=int)
+    templates_page = flask_request.args.get('templates_page', 1, type=int)
+    training_materials_page = flask_request.args.get('training_materials_page', 1, type=int)
+
+    instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.last_modified.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+    policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(Documents.last_modified.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+    templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.last_modified.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+    training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(Documents.last_modified.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+
+    return render_template('documents.html', instructions=instructions, policies_and_procedures=policies_and_procedures, templates=templates, training_materials=training_materials, default_open=default_open)
 
 
 @main.route('/documents/upload', methods=['GET', 'POST'])
@@ -490,9 +500,12 @@ def upload_document():
     if flask_request.method == 'POST' and form.validate_on_submit():
         file = flask_request.files['file_object']
         filename = secure_filename(file.filename)
-        file_exists = Documents.query.filter_by(file_name=filename).first() or None
-        if file_exists:
+        file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
+        if file_exists.file_name == filename:
             flash("This file has already been uploaded. Please select another file.")
+            return render_template('upload_document.html', form=form)
+        elif file_exists.file_title == form.file_title.data:
+            flash("A file with this title has already been uploaded. Please use another title.")
             return render_template('upload_document.html', form=form)
         elif not allowed_file(filename):
             flash("Invalid file type.")

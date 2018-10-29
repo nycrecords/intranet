@@ -488,6 +488,7 @@ class Documents(db.Model):
                                  'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
                                  'Municipal Records Management', 'Operations', name='divisions'))
     last_modified = db.Column(db.DateTime)
+    deleted = db.Column(db.Boolean, default=False)
 
     def __init__(self,
                  uploader_id,
@@ -505,6 +506,7 @@ class Documents(db.Model):
         self.file_path = file_path
         self.division = division
         self.last_modified = datetime.utcnow()
+        self.deleted = False
 
     @property
     def uploader(self):
