@@ -17,7 +17,7 @@
   "formation": {},
   "addons": [
     "heroku-postgresql",
-    "heroku-mailgun"
+    "mailgun"
   ],
   "buildpacks": [
     {
