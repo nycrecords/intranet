@@ -32,4 +32,68 @@ $(function () {
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
+
+    // handle sort by dropdown change event
+    $('#sort-dropdown').change(function() {
+        $.ajax({
+            url: '/documents/sort/',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                'sort_by': $('option:selected', this).val(),
+                'current_tab': $('.tablinks.active').val(),
+                'search_term': $('#save-search-term').text()
+            },
+            success: function (data) {
+                // if (response.redirect) {
+                //     window.location.href = response.redirect;
+                // }
+                $('#instructions').html('');
+                $('#policies-and-procedures').html('');
+                $('#templates').html('');
+                $('#training-materials').html('');
+                $('#instructions').html(data['instructions']);
+                $('#policies-and-procedures').html(data['policies_and_procedures']);
+                $('#templates').html(data['templates']);
+                $('#training-materials').html(data['training_materials']);
+            }
+        });
+    });
+
+
+    $('.documents-search-button').click(function() {
+        var search_term = $('#document-search-term').val();
+        $('#document-search-term').val('');
+        $.ajax({
+            url: '/documents/sort/',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                'sort_by': $('option:selected', this).val(),
+                'current_tab': $('.tablinks.active').val(),
+                'search_term': search_term
+            },
+            success: function (data) {
+                // if (response.redirect) {
+                //     window.location.href = response.redirect;
+                // }
+                $('#instructions').html('');
+                $('#policies-and-procedures').html('');
+                $('#templates').html('');
+                $('#training-materials').html('');
+                $('#instructions').html(data['instructions']);
+                $('#policies-and-procedures').html(data['policies_and_procedures']);
+                $('#templates').html(data['templates']);
+                $('#training-materials').html(data['training_materials']);
+                if (search_term !== '') {
+                    $('#save-search-term').html(search_term);
+                    $('#display-search-term').show()
+                }
+                else {
+                    $('#save-search-term').html('');
+                    $('#display-search-term').hide()
+                }
+            }
+        });
+    });
 });

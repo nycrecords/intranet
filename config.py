@@ -28,7 +28,7 @@ class Config:
     POSTS_PER_PAGE = 10
     DOCUMENTS_PER_PAGE = 10
 
-    FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or url_for('static/documents')
+    FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
 
     @staticmethod
     def init_app(app):

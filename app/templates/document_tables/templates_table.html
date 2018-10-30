@@ -1,0 +1,48 @@
+<br>
+<table id="tempmlates-table" class="table table-striped">
+    <tr>
+        <th class="col-sm-3">Name</th>
+        <th class="col-sm-3">Division</th>
+        <th class="col-sm-3">Uploaded By</th>
+        <th class="col-sm-3">Uploaded On</th>
+    </tr>
+    {% for document in templates.items %}
+    {% if document.deleted == False %}
+    <tr>
+        <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+            document.file_title }}</a>
+            <p class="file-name">({{ document.file_name }})</p></td>
+        <td>{{ document.division }}</td>
+        <td>{{ document.uploader }}</td>
+        <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<div class="documents-pagination">
+    <ul class="pagination">
+        {% if templates.has_prev %}
+            <li><a href="{{ url_for('main.documents', templates_page=templates.prev_num, default_open='templates') }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for page_num in templates.iter_pages() %}
+            {% if page_num %}
+                {% if page_num != templates.page %}
+                    <li><a href="{{ url_for('main.documents', templates_page=page_num, default_open='templates') }}">{{ page_num }}</a></li>
+                {% else %}
+                    <li class="active"><span>{{ page_num }}</span></li>
+                {% endif %}
+            {% else %}
+                    <li class="disabled"><span>...</span></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if templates.has_next %}
+            <li><a href="{{ url_for('main.documents', templates_page=templates.next_num, default_open='templates') }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+</div>
