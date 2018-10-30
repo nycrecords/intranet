@@ -23,8 +23,14 @@ class Config:
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))
+    IT_INTAKE_EMAIL_RECIPIENTS = os.environ.get('IT_INTAKE_EMAIL_RECIPIENTS').split(',') or []
 
     POSTS_PER_PAGE = 10
+
+    MAIL_SERVER = os.environ.get('MAIL_SERVER') or '127.0.0.1'
+    MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
+
+
 
     @staticmethod
     def init_app(app):

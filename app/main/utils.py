@@ -1,7 +1,11 @@
+from datetime import datetime
+
 from flask import current_app
-from app.models import MeetingNotes, News, EventPosts, Events, Users
-from app import db
+from flask import render_template
 from sqlalchemy.exc import SQLAlchemyError
+
+from app import db
+from app.models import MeetingNotes, News, EventPosts, Events, Users
 
 
 def create_object(obj):
@@ -156,6 +160,12 @@ def get_rooms_by_division(division):
     :return: A list of rooms that a division uses
     """
 
-    rooms = [u[0] for u in Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
+    rooms = [u[0] for u in
+             Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
     rooms = filter(None, rooms)
     return list(set(rooms))
+
+
+def render_email(data):
+    today = str(datetime.now().today().date())
+    return render_template("email/intake_email.html", today=today, form=data)
