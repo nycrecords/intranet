@@ -23,7 +23,7 @@ class Config:
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))
-    IT_INTAKE_EMAIL_RECIPIENTS = os.environ.get('IT_INTAKE_EMAIL_RECIPIENTS').split(',') or []
+    APP_DEV_INTAKE_EMAIL_RECIPIENTS = os.environ.get('APP_DEV_INTAKE_EMAIL_RECIPIENTS').split(',') or []
 
     POSTS_PER_PAGE = 10
 

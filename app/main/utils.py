@@ -166,6 +166,12 @@ def get_rooms_by_division(division):
     return list(set(rooms))
 
 
-def render_email(data):
+def render_email(data, template):
+    """
+    Render the given email template with the given data
+    :param data: Data to populate in the email template
+    :param template: Path to the email template
+    :return: HTML String
+    """
     today = str(datetime.now().today().date())
-    return render_template("email/intake_email.html", today=today, form=data)
+    return render_template(template, today=today, form=data)

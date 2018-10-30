@@ -161,7 +161,7 @@ class EnfgForm(FlaskForm):
     submit = SubmitField('Print')
 
 
-class IntakeForm(FlaskForm):
+class AppDevIntakeForm(FlaskForm):
     # Submission Information
     submitter_name = StringField("Submitter Name:", validators=[DataRequired()])
     submitter_email = EmailField("Submitter Email:", validators=[DataRequired()])
