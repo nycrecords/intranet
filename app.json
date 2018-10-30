@@ -1,9 +1,7 @@
 {
   "name": "intranet",
   "scripts": {
-    "postdeploy": {
-
-    }"python manage.py deploy"
+    "postdeploy": "python manage.py deploy"
   },
   "env": {
     "USER_DATA": "./data/users.csv",
