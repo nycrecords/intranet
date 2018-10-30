@@ -5,7 +5,7 @@
   },
   "env": {
     "USER_DATA": "./data/users.csv",
-    "FLASK_CONFIG": "production",
+    "FLASK_CONFIG": "heroku",
     "LOGIN_REQUIRED": "False",
     "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov",
   },
