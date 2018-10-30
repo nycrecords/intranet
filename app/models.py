@@ -520,13 +520,13 @@ class Documents(db.Model):
         """
         JSON to store in Events 'new_value' field.
         """
-
+        last_modified = self.last_modified.isoformat() if self.last_modified else None
         return {
             'file_title': self.file_title,
             'file_name': self.file_name,
             'document_type': self.document_type,
             'division': self.division,
-            'last_modified': self.last_modified
+            'last_modified': last_modified
         }
 
     def __repr__(self):

@@ -1,8 +1,19 @@
+import subprocess
+import os
 from flask import current_app
 from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
+
+
+class VirusDetectedException(Exception):
+    """
+    Raise when scanner detects an infected file.
+    """
+    def __init__(self, filename):
+        super(VirusDetectedException, self).__init__(
+            "Infected file '{}' removed.".format(filename))
 
 
 def create_object(obj):
@@ -188,5 +199,30 @@ def create_document(uploader_id,
 
 
 def allowed_file(filename):
+    """
+    Check if the file type is allowed (uses the file extension).
+    TODO: Need to use a better method for this.
+    :param filename: Name of the file
+    :return: Boolean (True if file type is allowed).
+    """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in file_types.ALLOWED_EXTENSIONS
+
+
+def scan_file(filepath):
+    """
+    Scans a file for viruses using McAfee Virus Scan. If an infected
+    file is detected, removes the file and raises VirusDetectedException.
+    :param filepath: path of file to scan
+    """
+    if current_app.config['VIRUS_SCAN_ENABLED']:
+        options = [
+            '--analyze',  # Use heuristic analysis to find possible new viruses
+            '--atime-preserve',  # Preserve the file's last-accessed time and date
+            '--delete'  # Automatically delete the infected file
+        ]
+        cmd = ['uvscan'] + options + [filepath]
+        subprocess.call(cmd)  # TODO: redirect output to logfile
+        # if the file was removed, it was infected
+        if not os.path.exists(filepath):
+            raise VirusDetectedException(os.path.basename(filepath))

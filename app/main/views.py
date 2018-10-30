@@ -9,7 +9,9 @@ from app.main.utils import (create_meeting_notes,
                             get_users_by_division,
                             get_rooms_by_division,
                             create_document,
-                            allowed_file)
+                            allowed_file,
+                            VirusDetectedException,
+                            scan_file)
 from datetime import datetime
 import pytz
 from app.constants import choices
@@ -501,17 +503,23 @@ def upload_document():
         file = flask_request.files['file_object']
         filename = secure_filename(file.filename)
         file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
-        if file_exists.file_name == filename:
-            flash("This file has already been uploaded. Please select another file.")
-            return render_template('upload_document.html', form=form)
-        elif file_exists.file_title == form.file_title.data:
-            flash("A file with this title has already been uploaded. Please use another title.")
-            return render_template('upload_document.html', form=form)
+        if file_exists:
+            if file_exists.file_name == filename:
+                flash("This file has already been uploaded. Please select another file.")
+                return render_template('upload_document.html', form=form)
+            elif file_exists.file_title == form.file_title.data:
+                flash("A file with this title has already been uploaded. Please use another title.")
+                return render_template('upload_document.html', form=form)
         elif not allowed_file(filename):
             flash("Invalid file type.")
             return render_template('upload_document.html', form=form)
-        file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
-        file.save(file_path)
+        try:
+            file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
+            file.save(file_path)
+            scan_file(file_path)
+        except VirusDetectedException:
+            flash("Virus detected. Please contact IT for assistance.")
+            return render_template('upload_document.html', form=form)
         create_document(uploader_id=current_user.id,
                         file_title=form.file_title.data,
                         file_name=filename,
