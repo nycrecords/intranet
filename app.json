@@ -6,16 +6,23 @@
   "env": {
     "USER_DATA": "./data/users.csv",
     "FLASK_CONFIG": "production",
-    "LOGIN_REQUIRED": "False"
+    "LOGIN_REQUIRED": "False",
+    "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov",
+    "MAIL_SERVER": "$MAILGUN_SMTP_SERVER",
+    "MAIL_PORT": "$MAILGUN_SMTP_PORT",
+    "MAIL_USERNAME": "$MAILGUN_SMTP_LOGIN",
+    "MAIL_PASSWORD": "$MAILGUN_SMTP_PASSWORD",
+    "MAIL_USE_TLS": "True"
   },
   "formation": {},
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "heroku-mailgun"
   ],
   "buildpacks": [
     {
       "url": "heroku/python"
     }
   ],
-  "stacks": "heroku-18"
+  "stack": "heroku-18"
 }
