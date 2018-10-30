@@ -35,6 +35,7 @@ class RequiredIf(DataRequired):
 
     def __init__(self, message=None, *args, **kwargs):
         super(RequiredIf).__init__()
+        DataRequired.__init__(self)
         self.message = message
         self.conditions = kwargs
 
