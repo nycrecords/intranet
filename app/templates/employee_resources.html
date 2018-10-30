@@ -75,10 +75,21 @@
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <a href="#">
+                <a href="{{ url_for('main.documents', default_open='policies_and_procedures') }}">
                     <div class="employee-resources-option-boxes col-sm-12">
                         <div class="row">
                             <h4 class="employee-resources-title">POLICIES AND PROCEDURES</h4>
+                            <img class="employee-resources-icon"
+                                 src="{{ url_for('static', filename='img/documents.png') }}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="{{ url_for('main.documents', default_open='training_materials') }}">
+                    <div class="employee-resources-option-boxes col-sm-12">
+                        <div class="row">
+                            <h4 class="employee-resources-title">TRAINING MATERIALS</h4>
                             <img class="employee-resources-icon"
                                  src="{{ url_for('static', filename='img/documents.png') }}">
                         </div>
@@ -90,6 +101,11 @@
             <div class="col-sm-4">
                 <div class="employee-resources-text">
                     <p>Find documents relating to policies and procedures here.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="employee-resources-text">
+                    <p>Find documents relating to training materials here.</p>
                 </div>
             </div>
         </div>

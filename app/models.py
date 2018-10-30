@@ -15,6 +15,7 @@ from app.constants import (
     permission,
     role_name,
 )
+import pytz
 
 
 class Roles(db.Model):
@@ -514,6 +515,14 @@ class Documents(db.Model):
         """
         user = Users.query.filter_by(id=self.uploader_id).first()
         return user.name
+
+    @property
+    def local_timestamp(self):
+        """
+        """
+        timestamp = self.last_modified.replace(tzinfo=pytz.utc)
+        timestamp = timestamp.astimezone(pytz.timezone("America/New_York"))
+        return timestamp
 
     @property
     def val_for_events(self):

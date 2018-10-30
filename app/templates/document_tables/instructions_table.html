@@ -14,7 +14,7 @@
             <p class="file-name">({{ document.file_name }})</p></td>
         <td>{{ document.division }}</td>
         <td>{{ document.uploader }}</td>
-        <td>{{ document.last_modified.strftime("%m/%d/%Y %I:%M %p") }}</td>
+        <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
     </tr>
     {% endif %}
     {% endfor %}
