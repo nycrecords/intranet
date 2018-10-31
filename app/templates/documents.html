@@ -117,21 +117,21 @@
                 {% endfor %}
             </table>
         </div>
-        <!--<div id="policies-and-procedures-pagination" class="row pagination-row" hidden>-->
-            <!--<div class="col-sm-3">-->
-                <!--<button type="button" id="prev" class="btn btn-default">-->
-                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                    <!--Prev-->
-                <!--</button>-->
-            <!--</div>-->
-            <!--<div class="col-sm-6 text-center" id="page-info"></div>-->
-            <!--<div class="col-sm-3 text-right">-->
-                <!--<button type="button" id="next" class="btn btn-default">-->
-                    <!--Next-->
-                    <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>-->
+        <div id="policies-and-procedures-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="policies-and-procedures-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="policies-and-procedures-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="policies-and-procedures-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
 
         <div id="templates" class="tabcontent">
             <br>
@@ -156,6 +156,22 @@
                 {% endfor %}
             </table>
         </div>
+        <div id="templates-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="templates-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="templates-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="templates-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
         <div id="training-materials" class="tabcontent">
             <br>
             <table id="training-materials-table" class="table table-striped">
@@ -178,6 +194,21 @@
                 {% endif %}
                 {% endfor %}
             </table>
+        </div>
+        <div id="training-materials-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="training-materials-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="training-materials-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="training-materials-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

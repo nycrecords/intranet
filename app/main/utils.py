@@ -1,6 +1,6 @@
 import subprocess
 import os
-from flask import current_app
+from flask import current_app, render_template
 from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
@@ -226,3 +226,44 @@ def scan_file(filepath):
         # if the file was removed, it was infected
         if not os.path.exists(filepath):
             raise VirusDetectedException(os.path.basename(filepath))
+
+
+def process_documents_search(document_type_plain_text,
+                             document_type,
+                             sort_by,
+                             search_term,
+                             documents_start,
+                             documents_end):
+    if search_term:
+        search_term = search_term.lower()
+        if sort_by == 'all' or sort_by == 'date_newest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
+        elif sort_by == 'name_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'name_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
+    else:
+        if sort_by == 'all' or sort_by == 'date_newest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
+        elif sort_by == 'name_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'name_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
+
+    documents_max = len(documents)
+    documents = documents[documents_start:documents_end]
+    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
+
+    data = {
+        'documents': documents_rows,
+        'documents_max': documents_max,
+        'documents_start': documents_start + 1,
+        'documents_end': documents_end,
+        'document_type': document_type
+    }
+
+    return data

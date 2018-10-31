@@ -11,13 +11,15 @@ from app.main.utils import (create_meeting_notes,
                             create_document,
                             allowed_file,
                             VirusDetectedException,
-                            scan_file)
+                            scan_file,
+                            process_documents_search)
 from datetime import datetime
 import pytz
 from app.constants import choices
 from sqlalchemy import extract, or_
 from werkzeug.utils import secure_filename
 import os
+import json
 
 
 @main.route('/', methods=['GET'])
@@ -482,42 +484,44 @@ def documents():
     return render_template('documents.html', default_open=default_open)
 
 
-@main.route('/documents/search/', methods=['GET','POST'])
+@main.route('/documents/search/', methods=['GET'])
 def search_documents():
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
+    page_counters = json.loads(flask_request.args.get('page_counters'))
 
-    if search_term:
-        search_term = search_term.lower()
-        if sort_by == 'all' or sort_by == 'date_newest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
-        elif sort_by == 'name_a_z':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'name_z_a':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
-    else:
-        if sort_by == 'all' or sort_by == 'date_newest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.desc()).all()
-        elif sort_by == 'name_a_z':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'name_z_a':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.asc()).all()
+    instructions_data = process_documents_search(document_type_plain_text='Instructions',
+                                                 document_type='instructions',
+                                                 sort_by=sort_by,
+                                                 search_term=search_term,
+                                                 documents_start=page_counters['instructions']['start'],
+                                                 documents_end=page_counters['instructions']['end'])
 
-    instructions_max = len(instructions)
-    instructions_start = flask_request.args.get('start', type=int)
-    instructions_end = flask_request.args.get('end', type=int)
-    instructions = instructions[instructions_start:instructions_end]
-    instructions_rows = render_template('documents_table.html', document_type='instructions', documents=instructions)
+    policies_and_procedures_data = process_documents_search(document_type_plain_text='Policies and Procedures',
+                                                            document_type='policies-and-procedures',
+                                                            sort_by=sort_by,
+                                                            search_term=search_term,
+                                                            documents_start=page_counters['policies_and_procedures']['start'],
+                                                            documents_end=page_counters['policies_and_procedures']['end'])
 
+    templates_data = process_documents_search(document_type_plain_text='Templates',
+                                              document_type='templates',
+                                              sort_by=sort_by,
+                                              search_term=search_term,
+                                              documents_start=page_counters['templates']['start'],
+                                              documents_end=page_counters['templates']['end'])
+
+    training_materials_data = process_documents_search(document_type_plain_text='Training Materials',
+                                                       document_type='training-materials',
+                                                       sort_by=sort_by,
+                                                       search_term=search_term,
+                                                       documents_start=page_counters['training_materials']['start'],
+                                                       documents_end=page_counters['training_materials']['end'])
     data = {
-        'instructions': instructions_rows,
-        'instructions_max': instructions_max,
-        'instructions_start': instructions_start + 1,
-        'instructions_end': instructions_end
+        'instructions_data': instructions_data,
+        'policies_and_procedures_data': policies_and_procedures_data,
+        'templates_data': templates_data,
+        'training_materials_data': training_materials_data
     }
 
     return jsonify(data)
@@ -527,41 +531,16 @@ def search_documents():
 def change_documents_page():
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
+    page_counters = json.loads(flask_request.args.get('page_counters'))
     document_type_plain_text = flask_request.args.get('document_type_plain_text')
     document_type = flask_request.args.get('document_type')
 
-    if search_term:
-        search_term = search_term.lower()
-        if sort_by == 'all' or sort_by == 'date_newest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
-        elif sort_by == 'name_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'name_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
-    else:
-        if sort_by == 'all' or sort_by == 'date_newest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
-        elif sort_by == 'name_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'name_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
-
-    documents_max = len(documents)
-    documents_start = flask_request.args.get('start', type=int)
-    documents_end = flask_request.args.get('end', type=int)
-    documents = documents[documents_start:documents_end]
-    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
-
-    data = {
-        'documents': documents_rows,
-        'documents_max': documents_max,
-        'documents_start': documents_start + 1,
-        'documents_end': documents_end
-    }
+    data = process_documents_search(document_type_plain_text=document_type_plain_text,
+                                    document_type=document_type,
+                                    sort_by=sort_by,
+                                    search_term=search_term,
+                                    documents_start=page_counters['instructions']['start'],
+                                    documents_end=page_counters['instructions']['end'])
 
     return jsonify(data)
 
@@ -578,20 +557,20 @@ def upload_document():
         file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
         if file_exists:
             if file_exists.file_name == filename:
-                flash("This file has already been uploaded. Please select another file.")
+                flash('This file has already been uploaded. Please select another file.')
                 return render_template('upload_document.html', form=form)
             elif file_exists.file_title == form.file_title.data:
-                flash("A file with this title has already been uploaded. Please use another title.")
+                flash('A file with this title has already been uploaded. Please use another title.')
                 return render_template('upload_document.html', form=form)
         elif not allowed_file(filename):
-            flash("Invalid file type.")
+            flash('Invalid file type.')
             return render_template('upload_document.html', form=form)
         try:
             file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
             file.save(file_path)
             scan_file(file_path)
         except VirusDetectedException:
-            flash("Virus detected. Please contact IT for assistance.")
+            flash('Virus detected. Please contact IT for assistance.')
             return render_template('upload_document.html', form=form)
         create_document(uploader_id=current_user.id,
                         file_title=form.file_title.data,
