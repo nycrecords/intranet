@@ -125,3 +125,9 @@
 #save-search-term {
     display: inline-block;
 }
+
+.pagination-row {
+    padding-top: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}

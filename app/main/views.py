@@ -479,119 +479,48 @@ def documents():
     """
     """
     default_open = flask_request.args.get('default_open', 'instructions')
-    sort_by = flask_request.args.get('sort_by', 'all')
-
-    instructions_page = flask_request.args.get('instructions_page', 1, type=int)
-    policies_and_procedures_page = flask_request.args.get('policies_and_procedures_page', 1, type=int)
-    templates_page = flask_request.args.get('templates_page', 1, type=int)
-    training_materials_page = flask_request.args.get('training_materials_page', 1, type=int)
-
-    instructions = Documents.query.filter_by(document_type='Instructions').order_by(
-        Documents.last_modified.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(
-        Documents.last_modified.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'],
-                                                 True)
-    templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.last_modified.desc()).paginate(
-        templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(
-        Documents.last_modified.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'],
-                                                 True)
-
-    # if sort_by == 'all' or sort_by == 'date_newest':
-    #     instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.last_modified.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(Documents.last_modified.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.last_modified.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(Documents.last_modified.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    # elif sort_by == 'name_a_z':
-    #     instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.file_title.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(Documents.file_title.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.file_title.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(Documents.file_title.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    # elif sort_by == 'name_z_a':
-    #     instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.file_title.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(Documents.file_title.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.file_title.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(Documents.file_title.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    # if sort_by == 'date_oldest':
-    #     instructions = Documents.query.filter_by(document_type='Instructions').order_by(Documents.last_modified.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     policies_and_procedures = Documents.query.filter_by(document_type='Policies and Procedures').order_by(Documents.last_modified.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     templates = Documents.query.filter_by(document_type='Templates').order_by(Documents.last_modified.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-    #     training_materials = Documents.query.filter_by(document_type='Training Materials').order_by(Documents.last_modified.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-
-    return render_template('documents.html', instructions=instructions, policies_and_procedures=policies_and_procedures, templates=templates, training_materials=training_materials, default_open=default_open, sort_by=sort_by)
+    return render_template('documents.html', default_open=default_open)
 
 
-@main.route('/documents/sort/', methods=['GET','POST'])
-def sort_documents():
+@main.route('/documents/search/', methods=['GET','POST'])
+def search_documents():
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
-
-    instructions_page = flask_request.args.get('instructions_page', 1, type=int)
-    policies_and_procedures_page = flask_request.args.get('policies_and_procedures_page', 1, type=int)
-    templates_page = flask_request.args.get('templates_page', 1, type=int)
-    training_materials_page = flask_request.args.get('training_materials_page', 1, type=int)#
 
     if search_term:
         search_term = search_term.lower()
         if sort_by == 'all' or sort_by == 'date_newest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
         elif sort_by == 'name_a_z':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
         elif sort_by == 'name_z_a':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
         if sort_by == 'date_oldest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
     else:
         if sort_by == 'all' or sort_by == 'date_newest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures').order_by(Documents.last_modified.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates').order_by(Documents.last_modified.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials').order_by(Documents.last_modified.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.desc()).all()
         elif sort_by == 'name_a_z':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures').order_by(Documents.file_title.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates').order_by(Documents.file_title.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials').order_by(Documents.file_title.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.asc()).all()
         elif sort_by == 'name_z_a':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.desc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures').order_by(Documents.file_title.desc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates').order_by(Documents.file_title.desc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials').order_by(Documents.file_title.desc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.desc()).all()
         if sort_by == 'date_oldest':
-            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.asc()).paginate(instructions_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            policies_and_procedures = Documents.query.filter(Documents.document_type == 'Policies and Procedures').order_by(Documents.last_modified.asc()).paginate(policies_and_procedures_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            templates = Documents.query.filter(Documents.document_type == 'Templates').order_by(Documents.last_modified.asc()).paginate(templates_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
-            training_materials = Documents.query.filter(Documents.document_type == 'Training Materials').order_by(Documents.last_modified.asc()).paginate(training_materials_page, current_app.config['DOCUMENTS_PER_PAGE'], True)
+            instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.asc()).all()
 
-    instructions_rows = render_template('document_tables/instructions_table.html', instructions=instructions)
-    policies_and_procedures_rows = render_template('document_tables/policies_and_procedures_table.html', policies_and_procedures=policies_and_procedures)
-    templates_rows = render_template('document_tables/templates_table.html', templates=templates)
-    training_materials_rows = render_template('document_tables/training_materials_table.html', training_materials=training_materials)
+    instructions_max = len(instructions)
+    instructions_start = flask_request.args.get('start', type=int)
+    instructions_end = flask_request.args.get('end', type=int)
+    instructions = instructions[instructions_start:instructions_end]
+    instructions_rows = render_template('document_tables/instructions_table.html', instructions=instructions, instructions_max=instructions_max, instructions_start=instructions_start, instructions_end=instructions_end)
 
     data = {
         'instructions': instructions_rows,
-        'policies_and_procedures': policies_and_procedures_rows,
-        'templates': templates_rows,
-        'training_materials': training_materials_rows
+        'instructions_max': instructions_max,
+        'instructions_start': instructions_start + 1,
+        'instructions_end': instructions_end
     }
 
     return jsonify(data)
-
-    # redirect_path = '/documents?default_open={0}&sort_by={1}'.format(flask_request.args['current_tab'], flask_request.args['sort_by'])
-    # if flask_request.method == 'GET':
-    #     return jsonify(dict(redirect=redirect_path))
 
 
 @main.route('/documents/upload', methods=['GET', 'POST'])

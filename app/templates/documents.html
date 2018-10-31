@@ -64,7 +64,7 @@
                     <th class="col-sm-3">Uploaded By</th>
                     <th class="col-sm-3">Uploaded On</th>
                 </tr>
-                {% for document in instructions.items %}
+                {% for document in instructions %}
                 {% if document.deleted == False %}
                 <tr>
                     <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
@@ -77,32 +77,20 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            <div class="documents-pagination">
-                <ul class="pagination">
-                    {% if instructions.has_prev %}
-                        <li><a href="{{ url_for('main.documents', instructions_page=instructions.prev_num, default_open='instructions') }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-
-                    {% for page_num in instructions.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != instructions.page %}
-                                <li><a href="{{ url_for('main.documents', instructions_page=page_num, default_open='instructions') }}">{{ page_num }}</a></li>
-                            {% else %}
-                                <li class="active"><span>{{ page_num }}</span></li>
-                            {% endif %}
-                        {% else %}
-                                <li class="disabled"><span>...</span></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if instructions.has_next %}
-                        <li><a href="{{ url_for('main.documents', instructions_page=instructions.next_num, default_open='instructions') }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
+        </div>
+        <div class="row pagination-row">
+            <div class="col-sm-3">
+                <button type="button" id="prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
             </div>
         </div>
         <div id="policies-and-procedures" class="tabcontent">
@@ -114,7 +102,7 @@
                     <th class="col-sm-3">Uploaded By</th>
                     <th class="col-sm-3">Uploaded On</th>
                 </tr>
-                {% for document in policies_and_procedures.items %}
+                {% for document in policies_and_procedures %}
                 {% if document.deleted == False %}
                 <tr>
                     <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
@@ -127,33 +115,6 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            <div class="documents-pagination">
-                <ul class="pagination">
-                    {% if policies_and_procedures.has_prev %}
-                        <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.prev_num, default_open='policies_and_procedures') }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-
-                    {% for page_num in policies_and_procedures.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != policies_and_procedures.page %}
-                                <li><a href="{{ url_for('main.documents', policies_and_procedures_page=page_num, default_open='policies_and_procedures') }}">{{ page_num }}</a></li>
-                            {% else %}
-                                <li class="active"><span>{{ page_num }}</span></li>
-                            {% endif %}
-                        {% else %}
-                                <li class="disabled"><span>...</span></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if policies_and_procedures.has_next %}
-                        <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.next_num, default_open='policies_and_procedures') }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            </div>
         </div>
         <div id="templates" class="tabcontent">
             <br>
@@ -164,7 +125,7 @@
                     <th class="col-sm-3">Uploaded By</th>
                     <th class="col-sm-3">Uploaded On</th>
                 </tr>
-                {% for document in templates.items %}
+                {% for document in templates %}
                 {% if document.deleted == False %}
                 <tr>
                     <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
@@ -177,33 +138,6 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            <div class="documents-pagination">
-                <ul class="pagination">
-                    {% if templates.has_prev %}
-                        <li><a href="{{ url_for('main.documents', templates_page=templates.prev_num, default_open='templates') }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-
-                    {% for page_num in templates.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != templates.page %}
-                                <li><a href="{{ url_for('main.documents', templates_page=page_num, default_open='templates') }}">{{ page_num }}</a></li>
-                            {% else %}
-                                <li class="active"><span>{{ page_num }}</span></li>
-                            {% endif %}
-                        {% else %}
-                                <li class="disabled"><span>...</span></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if templates.has_next %}
-                        <li><a href="{{ url_for('main.documents', templates_page=templates.next_num, default_open='templates') }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            </div>
         </div>
         <div id="training-materials" class="tabcontent">
             <br>
@@ -214,7 +148,7 @@
                     <th class="col-sm-3">Uploaded By</th>
                     <th class="col-sm-3">Uploaded On</th>
                 </tr>
-                {% for document in training_materials.items %}
+                {% for document in training_materials %}
                 {% if document.deleted == False %}
                 <tr>
                     <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
@@ -227,33 +161,6 @@
                 {% endif %}
                 {% endfor %}
             </table>
-            <div class="documents-pagination">
-                <ul class="pagination">
-                    {% if training_materials.has_prev %}
-                        <li><a href="{{ url_for('main.documents', training_materials_page=training_materials.prev_num, default_open='training_materials') }}">&laquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                    {% endif %}
-
-                    {% for page_num in training_materials.iter_pages() %}
-                        {% if page_num %}
-                            {% if page_num != training_materials.page %}
-                                <li><a href="{{ url_for('main.documents', training_materials_page=page_num, default_open='training_materials') }}">{{ page_num }}</a></li>
-                            {% else %}
-                                <li class="active"><span>{{ page_num }}</span></li>
-                            {% endif %}
-                        {% else %}
-                                <li class="disabled"><span>...</span></li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if training_materials.has_next %}
-                        <li><a href="{{ url_for('main.documents', training_materials_page=training_materials.next_num, default_open='training_materials') }}">&raquo;</a></li>
-                    {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                    {% endif %}
-                </ul>
-            </div>
         </div>
     </div>
 </div>
