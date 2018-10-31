@@ -1,4 +1,4 @@
-var increment = 5;
+var increment = 10;
 var page_counters = {
     'instructions': {
         'start': 0,
@@ -98,8 +98,59 @@ function displayPreviousResults(data) {
     document_page_info.html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
 }
 
+function generatePaginationButtonHandlers (document_type_underscore, document_type_dash, document_type_plain_text) {
+    $('#' + document_type_dash + '-prev').click(function () {
+        page_counters[document_type_underscore]['start'] = page_counters[document_type_underscore]['start'] - increment;
+        page_counters[document_type_underscore]['end'] = page_counters[document_type_underscore]['end'] - increment;
+
+        $.ajax({
+            url: '/documents/page/',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                'sort_by': $('#sort-dropdown').find('option:selected').val(),
+                'search_term': $('#save-search-term').text(),
+                'page_counters': JSON.stringify(page_counters),
+                'document_type_plain_text': document_type_plain_text,
+                'document_type_underscore': document_type_underscore,
+                'document_type_dash': document_type_dash
+            },
+            success: function (data) {
+                displayPreviousResults(data);
+            }
+        });
+    });
+
+    $('#' + document_type_dash + '-next').click(function () {
+        page_counters[document_type_underscore]['start'] = page_counters[document_type_underscore]['start'] + increment;
+        page_counters[document_type_underscore]['end'] = page_counters[document_type_underscore]['end'] + increment;
+
+        $.ajax({
+            url: '/documents/page/',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                'sort_by': $('#sort-dropdown').find('option:selected').val(),
+                'search_term': $('#save-search-term').text(),
+                'page_counters': JSON.stringify(page_counters),
+                'document_type_plain_text': document_type_plain_text,
+                'document_type_underscore': document_type_underscore,
+                'document_type_dash': document_type_dash
+            },
+            success: function (data) {
+                displayNextResults(data);
+            }
+        });
+    });
+}
+
 $(function () {
     document.getElementById('default-open').click();
+
+    generatePaginationButtonHandlers('instructions', 'instructions', 'Instructions');
+    generatePaginationButtonHandlers('policies_and_procedures', 'policies-and-procedures', 'Policies and Procedures');
+    generatePaginationButtonHandlers('templates', 'templates', 'Templates');
+    generatePaginationButtonHandlers('training_materials', 'training-materials', 'Training Materials');
 
     // AJAX FOR INITIAL PAGE LOAD
     $.ajax({
@@ -117,48 +168,6 @@ $(function () {
             displayResults(data['templates_data']);
             displayResults(data['training_materials_data']);
         }
-    });
-
-    $('#instructions-prev').click(function () {
-        page_counters['instructions']['start'] = page_counters['instructions']['start'] - increment;
-        page_counters['instructions']['end'] = page_counters['instructions']['end'] - increment;
-
-        $.ajax({
-            url: '/documents/page/',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                'sort_by': $('#sort-dropdown').find('option:selected').val(),
-                'search_term': $('#save-search-term').text(),
-                'page_counters': JSON.stringify(page_counters),
-                'document_type': 'instructions',
-                'document_type_plain_text': 'Instructions'
-            },
-            success: function (data) {
-                displayPreviousResults(data);
-            }
-        });
-    });
-
-    $('#instructions-next').click(function () {
-        page_counters['instructions']['start'] = page_counters['instructions']['start'] + increment;
-        page_counters['instructions']['end'] = page_counters['instructions']['end'] + increment;
-
-        $.ajax({
-            url: '/documents/page/',
-            type: 'GET',
-            dataType: 'json',
-            data: {
-                'sort_by': $('#sort-dropdown').find('option:selected').val(),
-                'search_term': $('#save-search-term').text(),
-                'page_counters': JSON.stringify(page_counters),
-                'document_type': 'instructions',
-                'document_type_plain_text': 'Instructions'
-            },
-            success: function (data) {
-                displayNextResults(data);
-            }
-        });
     });
 
     // handle sort by dropdown change event

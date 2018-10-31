@@ -533,14 +533,15 @@ def change_documents_page():
     search_term = flask_request.args.get('search_term', None)
     page_counters = json.loads(flask_request.args.get('page_counters'))
     document_type_plain_text = flask_request.args.get('document_type_plain_text')
-    document_type = flask_request.args.get('document_type')
+    document_type_underscore = flask_request.args.get('document_type_underscore')
+    document_type_dash = flask_request.args.get('document_type_dash')
 
     data = process_documents_search(document_type_plain_text=document_type_plain_text,
-                                    document_type=document_type,
+                                    document_type=document_type_dash,
                                     sort_by=sort_by,
                                     search_term=search_term,
-                                    documents_start=page_counters['instructions']['start'],
-                                    documents_end=page_counters['instructions']['end'])
+                                    documents_start=page_counters[document_type_underscore]['start'],
+                                    documents_end=page_counters[document_type_underscore]['end'])
 
     return jsonify(data)
 
