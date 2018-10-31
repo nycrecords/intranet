@@ -479,17 +479,34 @@ def strategic_planning():
 @main.route('/documents', methods=['GET'])
 def documents():
     """
+    View function to handle Documents page
+    :return: HTML template for the Documents page
     """
+    # default_open determines which documents tab is opened on initial load. if no value is supplied use 'instructions'
     default_open = flask_request.args.get('default_open', 'instructions')
     return render_template('documents.html', default_open=default_open)
 
 
 @main.route('/documents/search/', methods=['GET'])
 def search_documents():
+    """
+    AJAX endpoint to handle querying the database for Documents objects on the documents page
+
+    GET Request
+    Expected arguments:
+    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'all'
+    - search_term: a string containing the search term that was entered in the Search By field.
+    - page_counters: a JSON that keeps track of what range of each document type is visible on the screen.
+                     #TODO: We can probably take this out since every call to this end point will start at 0 and end at 10
+    :return: A JSON with the rendered templates of each document type table based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
     page_counters = json.loads(flask_request.args.get('page_counters'))
 
+    # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
     instructions_data = process_documents_search(document_type_plain_text='Instructions',
                                                  document_type='instructions',
                                                  sort_by=sort_by,
@@ -517,6 +534,7 @@ def search_documents():
                                                        search_term=search_term,
                                                        documents_start=page_counters['training_materials']['start'],
                                                        documents_end=page_counters['training_materials']['end'])
+    # Create a dictionary with data for each document type to be passed back to the frontend.
     data = {
         'instructions_data': instructions_data,
         'policies_and_procedures_data': policies_and_procedures_data,
@@ -529,13 +547,29 @@ def search_documents():
 
 @main.route('/documents/page/', methods=['GET'])
 def change_documents_page():
+    """
+    AJAX endpoint to handle clicking the prev/next buttons and getting the next set of rows to display
+    Instead of querying all 4 document types like in search_documents() we only have to query for one document type
+    Then get the previous or next set of 10 rows to be displayed
+    :return: A JSON with the rendered templates for the currently viewed document type table based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
     page_counters = json.loads(flask_request.args.get('page_counters'))
     document_type_plain_text = flask_request.args.get('document_type_plain_text')
     document_type_underscore = flask_request.args.get('document_type_underscore')
     document_type_dash = flask_request.args.get('document_type_dash')
+    # TODO: Find a better way to standardize document type variable values when passed in as arguments.
+    # Naming conventions of variable names are different between Python, Javascript, and HTML
+    # which leads to inconsistent variable names.
+    # Python uses underscores
+    # Javascript uses underscores and camel case
+    # HTML uses dashes
+    # Database was originally designed to store the plain text names of document types
 
+    # Query the databse for the next set of rows to display based on document_start and document_end
     data = process_documents_search(document_type_plain_text=document_type_plain_text,
                                     document_type=document_type_dash,
                                     sort_by=sort_by,
@@ -550,22 +584,33 @@ def change_documents_page():
 @login_required
 def upload_document():
     """
+    View function to handle uploading a new document to the documents library
+
+    GET Request
+    Renders the template for the upload form on initial page load
+
+    POST Request
+    Handles the submission of the upload form and savining it to the database if it passes validation and virus scanning
     """
     form = UploadForm()
     if flask_request.method == 'POST' and form.validate_on_submit():
         file = flask_request.files['file_object']
-        filename = secure_filename(file.filename)
+        filename = secure_filename(file.filename) # use the secure version of the file name
+        # Files are unique in both file title and file name, this will be used to check if a file already exists in the database
+        # TODO: check file uniqueness using a checksum instead of just filename
         file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
         if file_exists:
-            if file_exists.file_name == filename:
+            if file_exists.file_name == filename: # File with the same name already exists
                 flash('This file has already been uploaded. Please select another file.')
                 return render_template('upload_document.html', form=form)
-            elif file_exists.file_title == form.file_title.data:
+            elif file_exists.file_title == form.file_title.data: # file with the same title already exists
                 flash('A file with this title has already been uploaded. Please use another title.')
                 return render_template('upload_document.html', form=form)
         elif not allowed_file(filename):
+            # Files should fall under the list allowed file types
             flash('Invalid file type.')
             return render_template('upload_document.html', form=form)
+        # Handle virus scanning
         try:
             file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
             file.save(file_path)
@@ -573,6 +618,7 @@ def upload_document():
         except VirusDetectedException:
             flash('Virus detected. Please contact IT for assistance.')
             return render_template('upload_document.html', form=form)
+        # Create Document object
         create_document(uploader_id=current_user.id,
                         file_title=form.file_title.data,
                         file_name=filename,

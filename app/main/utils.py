@@ -180,6 +180,17 @@ def create_document(uploader_id,
                     file_type,
                     file_path,
                     division):
+    """
+    Util function to create a Document object and 'document_uploaded' Event
+    :param uploader_id: Id of the user who uploaded the file
+    :param file_title: Human readable version of the file name
+    :param file_name: Actual file name
+    :param document_type: Category of document
+    :param file_type: Extension of the file
+    :param file_path: Full path of where the file is saved on the server
+    :param division: Division that the file relates to
+    """
+    # Create Document object
     document = Documents(uploader_id=uploader_id,
                          file_title=file_title,
                          file_name=file_name,
@@ -234,8 +245,19 @@ def process_documents_search(document_type_plain_text,
                              search_term,
                              documents_start,
                              documents_end):
-    if search_term:
+    """
+    Util function to process the documents search based on search term and sort by value
+    :param document_type_plain_text: Plain text version of the document type
+    :param document_type: Category of the document
+    :param sort_by: String containing the currently selected sort by value
+    :param search_term: String containing the search term to be used when querying
+    :param documents_start: Start range of rows to be displayed on the frontend
+    :param documents_end: End range of rows to be displayed on the frontend
+    :return:
+    """
+    if search_term: # If a search term was entered, query using the ilike function
         search_term = search_term.lower()
+        # Order the results based on the sort by value
         if sort_by == 'all' or sort_by == 'date_newest':
             documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
         elif sort_by == 'name_a_z':
@@ -255,7 +277,9 @@ def process_documents_search(document_type_plain_text,
             documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
 
     documents_max = len(documents)
-    documents = documents[documents_start:documents_end]
+    documents = documents[documents_start:documents_end] # Slice the list of results to what will be displayed on the frontend
+    # TODO: Is there a way to do this during the query so we don't have to always grab the whole set first
+    # Create the template for the document type table
     documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
 
     data = {
