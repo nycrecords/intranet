@@ -472,6 +472,18 @@ class Events(db.Model):
 
 class Documents(db.Model):
     """
+    Define the Documents class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    uploader_id -- Column: Integer, Foreign key to Users table. Determines which User uploaded the document.
+    file_title -- Column: String, Human readable version of the filename.
+    file_name -- Column: String, Actual filename.
+    document_type -- Column: String, The type of document the file falls under.
+    file_type -- Column: String, The extension of the file.
+    file_path -- Column: String, The full path to where the file is located on the server.
+    division -- Colulmn: String, The division that the file relates to.
+    last_modified -- Column: Datetime, A timestamp of when the last time the document was edited by a user.
+    deleted -- Column: Boolean, Determines if the file is visible of the frontend or not.
     """
     __tablename__ = 'documents'
     id = db.Column(db.Integer, primary_key=True)
@@ -512,6 +524,7 @@ class Documents(db.Model):
     @property
     def uploader(self):
         """
+        Property to get the name of the uploader
         """
         user = Users.query.filter_by(id=self.uploader_id).first()
         return user.name
@@ -519,6 +532,7 @@ class Documents(db.Model):
     @property
     def local_timestamp(self):
         """
+        Property to get the last_modified timestamp in EST
         """
         timestamp = self.last_modified.replace(tzinfo=pytz.utc)
         timestamp = timestamp.astimezone(pytz.timezone("America/New_York"))
