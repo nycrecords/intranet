@@ -78,21 +78,22 @@
                 {% endfor %}
             </table>
         </div>
-        <div class="row pagination-row">
+        <div id="instructions-pagination" class="row pagination-row" hidden>
             <div class="col-sm-3">
-                <button type="button" id="prev" class="btn btn-default">
+                <button type="button" id="instructions-prev" class="btn btn-default">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
-            <div class="col-sm-6 text-center" id="page-info"></div>
+            <div class="col-sm-6 text-center" id="instructions-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="next" class="btn btn-default">
+                <button type="button" id="instructions-next" class="btn btn-default">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
             </div>
         </div>
+
         <div id="policies-and-procedures" class="tabcontent">
             <br>
             <table id="policies-and-procedures-table" class="table table-striped">
@@ -116,6 +117,22 @@
                 {% endfor %}
             </table>
         </div>
+        <!--<div id="policies-and-procedures-pagination" class="row pagination-row" hidden>-->
+            <!--<div class="col-sm-3">-->
+                <!--<button type="button" id="prev" class="btn btn-default">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                    <!--Prev-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--<div class="col-sm-6 text-center" id="page-info"></div>-->
+            <!--<div class="col-sm-3 text-right">-->
+                <!--<button type="button" id="next" class="btn btn-default">-->
+                    <!--Next-->
+                    <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <div id="templates" class="tabcontent">
             <br>
             <table id="tempmlates-table" class="table table-striped">

@@ -495,7 +495,7 @@ def search_documents():
             instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
         elif sort_by == 'name_z_a':
             instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
-        if sort_by == 'date_oldest':
+        elif sort_by == 'date_oldest':
             instructions = Documents.query.filter(Documents.document_type == 'Instructions', Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
     else:
         if sort_by == 'all' or sort_by == 'date_newest':
@@ -504,20 +504,63 @@ def search_documents():
             instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.asc()).all()
         elif sort_by == 'name_z_a':
             instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.file_title.desc()).all()
-        if sort_by == 'date_oldest':
+        elif sort_by == 'date_oldest':
             instructions = Documents.query.filter(Documents.document_type == 'Instructions').order_by(Documents.last_modified.asc()).all()
 
     instructions_max = len(instructions)
     instructions_start = flask_request.args.get('start', type=int)
     instructions_end = flask_request.args.get('end', type=int)
     instructions = instructions[instructions_start:instructions_end]
-    instructions_rows = render_template('document_tables/instructions_table.html', instructions=instructions, instructions_max=instructions_max, instructions_start=instructions_start, instructions_end=instructions_end)
+    instructions_rows = render_template('documents_table.html', document_type='instructions', documents=instructions)
 
     data = {
         'instructions': instructions_rows,
         'instructions_max': instructions_max,
         'instructions_start': instructions_start + 1,
         'instructions_end': instructions_end
+    }
+
+    return jsonify(data)
+
+
+@main.route('/documents/page/', methods=['GET'])
+def change_documents_page():
+    sort_by = flask_request.args.get('sort_by', 'all')
+    search_term = flask_request.args.get('search_term', None)
+    document_type_plain_text = flask_request.args.get('document_type_plain_text')
+    document_type = flask_request.args.get('document_type')
+
+    if search_term:
+        search_term = search_term.lower()
+        if sort_by == 'all' or sort_by == 'date_newest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
+        elif sort_by == 'name_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'name_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
+    else:
+        if sort_by == 'all' or sort_by == 'date_newest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
+        elif sort_by == 'name_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'name_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
+
+    documents_max = len(documents)
+    documents_start = flask_request.args.get('start', type=int)
+    documents_end = flask_request.args.get('end', type=int)
+    documents = documents[documents_start:documents_end]
+    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
+
+    data = {
+        'documents': documents_rows,
+        'documents_max': documents_max,
+        'documents_start': documents_start + 1,
+        'documents_end': documents_end
     }
 
     return jsonify(data)

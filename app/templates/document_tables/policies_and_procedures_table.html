@@ -19,30 +19,3 @@
     {% endif %}
     {% endfor %}
 </table>
-<div class="documents-pagination">
-    <ul class="pagination">
-        {% if policies_and_procedures.has_prev %}
-            <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.prev_num, default_open='policies_and_procedures') }}">&laquo;</a></li>
-        {% else %}
-            <li class="disabled"><span>&laquo;</span></li>
-        {% endif %}
-
-        {% for page_num in policies_and_procedures.iter_pages() %}
-            {% if page_num %}
-                {% if page_num != policies_and_procedures.page %}
-                    <li><a href="{{ url_for('main.documents', policies_and_procedures_page=page_num, default_open='policies_and_procedures') }}">{{ page_num }}</a></li>
-                {% else %}
-                    <li class="active"><span>{{ page_num }}</span></li>
-                {% endif %}
-            {% else %}
-                    <li class="disabled"><span>...</span></li>
-            {% endif %}
-        {% endfor %}
-
-        {% if policies_and_procedures.has_next %}
-            <li><a href="{{ url_for('main.documents', policies_and_procedures_page=policies_and_procedures.next_num, default_open='policies_and_procedures') }}">&raquo;</a></li>
-        {% else %}
-            <li class="disabled"><span>&raquo;</span></li>
-        {% endif %}
-    </ul>
-</div>

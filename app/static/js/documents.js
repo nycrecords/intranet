@@ -10,6 +10,8 @@ function openTab(evt, tabName) {
     }
     document.getElementById(tabName).style.display = 'block';
     evt.currentTarget.className += ' active';
+    $('.pagination-row').hide();
+    $('#' + tabName + '-pagination').show();
 }
 document.getElementById('default-open').click();
 
@@ -33,10 +35,10 @@ $(function () {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
 
-// MAKE SURE END AND INCREMENT ARE THE SAME. START SHOULD ALWAYS START AT 0
-var start = 0;
-var end = 10;
-var increment = 10;
+    // MAKE SURE END AND INCREMENT ARE THE SAME. START SHOULD ALWAYS START AT 0
+    var start = 0;
+    var end = 10;
+    var increment = 10;
 
     $.ajax({
         url: '/documents/search/',
@@ -44,7 +46,6 @@ var increment = 10;
         dataType: 'json',
         data: {
             'sort_by': $('#sort-dropdown').find('option:selected').val(),
-            'current_tab': $('.tablinks.active').val(),
             'search_term': $('#save-search-term').text(),
             'start': start.toString(),
             'end': end.toString()
@@ -60,14 +61,14 @@ var increment = 10;
             $('#training-materials').html(data['training_materials']);
 
             if (data['instructions_max'] <= increment) {
-                $('#prev').hide();
-                $('#next').hide();
-                $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
+                $('#instructions-prev').hide();
+                $('#instructions-next').hide();
+                $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
             }
             else if (data['instructions_start'] === 1) {
-                $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                $('#prev').hide();
-                $('#next').show();
+                $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                $('#instructions-prev').hide();
+                $('#instructions-next').show();
             }
             else {
                 $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
@@ -76,73 +77,63 @@ var increment = 10;
         }
     });
 
-    $('#next').click(function () {
-        start = start + increment;
-        end = end + increment;
+    $('#instructions-prev').click(function () {
+        start = start - increment;
+        end = end - increment;
         $.ajax({
-            url: '/documents/search/',
+            url: '/documents/page/',
             type: 'GET',
             dataType: 'json',
             data: {
                 'sort_by': $('#sort-dropdown').find('option:selected').val(),
-                'current_tab': $('.tablinks.active').val(),
                 'search_term': $('#save-search-term').text(),
                 'start': start.toString(),
-                'end': end.toString()
+                'end': end.toString(),
+                'document_type': 'instructions',
+                'document_type_plain_text': 'Instructions'
             },
             success: function (data) {
                 $('#instructions').html('');
-                $('#policies-and-procedures').html('');
-                $('#templates').html('');
-                $('#training-materials').html('');
-                $('#instructions').html(data['instructions']);
-                $('#policies-and-procedures').html(data['policies_and_procedures']);
-                $('#templates').html(data['templates']);
-                $('#training-materials').html(data['training_materials']);
+                $('#instructions').html(data['documents']);
 
                 // set counter
-                if (data['instructions_end'] >= data['instructions_max']) {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
-                    $('#next').hide();
+                if (data['documents_start'] === 1) {
+                    $('#instructions-prev').hide();
                 }
-                else {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                }
-                $('#prev').show();
+                $('#instructions-next').show();
+                $('#instructions-page-info').html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
             }
         });
     });
 
-    $('#prev').click(function () {
-        start = start - increment;
-        end = end - increment;
+    $('#instructions-next').click(function () {
+        start = start + increment;
+        end = end + increment;
         $.ajax({
-            url: '/documents/search/',
+            url: '/documents/page/',
             type: 'GET',
             dataType: 'json',
             data: {
                 'sort_by': $('#sort-dropdown').find('option:selected').val(),
-                'current_tab': $('.tablinks.active').val(),
                 'search_term': $('#save-search-term').text(),
                 'start': start.toString(),
-                'end': end.toString()
+                'end': end.toString(),
+                'document_type': 'instructions',
+                'document_type_plain_text': 'Instructions'
             },
             success: function (data) {
                 $('#instructions').html('');
-                $('#policies-and-procedures').html('');
-                $('#templates').html('');
-                $('#training-materials').html('');
-                $('#instructions').html(data['instructions']);
-                $('#policies-and-procedures').html(data['policies_and_procedures']);
-                $('#templates').html(data['templates']);
-                $('#training-materials').html(data['training_materials']);
+                $('#instructions').html(data['documents']);
 
                 // set counter
-                if (data['instructions_start'] === 1) {
-                    $('#prev').hide();
+                if (data['documents_end'] >= data['documents_max']) {
+                    $('#instructions-page-info').html(data['documents_start'] + ' - ' + data['documents_max'] + ' of ' + data['documents_max']);
+                    $('#instructions-next').hide();
                 }
-                $('#next').show();
-                $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                else {
+                    $('#instructions-page-info').html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
+                }
+                $('#instructions-prev').show();
             }
         });
     });
@@ -173,18 +164,18 @@ var increment = 10;
                 $('#training-materials').html(data['training_materials']);
 
                 if (data['instructions_max'] <= increment) {
-                    $('#prev').hide();
-                    $('#next').hide();
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').hide();
+                    $('#instructions-next').hide();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
                 }
                 else if (data['instructions_start'] === 1) {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                    $('#prev').hide();
-                    $('#next').show();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').hide();
+                    $('#instructions-next').show();
                 }
                 else {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                    $('#prev').show();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').show();
                 }
             }
         });
@@ -225,23 +216,23 @@ var increment = 10;
                 }
 
                 if (data['instructions_max'] == 0) {
-                    $('#prev').hide();
-                    $('#next').hide();
-                    $('#page-info').html(0 + ' - ' + 0 + ' of ' + 0);
+                    $('#instructions-prev').hide();
+                    $('#instructions-next').hide();
+                    $('#instructions-page-info').html(0 + ' - ' + 0 + ' of ' + 0);
                 }
                 else if (data['instructions_max'] <= increment) {
-                    $('#prev').hide();
-                    $('#next').hide();
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').hide();
+                    $('#instructions-next').hide();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_max'] + ' of ' + data['instructions_max']);
                 }
                 else if (data['instructions_start'] === 1) {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                    $('#prev').hide();
-                    $('#next').show();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').hide();
+                    $('#instructions-next').show();
                 }
                 else {
-                    $('#page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
-                    $('#prev').show();
+                    $('#instructions-page-info').html(data['instructions_start'] + ' - ' + data['instructions_end'] + ' of ' + data['instructions_max']);
+                    $('#instructions-prev').show();
                 }
             }
         });
