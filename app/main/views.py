@@ -56,30 +56,32 @@ def news_and_updates():
     return render_template('news_and_updates.html', post_types=post_types, tags=tags)
 
 
-# @main.route('/posts/search/', methods=['GET'])
-# def search_posts():
-#     """
-#     AJAX endpoint to handle querying the database for Documents objects on the documents page
-#
-#     GET Request
-#     Expected arguments:
-#     - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'all'
-#     - search_term: a string containing the search term that was entered in the Search By field.
-#     - page_counters: a JSON that keeps track of what range of each document type is visible on the screen.
-#                      #TODO: We can probably take this out since every call to this end point will start at 0 and end at 10
-#     :return: A JSON with the rendered templates of each document type table based on the search criteria
-#              and values to determine what range is being displayed on screen.
-#     """
-#     # Get passed in arguments
-#     sort_by = flask_request.args.get('sort_by', 'all')
-#     search_term = flask_request.args.get('search_term', None)
-#     post_type = flask_request.args.get('search_term', None)
-#
-#     # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
-#     data = process_posts_search(post_type=post_type,
-#                                 sort_by=sort_by,
-#                                 search_term=search_term)
-#     return jsonify(data)
+@main.route('/posts/search/', methods=['GET'])
+def search_posts():
+    """
+    AJAX endpoint to handle querying the database for Documents objects on the documents page
+
+    GET Request
+    Expected arguments:
+    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'all'
+    - search_term: a string containing the search term that was entered in the Search By field.
+    :return: A JSON with the rendered templates of each document type table based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
+    sort_by = flask_request.args.get('sort_by', 'all')
+    search_term = flask_request.args.get('search_term', None)
+    post_type = flask_request.args.get('search_term', None)
+    posts_start = flask_request.args.get('posts_start')
+    posts_end = flask_request.args.get('posts_end')
+
+    # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
+    data = process_posts_search(post_type=post_type,
+                                sort_by=sort_by,
+                                search_term=search_term,
+                                posts_start=posts_start,
+                                posts_end=posts_end)
+    return jsonify(data)
 
 
 @main.route('/news-updates/meeting-notes', methods=['GET'])
