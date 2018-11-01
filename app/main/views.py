@@ -506,6 +506,9 @@ def search_documents():
     search_term = flask_request.args.get('search_term', None)
     page_counters = json.loads(flask_request.args.get('page_counters'))
 
+    # TODO (@joelbcastillo): This endpoint should take in the specific tab that is open to reduce the amount of data returned.
+    #                        We shouldn't be pulling data from every single tab every time we hit this endpoint.
+
     # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
     instructions_data = process_documents_search(document_type_plain_text='Instructions',
                                                  document_type='instructions',

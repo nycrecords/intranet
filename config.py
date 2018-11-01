@@ -30,6 +30,7 @@ class Config:
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
     VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"
+    MAX_CONTENT_LENGTH =  512 * 1024 * 1024 # 512 MB
 
     @staticmethod
     def init_app(app):

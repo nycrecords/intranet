@@ -9,7 +9,7 @@ from wtforms.fields import (
 )
 from wtforms.validators import DataRequired
 from app.constants import choices
-from flask_wtf.file import FileField, FileRequired
+from flask_wtf.file import FileField
 
 
 class MeetingNotesForm(FlaskForm):
