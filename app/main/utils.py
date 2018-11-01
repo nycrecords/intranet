@@ -1,7 +1,7 @@
 import subprocess
 import os
 from flask import current_app, render_template
-from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
+from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
@@ -288,6 +288,58 @@ def process_documents_search(document_type_plain_text,
         'documents_start': documents_start + 1,
         'documents_end': documents_end,
         'document_type': document_type
+    }
+
+    return data
+
+
+def process_posts_search(post_type,
+                         sort_by,
+                         search_term,
+                         posts_start,
+                         posts_end):
+    if search_term: # If a search term was entered, query using the ilike function
+        search_term = search_term.lower()
+        # Order the results based on the sort by value
+        if sort_by == 'all' or sort_by == 'date_newest':
+            posts = Posts.query.filter(Posts.post_type == post_type. Posts.title.ilike('%{}%'.format(search_term))).order_by(Posts.date_created.desc()).slice(posts_start, posts_end)
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).slice(documents_start, documents_end)
+        elif sort_by == 'author_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'author_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
+    else:
+        if sort_by == 'all' or sort_by == 'date_newest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
+        elif sort_by == 'name_a_z':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
+        elif sort_by == 'name_z_a':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
+        elif sort_by == 'date_oldest':
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
+
+    documents_max = len(documents)
+    documents = documents[documents_start:documents_end] # Slice the list of results to what will be displayed on the frontend
+    # TODO: Is there a way to do this during the query so we don't have to always grab the whole set first
+    # Create the template for the document type table
+    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
+
+    data = {
+        'documents': documents_rows,
+        'documents_max': documents_max,
+        'documents_start': documents_start + 1,
+        'documents_end': documents_end,
+        'document_type': document_type
+    }
+
+    data = {
+        'posts': posts_rows,
+        'posts_max': posts_max,
+        'posts_start': posts_start,
+        'posts_end': posts_end,
+        'post_type': post_type
     }
 
     return data

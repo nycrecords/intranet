@@ -184,3 +184,10 @@ form.filter-form {
 .post-pagination {
     text-align: center;
 }
+
+.pagination-row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
