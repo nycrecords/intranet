@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 from app import create_app, db
-from app.models import Roles, Users, Posts, MeetingNotes, News, EventPosts, Events
+from app.models import Roles, Users, Posts, MeetingNotes, News, EventPosts, Events, Documents
 from flask_script import Manager, Shell
 from flask_migrate import Migrate, MigrateCommand
 

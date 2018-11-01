@@ -3,7 +3,9 @@
 *.crt
 *.key
 app/static/img/employee_photos/
+!app/static/img/employee_photos/.gitkeep
 app/static/documents/
+!app/static/documents/.gitkeep
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -9,7 +9,6 @@ from flask_login import (
     UserMixin,
     AnonymousUserMixin
 )
-import csv
 from flask import current_app
 from app.constants import (
     permission,

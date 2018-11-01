@@ -259,26 +259,25 @@ def process_documents_search(document_type_plain_text,
         search_term = search_term.lower()
         # Order the results based on the sort by value
         if sort_by == 'all' or sort_by == 'date_newest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.last_modified.desc()).slice(documents_start, documents_end).all()
         elif sort_by == 'name_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.file_title.asc()).slice(documents_start, documents_end).all()
         elif sort_by == 'name_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.file_title.desc()).slice(documents_start, documents_end).all()
         elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.last_modified.asc()).slice(documents_start, documents_end).all()
     else:
         if sort_by == 'all' or sort_by == 'date_newest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.deleted == False).order_by(Documents.last_modified.desc()).slice(documents_start, documents_end).all()
         elif sort_by == 'name_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.deleted == False).order_by(Documents.file_title.asc()).slice(documents_start, documents_end).all()
         elif sort_by == 'name_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.deleted == False).order_by(Documents.file_title.desc()).slice(documents_start, documents_end).all()
         elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
-
-    documents_max = len(documents)
-    documents = documents[documents_start:documents_end] # Slice the list of results to what will be displayed on the frontend
-    # TODO: Is there a way to do this during the query so we don't have to always grab the whole set first
+            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.deleted == False).order_by(Documents.last_modified.asc()).slice(documents_start, documents_end).all()
+    
+    # Get the total number of documents of the specified document type
+    documents_max = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term)), Documents.deleted == False).count()
     # Create the template for the document type table
     documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
 

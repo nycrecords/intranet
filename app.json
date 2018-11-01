@@ -6,7 +6,8 @@
   "env": {
     "USER_DATA": "./data/users.csv",
     "FLASK_CONFIG": "production",
-    "LOGIN_REQUIRED": "False"
+    "LOGIN_REQUIRED": "False",
+    "FILE_UPLOAD_PATH": "./app/static/documents"
   },
   "formation": {},
   "addons": [
