@@ -71,12 +71,13 @@ def search_posts():
     # Get passed in arguments
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
-    post_type = flask_request.args.get('search_term', None)
-    posts_start = flask_request.args.get('posts_start')
-    posts_end = flask_request.args.get('posts_end')
+    post_type = flask_request.args.get('post_type')
+    print(post_type)
+    posts_start = flask_request.args.get('posts_start', type=int)
+    posts_end = flask_request.args.get('posts_end', type=int)
 
     # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
-    data = process_posts_search(post_type=post_type,
+    data = process_posts_search(post_type=['news', 'event_posts', 'meeting_notes'],
                                 sort_by=sort_by,
                                 search_term=search_term,
                                 posts_start=posts_start,

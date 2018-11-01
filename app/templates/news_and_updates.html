@@ -28,13 +28,16 @@
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
-                <select class="sort-by-dropdown">
-                    <option value="Date">Date</option>
-                    <option value="Author">Author A-Z</option>
-                    <option value="Author">Author Z-A</option>
-                    <option value="Type">Type</option>
+                <select id="sort-dropdown" class="sort-dropdown">
+                    <option value="date_newest">Date (Newest)</option>
+                    <option value="date_oldest">Date (Oldest)</option>
+                    <option value="author_a_z">Author (A-Z)</option>
+                    <option value="author_z_a">Author (Z-A)</option>
                 </select>
             </div>
+        </div>
+        <div class="col-sm-12" id="display-search-term">
+            Showing results that match "<p id="save-search-term"></p>"
         </div>
         <div class="col-sm-3 filter-section">
             <p class="filter-by">Filter by:</p>
@@ -76,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 post-section">
+        <div id="posts-section" class="col-sm-9 posts-section">
             {% for post in posts %}
                 {% if post.post_type == "meeting_notes" and post.deleted == False %}
                     <div class="col-sm-12 post-row">
@@ -132,16 +135,16 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div id="news-and-updates-pagination" class="pagination-row col-sm-12">
+        <div id="posts-pagination" class="pagination-row col-sm-12">
             <div class="col-sm-3">
-                <button type="button" id="news-and-updates-prev" class="btn btn-default">
+                <button type="button" id="posts-prev" class="btn btn-default">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
-            <div class="col-sm-6 text-center" id="news-and-updates-page-info">SOME TEXT HERE</div>
+            <div class="col-sm-6 text-center" id="posts-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="news-and-updates-next" class="btn btn-default">
+                <button type="button" id="posts-next" class="btn btn-default">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>

@@ -15,7 +15,7 @@
     font-weight: normal;
 }
 
-.sort-by-dropdown {
+.sort-dropdown {
     margin-top: -45px;
     float: right;
     height: 40px;
@@ -161,7 +161,7 @@ form.filter-form {
     font-weight: normal;
 }
 
-.post-section {
+.posts-section {
     padding-top: 30px;
 }
 
@@ -190,4 +190,15 @@ form.filter-form {
     padding-bottom: 50px;
     padding-left: 200px;
     padding-right: 200px;
+}
+
+#display-search-term {
+    font-size: 16px;
+    color: dimgray;
+    padding-top: 25px;
+    padding-bottom: 30px;
+}
+
+#save-search-term {
+    display: inline-block;
 }

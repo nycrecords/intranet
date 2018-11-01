@@ -5,6 +5,7 @@ from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Doc
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
+from sqlalchemy import or_
 
 
 class VirusDetectedException(Exception):
@@ -297,46 +298,33 @@ def process_posts_search(post_type,
                          search_term,
                          posts_start,
                          posts_end):
-    if search_term: # If a search term was entered, query using the ilike function
-        search_term = search_term.lower()
-        # Order the results based on the sort by value
-        if sort_by == 'all' or sort_by == 'date_newest':
-            posts = Posts.query.filter(Posts.post_type == post_type. Posts.title.ilike('%{}%'.format(search_term))).order_by(Posts.date_created.desc()).slice(posts_start, posts_end)
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.desc()).slice(documents_start, documents_end)
-        elif sort_by == 'author_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'author_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
-    else:
-        if sort_by == 'all' or sort_by == 'date_newest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.desc()).all()
-        elif sort_by == 'name_a_z':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.asc()).all()
-        elif sort_by == 'name_z_a':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.file_title.desc()).all()
-        elif sort_by == 'date_oldest':
-            documents = Documents.query.filter(Documents.document_type == document_type_plain_text).order_by(Documents.last_modified.asc()).all()
+    print("ASDLKFJHASLKDJHFALKSJDHFKLAJ")
+    print(posts_start)
+    print(posts_end)
+    print(post_type)
+    search_term = search_term.lower()
+    # Order the results based on the sort by value
+    if sort_by == 'date_newest':
+        # posts = Posts.query.filter(Posts.post_type == post_type, Posts.title.ilike('%{}%'.format(search_term)), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
+    # elif sort_by == 'author_a_z':
+    #     posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.author_name).slice(posts_start, posts_end).all()
+        # documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
+    # elif sort_by == 'author_z_a':
+    #     documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
+    elif sort_by == 'date_oldest':
+    #     documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).slice(posts_start, posts_end).all()
 
-    documents_max = len(documents)
-    documents = documents[documents_start:documents_end] # Slice the list of results to what will be displayed on the frontend
-    # TODO: Is there a way to do this during the query so we don't have to always grab the whole set first
+    # Get the total number of documents of the specified document type
+    posts_max = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).count()
     # Create the template for the document type table
-    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
-
-    data = {
-        'documents': documents_rows,
-        'documents_max': documents_max,
-        'documents_start': documents_start + 1,
-        'documents_end': documents_end,
-        'document_type': document_type
-    }
+    posts_rows = render_template('news_and_updates_rows.html', posts=posts)
 
     data = {
         'posts': posts_rows,
         'posts_max': posts_max,
-        'posts_start': posts_start,
+        'posts_start': posts_start + 1,
         'posts_end': posts_end,
         'post_type': post_type
     }
