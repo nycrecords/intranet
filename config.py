@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-from flask import url_for
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
