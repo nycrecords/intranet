@@ -70,7 +70,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="{{ tag[0] }}">
                                     <label class="filter-option-label">
-                                        {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %} ({{tag[1]}}){% endif %}</span>
+                                        {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %}&nbsp;({{tag[1]}}){% endif %}</span>
                                     </label>
                                 </div>
                             {% endfor %}
