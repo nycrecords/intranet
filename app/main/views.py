@@ -46,13 +46,8 @@ def news_and_updates():
     Queries for all Post types that are visible and paginates them
     :return: HTML template for news and updates landing page
     """
-    # Set up pagination
-    # posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).all()
-
-    # Get filter choices
-    post_types = choices.POST_TYPES
+    # Get only the tags used
     posts = Posts.query.filter_by(deleted=False).all()
-
     tags_counter = {}
     for tag in choices.TAGS:
         tags_counter[tag] = 0
@@ -61,10 +56,11 @@ def news_and_updates():
             tags_counter[tag] = tags_counter[tag] + 1
     sorted_tags = []
     for key in sorted(tags_counter.keys()):
-        sorted_tags.append((key, tags_counter[key]))
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
     search_term = flask_request.args.get('search_term', None)
-    return render_template('news_and_updates.html', post_types=post_types, tags=sorted_tags, search_term=search_term)
+    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term)
 
 
 @main.route('/posts/search/', methods=['GET'])
@@ -82,18 +78,20 @@ def search_posts():
     # Get passed in arguments
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
-    post_type = flask_request.args.get('post_type')
-    print(flask_request.args)
-    print(post_type)
+    post_type = flask_request.args.getlist('post_type[]')
+    tags = flask_request.args.getlist('tags[]', None)
     posts_start = flask_request.args.get('posts_start', type=int)
     posts_end = flask_request.args.get('posts_end', type=int)
+    meeting_type = flask_request.args.getlist('post_type[]', None)
 
-    # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
-    data = process_posts_search(post_type=['news', 'event_posts', 'meeting_notes'],
+    # Query the Posts table based on filters. Then process the templates to be rendered.
+    data = process_posts_search(post_type=post_type,
                                 sort_by=sort_by,
                                 search_term=search_term,
+                                tags=tags,
                                 posts_start=posts_start,
-                                posts_end=posts_end)
+                                posts_end=posts_end,
+                                meeting_type=meeting_type)
     return jsonify(data)
 
 

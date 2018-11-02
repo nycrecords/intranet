@@ -49,14 +49,27 @@
                     <hr class="panel-divider"/>
                     <div class="panel-body filter-choices">
                         <form class="filter-form">
-                            {% for post_type in post_types %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ post_type }}">
-                                    <label class="filter-option-label">
-                                        {{ post_type }}
-                                    </label>
-                                </div>
-                            {% endfor %}
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="event_posts">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="meeting_notes">
+                                <label class="filter-option-label">
+                                    Meeting Notes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="news">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -68,7 +81,7 @@
                         <form class="filter-form">
                             {% for tag in tags %}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ tag[0] }}">
+                                    <input class="form-check-input tag-checkbox" name="test[]" type="checkbox" value="{{ tag[0] }}">
                                     <label class="filter-option-label">
                                         {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %}&nbsp;({{tag[1]}}){% endif %}</span>
                                     </label>

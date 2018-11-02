@@ -5,7 +5,6 @@ from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Doc
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
-from sqlalchemy import or_
 
 
 class VirusDetectedException(Exception):
@@ -286,25 +285,35 @@ def process_documents_search(document_type_plain_text,
 def process_posts_search(post_type,
                          sort_by,
                          search_term,
+                         tags,
                          posts_start,
-                         posts_end):
+                         posts_end,
+                         meeting_type):
     search_term = search_term.lower()
     # Order the results based on the sort by value
     if sort_by == 'date_newest':
-        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
     elif sort_by == 'date_oldest':
-        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).slice(posts_start, posts_end).all()
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).all()
     elif sort_by == 'author_a_z':
         posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
         posts.sort(key=lambda x: x.author_name, reverse=False)
-        posts = posts[posts_start:posts_end]
     elif sort_by == 'author_z_a':
         posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
         posts.sort(key=lambda x: x.author_name, reverse=True)
+
+    if tags:
+        posts_filtered_by_tags = []
+        for post in posts:
+            intersect = set(post.tags).intersection(set(tags))
+            if intersect:
+                posts_filtered_by_tags.append(post)
+        posts_max = len(posts_filtered_by_tags)
+        posts = posts_filtered_by_tags[posts_start:posts_end]
+    else:
+        posts_max = len(posts)
         posts = posts[posts_start:posts_end]
 
-    # Get the total number of documents of the specified document type
-    posts_max = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).count()
     # Create the template for the document type table
     posts_rows = render_template('news_and_updates_rows.html', posts=posts)
 
