@@ -109,15 +109,42 @@ function getSelectedTags() {
 
 function getSelectedPostTypes() {
     var post_types = [];
-    $('.post-type-checkbox').each(function () {
-        if ($(this).is(':checked')) {
-            post_types.push($(this).val());
-        }
-    });
-    if (post_types.length === 0) {
-        post_types = ['news', 'event_posts', 'meeting_notes'];
+    if ($('.breadcrumb-header').text() === 'Meeting Notes'){
+        post_types = ['meeting_notes'];
+        return post_types;
     }
-    return post_types;
+    else if ($('.breadcrumb-header').text() === 'News'){
+        post_types = ['news'];
+        return post_types;
+    }
+    else {
+        $('.post-type-checkbox').each(function () {
+            if ($(this).is(':checked')) {
+                post_types.push($(this).val());
+            }
+        });
+        if (post_types.length === 0) {
+            post_types = ['news', 'event_posts', 'meeting_notes'];
+        }
+        return post_types;
+    }
+}
+
+function getSelectedMeetingTypes() {
+    if ($('.breadcrumb-header').text() === 'Meeting Notes') {
+        var meeting_types = [];
+        $('.meeting-type-checkbox').each(function () {
+            if ($(this).is(':checked')) {
+                meeting_types.push($(this).val());
+            }
+        });
+        if (meeting_types.length === 0) {
+            meeting_types = ['Division', 'Strategic Planning', 'Senior Staff', 'Project', 'Agency'];
+        }
+        console.log(meeting_types);
+        return meeting_types;
+    }
+    return [];
 }
 
 $('#posts-prev').click(function () {
@@ -180,9 +207,10 @@ $(function () {
         data: {
             'sort_by': $('#sort-dropdown').find('option:selected').val(),
             'search_term': $('#save-search-term').text(),
-            'post_type': ['news', 'event_posts', 'meeting_notes'],
+            'post_type': getSelectedPostTypes(),
             'posts_start': posts_start,
-            'posts_end': posts_end
+            'posts_end': posts_end,
+            'meeting_type': getSelectedMeetingTypes()
         },
         success: function (data) {
             // Render the rows for each posts type
@@ -214,7 +242,8 @@ $(function () {
                 'post_type': getSelectedPostTypes(),
                 'posts_start': posts_start,
                 'posts_end': posts_end,
-                'tags': getSelectedTags()
+                'tags': getSelectedTags(),
+                'meeting_type': getSelectedMeetingTypes()
             },
             success: function (data) {
                 displayResults(data);
@@ -237,7 +266,8 @@ $(function () {
                 'post_type': getSelectedPostTypes(),
                 'posts_start': posts_start,
                 'posts_end': posts_end,
-                'tags': getSelectedTags()
+                'tags': getSelectedTags(),
+                'meeting_type': getSelectedMeetingTypes()
             },
             success: function (data) {
                 displayResults(data);
@@ -261,7 +291,32 @@ $(function () {
                 'post_type': getSelectedPostTypes(),
                 'posts_start': posts_start,
                 'posts_end': posts_end,
-                'tags': getSelectedTags()
+                'tags': getSelectedTags(),
+                'meeting_type': getSelectedMeetingTypes()
+            },
+            success: function (data) {
+                displayResults(data);
+            }
+        });
+    });
+
+    $('.meeting-type-checkbox').click(function() {
+        // Reset page counters
+        posts_start = 0;
+        posts_end = increment;
+
+        $.ajax({
+            url: '/posts/search/',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                'sort_by': $('#sort-dropdown').find('option:selected').val(),
+                'search_term': $('#save-search-term').text(),
+                'post_type': getSelectedPostTypes(),
+                'posts_start': posts_start,
+                'posts_end': posts_end,
+                'tags': getSelectedTags(),
+                'meeting_type': getSelectedMeetingTypes()
             },
             success: function (data) {
                 displayResults(data);

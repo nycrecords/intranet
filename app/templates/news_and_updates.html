@@ -93,60 +93,6 @@
             </div>
         </div>
         <div id="posts-section" class="col-sm-9 posts-section">
-            {% for post in posts %}
-                {% if post.post_type == "meeting_notes" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="meeting-notes-icon"
-                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                            <p class="post-icon-text meeting_notes_icon_text">MEETINGS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
-                            <div class="post-preview">
-                                <p>Discussion: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% elif post.post_type == "news" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="news-icon"
-                                 src="{{ url_for('static', filename='img/news_icon.png') }}">
-                            <p class="post-icon-text news_icon_text">NEWS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
-                            <div class="post-preview">
-                                <p>Announcement: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% elif post.post_type == "event_posts" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="news-icon"
-                                 src="{{ url_for('static', filename='img/events_icon.png') }}">
-                            <p class="post-icon-text events_icon_text">EVENTS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Events</p>
-                            <div class="post-preview">
-                                <p>Description: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% endif %}
-            {% endfor %}
         </div>
         <div id="posts-pagination" class="pagination-row col-sm-12">
             <div class="col-sm-3">

@@ -82,7 +82,7 @@ def search_posts():
     tags = flask_request.args.getlist('tags[]', None)
     posts_start = flask_request.args.get('posts_start', type=int)
     posts_end = flask_request.args.get('posts_end', type=int)
-    meeting_type = flask_request.args.getlist('post_type[]', None)
+    meeting_type = flask_request.args.getlist('meeting_type[]', None)
 
     # Query the Posts table based on filters. Then process the templates to be rendered.
     data = process_posts_search(post_type=post_type,
@@ -102,15 +102,23 @@ def meeting_notes():
     Queries for posts that are type meeting_notes and visible and paginates them
     :return: HTML template for meeting notes landing page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+    # Get only the tags used
+    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).all()
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    for key in sorted(tags_counter.keys()):
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
     # Get filter choices
     meeting_types = choices.MEETING_TYPES[1::]
-    tags = choices.TAGS
 
-    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags)
 
 
 @main.route('/news-updates/news', methods=['GET'])
@@ -120,14 +128,19 @@ def news():
     Queries for posts that are type news and visible and paginates them
     :return: HTML template for news landing page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(post_type='news', deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+    posts = Posts.query.filter_by(post_type='news', deleted=False).all()
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    for key in sorted(tags_counter.keys()):
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
-    # Get filter choices
-    tags = choices.TAGS
-
-    return render_template('news.html', posts=posts, tags=tags)
+    return render_template('news.html', posts=posts, tags=sorted_tags)
 
   
 @main.route('/news-updates/events', methods=['GET'])
