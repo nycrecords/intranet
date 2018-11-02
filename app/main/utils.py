@@ -288,23 +288,20 @@ def process_posts_search(post_type,
                          search_term,
                          posts_start,
                          posts_end):
-    print("ASDLKFJHASLKDJHFALKSJDHFKLAJ")
-    print(posts_start)
-    print(posts_end)
-    print(post_type)
     search_term = search_term.lower()
     # Order the results based on the sort by value
     if sort_by == 'date_newest':
-        # posts = Posts.query.filter(Posts.post_type == post_type, Posts.title.ilike('%{}%'.format(search_term)), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
         posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
-    # elif sort_by == 'author_a_z':
-    #     posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Users.first_name).slice(posts_start, posts_end).all()
-        # documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
-    # elif sort_by == 'author_z_a':
-    #     documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
     elif sort_by == 'date_oldest':
-    #     documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.last_modified.asc()).all()
         posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).slice(posts_start, posts_end).all()
+    elif sort_by == 'author_a_z':
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+        posts.sort(key=lambda x: x.author_name, reverse=False)
+        posts = posts[posts_start:posts_end]
+    elif sort_by == 'author_z_a':
+        posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+        posts.sort(key=lambda x: x.author_name, reverse=True)
+        posts = posts[posts_start:posts_end]
 
     # Get the total number of documents of the specified document type
     posts_max = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).count()
