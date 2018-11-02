@@ -209,3 +209,7 @@ form.filter-form {
 #save-search-term {
     display: inline-block;
 }
+
+.tag-count {
+    color: #787878;
+}

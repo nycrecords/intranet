@@ -51,10 +51,20 @@ def news_and_updates():
 
     # Get filter choices
     post_types = choices.POST_TYPES
-    tags = choices.TAGS
+    posts = Posts.query.filter_by(deleted=False).all()
+
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    for key in sorted(tags_counter.keys()):
+        sorted_tags.append((key, tags_counter[key]))
 
     search_term = flask_request.args.get('search_term', None)
-    return render_template('news_and_updates.html', post_types=post_types, tags=tags, search_term=search_term)
+    return render_template('news_and_updates.html', post_types=post_types, tags=sorted_tags, search_term=search_term)
 
 
 @main.route('/posts/search/', methods=['GET'])
