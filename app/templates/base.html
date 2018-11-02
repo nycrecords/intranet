@@ -50,16 +50,16 @@
             </div>
             <a href="{{ url_for('main.index') }}"><span class="header-intranet-style">intranet</span></a>
 
-            <form class="navbar-form navbar-right" role="search">
+            <div class="navbar-form navbar-right" role="search">
                 <div class="input-group add-on">
-                    <input class="form-control" placeholder="Search" name="srch-term" id="search-bar" type="text">
+                    <input class="form-control" placeholder="Search" name="search-term" id="search-bar" type="text">
                     <div class="input-group-btn">
-                        <button class="btn btn-default nav-magnification-style" type="submit">
+                        <button id="header-search" class="btn btn-default nav-magnification-style" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </div>
                 </div>
-            </form>
+            </div>
 
             <nav class="navbar transparent">
                 <div class="navbar-inner container-fluid">

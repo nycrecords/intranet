@@ -153,7 +153,7 @@ $(function () {
         dataType: 'json',
         data: {
             'sort_by': $('#sort-dropdown').find('option:selected').val(),
-            'search_term': '',
+            'search_term': $('#save-search-term').text(),
             'post_type': ['news', 'event_posts', 'meeting_notes'],
             'posts_start': posts_start,
             'posts_end': posts_end
@@ -161,6 +161,14 @@ $(function () {
         success: function (data) {
             // Render the rows for each posts type
             displayResults(data);
+
+            var search_term = $('#save-search-term').text();
+            if (search_term !== '') {
+                $('#display-search-term').show();
+            }
+            else {
+                $('#display-search-term').hide();
+            }
         }
     });
 
@@ -176,7 +184,7 @@ $(function () {
             dataType: 'json',
             data: {
                 'sort_by': $('#sort-dropdown').find('option:selected').val(),
-                'search_term': '',
+                'search_term': $('#save-search-term').text(),
                 'post_type': ['news', 'event_posts', 'meeting_notes'],
                 'posts_start': posts_start,
                 'posts_end': posts_end

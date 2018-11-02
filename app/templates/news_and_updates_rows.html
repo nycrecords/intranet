@@ -9,6 +9,7 @@
             <div class="col-sm-9 post-description">
                 <p class="post-title">{{ post.title }}</p>
                 <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
+                <p class="post-preview">Tags: {% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
                 <div class="post-preview">
                     <p>Discussion: {{ post.content | safe }}</p>
                 </div>
@@ -26,6 +27,7 @@
             <div class="col-sm-9 post-description">
                 <p class="post-title">{{ post.title }}</p>
                 <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
+                <p class="post-preview">Tags: {% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
                 <div class="post-preview">
                     <p>Announcement: {{ post.content | safe }}</p>
                 </div>
@@ -43,6 +45,7 @@
             <div class="col-sm-9 post-description">
                 <p class="post-title">{{ post.title }}</p>
                 <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Events</p>
+                <p class="post-preview">Tags: {% for tag in post.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
                 <div class="post-preview">
                     <p>Description: {{ post.content | safe }}</p>
                 </div>

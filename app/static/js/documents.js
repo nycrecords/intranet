@@ -288,11 +288,11 @@ $(function () {
                 // Display search term
                 if (search_term !== '') {
                     $('#save-search-term').html(search_term);
-                    $('#display-search-term').show()
+                    $('#display-search-term').show();
                 }
                 else {
                     $('#save-search-term').html('');
-                    $('#display-search-term').hide()
+                    $('#display-search-term').hide();
                 }
 
             }

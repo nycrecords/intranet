@@ -114,6 +114,13 @@ form.filter-form {
     overflow: hidden;
 }
 
+.tags-row {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    height: 250px;
+    /*overflow: hidden;*/
+}
+
 .post-icon {
     text-align: center;
     word-wrap: break-word;

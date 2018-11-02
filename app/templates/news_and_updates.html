@@ -36,8 +36,8 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-12" id="display-search-term">
-            Showing results that match "<p id="save-search-term"></p>"
+        <div class="col-sm-12" id="display-search-term" hidden>
+            Showing results that match "<p id="save-search-term">{% if search_term %}{{ search_term }}{% endif %}</p>"
         </div>
         <div class="col-sm-3 filter-section">
             <p class="filter-by">Filter by:</p>

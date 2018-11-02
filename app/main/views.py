@@ -53,7 +53,8 @@ def news_and_updates():
     post_types = choices.POST_TYPES
     tags = choices.TAGS
 
-    return render_template('news_and_updates.html', post_types=post_types, tags=tags)
+    search_term = flask_request.args.get('search_term', None)
+    return render_template('news_and_updates.html', post_types=post_types, tags=tags, search_term=search_term)
 
 
 @main.route('/posts/search/', methods=['GET'])
@@ -72,6 +73,7 @@ def search_posts():
     sort_by = flask_request.args.get('sort_by', 'all')
     search_term = flask_request.args.get('search_term', None)
     post_type = flask_request.args.get('post_type')
+    print(flask_request.args)
     print(post_type)
     posts_start = flask_request.args.get('posts_start', type=int)
     posts_end = flask_request.args.get('posts_end', type=int)

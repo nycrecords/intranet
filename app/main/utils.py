@@ -298,7 +298,7 @@ def process_posts_search(post_type,
         # posts = Posts.query.filter(Posts.post_type == post_type, Posts.title.ilike('%{}%'.format(search_term)), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
         posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).slice(posts_start, posts_end).all()
     # elif sort_by == 'author_a_z':
-    #     posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.author_name).slice(posts_start, posts_end).all()
+    #     posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Users.first_name).slice(posts_start, posts_end).all()
         # documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.asc()).all()
     # elif sort_by == 'author_z_a':
     #     documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term))).order_by(Documents.file_title.desc()).all()
