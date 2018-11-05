@@ -13,6 +13,7 @@ from app.main.utils import (create_meeting_notes,
                             VirusDetectedException,
                             scan_file,
                             process_documents_search,
+                            process_posts_search,
                             render_email)
 from datetime import datetime
 from io import BytesIO
@@ -48,58 +49,114 @@ def index():
 def news_and_updates():
     """
     View function to handle the news and updates landing page
-    Queries for all Post types that are visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news and updates landing page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).paginate(page, current_app.config[
-        'POSTS_PER_PAGE'], True)
+    # Get only the tags used
+    posts = Posts.query.filter_by(deleted=False).all()
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    # Count the number of times each tag appears in all posts
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    # Resort the tags in alphabetical order
+    for key in sorted(tags_counter.keys()):
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
-    # Get filter choices
-    post_types = choices.POST_TYPES
-    tags = choices.TAGS
+    search_term = flask_request.args.get('search_term', None)
+    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term)
 
-    return render_template('news_and_updates.html', posts=posts, post_types=post_types, tags=tags)
+
+@main.route('/posts/search/', methods=['GET'])
+def search_posts():
+    """
+    AJAX endpoint to handle querying the database for Posts objects on the News and Updates pages
+
+    GET Request
+    Expected arguments:
+    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'Date(Newest)'.
+    - search_term: a string containing the search term that was entered in the Search By field.
+    - post_type: an array of strings containing the post types to be filtered on.
+    - tags: an array of strings containing the tags selected to filter on.
+    - posts_start: an integer for the start range of posts to be displayed.
+    - posts_end: an integer for the end range of posts to be displayed.
+    - meeting_type: an array of strings containing the meeting types to be filtered on.
+    :return: A JSON with the rendered templates for post rows based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
+    sort_by = flask_request.args.get('sort_by', 'all')
+    search_term = flask_request.args.get('search_term', None)
+    post_type = flask_request.args.getlist('post_type[]')
+    tags = flask_request.args.getlist('tags[]', None)
+    posts_start = flask_request.args.get('posts_start', type=int)
+    posts_end = flask_request.args.get('posts_end', type=int)
+    meeting_type = flask_request.args.getlist('meeting_type[]', None)
+
+    # Query the Posts table based on filters. Then process the templates to be rendered.
+    data = process_posts_search(post_type=post_type,
+                                sort_by=sort_by,
+                                search_term=search_term,
+                                tags=tags,
+                                posts_start=posts_start,
+                                posts_end=posts_end,
+                                meeting_type=meeting_type)
+    return jsonify(data)
 
 
 @main.route('/news-updates/meeting-notes', methods=['GET'])
 def meeting_notes():
     """
     View function to handle the meeting notes landing page
-    Queries for posts that are type meeting_notes and visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for meeting notes landing page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).order_by(
-        Posts.date_created.desc()).paginate(page, current_app.config['POSTS_PER_PAGE'], True)
+    # Get only the tags used
+    posts = Posts.query.filter_by(deleted=False).all()
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    # Count the number of times each tag appears in all posts
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    # Resort the tags in alphabetical order
+    for key in sorted(tags_counter.keys()):
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
-    # Get filter choices
+    # Get meeting type choices
     meeting_types = choices.MEETING_TYPES[1::]
-    tags = choices.TAGS
 
-    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=tags)
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags)
 
 
 @main.route('/news-updates/news', methods=['GET'])
 def news():
     """
     View function to handle the news landing page
-    Queries for posts that are type news and visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news landing page
     """
-    # Set up pagination
-    page = flask_request.args.get('page', 1, type=int)
-    posts = Posts.query.filter_by(post_type='news', deleted=False).order_by(Posts.date_created.desc()).paginate(page,
-                                                                                                                current_app.config[
-                                                                                                                    'POSTS_PER_PAGE'],
-                                                                                                                True)
+    # Get only the tags used
+    posts = Posts.query.filter_by(post_type='news', deleted=False).all()
+    tags_counter = {}
+    for tag in choices.TAGS:
+        tags_counter[tag] = 0
+    for post in posts:
+        for tag in post.tags:
+            tags_counter[tag] = tags_counter[tag] + 1
+    sorted_tags = []
+    for key in sorted(tags_counter.keys()):
+        if tags_counter[key] != 0:
+            sorted_tags.append((key, tags_counter[key]))
 
-    # Get filter choices
-    tags = choices.TAGS
-
-    return render_template('news.html', posts=posts, tags=tags)
+    return render_template('news.html', posts=posts, tags=sorted_tags)
 
 
 @main.route('/news-updates/events', methods=['GET'])

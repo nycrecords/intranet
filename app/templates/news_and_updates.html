@@ -28,46 +28,62 @@
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
-                <select class="sort-by-dropdown">
-                    <option value="Date">Date</option>
-                    <option value="Author">Author A-Z</option>
-                    <option value="Author">Author Z-A</option>
-                    <option value="Type">Type</option>
+                <select id="sort-dropdown" class="sort-dropdown">
+                    <option value="date_newest">Date (Newest)</option>
+                    <option value="date_oldest">Date (Oldest)</option>
+                    <option value="author_a_z">Author (A-Z)</option>
+                    <option value="author_z_a">Author (Z-A)</option>
                 </select>
             </div>
+        </div>
+        <div class="col-sm-12" id="display-search-term" hidden>
+            Showing results that match "<p id="save-search-term">{% if search_term %}{{ search_term }}{% endif %}</p>"
         </div>
         <div class="col-sm-3 filter-section">
             <p class="filter-by">Filter by:</p>
             <div class="panel-group">
                 <div class="panel filter-border">
-                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;POST
+                    <div class="panel-heading filter-heading">&nbsp;&nbsp;POST
                         TYPE
                     </div>
                     <hr class="panel-divider"/>
                     <div class="panel-body filter-choices">
                         <form class="filter-form">
-                            {% for post_type in post_types %}
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ post_type }}">
-                                    <label class="filter-option-label">
-                                        {{ post_type }}
-                                    </label>
-                                </div>
-                            {% endfor %}
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="event_posts">
+                                <label class="filter-option-label">
+                                    Events
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="meeting_notes">
+                                <label class="filter-option-label">
+                                    Meeting Notes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input post-type-checkbox" type="checkbox"
+                                       value="news">
+                                <label class="filter-option-label">
+                                    News
+                                </label>
+                            </div>
                         </form>
                     </div>
                 </div>
                 <div class="panel filter-border">
-                    <div class="panel-heading filter-heading"><span class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;&nbsp;TAGS
+                    <div class="panel-heading filter-heading">&nbsp;&nbsp;TAGS
                     </div>
                     <hr class="panel-divider"/>
                     <div class="panel-body filter-choices tag-choices">
                         <form class="filter-form">
                             {% for tag in tags %}
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="{{ tag }}">
+                                    <input class="form-check-input tag-checkbox" name="test[]" type="checkbox" value="{{ tag[0] }}">
                                     <label class="filter-option-label">
-                                        {{ tag }}
+                                        {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %}&nbsp;({{tag[1]}}){% endif %}</span>
                                     </label>
                                 </div>
                             {% endfor %}
@@ -76,88 +92,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 post-section">
-            {% for post in posts.items %}
-                {% if post.post_type == "meeting_notes" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="meeting-notes-icon"
-                                 src="{{ url_for('static', filename='img/meeting_notes_icon.png') }}">
-                            <p class="post-icon-text meeting_notes_icon_text">MEETINGS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Meeting Notes</p>
-                            <div class="post-preview">
-                                <p>Discussion: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% elif post.post_type == "news" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="news-icon"
-                                 src="{{ url_for('static', filename='img/news_icon.png') }}">
-                            <p class="post-icon-text news_icon_text">NEWS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in News</p>
-                            <div class="post-preview">
-                                <p>Announcement: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% elif post.post_type == "event_posts" and post.deleted == False %}
-                    <div class="col-sm-12 post-row">
-                        <div class="col-sm-3 post-icon">
-                            <img class="news-icon"
-                                 src="{{ url_for('static', filename='img/events_icon.png') }}">
-                            <p class="post-icon-text events_icon_text">EVENTS</p>
-                        </div>
-                        <div class="col-sm-9 post-description">
-                            <p class="post-title">{{ post.title }}</p>
-                            <p class="post-date-author">{{ post.date_created.strftime('%B %d, %Y') }} by {{ post.author_name }}<br>Posted in Events</p>
-                            <div class="post-preview">
-                                <p>Description: {{ post.content | safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="read-more" href="{{ url_for('main.view_post', post_id = post.id) }}">Read more<span class="glyphicon glyphicon-menu-right"></span></a>
-                    <div class="col-sm-12 post-divider"></div>
-                {% endif %}
-            {% endfor %}
+        <div id="posts-section" class="col-sm-9 posts-section">
         </div>
-        <div class="post-pagination">
-            <ul class="pagination">
-                {% if posts.has_prev %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.prev_num) }}">&laquo;</a></li>
-                {% else %}
-                    <li class="disabled"><span>&laquo;</span></li>
-                {% endif %}
-
-                {% for page_num in posts.iter_pages() %}
-                    {% if page_num %}
-                        {% if page_num != posts.page %}
-                            <li><a href="{{ url_for('main.news_and_updates', page=page_num) }}">{{ page_num }}</a></li>
-                        {% else %}
-                            <li class="active"><span>{{ page_num }}</span></li>
-                        {% endif %}
-                    {% else %}
-                            <li class="disabled"><span>...</span></li>
-                    {% endif %}
-                {% endfor %}
-
-                {% if posts.has_next %}
-                    <li><a href="{{ url_for('main.news_and_updates', page=posts.next_num) }}">&raquo;</a></li>
-                {% else %}
-                    <li class="disabled"><span>&raquo;</span></li>
-                {% endif %}
-            </ul>
+        <div id="posts-pagination" class="pagination-row col-sm-12">
+            <div class="col-sm-3">
+                <button type="button" id="posts-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="posts-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="posts-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
