@@ -20,6 +20,12 @@
             </nav>
             <h1 class="breadcrumb-header">IT Support</h1>
         </div>
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
         <div class="col-sm-12 well content-area it-support-section">
             <div class="row">
                 <div class="col-sm-4">
