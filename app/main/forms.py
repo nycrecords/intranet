@@ -13,7 +13,6 @@ from wtforms.validators import DataRequired, Optional
 
 from app.constants import choices
 from app.constants.intake import (
-    DIVISIONS,
     PROJECT_TYPE,
     ENHANCEMENT,
     PRIORITY,
@@ -224,7 +223,7 @@ class AppDevIntakeForm(FlaskForm):
     )
     designated_business_owner_division = SelectField(
         "Designated Business Owner Division:",
-        choices=DIVISIONS,
+        choices=choices.DIVISIONS,
         validators=[DataRequired()],
     )
 
