@@ -30,7 +30,9 @@ class Config:
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or '127.0.0.1'
     MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
 
-
+    FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
+    VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"
+    MAX_CONTENT_LENGTH =  512 * 1024 * 1024 # 512 MB
 
     @staticmethod
     def init_app(app):

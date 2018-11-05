@@ -9,12 +9,12 @@ from flask_login import (
     UserMixin,
     AnonymousUserMixin
 )
-import csv
 from flask import current_app
 from app.constants import (
     permission,
     role_name,
 )
+import pytz
 
 
 class Roles(db.Model):
@@ -443,6 +443,7 @@ class Events(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    document_id = db.Column(db.Integer, db.ForeignKey('documents.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     type = db.Column(db.String)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
@@ -452,10 +453,12 @@ class Events(db.Model):
     def __init__(self,
                  type,
                  post_id=None,
+                 document_id=None,
                  user_id=None,
                  previous_value=None,
                  new_value=None):
         self.post_id = post_id
+        self.document_id = document_id
         self.user_id = user_id
         self.type = type
         self.timestamp = datetime.utcnow()
@@ -464,3 +467,89 @@ class Events(db.Model):
 
     def __repr__(self):
         return '<Events %r>' % self.id
+
+
+class Documents(db.Model):
+    """
+    Define the Documents class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    uploader_id -- Column: Integer, Foreign key to Users table. Determines which User uploaded the document.
+    file_title -- Column: String, Human readable version of the filename.
+    file_name -- Column: String, Actual filename.
+    document_type -- Column: String, The type of document the file falls under.
+    file_type -- Column: String, The extension of the file.
+    file_path -- Column: String, The full path to where the file is located on the server.
+    division -- Colulmn: String, The division that the file relates to.
+    last_modified -- Column: Datetime, A timestamp of when the last time the document was edited by a user.
+    deleted -- Column: Boolean, Determines if the file is visible of the frontend or not.
+    """
+    __tablename__ = 'documents'
+    id = db.Column(db.Integer, primary_key=True)
+    uploader_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    file_title = db.Column(db.String)
+    file_name = db.Column(db.String)
+    document_type = db.Column(db.Enum('Instructions',
+                                      'Policies and Procedures',
+                                      'Templates',
+                                      'Training Materials',
+                                      name='document_type'))
+    file_type = db.Column(db.String)
+    file_path = db.Column(db.String)
+    division = db.Column(db.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit',
+                                 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library',
+                                 'Municipal Records Management', 'Operations', name='divisions'))
+    last_modified = db.Column(db.DateTime)
+    deleted = db.Column(db.Boolean, default=False)
+
+    def __init__(self,
+                 uploader_id,
+                 file_title,
+                 file_name,
+                 document_type,
+                 file_type,
+                 file_path,
+                 division):
+        self.uploader_id = uploader_id
+        self.file_title = file_title
+        self.file_name = file_name
+        self.document_type = document_type
+        self.file_type = file_type
+        self.file_path = file_path
+        self.division = division
+        self.last_modified = datetime.utcnow()
+        self.deleted = False
+
+    @property
+    def uploader(self):
+        """
+        Property to get the name of the uploader
+        """
+        user = Users.query.filter_by(id=self.uploader_id).first()
+        return user.name
+
+    @property
+    def local_timestamp(self):
+        """
+        Property to get the last_modified timestamp in EST
+        """
+        timestamp = self.last_modified.replace(tzinfo=pytz.utc)
+        timestamp = timestamp.astimezone(pytz.timezone("America/New_York"))
+        return timestamp
+
+    @property
+    def val_for_events(self):
+        """
+        JSON to store in Events 'new_value' field.
+        """
+        last_modified = self.last_modified.isoformat() if self.last_modified else None
+        return {
+            'file_title': self.file_title,
+            'file_name': self.file_name,
+            'document_type': self.document_type,
+            'division': self.division,
+            'last_modified': last_modified
+        }
+
+    def __repr__(self):
+        return '<Documents %r>' % self.id

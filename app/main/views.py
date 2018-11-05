@@ -1,19 +1,29 @@
-from datetime import datetime
-from io import BytesIO
-
-import pytz
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash
 from flask_login import login_required, current_user
-from flask_mail import Message
-from sqlalchemy import extract
-
-from app import mail
-from app.constants import choices
-from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, AppDevIntakeForm
-from app.main.utils import create_meeting_notes, create_news, create_event_post, get_users_by_division, \
-    get_rooms_by_division, render_email
-from app.models import Users, Posts, EventPosts
+from app.models import Users, Posts, EventPosts, Documents
 from . import main
+from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
+from app.main.utils import (create_meeting_notes,
+                            create_news,
+                            create_event_post,
+                            get_users_by_division,
+                            get_rooms_by_division,
+                            create_document,
+                            allowed_file,
+                            VirusDetectedException,
+                            scan_file,
+                            process_documents_search,
+                            render_email)
+from datetime import datetime
+from io import BytesIO
+import pytz
+from flask_mail import Message
+from app.constants import choices
+from sqlalchemy import extract, or_
+from werkzeug.utils import secure_filename
+import os
+import json
+from app import mail
 
 
 @main.route('/', methods=['GET'])
@@ -544,3 +554,161 @@ def app_dev_intake_form():
         for error in form.errors.items():
             flash(error[1][0], category="danger")
     return render_template("app_dev_intake.html", form=form, current_user=current_user)
+
+
+@main.route('/documents', methods=['GET'])
+def documents():
+    """
+    View function to handle Documents page
+    :return: HTML template for the Documents page
+    """
+    # default_open determines which documents tab is opened on initial load. if no value is supplied use 'instructions'
+    default_open = flask_request.args.get('default_open', 'instructions')
+    return render_template('documents.html', default_open=default_open)
+
+
+@main.route('/documents/search/', methods=['GET'])
+def search_documents():
+    """
+    AJAX endpoint to handle querying the database for Documents objects on the documents page
+
+    GET Request
+    Expected arguments:
+    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'all'
+    - search_term: a string containing the search term that was entered in the Search By field.
+    - page_counters: a JSON that keeps track of what range of each document type is visible on the screen.
+                     #TODO: We can probably take this out since every call to this end point will start at 0 and end at 10
+    :return: A JSON with the rendered templates of each document type table based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
+    sort_by = flask_request.args.get('sort_by', 'all')
+    search_term = flask_request.args.get('search_term', None)
+    page_counters = json.loads(flask_request.args.get('page_counters'))
+
+    # TODO (@joelbcastillo): This endpoint should take in the specific tab that is open to reduce the amount of data returned.
+    #                        We shouldn't be pulling data from every single tab every time we hit this endpoint.
+
+    # Query the Documents table based on the search term and sort value. Then process the templates to be rendered.
+    instructions_data = process_documents_search(document_type_plain_text='Instructions',
+                                                 document_type='instructions',
+                                                 sort_by=sort_by,
+                                                 search_term=search_term,
+                                                 documents_start=page_counters['instructions']['start'],
+                                                 documents_end=page_counters['instructions']['end'])
+
+    policies_and_procedures_data = process_documents_search(document_type_plain_text='Policies and Procedures',
+                                                            document_type='policies-and-procedures',
+                                                            sort_by=sort_by,
+                                                            search_term=search_term,
+                                                            documents_start=page_counters['policies_and_procedures']['start'],
+                                                            documents_end=page_counters['policies_and_procedures']['end'])
+
+    templates_data = process_documents_search(document_type_plain_text='Templates',
+                                              document_type='templates',
+                                              sort_by=sort_by,
+                                              search_term=search_term,
+                                              documents_start=page_counters['templates']['start'],
+                                              documents_end=page_counters['templates']['end'])
+
+    training_materials_data = process_documents_search(document_type_plain_text='Training Materials',
+                                                       document_type='training-materials',
+                                                       sort_by=sort_by,
+                                                       search_term=search_term,
+                                                       documents_start=page_counters['training_materials']['start'],
+                                                       documents_end=page_counters['training_materials']['end'])
+    # Create a dictionary with data for each document type to be passed back to the frontend.
+    data = {
+        'instructions_data': instructions_data,
+        'policies_and_procedures_data': policies_and_procedures_data,
+        'templates_data': templates_data,
+        'training_materials_data': training_materials_data
+    }
+
+    return jsonify(data)
+
+
+@main.route('/documents/page/', methods=['GET'])
+def change_documents_page():
+    """
+    AJAX endpoint to handle clicking the prev/next buttons and getting the next set of rows to display
+    Instead of querying all 4 document types like in search_documents() we only have to query for one document type
+    Then get the previous or next set of 10 rows to be displayed
+    :return: A JSON with the rendered templates for the currently viewed document type table based on the search criteria
+             and values to determine what range is being displayed on screen.
+    """
+    # Get passed in arguments
+    sort_by = flask_request.args.get('sort_by', 'all')
+    search_term = flask_request.args.get('search_term', None)
+    page_counters = json.loads(flask_request.args.get('page_counters'))
+    document_type_plain_text = flask_request.args.get('document_type_plain_text')
+    document_type_underscore = flask_request.args.get('document_type_underscore')
+    document_type_dash = flask_request.args.get('document_type_dash')
+    # TODO: Find a better way to standardize document type variable values when passed in as arguments.
+    # Naming conventions of variable names are different between Python, Javascript, and HTML
+    # which leads to inconsistent variable names.
+    # Python uses underscores
+    # Javascript uses underscores and camel case
+    # HTML uses dashes
+    # Database was originally designed to store the plain text names of document types
+
+    # Query the databse for the next set of rows to display based on document_start and document_end
+    data = process_documents_search(document_type_plain_text=document_type_plain_text,
+                                    document_type=document_type_dash,
+                                    sort_by=sort_by,
+                                    search_term=search_term,
+                                    documents_start=page_counters[document_type_underscore]['start'],
+                                    documents_end=page_counters[document_type_underscore]['end'])
+
+    return jsonify(data)
+
+
+@main.route('/documents/upload', methods=['GET', 'POST'])
+@login_required
+def upload_document():
+    """
+    View function to handle uploading a new document to the documents library
+
+    GET Request
+    Renders the template for the upload form on initial page load
+
+    POST Request
+    Handles the submission of the upload form and savining it to the database if it passes validation and virus scanning
+    """
+    form = UploadForm()
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        file = flask_request.files['file_object']
+        filename = secure_filename(file.filename) # use the secure version of the file name
+        # Files are unique in both file title and file name, this will be used to check if a file already exists in the database
+        # TODO: check file uniqueness using a checksum instead of just filename
+        file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
+        if file_exists:
+            if file_exists.file_name == filename: # File with the same name already exists
+                flash('This file has already been uploaded. Please select another file.')
+                return render_template('upload_document.html', form=form)
+            elif file_exists.file_title == form.file_title.data: # file with the same title already exists
+                flash('A file with this title has already been uploaded. Please use another title.')
+                return render_template('upload_document.html', form=form)
+        elif not allowed_file(filename):
+            # Files should fall under the list allowed file types
+            flash('Invalid file type.')
+            return render_template('upload_document.html', form=form)
+        # Handle virus scanning
+        try:
+            file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
+            file.save(file_path)
+            scan_file(file_path)
+        except VirusDetectedException:
+            flash('Virus detected. Please contact IT for assistance.')
+            return render_template('upload_document.html', form=form)
+        # Create Document object
+        create_document(uploader_id=current_user.id,
+                        file_title=form.file_title.data,
+                        file_name=filename,
+                        document_type=form.document_type.data,
+                        file_type=filename.rsplit('.', 1)[1].lower(),
+                        file_path=file_path,
+                        division=form.division.data)
+        flash('Document successfully uploaded.')
+        return redirect(url_for('main.documents'))
+    return render_template('upload_document.html', form=form)

@@ -1,8 +1,20 @@
+import subprocess
+import os
+from flask import current_app, render_template
+from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
+from app import db
 from datetime import datetime
-
-from flask import current_app
-from flask import render_template
 from sqlalchemy.exc import SQLAlchemyError
+from app.constants import file_types
+
+
+class VirusDetectedException(Exception):
+    """
+    Raise when scanner detects an infected file.
+    """
+    def __init__(self, filename):
+        super(VirusDetectedException, self).__init__(
+            "Infected file '{}' removed.".format(filename))
 
 from app import db
 from app.models import MeetingNotes, News, EventPosts, Events, Users
@@ -175,3 +187,112 @@ def render_email(data, template):
     """
     today = str(datetime.now().today().date())
     return render_template(template, today=today, form=data)
+
+
+def create_document(uploader_id,
+                    file_title,
+                    file_name,
+                    document_type,
+                    file_type,
+                    file_path,
+                    division):
+    """
+    Util function to create a Document object and 'document_uploaded' Event
+    :param uploader_id: Id of the user who uploaded the file
+    :param file_title: Human readable version of the file name
+    :param file_name: Actual file name
+    :param document_type: Category of document
+    :param file_type: Extension of the file
+    :param file_path: Full path of where the file is saved on the server
+    :param division: Division that the file relates to
+    """
+    # Create Document object
+    document = Documents(uploader_id=uploader_id,
+                         file_title=file_title,
+                         file_name=file_name,
+                         document_type=document_type,
+                         file_type=file_type,
+                         file_path=file_path,
+                         division=division)
+    create_object(document)
+
+    # Create document_uploaded Event
+    event = Events(document_id=document.id,
+                   user_id=uploader_id,
+                   type="document_uploaded",
+                   previous_value={},
+                   new_value=document.val_for_events)
+    create_object(event)
+
+
+def allowed_file(filename):
+    """
+    Check if the file type is allowed (uses the file extension).
+    TODO: Need to use a better method for this.
+    :param filename: Name of the file
+    :return: Boolean (True if file type is allowed).
+    """
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in file_types.ALLOWED_EXTENSIONS
+
+
+def scan_file(filepath):
+    """
+    Scans a file for viruses using McAfee Virus Scan. If an infected
+    file is detected, removes the file and raises VirusDetectedException.
+    :param filepath: path of file to scan
+    """
+    if current_app.config['VIRUS_SCAN_ENABLED']:
+        options = [
+            '--analyze',  # Use heuristic analysis to find possible new viruses
+            '--atime-preserve',  # Preserve the file's last-accessed time and date
+            '--delete'  # Automatically delete the infected file
+        ]
+        cmd = ['uvscan'] + options + [filepath]
+        subprocess.call(cmd)  # TODO: redirect output to logfile
+        # if the file was removed, it was infected
+        if not os.path.exists(filepath):
+            raise VirusDetectedException(os.path.basename(filepath))
+
+
+def process_documents_search(document_type_plain_text,
+                             document_type,
+                             sort_by,
+                             search_term,
+                             documents_start,
+                             documents_end):
+    """
+    Util function to process the documents search based on search term and sort by value
+    :param document_type_plain_text: Plain text version of the document type
+    :param document_type: Category of the document
+    :param sort_by: String containing the currently selected sort by value
+    :param search_term: String containing the search term to be used when querying
+    :param documents_start: Start range of rows to be displayed on the frontend
+    :param documents_end: End range of rows to be displayed on the frontend
+    :return:
+    """
+    search_term = search_term.lower()
+    # Order the results based on the sort by value
+    if sort_by == 'all' or sort_by == 'date_newest':
+        documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.last_modified.desc()).slice(documents_start, documents_end).all()
+    elif sort_by == 'name_a_z':
+        documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.file_title.asc()).slice(documents_start, documents_end).all()
+    elif sort_by == 'name_z_a':
+        documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.file_title.desc()).slice(documents_start, documents_end).all()
+    elif sort_by == 'date_oldest':
+        documents = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term), Documents.deleted == False)).order_by(Documents.last_modified.asc()).slice(documents_start, documents_end).all()
+    
+    # Get the total number of documents of the specified document type
+    documents_max = Documents.query.filter(Documents.document_type == document_type_plain_text, Documents.file_title.ilike('%{}%'.format(search_term)), Documents.deleted == False).count()
+    # Create the template for the document type table
+    documents_rows = render_template('documents_table.html', document_type=document_type, documents=documents)
+
+    data = {
+        'documents': documents_rows,
+        'documents_max': documents_max,
+        'documents_start': documents_start + 1,
+        'documents_end': documents_end,
+        'document_type': document_type
+    }
+
+    return data
