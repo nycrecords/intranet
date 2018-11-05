@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, session, request as flask_
 from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts, Documents
 from . import main
-from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm
+from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
 from app.main.utils import (create_meeting_notes,
                             create_news,
                             create_event_post,
@@ -13,14 +13,18 @@ from app.main.utils import (create_meeting_notes,
                             VirusDetectedException,
                             scan_file,
                             process_documents_search,
-                            process_posts_search)
+                            process_posts_search,
+                            render_email)
 from datetime import datetime
+from io import BytesIO
 import pytz
+from flask_mail import Message
 from app.constants import choices
 from sqlalchemy import extract, or_
 from werkzeug.utils import secure_filename
 import os
 import json
+from app import mail
 
 
 @main.route('/', methods=['GET'])
@@ -32,9 +36,11 @@ def index():
     :return: HTML template for home page
     """
     posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
-    events = EventPosts.query.filter(Posts.deleted == False, EventPosts.event_date >= datetime.utcnow()).order_by(EventPosts.event_date.asc()).limit(4).all()
+    events = EventPosts.query.filter(Posts.deleted == False, EventPosts.event_date >= datetime.utcnow()).order_by(
+        EventPosts.event_date.asc()).limit(4).all()
 
     return render_template('index.html', posts=posts, events=events)
+
 
 # Start view functions for posting
 # TODO: Make a Post blueprint
@@ -137,6 +143,7 @@ def news():
     Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news landing page
     """
+    # Get only the tags used
     posts = Posts.query.filter_by(post_type='news', deleted=False).all()
     tags_counter = {}
     for tag in choices.TAGS:
@@ -151,7 +158,7 @@ def news():
 
     return render_template('news.html', posts=posts, tags=sorted_tags)
 
-  
+
 @main.route('/news-updates/events', methods=['GET'])
 def events():
     """
@@ -234,21 +241,21 @@ def new_meeting_notes():
 
     if flask_request.method == 'POST' and form.validate_on_submit():
         post_id = create_meeting_notes(meeting_date=form.meeting_date.data,
-                             meeting_location=form.meeting_location.data,
-                             meeting_leader=form.meeting_leader.data.title(),
-                             meeting_note_taker=form.meeting_note_taker.data.title(),
-                             start_time=form.start_time.data,
-                             end_time=form.end_time.data,
-                             attendees=flask_request.form.getlist('attendees'),
-                             next_meeting_date=form.next_meeting_date.data,
-                             next_meeting_leader=form.next_meeting_leader.data.title(),
-                             next_meeting_note_taker=form.next_meeting_note_taker.data.title(),
-                             meeting_type=form.meeting_type.data,
-                             division=form.division.data,
-                             author=current_user.id,
-                             title=form.title.data,
-                             content=form.content.data,
-                             tags=flask_request.form.getlist('tags'))
+                                       meeting_location=form.meeting_location.data,
+                                       meeting_leader=form.meeting_leader.data.title(),
+                                       meeting_note_taker=form.meeting_note_taker.data.title(),
+                                       start_time=form.start_time.data,
+                                       end_time=form.end_time.data,
+                                       attendees=flask_request.form.getlist('attendees'),
+                                       next_meeting_date=form.next_meeting_date.data,
+                                       next_meeting_leader=form.next_meeting_leader.data.title(),
+                                       next_meeting_note_taker=form.next_meeting_note_taker.data.title(),
+                                       meeting_type=form.meeting_type.data,
+                                       division=form.division.data,
+                                       author=current_user.id,
+                                       title=form.title.data,
+                                       content=form.content.data,
+                                       tags=flask_request.form.getlist('tags'))
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
@@ -276,7 +283,7 @@ def new_news():
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_news.html', form=form, tags=tags)
 
-  
+
 @main.route('/news-updates/events/new', methods=['GET', 'POST'])
 @login_required
 def new_event_post():
@@ -309,7 +316,7 @@ def new_event_post():
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('new_event_post.html', form=form, users=users, tags=tags)
 
-  
+
 @main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])
 def view_post(post_id):
     """
@@ -337,6 +344,7 @@ def get_user_list():
     for user in Users.query.all():
         users_list.append(user.name)
     return jsonify(users_list), 200
+
 
 # End view functions for posting
 
@@ -366,7 +374,7 @@ def staff_directory():
         users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'))
     elif form.filters.data == 'Title':
         users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'))
-    else: # on initial page load return all users
+    else:  # on initial page load return all users
         users = Users.query.order_by(Users.last_name)
 
     return render_template('staff_directory.html', users=users, form=form)
@@ -535,6 +543,74 @@ def strategic_planning():
     :return: HTML template for the Strategic Planning page
     """
     return render_template('strategic_planning.html')
+
+
+@main.route('/it-support/app-dev-intake-form', methods=['GET', 'POST'])
+@login_required
+def app_dev_intake_form():
+    """
+    View function to handle the IT Intake Form.
+
+    GET Request:
+    Returns the html template for the Intake Form
+
+    POST Request:
+    Handles submission of Intake form. If it is validated, redirect to the IT Support page
+    """
+    form = AppDevIntakeForm()
+
+    # Pre-Fill the Submitter Information - Cannot be edited
+    form.submitter_name.data = current_user.name
+    form.submitter_email.data = current_user.email
+    form.submitter_phone.data = current_user.phone_number
+    form.submitter_title.data = current_user.title
+    form.submitter_division.data = current_user.division
+
+    # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+    form.designated_business_owner_name.data = current_user.name
+    form.designated_business_owner_email.data = current_user.email
+    form.designated_business_owner_phone.data = current_user.phone_number
+    form.designated_business_owner_title.data = current_user.title
+    form.designated_business_owner_division.data = current_user.division
+
+    if form.validate_on_submit():
+        email = render_email(form.data, 'email/email_app_dev_intake.html')
+        sender = form.submitter_email.data
+        recipients = current_app.config['APP_DEV_INTAKE_EMAIL_RECIPIENTS'] + [form.submitter_email.data,
+                                                                              form.designated_business_owner_email.data]
+        msg = Message(
+            "App. Dev. Intake Form - {project_name}".format(
+                project_name=form.project_name.data
+            ),
+            sender=sender,
+            recipients=recipients,
+        )
+        msg.html = email
+        if form.supplemental_materials_one.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_one'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_one.data.filename,
+                       content_type=form.supplemental_materials_one.data.content_type, data=tmp_file.read())
+        if form.supplemental_materials_two.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_two'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_two.data.filename,
+                       content_type=form.supplemental_materials_two.data.content_type, data=tmp_file.read())
+        if form.supplemental_materials_three.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_three'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_three.data.filename,
+                       content_type=form.supplemental_materials_three.data.content_type, data=tmp_file.read())
+        mail.send(msg)
+        flash("Successfully submitted intake form. Please allow 5 business days for a response.")
+        return redirect(url_for('main.it_support'))
+    else:
+        for error in form.errors.items():
+            flash(error[1][0], category="danger")
+    return render_template("app_dev_intake.html", form=form, current_user=current_user)
 
 
 @main.route('/documents', methods=['GET'])

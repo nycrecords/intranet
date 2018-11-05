@@ -1,0 +1,329 @@
+Message-ID: <115084769.107.1540847000256@fc07f360e244>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_106_1827173614.1540847000256"
+
+------=_Part_106_1827173614.1540847000256
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Code Review Checklist</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: #fff !important;
+        color: #000 !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: #000;
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Code Review Checklist</h1>
+    <div class=3D"Section1">
+        <p>When reviewing a pull request, please use the following criteria=
+ to ensure the code can be merged with the requested branch.</p>
+<h2 id=3D"CodeReviewChecklist-GeneralRequirements">General Requirements</h2=
+>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"284"><span>Does the code work?</span>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"285"><span>Does it perform the correct function =
+as defined in the acceptance criteria</span></li>
+<li data-inline-task-id=3D"286"><span>Does the logic make sense</span></li>
+</ul></li>
+<li data-inline-task-id=3D"287"><span>Is the code easy to understand?</span=
+></li>
+<li data-inline-task-id=3D"288"><span>Does the code follow the conventions =
+for the project? (normally this will be the PEP8 standard)</span></li>
+<li data-inline-task-id=3D"289"><span>Is the code redundant?</span></li>
+<li data-inline-task-id=3D"290"><span>Is the code modular (as much as possi=
+ble)?</span></li>
+<li data-inline-task-id=3D"291"><span>Does it use unnecessary global variab=
+les?</span></li>
+<li data-inline-task-id=3D"292"><span>Is there commented out code (that doe=
+s not serve a purpose)?</span></li>
+<li data-inline-task-id=3D"293"><span>Can any of the code be replaced with =
+library functions?</span></li>
+<li data-inline-task-id=3D"294"><span>Can any logging or debugging be remov=
+ed?</span><span>&nbsp;</span></li>
+<li data-inline-task-id=3D"295"><span>Should any logging be added?</span><s=
+pan>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></li>
+</ul>
+<p>&nbsp;</p>
+<h2 id=3D"CodeReviewChecklist-Security">Security</h2>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"296"><span>Are all data inputs validated properl=
+y?</span>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"297"><span>Proper length</span></li>
+<li data-inline-task-id=3D"298"><span>Proper type</span></li>
+<li data-inline-task-id=3D"299"><span>Proper format</span></li>
+<li data-inline-task-id=3D"300"><span>Proper range (if applicable)</span></=
+li>
+</ul></li>
+<li data-inline-task-id=3D"301"><span>If a third party utility or package i=
+s used, are returned errors being caught?</span></li>
+<li data-inline-task-id=3D"302"><span>Are all output values checked and enc=
+oded before being returned?</span></li>
+<li data-inline-task-id=3D"303"><span>Are invalid parameter values being ha=
+ndled?</span></li>
+<li data-inline-task-id=3D"304"><span>Is there exception handling within th=
+e code?</span></li>
+</ul>
+<h2 id=3D"CodeReviewChecklist-Documentation"><span>Documentation</span></h2=
+>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"305"><span>Do comments exist and describe the pu=
+rpose of the code</span>?</li>
+<li data-inline-task-id=3D"306">Are all functions commented?</li>
+<li data-inline-task-id=3D"307">Is any unusual behavior (edge case) being d=
+escribed?</li>
+<li data-inline-task-id=3D"308">Are third-party libraries / packages being =
+documented when used?</li>
+<li data-inline-task-id=3D"309">Is the usage of data structures or units of=
+ measurement explained?</li>
+<li data-inline-task-id=3D"310">Is there any incomplete code?&nbsp;</li>
+</ul>
+<h2 id=3D"CodeReviewChecklist-Testing">Testing</h2>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"17956911">
+<li data-inline-task-id=3D"311"><span>Is the code testable?</span></li>
+<li data-inline-task-id=3D"312"><span>Do tests exist? <br></span></li>
+<li data-inline-task-id=3D"313"><span>Are tests comprehensive?</span></li>
+<li data-inline-task-id=3D"314"><span>Do unit tests actually test that the =
+code is performing as expected?</span></li>
+<li data-inline-task-id=3D"315"><span>Are arrays checked of index errors?</=
+span></li>
+<li data-inline-task-id=3D"316"><span>Could any test code be replaced by us=
+ing an existing API?<br></span></li>
+</ul>
+<h2 id=3D"CodeReviewChecklist-Relatedarticles">Related articles</h2>
+<p></p>
+<p> </p>
+<ul class=3D"content-by-label">=20
+<li>=20
+<div>=20
+<span class=3D"icon aui-icon aui-icon-small aui-iconfont-page-default" titl=
+e=3D"Page">Page:</span>=20
+</div>=20
+<div class=3D"details">=20
+<a data-linked-resource-id=3D"17956911" data-linked-resource-type=3D"page" =
+data-linked-resource-version=3D"1" href=3D"/wiki/spaces/DT/pages/17956911/C=
+ode+Review+Checklist">Code Review Checklist</a>=20
+</div> </li>=20
+</ul>=20
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_106_1827173614.1540847000256--

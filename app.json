@@ -5,18 +5,20 @@
   },
   "env": {
     "USER_DATA": "./data/users.csv",
-    "FLASK_CONFIG": "production",
+    "FLASK_CONFIG": "heroku",
     "LOGIN_REQUIRED": "False",
-    "FILE_UPLOAD_PATH": "./app/static/documents"
+    "FILE_UPLOAD_PATH": "./app/static/documents",
+    "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov"
   },
   "formation": {},
   "addons": [
-    "heroku-postgresql"
+    "heroku-postgresql",
+    "mailgun"
   ],
   "buildpacks": [
     {
       "url": "heroku/python"
     }
   ],
-  "stacks": "heroku-18"
+  "stack": "heroku-18"
 }

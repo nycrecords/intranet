@@ -3,6 +3,7 @@ import os
 from flask import current_app, render_template
 from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
+from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
 
@@ -168,9 +169,21 @@ def get_rooms_by_division(division):
     :return: A list of rooms that a division uses
     """
 
-    rooms = [u[0] for u in Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
+    rooms = [u[0] for u in
+             Users.query.with_entities(Users.room).filter_by(division=division).order_by(Users.room).all()]
     rooms = filter(None, rooms)
     return list(set(rooms))
+
+
+def render_email(data, template):
+    """
+    Render the given email template with the given data
+    :param data: Data to populate in the email template
+    :param template: Path to the email template
+    :return: HTML String
+    """
+    today = str(datetime.now().today().date())
+    return render_template(template, today=today, form=data)
 
 
 def create_document(uploader_id,

@@ -23,8 +23,12 @@ class Config:
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))
+    APP_DEV_INTAKE_EMAIL_RECIPIENTS = os.environ.get('APP_DEV_INTAKE_EMAIL_RECIPIENTS', '').split(',') or []
 
     POSTS_PER_PAGE = 10
+
+    MAIL_SERVER = os.environ.get('MAIL_SERVER') or '127.0.0.1'
+    MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
     VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"
@@ -47,6 +51,16 @@ class TestingConfig(Config):
                                'postgresql://developer@127.0.0.1:5432/intranet')
 
 
+class HerokuConfig(Config):
+    SQLALCHEMY_DATABASE_URI = (os.environ.get('DATABASE_URL') or
+                               'postgresql://developer@127.0.0.1:5432/intranet')
+    MAIL_SERVER = os.environ.get('MAILGUN_SMTP_SERVER')
+    MAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT')
+    MAIL_USERNAME = os.environ.get('MAILGUN_SMTP_LOGIN')
+    MAIL_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD')
+    MAIL_USE_TLES = True
+
+
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = (os.environ.get('DATABASE_URL') or
                                'postgresql://developer@127.0.0.1:5432/intranet')
@@ -55,6 +69,7 @@ class ProductionConfig(Config):
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
+    'heroku': HerokuConfig,
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
