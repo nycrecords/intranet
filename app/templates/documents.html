@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Documents{% endblock title %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/documents.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.employee_resources') }}">Employee Resources</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Documents</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Documents</h1>
+    </div>
+    <div class="col-sm-12 well content-area documents-section">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+        {% endfor %}
+        <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
+        <div class="searchform">
+            <div class="documents-search-form">
+                Search by:<input id="document-search-term" type="text" class="searchbar">
+                <button class="btn btn-default documents-search-button">Submit</button>
+                Sort By:
+                <select id="sort-dropdown" class="sort-dropdown">
+                    <option value="all">All</option>
+                    <option value="name_a_z">Name (A - Z)</option>
+                    <option value="name_z_a">Name (Z - A)</option>
+                    <option value="date_newest">Date (Newest)</option>
+                    <option value="date_oldest">Date (Oldest)</option>
+                </select>
+            </div>
+        </div>
+        <div id="display-search-term" hidden>
+            Showing results that match "<p id="save-search-term"></p>"
+        </div>
+        <div class="document-tabs">
+            <div class="tab">
+                <button class="tablinks" value="instructions" onclick="openTab(event, 'instructions')" id="{{ 'default-open' if default_open == 'instructions' }}">
+                    Instructions
+                </button>
+                <button class="tablinks" value="policies_and_procedures" onclick="openTab(event, 'policies-and-procedures')" id="{{ 'default-open' if default_open == 'policies_and_procedures' }}">Policies and Procedures
+                </button>
+                <button class="tablinks" value="templates" onclick="openTab(event, 'templates')" id="{{ 'default-open' if default_open == 'templates' }}">Templates</button>
+                <button class="tablinks" value="training_materials" onclick="openTab(event, 'training-materials')" id="{{ 'default-open' if default_open == 'training_materials' }}">Training Materials</button>
+            </div>
+        </div>
+        <div id="instructions" class="tabcontent">
+            <br>
+            <table id="instructions-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in instructions %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="instructions-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="instructions-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="instructions-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="instructions-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="policies-and-procedures" class="tabcontent">
+            <br>
+            <table id="policies-and-procedures-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in policies_and_procedures %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="policies-and-procedures-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="policies-and-procedures-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="policies-and-procedures-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="policies-and-procedures-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="templates" class="tabcontent">
+            <br>
+            <table id="tempmlates-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in templates %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="templates-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="templates-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="templates-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="templates-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="training-materials" class="tabcontent">
+            <br>
+            <table id="training-materials-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in training_materials %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="training-materials-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="training-materials-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="training-materials-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="training-materials-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/documents.js') }}"></script>
+{% endblock %}

@@ -280,3 +280,11 @@ TAGS = [
     'Women\'s Activism',
     'YouTube'
 ]
+
+DOCUMENT_TYPES = [
+    ('', ''),
+    ('Instructions', 'Instructions'),
+    ('Policies and Procedures', 'Policies and Procedures'),
+    ('Templates', 'Templates'),
+    ('Training Materials', 'Training Materials')
+]

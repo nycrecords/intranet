@@ -1,8 +1,8 @@
 """Initial Migration
 
-Revision ID: cf7ff87fca59
+Revision ID: 04e921e19a65
 Revises: 
-Create Date: 2018-10-24 15:43:44.478387
+Create Date: 2018-10-25 16:44:06.569488
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'cf7ff87fca59'
+revision = '04e921e19a65'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,6 +37,20 @@ def upgrade():
     sa.Column('room', sa.String(), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('documents',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('uploader_id', sa.Integer(), nullable=True),
+    sa.Column('file_title', sa.String(), nullable=True),
+    sa.Column('file_name', sa.String(), nullable=True),
+    sa.Column('document_type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', name='document_type'), nullable=True),
+    sa.Column('file_type', sa.String(), nullable=True),
+    sa.Column('file_path', sa.String(), nullable=True),
+    sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
+    sa.Column('last_modified', sa.DateTime(), nullable=True),
+    sa.Column('deleted', sa.Boolean(), nullable=True),
+    sa.ForeignKeyConstraint(['uploader_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('posts',
@@ -67,12 +81,14 @@ def upgrade():
     op.create_table('events',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=True),
+    sa.Column('document_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('type', sa.String(), nullable=True),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.Column('previous_value', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.Column('new_value', postgresql.JSONB(astext_type=sa.Text()), nullable=True),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
+    sa.ForeignKeyConstraint(['document_id'], ['documents.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -108,6 +124,7 @@ def downgrade():
     op.drop_table('events')
     op.drop_table('event_posts')
     op.drop_table('posts')
+    op.drop_table('documents')
     op.drop_table('users')
     op.drop_table('roles')
     # ### end Alembic commands ###

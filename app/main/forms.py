@@ -9,6 +9,7 @@ from wtforms.fields import (
 )
 from wtforms.validators import DataRequired
 from app.constants import choices
+from flask_wtf.file import FileField
 
 
 class MeetingNotesForm(FlaskForm):
@@ -32,8 +33,8 @@ class MeetingNotesForm(FlaskForm):
     next_meeting_note_taker: The note taker of the next meeting
     """
     title = StringField('TITLE')
-    meeting_type = SelectField("MEETING TYPE", choices=choices.MEETING_TYPES)
-    division = SelectField("DIVISION", choices=choices.DIVISIONS)
+    meeting_type = SelectField('MEETING TYPE', choices=choices.MEETING_TYPES)
+    division = SelectField('DIVISION', choices=choices.DIVISIONS)
     meeting_date = StringField('MEETING DATE')
     meeting_location = StringField('LOCATION')
     meeting_leader = StringField('MEETING LEADER')
@@ -121,3 +122,13 @@ class EnfgForm(FlaskForm):
     borough = SelectMultipleField('Borough', choices=choices.BOROUGHS)
     signature = BooleanField('Print without signature')
     submit = SubmitField('Print')
+
+
+class UploadForm(FlaskForm):
+    """
+    """
+    file_title = StringField('Title')
+    document_type = SelectField('Type', choices=choices.DOCUMENT_TYPES)
+    division = SelectField('Division', choices=choices.DIVISIONS)
+    file_object = FileField('File')
+    submit = SubmitField('Upload')
