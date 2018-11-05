@@ -1,7 +1,7 @@
 import subprocess
 import os
 from flask import current_app, render_template
-from app.models import MeetingNotes, News, EventPosts, Events, Users, Documents
+from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
@@ -253,7 +253,7 @@ def process_documents_search(document_type_plain_text,
     :param search_term: String containing the search term to be used when querying
     :param documents_start: Start range of rows to be displayed on the frontend
     :param documents_end: End range of rows to be displayed on the frontend
-    :return:
+    :return: JSON containing document table templates and ranges to be displayed
     """
     search_term = search_term.lower()
     # Order the results based on the sort by value
@@ -277,6 +277,82 @@ def process_documents_search(document_type_plain_text,
         'documents_start': documents_start + 1,
         'documents_end': documents_end,
         'document_type': document_type
+    }
+
+    return data
+
+
+def process_posts_search(post_type,
+                         sort_by,
+                         search_term,
+                         tags,
+                         posts_start,
+                         posts_end,
+                         meeting_type):
+    """
+    Util function to process the posts search based on search filters passed in
+    :param post_type: Array of strings containing the post types to be filtered on
+    :param sort_by: A string containing the sort order of the search results
+    :param search_term: String containing the search term to be used when querying
+    :param tags: An array of strings containing the tags to be filtered on
+    :param posts_start: Start range of rows to be displayed on the frontend
+    :param posts_end: End range of rows to be displayed on the frontend
+    :param meeting_type: An array of strings containing the meeting types to be filtered on
+    :return: JSON containing post rows tempalte and range to be displayed
+    """
+    search_term = search_term.lower()
+
+    # Include MeetingNotes.meeting_type.in_(meeting_type) filter if strictly searching MeetingNotes
+    if meeting_type:
+        if sort_by == 'date_newest':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+        elif sort_by == 'date_oldest':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).all()
+        elif sort_by == 'author_a_z':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts.sort(key=lambda x: x.author_name, reverse=False)
+        elif sort_by == 'author_z_a':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts.sort(key=lambda x: x.author_name, reverse=True)
+    else:
+        if sort_by == 'date_newest':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+        elif sort_by == 'date_oldest':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).all()
+        elif sort_by == 'author_a_z':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts.sort(key=lambda x: x.author_name, reverse=False)
+        elif sort_by == 'author_z_a':
+            posts = Posts.query.filter(Posts.post_type.in_(post_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts.sort(key=lambda x: x.author_name, reverse=True)
+    # For author_a_z and author_z_a, sort by author name using lambda function since you can't use order_by on a property
+    # Also grab all the query results and then slice because we may need to filter on tags which will affect the max calculation
+
+    # Filter Posts based on tags
+    if tags:
+        posts_filtered_by_tags = []
+        for post in posts:
+            # If a post's tags intersects with any of the tags to be filtered on, append to the list of search results
+            intersect = set(post.tags).intersection(set(tags))
+            if intersect:
+                posts_filtered_by_tags.append(post)
+        # Get the max of the filtered list of Posts and start/end ranges
+        posts_max = len(posts_filtered_by_tags)
+        posts = posts_filtered_by_tags[posts_start:posts_end]
+    # Otherwise get the max of the query and slice according to the start and end ranges
+    else:
+        posts_max = len(posts)
+        posts = posts[posts_start:posts_end]
+
+    # Create the template for the post rows
+    posts_rows = render_template('news_and_updates_rows.html', posts=posts)
+
+    data = {
+        'posts': posts_rows,
+        'posts_max': posts_max,
+        'posts_start': posts_start + 1,
+        'posts_end': posts_end,
+        'post_type': post_type
     }
 
     return data

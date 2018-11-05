@@ -70,6 +70,8 @@
 .view-post-section {
     padding-top: 25px;
     word-wrap: break-word;
+    color: dimgray;
+    font-size: 16px;
 }
 
 .post-title {
@@ -99,4 +101,9 @@
     background: none;
     border-color: #f5f5f5;
     pointer-events: none;
+}
+
+.view-post-text {
+    color: dimgray;
+    font-size: 16px;
 }
