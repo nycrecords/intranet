@@ -85,7 +85,7 @@ function displayNextResults(data) {
     var document_next = $('#' + data['document_type'] + '-next');
     var document_page_info = $('#' + data['document_type'] + '-page-info');
 
-    // Clear our and render new document rows
+    // Clear out and render new document rows
     document_selector.html('');
     document_selector.html(data['documents']);
 
@@ -110,7 +110,7 @@ function displayPreviousResults(data) {
     var document_next = $('#' + data['document_type'] + '-next');
     var document_page_info = $('#' + data['document_type'] + '-page-info');
 
-    // Clear our and render new document rows
+    // Clear out and render new document rows
     document_selector.html('');
     document_selector.html(data['documents']);
 

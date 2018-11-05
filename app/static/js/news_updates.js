@@ -1,3 +1,4 @@
+// Global variables used to pagination
 var increment = 10;
 var posts_start = 0;
 var posts_end = increment;
@@ -60,7 +61,7 @@ function displayPreviousResults(data) {
     var posts_next = $('#posts-next');
     var posts_page_info = $('#posts-page-info');
 
-    // Clear our and render new document rows
+    // Clear out and render new post rows
     posts_selector.html(''); // Clear out existing html
     posts_selector.html(data['posts']); // Render new posts rows
 
@@ -82,7 +83,7 @@ function displayNextResults(data) {
     var posts_next = $('#posts-next');
     var posts_page_info = $('#posts-page-info');
 
-    // Clear our and render new posts rows
+    // Clear out and render new posts rows
     posts_selector.html(''); // Clear out existing html
     posts_selector.html(data['posts']); // Render new posts rows
 
@@ -98,6 +99,9 @@ function displayNextResults(data) {
 }
 
 function getSelectedTags() {
+    /*
+    Util function to determine which tags are currently selected
+     */
     var tags = [];
     $('.tag-checkbox').each(function () {
         if ($(this).is(':checked')) {
@@ -108,21 +112,28 @@ function getSelectedTags() {
 }
 
 function getSelectedPostTypes() {
+    /*
+    Util function to determine what post types are currently selected
+     */
     var post_types = [];
+    // If on meeting notes page, strictly filter on meeting notes
     if ($('.breadcrumb-header').text() === 'Meeting Notes'){
         post_types = ['meeting_notes'];
         return post_types;
     }
+    // If on news page, strictly filter on news
     else if ($('.breadcrumb-header').text() === 'News'){
         post_types = ['news'];
         return post_types;
     }
+    // Otherwise determine which types are selected
     else {
         $('.post-type-checkbox').each(function () {
             if ($(this).is(':checked')) {
                 post_types.push($(this).val());
             }
         });
+        // If none are selected, filter on all types
         if (post_types.length === 0) {
             post_types = ['news', 'event_posts', 'meeting_notes'];
         }
@@ -131,6 +142,10 @@ function getSelectedPostTypes() {
 }
 
 function getSelectedMeetingTypes() {
+    /*
+    Util function to determine what meeting types are currently selected
+     */
+    // If on meeting notes page, determine which types are selected
     if ($('.breadcrumb-header').text() === 'Meeting Notes') {
         var meeting_types = [];
         $('.meeting-type-checkbox').each(function () {
@@ -138,17 +153,18 @@ function getSelectedMeetingTypes() {
                 meeting_types.push($(this).val());
             }
         });
+        // If none are selected, filter on all meeting types
         if (meeting_types.length === 0) {
             meeting_types = ['Division', 'Strategic Planning', 'Senior Staff', 'Project', 'Agency'];
         }
-        console.log(meeting_types);
         return meeting_types;
     }
+    // Otherwise return an empty list
     return [];
 }
 
 $('#posts-prev').click(function () {
-    // increment the page counters for that document type
+    // Update pagination counters
     posts_start = posts_start - increment;
     posts_end = posts_end - increment;
 
@@ -167,13 +183,13 @@ $('#posts-prev').click(function () {
         },
         success: function (data) {
             displayPreviousResults(data); // Render the new rows
-            $(window).scrollTop(0);
+            $(window).scrollTop(0); // Scroll to top of page
         }
     });
 });
 
 $('#posts-next').click(function () {
-    // increment the page counters for that document type
+    // Update pagination counters
     posts_start = posts_start + increment;
     posts_end = posts_end + increment;
 
@@ -192,7 +208,7 @@ $('#posts-next').click(function () {
         },
         success: function (data) {
             displayNextResults(data); // Render the new rows
-            $(window).scrollTop(0);
+            $(window).scrollTop(0); // Scroll to top of page
         }
     });
 });
@@ -251,6 +267,7 @@ $(function () {
         });
     });
 
+    // Handler for each time a new tag is selected
     $('.tag-checkbox').click(function() {
         // Reset page counters
         posts_start = 0;
@@ -275,7 +292,7 @@ $(function () {
         });
     });
 
-
+    // Handler for each time a post type is selected
     $('.post-type-checkbox').click(function() {
         // Reset page counters
         posts_start = 0;
@@ -300,6 +317,7 @@ $(function () {
         });
     });
 
+    // Handler for each time a meeting type is selected
     $('.meeting-type-checkbox').click(function() {
         // Reset page counters
         posts_start = 0;

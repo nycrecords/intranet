@@ -43,7 +43,7 @@ def index():
 def news_and_updates():
     """
     View function to handle the news and updates landing page
-    Queries for all Post types that are visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news and updates landing page
     """
     # Get only the tags used
@@ -51,10 +51,12 @@ def news_and_updates():
     tags_counter = {}
     for tag in choices.TAGS:
         tags_counter[tag] = 0
+    # Count the number of times each tag appears in all posts
     for post in posts:
         for tag in post.tags:
             tags_counter[tag] = tags_counter[tag] + 1
     sorted_tags = []
+    # Resort the tags in alphabetical order
     for key in sorted(tags_counter.keys()):
         if tags_counter[key] != 0:
             sorted_tags.append((key, tags_counter[key]))
@@ -66,13 +68,18 @@ def news_and_updates():
 @main.route('/posts/search/', methods=['GET'])
 def search_posts():
     """
-    AJAX endpoint to handle querying the database for Documents objects on the documents page
+    AJAX endpoint to handle querying the database for Posts objects on the News and Updates pages
 
     GET Request
     Expected arguments:
-    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'all'
+    - sort_by: a string containing the currently selected option in the Sort By dropdown. Default value is 'Date(Newest)'.
     - search_term: a string containing the search term that was entered in the Search By field.
-    :return: A JSON with the rendered templates of each document type table based on the search criteria
+    - post_type: an array of strings containing the post types to be filtered on.
+    - tags: an array of strings containing the tags selected to filter on.
+    - posts_start: an integer for the start range of posts to be displayed.
+    - posts_end: an integer for the end range of posts to be displayed.
+    - meeting_type: an array of strings containing the meeting types to be filtered on.
+    :return: A JSON with the rendered templates for post rows based on the search criteria
              and values to determine what range is being displayed on screen.
     """
     # Get passed in arguments
@@ -99,23 +106,25 @@ def search_posts():
 def meeting_notes():
     """
     View function to handle the meeting notes landing page
-    Queries for posts that are type meeting_notes and visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for meeting notes landing page
     """
     # Get only the tags used
-    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).all()
+    posts = Posts.query.filter_by(deleted=False).all()
     tags_counter = {}
     for tag in choices.TAGS:
         tags_counter[tag] = 0
+    # Count the number of times each tag appears in all posts
     for post in posts:
         for tag in post.tags:
             tags_counter[tag] = tags_counter[tag] + 1
     sorted_tags = []
+    # Resort the tags in alphabetical order
     for key in sorted(tags_counter.keys()):
         if tags_counter[key] != 0:
             sorted_tags.append((key, tags_counter[key]))
 
-    # Get filter choices
+    # Get meeting type choices
     meeting_types = choices.MEETING_TYPES[1::]
 
     return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags)
@@ -125,7 +134,7 @@ def meeting_notes():
 def news():
     """
     View function to handle the news landing page
-    Queries for posts that are type news and visible and paginates them
+    Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news landing page
     """
     posts = Posts.query.filter_by(post_type='news', deleted=False).all()
