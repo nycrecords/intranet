@@ -8,7 +8,7 @@
     "FLASK_CONFIG": "production",
     "LOGIN_REQUIRED": "False",
     "FILE_UPLOAD_PATH": "./app/static/documents",
-    "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov",
+    "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov"
   },
   "formation": {},
   "addons": [
