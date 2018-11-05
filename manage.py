@@ -20,7 +20,8 @@ def make_shell_context():
         MeetingNotes=MeetingNotes,
         News=News,
         EventPosts=EventPosts,
-        Events=Events
+        Events=Events,
+        Documents=Documents
     )
 
 manager.add_command("shell", Shell(make_context=make_shell_context))
