@@ -16,9 +16,6 @@ class VirusDetectedException(Exception):
         super(VirusDetectedException, self).__init__(
             "Infected file '{}' removed.".format(filename))
 
-from app import db
-from app.models import MeetingNotes, News, EventPosts, Events, Users
-
 
 def create_object(obj):
     """
