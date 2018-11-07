@@ -159,7 +159,7 @@ class Users(UserMixin, db.Model):
         """
         Returns whether the user's password is expired or is "password" (True) or not (False).
         """
-        return datetime.utcnow() > self.expiration_date or self.check_password("password")
+        return datetime.utcnow() > self.expiration_date or self.check_password("Change4me")
 
     @property
     def can_print(self):
@@ -221,7 +221,7 @@ class Users(UserMixin, db.Model):
                     title=row['title'],
                     room=row['room'],
                     role_id=roles_dict[row['role']],
-                    password='password'
+                    password='Change4me'
                 )
                 db.session.add(user)
         db.session.commit()
