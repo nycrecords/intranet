@@ -318,14 +318,14 @@ def process_posts_search(post_type,
     # Include MeetingNotes.meeting_type.in_(meeting_type) filter if strictly searching MeetingNotes
     if meeting_type:
         if sort_by == 'date_newest':
-            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts = MeetingNotes.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
         elif sort_by == 'date_oldest':
-            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).all()
+            posts = MeetingNotes.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.asc()).all()
         elif sort_by == 'author_a_z':
-            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts = MeetingNotes.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
             posts.sort(key=lambda x: x.author_name, reverse=False)
         elif sort_by == 'author_z_a':
-            posts = Posts.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
+            posts = MeetingNotes.query.filter(Posts.post_type.in_(post_type), MeetingNotes.meeting_type.in_(meeting_type), ((Posts.title.ilike('%{}%'.format(search_term))) | (Posts.content.ilike('%{}%'.format(search_term)))), Posts.deleted == False).order_by(Posts.date_created.desc()).all()
             posts.sort(key=lambda x: x.author_name, reverse=True)
     else:
         if sort_by == 'date_newest':
