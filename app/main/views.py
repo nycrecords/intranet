@@ -52,6 +52,11 @@ def news_and_updates():
     Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for news and updates landing page
     """
+    posts_counter = {
+        'event_posts': 0,
+        'meeting_notes': 0,
+        'news': 0
+    }
     # Get only the tags used
     posts = Posts.query.filter_by(deleted=False).all()
     tags_counter = {}
@@ -59,6 +64,7 @@ def news_and_updates():
         tags_counter[tag] = 0
     # Count the number of times each tag appears in all posts
     for post in posts:
+        posts_counter[post.post_type] = posts_counter[post.post_type] + 1
         for tag in post.tags:
             tags_counter[tag] = tags_counter[tag] + 1
     sorted_tags = []
@@ -68,7 +74,7 @@ def news_and_updates():
             sorted_tags.append((key, tags_counter[key]))
 
     search_term = flask_request.args.get('search_term', None)
-    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term)
+    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term, posts_counter=posts_counter)
 
 
 @main.route('/posts/search/', methods=['GET'])
@@ -115,13 +121,21 @@ def meeting_notes():
     Renders the page as empty then uses ajax to fill in the post rows
     :return: HTML template for meeting notes landing page
     """
+    meeting_type_counter = {
+        'Division': 0,
+        'Strategic Planning': 0,
+        'Senior Staff': 0,
+        'Project': 0,
+        'Agency': 0
+    }
     # Get only the tags used
-    posts = Posts.query.filter_by(deleted=False).all()
+    posts = Posts.query.filter_by(post_type='meeting_notes', deleted=False).all()
     tags_counter = {}
     for tag in choices.TAGS:
         tags_counter[tag] = 0
     # Count the number of times each tag appears in all posts
     for post in posts:
+        meeting_type_counter[post.meeting_type] = meeting_type_counter[post.meeting_type] + 1
         for tag in post.tags:
             tags_counter[tag] = tags_counter[tag] + 1
     sorted_tags = []
@@ -133,7 +147,7 @@ def meeting_notes():
     # Get meeting type choices
     meeting_types = choices.MEETING_TYPES[1::]
 
-    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags)
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags, meeting_type_counter=meeting_type_counter)
 
 
 @main.route('/news-updates/news', methods=['GET'])

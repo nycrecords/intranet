@@ -48,7 +48,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input meeting-type-checkbox" type="checkbox" value="{{ meeting_type.0 }}">
                                     <label class="filter-option-label">
-                                        {{ meeting_type.0 }}
+                                        {{ meeting_type.0 }}<span class="tag-count">&nbsp;({{meeting_type_counter[meeting_type.0]}})</span>
                                     </label>
                                 </div>
                             {% endfor %}
@@ -65,7 +65,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input tag-checkbox" name="test[]" type="checkbox" value="{{ tag[0] }}">
                                     <label class="filter-option-label">
-                                        {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %}&nbsp;({{tag[1]}}){% endif %}</span>
+                                        {{ tag[0] }}<span class="tag-count">&nbsp;({{tag[1]}})</span>
                                     </label>
                                 </div>
                             {% endfor %}

@@ -53,21 +53,21 @@
                                 <input class="form-check-input post-type-checkbox" type="checkbox"
                                        value="event_posts">
                                 <label class="filter-option-label">
-                                    Events
+                                    Events<span class="tag-count">&nbsp;({{posts_counter['event_posts']}})</span>
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input post-type-checkbox" type="checkbox"
                                        value="meeting_notes">
                                 <label class="filter-option-label">
-                                    Meeting Notes
+                                    Meeting Notes<span class="tag-count">&nbsp;({{posts_counter['meeting_notes']}})</span>
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input post-type-checkbox" type="checkbox"
                                        value="news">
                                 <label class="filter-option-label">
-                                    News
+                                    News<span class="tag-count">&nbsp;({{posts_counter['news']}})</span>
                                 </label>
                             </div>
                         </form>
@@ -83,7 +83,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input tag-checkbox" name="test[]" type="checkbox" value="{{ tag[0] }}">
                                     <label class="filter-option-label">
-                                        {{ tag[0] }}<span class="tag-count">{% if tag[1] > 0 %}&nbsp;({{tag[1]}}){% endif %}</span>
+                                        {{ tag[0] }}<span class="tag-count">&nbsp;({{tag[1]}})</span>
                                     </label>
                                 </div>
                             {% endfor %}
