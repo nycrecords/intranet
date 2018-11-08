@@ -20,6 +20,7 @@ class Config:
     LDAP_SA_PASSWORD = os.environ.get('LDAP_SA_PASSWORD') or None
     LDAP_BASE_DN = os.environ.get('LDAP_BASE_DN') or None
     LOGIN_REQUIRED = os.environ.get('LOGIN_REQUIRED') == "True"
+    DEFAULT_PASSWORD = os.environ.get('DEFAULT_PASSWORD')
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))

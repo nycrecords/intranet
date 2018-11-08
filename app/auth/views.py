@@ -39,11 +39,15 @@ def login():
         user = Users.query.filter_by(email=email).first()
 
         if user is not None:
-            if user.check_password(password):
+            if current_app.config['LOGIN_REQUIRED']:
+                if user.check_password(password):
+                    login_user(user, remember=login_form.remember_me.data)
+                    # check if password has expired or is the default password
+                    if current_user.has_invalid_password:
+                        return redirect(url_for('auth.password'))
+                    return redirect(url_for('main.index'))
+            else:
                 login_user(user, remember=login_form.remember_me.data)
-                # check if password has expired or is "Change4me"
-                if current_user.has_invalid_password:
-                    return redirect(url_for('auth.password'))
                 return redirect(url_for('main.index'))
             flash("Invalid username/password combination.", category="danger")
             return render_template('login.html', login_form=login_form)

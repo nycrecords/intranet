@@ -157,9 +157,9 @@ class Users(UserMixin, db.Model):
     def has_invalid_password(self):
 
         """
-        Returns whether the user's password is expired or is "password" (True) or not (False).
+        Returns whether the user's password is expired or is the default password (True) or not (False).
         """
-        return datetime.utcnow() > self.expiration_date or self.check_password("Change4me")
+        return datetime.utcnow() > self.expiration_date or self.check_password(current_app.config['DEFAULT_PASSWORD'])
 
     @property
     def can_print(self):
@@ -221,7 +221,7 @@ class Users(UserMixin, db.Model):
                     title=row['title'],
                     room=row['room'],
                     role_id=roles_dict[row['role']],
-                    password='Change4me'
+                    password=current_app.config['DEFAULT_PASSWORD']
                 )
                 db.session.add(user)
         db.session.commit()
