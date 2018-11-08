@@ -45,7 +45,7 @@ def index():
 # Start view functions for posting
 # TODO: Make a Post blueprint
 
-@main.route('/news-updates', methods=['GET'])
+@main.route('/news-and-updates', methods=['GET'])
 def news_and_updates():
     """
     View function to handle the news and updates landing page
@@ -114,7 +114,7 @@ def search_posts():
     return jsonify(data)
 
 
-@main.route('/news-updates/meeting-notes', methods=['GET'])
+@main.route('/news-and-updates/meeting-notes', methods=['GET'])
 def meeting_notes():
     """
     View function to handle the meeting notes landing page
@@ -150,7 +150,7 @@ def meeting_notes():
     return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags, meeting_type_counter=meeting_type_counter)
 
 
-@main.route('/news-updates/news', methods=['GET'])
+@main.route('/news-and-updates/news', methods=['GET'])
 def news():
     """
     View function to handle the news landing page
@@ -173,7 +173,7 @@ def news():
     return render_template('news.html', posts=posts, tags=sorted_tags)
 
 
-@main.route('/news-updates/events', methods=['GET'])
+@main.route('/news-and-updates/events', methods=['GET'])
 def events():
     """
     View function to handle the events calendar page
@@ -183,7 +183,7 @@ def events():
 
 
 # Alternate view function for a list view of events. Currently not being used but may need to be implemented later on.
-# @main.route('/news-updates/events', methods=['GET'])
+# @main.route('/news-and-updates/events', methods=['GET'])
 # def events():
 #     """
 #     View function to handle the events landing page
@@ -235,7 +235,7 @@ def get_events():
     return jsonify(data), 200
 
 
-@main.route('/news-updates/meeting-notes/new', methods=['GET', 'POST'])
+@main.route('/news-and-updates/meeting-notes/new', methods=['GET', 'POST'])
 @login_required
 def new_meeting_notes():
     """
@@ -274,7 +274,7 @@ def new_meeting_notes():
     return render_template('new_meeting_notes.html', form=form, users=users, tags=tags)
 
 
-@main.route('/news-updates/news/new', methods=['GET', 'POST'])
+@main.route('/news-and-updates/news/new', methods=['GET', 'POST'])
 @login_required
 def new_news():
     """
@@ -298,7 +298,7 @@ def new_news():
     return render_template('new_news.html', form=form, tags=tags)
 
 
-@main.route('/news-updates/events/new', methods=['GET', 'POST'])
+@main.route('/news-and-updates/events/new', methods=['GET', 'POST'])
 @login_required
 def new_event_post():
     """
@@ -331,7 +331,7 @@ def new_event_post():
     return render_template('new_event_post.html', form=form, users=users, tags=tags)
 
 
-@main.route('/news-updates/view-post/<int:post_id>', methods=['GET'])
+@main.route('/news-and-updates/view-post/<int:post_id>', methods=['GET'])
 def view_post(post_id):
     """
     View function to handle viewing a single post
