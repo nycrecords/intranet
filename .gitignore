@@ -6,7 +6,7 @@ app/static/img/employee_photos/
 !app/static/img/employee_photos/.gitkeep
 app/static/documents/
 !app/static/documents/.gitkeep
-app/templates/carousel.html
+app/templates/carousel/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
