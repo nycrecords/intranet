@@ -161,13 +161,6 @@ class Users(UserMixin, db.Model):
         """
         return datetime.utcnow() > self.expiration_date or self.check_password(current_app.config['DEFAULT_PASSWORD'])
 
-    @property
-    def can_print(self):
-        """
-        Returns whether the user can print and manipulate certificate images.
-        """
-        return not self.has_invalid_password and self.is_authenticated
-
     def is_new_password(self, password):
         """
         Returns whether the supplied password is not the same as the current

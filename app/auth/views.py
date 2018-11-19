@@ -40,10 +40,14 @@ def login():
 
         if user is not None:
             if current_app.config['LOGIN_REQUIRED']:
+                # Determine authentication method
                 if current_app.config['USE_LDAP']:
                     authenticated = ldap_authentication(email, password)
-                if current_app.config['USE_LOCAL_AUTH']:
+                elif current_app.config['USE_LOCAL_AUTH']:
                     authenticated = user.check_password(password)
+                else:
+                    authenticated = False
+
                 if authenticated:
                     login_user(user, remember=login_form.remember_me.data)
                     # check if password has expired or is the default password

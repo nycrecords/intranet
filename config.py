@@ -12,8 +12,6 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    LOGIN_REQUIRED = os.environ.get('LOGIN_REQUIRED') == "True"
-
     USE_LDAP = os.environ.get('USE_LDAP') == "True"
     LDAP_SERVER = os.environ.get('LDAP_SERVER') or None
     LDAP_PORT = os.environ.get('LDAP_PORT') or None
