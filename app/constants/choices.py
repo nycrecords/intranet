@@ -32,7 +32,7 @@ DIVISIONS = [
 DIVISION_PAGES = {
     'administration-and-human-resources': {
         'template_name': 'administration_and_human_resources',
-        'plain_text': 'Administration & Human Resources'
+        'plain_text': 'Administration'
     },
     'executive': {
         'template_name': 'executive',

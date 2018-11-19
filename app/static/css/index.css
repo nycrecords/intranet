@@ -114,6 +114,10 @@ hr {
     margin-left: 40px;
 }
 
+.carousel-box-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
 .carousel-caption {
     position: absolute;
     right: 0;
@@ -126,6 +130,7 @@ hr {
     color: #fff;
     text-align: left;
     background: rgba(0, 0, 0, 0.4);
+    border-radius: 2px
 }
 
 .carousel-indicators {
@@ -204,7 +209,7 @@ hr {
 
 .scrollholder {
     background-color: white;
-    height: 685px;
+    height: 735px;
     margin-bottom: 50px;
     border-radius: 3px;
     background-color: #FFFFFF;

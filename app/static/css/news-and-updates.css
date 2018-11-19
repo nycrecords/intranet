@@ -32,6 +32,7 @@
 
 .filter-section {
     width: 25%;
+    padding-right: 0;
 }
 
 .filter-by {
@@ -93,7 +94,7 @@ form.filter-form {
 
 .filter-option-label {
     color: #4A90E2;
-    margin-left: 20px;
+    margin-left: 10px;
     font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
@@ -122,6 +123,7 @@ form.filter-form {
 }
 
 .post-icon {
+    padding-top: 20px;
     text-align: center;
     word-wrap: break-word;
 }

@@ -1,5 +1,5 @@
 <div class="carousel">
-    <div id="thisCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
+    <div id="thisCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
             <li data-target="#thisCarousel" data-slide-to="0" class="active"></li>
@@ -7,12 +7,12 @@
             <li data-target="#thisCarousel" data-slide-to="2"></li>
         </ol>
         <!-- Wrapper for carousel items -->
-        <div class="carousel-inner">
+        <div class="carousel-inner carousel-box-shadow">
             <div class="item active">
-                <img src="https://i.ytimg.com/vi/6sr6o3b4x80/maxresdefault.jpg" alt="First Slide">
+                <a href="#"><img src="{{ url_for('static', filename='img/brooklyn_bridge.jpg') }}" alt="First Slide"></a>
                 <div class="carousel-caption">
-                    <h5 class="caption-title">Carousel Title Text 1</h5>
-                    <a href="#" class="caption-text">Read More</a>
+                    <h5 class="caption-title">Excellence in Service</h5>
+                    <a href="#" class="caption-text">Read more</a>
                 </div>
             </div>
             <div class="item">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="https://wallpapercave.com/wp/DyvuLTI.jpg" alt="Third Slide">
+                <img src="{{ url_for('static', filename='img/brooklyn_bridge.jpg') }}" alt="Third Slide">
                 <div class="carousel-caption">
                     <h5 class="caption-title">Carousel Title Text 3</h5>
                     <a href="#" class="caption-text">Read More</a>

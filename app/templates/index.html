@@ -7,14 +7,14 @@
 <div class="col-sm-12 no-left-padding index-top-padding">
     <div class="col-sm-9 no-left-padding">
         <br>
-        {% include 'carousel.html' %}
+        {% include 'carousel/carousel.html' %}
         <br>
         <div>
             <div class="scrolldown">
                 <p class="whats-new-title">WHAT'S NEW</p>
             </div>
             <div class="scrollholder">
-                <div style="background-color: white; padding: 30px 40px;">
+                <div style="background-color: white; padding: 50px 40px;">
                     <div class="scrollablediv">
                         {% for post in posts %}
                             {% if post.post_type == "meeting_notes" and post.deleted == False %}
@@ -94,6 +94,9 @@
                     </li>
                     <li>
                         <a href="http://timeclock.records.nycnet/" target="_blank">TimeClock</a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('main.staff_directory') }}">Staff Directory</a>
                     </li>
                     <li>
                         <a href="{{ url_for('main.tools_and_applications') }}">Tools & Applications</a>
