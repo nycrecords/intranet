@@ -1,5 +1,5 @@
 from app import db
-from datetime import datetime
+from datetime import datetime, timedelta
 import csv
 from sqlalchemy.dialects.postgresql import (
     ARRAY,
@@ -15,6 +15,10 @@ from app.constants import (
     role_name,
 )
 import pytz
+from werkzeug.security import (
+    generate_password_hash,
+    check_password_hash
+)
 
 
 class Roles(db.Model):
@@ -103,11 +107,41 @@ class Users(UserMixin, db.Model):
     middle_initial = db.Column(db.String(1))
     last_name = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(254))
+    password = db.Column(db.String(256))
+    expiration_date = db.Column(db.DateTime())
     division = db.Column(db.String)
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
     room = db.Column(db.String)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
+    history = db.relationship("History", backref="user", lazy="dynamic")
+
+    MAX_PREV_PASS = 3  # number of previous passwords to check against
+    DAYS_UNTIL_EXPIRATION = 90  # number of days until password expire
+
+    def __init__(self,
+                 first_name,
+                 middle_initial,
+                 last_name,
+                 email,
+                 division,
+                 phone_number,
+                 title,
+                 room,
+                 role_id,
+                 password):
+        self.first_name = first_name
+        self.middle_initial = middle_initial
+        self.last_name = last_name
+        self.email = email
+        self.division = division,
+        self.phone_number = phone_number,
+        self.title = title,
+        self.room = room,
+        self.role_id = role_id,
+        self.set_password(password, update_history=False)  # only update on password resets
+
 
     @property
     def name(self):
@@ -118,6 +152,46 @@ class Users(UserMixin, db.Model):
         if self.middle_initial:
             return self.first_name + " " + self.middle_initial + " " + self.last_name
         return self.first_name + " " + self.last_name
+
+    @property
+    def has_invalid_password(self):
+
+        """
+        Returns whether the user's password is expired or is the default password (True) or not (False).
+        """
+        return datetime.utcnow() > self.expiration_date or self.check_password(current_app.config['DEFAULT_PASSWORD'])
+
+    def is_new_password(self, password):
+        """
+        Returns whether the supplied password is not the same as the current
+        or previous passwords (True) or not (False).
+        """
+        existing_passwords = list(filter(None, [self.password] + [h.password for h in self.history.all()]))
+        return not existing_passwords or all(not check_password_hash(p, password) for p in existing_passwords)
+
+    def set_password(self, password, update_history=True):
+        if self.is_new_password(password):
+            if update_history:
+                # update previous passwords
+                if self.history.count() >= self.MAX_PREV_PASS:
+                    # remove oldest password
+                    self.history.filter_by(  # can't call delete() when using order_by()
+                        id=self.history.order_by(History.timestamp.asc()).first().id
+                    ).delete()
+                db.session.add(History(self.id, self.password))
+
+            self.expiration_date = datetime.utcnow() + timedelta(days=self.DAYS_UNTIL_EXPIRATION)
+            self.password = generate_password_hash(password)
+
+            db.session.commit()
+
+    def update_password(self, current_password, new_password):
+        if self.check_password(current_password):
+            self.set_password(new_password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
 
     @classmethod
     def populate(cls):
@@ -139,13 +213,36 @@ class Users(UserMixin, db.Model):
                     phone_number=row['phone_number'],
                     title=row['title'],
                     room=row['room'],
-                    role_id=roles_dict[row['role']]
+                    role_id=roles_dict[row['role']],
+                    password=current_app.config['DEFAULT_PASSWORD']
                 )
                 db.session.add(user)
         db.session.commit()
 
     def __repr__(self):
         return '<Users %r>' % self.id
+
+
+class History(db.Model):
+    """
+    Define the History class for the `history` table with the following columns:
+
+    id          integer, primary key
+    user_id     integer, foreign key to `users`
+    timestamp   datetime, time when record created
+    password    varchar(256), hashed password
+
+    """
+    __tablename__ = "history"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    timestamp = db.Column(db.DateTime)
+    password = db.Column(db.String(256))
+
+    def __init__(self, user_id, password):
+        self.user_id = user_id
+        self.password = password
+        self.timestamp = datetime.utcnow()
 
 
 class Anonymous(AnonymousUserMixin):

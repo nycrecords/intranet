@@ -12,6 +12,7 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    USE_LDAP = os.environ.get('USE_LDAP') == "True"
     LDAP_SERVER = os.environ.get('LDAP_SERVER') or None
     LDAP_PORT = os.environ.get('LDAP_PORT') or None
     LDAP_USE_TLS = os.environ.get('LDAP_USE_TLS') == "True"
@@ -20,6 +21,9 @@ class Config:
     LDAP_SA_PASSWORD = os.environ.get('LDAP_SA_PASSWORD') or None
     LDAP_BASE_DN = os.environ.get('LDAP_BASE_DN') or None
     LOGIN_REQUIRED = os.environ.get('LOGIN_REQUIRED') == "True"
+    DEFAULT_PASSWORD = os.environ.get('DEFAULT_PASSWORD')
+
+    USE_LOCAL_AUTH = os.environ.get('USE_LOCAL_AUTH') == "True"
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
                                                              'users.csv'))
