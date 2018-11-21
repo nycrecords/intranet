@@ -28,6 +28,11 @@ def create_app(config_name):
 
     login_manager.init_app(app)
 
+    if app.config['USE_SAML']:
+        login_manager.login_view = 'auth.saml'
+    else:
+        login_manager.login_view = 'auth.login'
+
     from .main import main
     app.register_blueprint(main)
 
