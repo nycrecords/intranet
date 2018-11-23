@@ -42,8 +42,8 @@ def create_app(config_name):
 
     @app.before_request
     def before_request():
+        app.permanent_session_lifetime = datetime.timedelta(minutes=15)
         session.permanent = True
-        app.permanent_session_lifetime = datetime.timedelta(minutes=20)
         session.modified = True
         g.user = current_user
 
