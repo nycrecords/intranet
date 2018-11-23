@@ -117,6 +117,16 @@
 {% endblock %}
 {% block content %}
     <div class="container page-container">
+        <div class="row">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} fade in">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endwith %}
+        </div>
         {% block page_content %}{% endblock %}
     </div>
     <div class="wrap">
@@ -229,10 +239,46 @@
     <script type="text/javascript"
             src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/session-timeout.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
 
     {% block custom_scripts %}
+        {% if current_user.is_authenticated %}
+            {% if config['USE_SAML'] %}
+                <script type="text/javascript">
+                    $(document).ready(
+                        $.sessionTimeout({
+                            title: "Session Timeout",
+                            message: "",
+                            countdownMessage: 'You will be automatically logged out in {timer}.',
+                            countdownSmart: true,
+                            countdownBar: true,
+                            logoutUrl: '{{ url_for('auth.saml') }}?slo',
+                            redirUrl: '{{ url_for('auth.saml') }}?slo&timeout',
+                            warnAfter: 10 * 60 * 1000,
+                            redirAfter: 5 * 60 * 1000
+                        })
+                    );
+                </script>
+            {% else %}
+                <script type="text/javascript">
+                    $(document).ready(
+                        $.sessionTimeout({
+                            title: "Session Timeout",
+                            message: "",
+                            countdownMessage: 'You will be automatically logged out in {timer}.',
+                            countdownSmart: true,
+                            countdownBar: true,
+                            logoutUrl: '{{ url_for('auth.logout') }}',
+                            redirUrl: '{{ url_for('auth.logout')}}',
+                            warnAfter: 10 * 60 * 1000,
+                            redirAfter: 5 * 60 * 1000
+                        })
+                    );
+                </script>
+            {% endif %}
+        {% endif %}
     {% endblock %}
 {% endblock %}
 

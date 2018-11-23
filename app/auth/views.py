@@ -63,6 +63,7 @@ def saml():
             if url is not None:
                 return redirect(url)
             else:
+                flash("You have successfully logged out", category='success')
                 return redirect(url_for('main.index'))
 
 
