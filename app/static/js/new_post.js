@@ -87,7 +87,6 @@ $(function () {
         oninit: "setPlainText",
         plugins: "paste lists",
         toolbar: ['undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']
-        paste_as_text: true
     });
     // set parsley for required fields
     var requiredFields = ['title',
