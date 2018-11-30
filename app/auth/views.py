@@ -48,6 +48,11 @@ def saml():
             session['samlSessionIndex'] = onelogin_saml_auth.get_session_index()
 
             user = Users.query.filter_by(email=session['samlUserdata']['email'][0]).first()
+
+            if user is None:
+                flash('Sorry, we couldn\'t find your account. Please send an email to <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a> for assistance.', category='danger')
+                return redirect((url_for('main.index')))
+
             self_url = get_self_url(onelogin_request)
             login_user(user)
 
@@ -65,6 +70,8 @@ def saml():
             else:
                 flash("You have successfully logged out", category='success')
                 return redirect(url_for('main.index'))
+        flash("You have successfully logged out", category='success')
+        return redirect(url_for('main.index'))
 
 
 @auth.route('/login', methods=['GET', 'POST'])

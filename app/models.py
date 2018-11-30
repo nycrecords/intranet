@@ -159,7 +159,9 @@ class Users(UserMixin, db.Model):
         """
         Returns whether the user's password is expired or is the default password (True) or not (False).
         """
-        return datetime.utcnow() > self.expiration_date or self.check_password(current_app.config['DEFAULT_PASSWORD'])
+        if current_app.config['USE_LOCAL_AUTH']:
+            return datetime.utcnow() > self.expiration_date or self.check_password(current_app.config['DEFAULT_PASSWORD'])
+        return False
 
     def is_new_password(self, password):
         """
