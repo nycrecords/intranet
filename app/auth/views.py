@@ -47,7 +47,7 @@ def saml():
             session['samlNameId'] = onelogin_saml_auth.get_nameid()
             session['samlSessionIndex'] = onelogin_saml_auth.get_session_index()
 
-            user = Users.query.filter_by(email=session['samlUserdata']['email'][0]).first()
+            user = Users.query.filter_by(email=session['samlUserdata']['email'][0].lower()).first()
 
             if user is None:
                 flash('Sorry, we couldn\'t find your account. Please send an email to <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a> for assistance.', category='danger')
