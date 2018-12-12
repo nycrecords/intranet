@@ -501,6 +501,15 @@ def employee_benefits():
     return render_template('employee_benefits.html')
 
 
+@main.route('/employee-resources/orientation', methods=['GET'])
+def orientation():
+    """
+    View function to handle the orientation page
+    :return: HTML template for the orientation page
+    """
+    return render_template('orientation.html')
+
+
 @main.route('/tools-and-applications', methods=['GET'])
 def tools_and_applications():
     """
