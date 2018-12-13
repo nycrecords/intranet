@@ -108,7 +108,7 @@ TAGS = [
     'Audit',
     'Benefit',
     'Blog',
-    'Book ',
+    'Book',
     'Book Signing',
     'Borough President',
     'Bronx',
