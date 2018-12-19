@@ -589,12 +589,13 @@ def app_dev_intake_form():
     form.submitter_title.data = current_user.title
     form.submitter_division.data = current_user.division
 
-    # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
-    form.designated_business_owner_name.data = current_user.name
-    form.designated_business_owner_email.data = current_user.email
-    form.designated_business_owner_phone.data = current_user.phone_number
-    form.designated_business_owner_title.data = current_user.title
-    form.designated_business_owner_division.data = current_user.division
+    if flask_request.method == 'GET':
+        # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+        form.designated_business_owner_name.data = current_user.name
+        form.designated_business_owner_email.data = current_user.email
+        form.designated_business_owner_phone.data = current_user.phone_number
+        form.designated_business_owner_title.data = current_user.title
+        form.designated_business_owner_division.data = current_user.division
 
     if form.validate_on_submit():
         email = render_email(form.data, 'email/email_app_dev_intake.html')
