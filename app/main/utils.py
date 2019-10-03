@@ -6,6 +6,7 @@ from app import db
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
+import datetime
 
 
 class VirusDetectedException(Exception):
@@ -38,6 +39,29 @@ def create_object(obj):
     except SQLAlchemyError:
         db.session.rollback()
         current_app.logger.exception("Failed to CREATE {}".format(obj))
+        return None
+
+def update_object(obj):
+    """
+    Update a database record and its elasticsearch counterpart.
+
+    If 'obj' is a Requests object, nothing will be added to
+    the es index since a UserRequests record is created after
+    its associated request and the es doc requires a
+    requester id. 'es_create' is called explicitly for a
+    Requests object in app.request.utils.
+
+    :param obj: object (instance of sqlalchemy model) to create
+
+    :return: string representation of created object
+        or None if creation failed
+    """
+    try:
+        # db.session.add(obj)
+        db.session.commit()
+    except SQLAlchemyError:
+        db.session.rollback()
+        current_app.logger.exception("Failed to UPDATE {}".format(obj))
         return None
 
 
@@ -113,6 +137,19 @@ def create_news(author,
     create_object(event)
 
     return news.id
+
+def update_news(obj,author,title,content,tags):
+    """
+    Util function for updating a News object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+    obj.author = author
+    obj.title = title
+    obj.content = content
+    obj.date_modified = datetime.datetime.now()
+    obj.tags = tags
+    update_object(obj)
+    return obj.id
 
 
 def create_event_post(event_date,

@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts, Documents
+from app.models import Users, Posts, EventPosts, Documents, News
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
 from app.main.utils import (create_meeting_notes,
@@ -14,7 +14,8 @@ from app.main.utils import (create_meeting_notes,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
-                            render_email)
+                            render_email, 
+                            update_news)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -25,6 +26,9 @@ from werkzeug.utils import secure_filename
 import os
 import json
 from app import mail
+import datetime
+from sqlalchemy.exc import SQLAlchemyError
+from app import db
 
 
 @main.route('/', methods=['GET'])
@@ -793,3 +797,27 @@ def upload_document():
         flash('Document successfully uploaded.')
         return redirect(url_for('main.documents'))
     return render_template('upload_document.html', form=form)
+
+
+
+
+@main.route('/news-and-updates/news/edit<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def update_old_news(post_id=None):
+    form = NewsForm()
+    obj = Posts.query.get(post_id)
+    
+    if flask_request.method == 'GET':
+        tags = choices.TAGS
+        form.title.data = obj.title
+        form.content.data = obj.content
+    # loads old values onto the form and if it's changed then the object will be edited
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        update_news(obj, 
+                    current_user.id, 
+                    form.title.data, 
+                    form.content.data, 
+                    flask_request.form.getlist('tags'))
+        # if no changes are made then old tags should be saved, otherwise new ones should be save
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('edit_news.html', form=form, tags=tags)
