@@ -57,7 +57,7 @@ def update_object(obj):
         or None if creation failed
     """
     try:
-        # db.session.add(obj)
+        db.session.add(obj)
         db.session.commit()
     except SQLAlchemyError:
         db.session.rollback()
@@ -138,7 +138,7 @@ def create_news(author,
 
     return news.id
 
-def update_news(obj,author,title,content,tags):
+def update_news(obj,author,title,content,tags, visible=True, deleted=False):
     """
     Util function for updating a News object. Function will take parameters passed in from the form
     and update a News along with the event object.
@@ -148,9 +148,12 @@ def update_news(obj,author,title,content,tags):
     obj.content = content
     obj.date_modified = datetime.datetime.now()
     obj.tags = tags
+    obj.visible = visible
+    print(visible)
+    obj.deleted = deleted 
+    print(deleted)
     update_object(obj)
     return obj.id
-
 
 def create_event_post(event_date,
                       event_location,

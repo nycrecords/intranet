@@ -42,6 +42,9 @@
         <div class="col-sm-6 new-post-button">
             <a class="btn btn-primary" href="{{ url_for('main.update_old_news', post_id=post.id )}}">Edit</a>
         </div>
+        <div class="col-sm-6 new-post-button">
+            <a class="btn btn-primary" href="{{ url_for('main.news_delete', post_id=post.id )}}">Delete</a>
+        </div>
         {% elif post.post_type == 'event_posts' %}
         <p><strong>Event Date: </strong>{{ post.event_date.strftime('%m/%d/%Y') }}</p>
         <p><strong>Event Location: </strong>{{ post.event_location }}</p>

@@ -15,7 +15,8 @@ from app.main.utils import (create_meeting_notes,
                             process_documents_search,
                             process_posts_search,
                             render_email, 
-                            update_news)
+                            update_news, 
+                            update_object)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -803,10 +804,10 @@ def upload_document():
 
 @main.route('/news-and-updates/news/edit<int:post_id>', methods=['GET', 'POST'])
 @login_required
-def update_old_news(post_id=None):
+def update_old_news(post_id):
     form = NewsForm()
     obj = Posts.query.get(post_id)
-    
+
     if flask_request.method == 'GET':
         tags = choices.TAGS
         form.title.data = obj.title
@@ -821,3 +822,21 @@ def update_old_news(post_id=None):
         # if no changes are made then old tags should be saved, otherwise new ones should be save
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('edit_news.html', form=form, tags=tags)
+
+
+
+@main.route('/news-and-updates/news/delete/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def news_delete(post_id):
+    obj = Posts.query.get(post_id)
+    print(obj)
+    # if flask_request.method == 'POST':
+    update_news(obj, 
+        current_user.id, 
+        obj.title, 
+        obj.content, 
+        obj.tags, 
+        visible=False, 
+        deleted=True)
+        # return redirect(url_for('main.news', post_id=post_id))
+    return redirect(url_for('main.news', post_id=post_id))
