@@ -7,7 +7,7 @@ from wtforms.fields import (
     BooleanField,
     SelectMultipleField
 )
-from flask_wtf.file import FileField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.fields.html5 import DateField, EmailField, TelField
 from wtforms.validators import DataRequired, Optional
 
@@ -160,6 +160,58 @@ class EnfgForm(FlaskForm):
     signature = BooleanField('Print without signature')
     submit = SubmitField('Print')
 
+class ChangeCarouselForm(FlaskForm):
+    ##Submission Infromation
+    choices = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
+
+    carousal_post1 = SelectField(
+        "POST ID:",
+        choices=choices,
+        validators=[DataRequired()],
+    )
+    carousal_image1 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post2 = SelectField(
+        "POST ID:",
+        choices=choices,
+        validators=[DataRequired()],
+    )
+    carousal_image2 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post3 = SelectField(
+        "POST ID:",
+        choices=choices,
+        validators=[DataRequired()],
+    )
+    carousal_image3 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post4 = SelectField(
+        "POST ID:",
+        choices=choices,
+        validators=[DataRequired()],
+    )
+    carousal_image4 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post5 = SelectField(
+        "POST ID:",
+        choices=choices,
+        validators=[DataRequired()],
+    )
+    carousal_image5 = FileField('image', validators=[
+        FileRequired(),
+    ])
+    
+    submit = SubmitField('Save')
+    
+    
 
 class ITIntakeForm(FlaskForm):
     # Submission Information
@@ -332,3 +384,4 @@ class UploadForm(FlaskForm):
     division = SelectField('Division', choices=choices.DIVISIONS)
     file_object = FileField('File')
     submit = SubmitField('Upload')
+

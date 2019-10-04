@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Change Carousel{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/strategic-planning.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+    <div class="col-sm-12">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Change Carousel</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">Change Carousel</h1>
+        </div>
+        <div class="col-sm-12 well content-area">
+            <form class="enfg-form" method="POST" enctype="multipart/form-data">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div class="row">
+                            <div class="alert alert-{{ category }} fade in">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+                <div class="row">
+                        <div>
+                            <h3>Change Carousal 1</h3>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class=form-group>
+                                        {{ form.carousal_post1.label(class="col-md-2 control-label") }}
+                                        <div class="col-md-6">
+                                            {{ form.carousal_post1(class="form-control") }}
+                                        </div>
+                                        <div class=col-md-4>
+                                            {{ form.carousal_image1(class="form-control") }}
+                                        </div>
+                                </div>
+                            <div class="row">&nbsp;</div>
+                        </div>
+                 
+                            <div>
+                                <h3>Change Carousal 2</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class=form-group>
+                                            {{ form.carousal_post2.label(class="col-md-2 control-label") }}
+                                            <div class="col-md-6">
+                                                {{ form.carousal_post2(class="form-control") }}
+                                            </div>
+                                            <div class=col-md-4>
+                                                {{ form.carousal_image2(class="form-control") }}
+                                            </div>
+                                    </div>
+                                <div class="row">&nbsp;</div>
+                            </div>
+             
+
+          
+                            <div>
+                                <h3>Change Carousal 3</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class=form-group>
+                                            {{ form.carousal_post3.label(class="col-md-2 control-label") }}
+                                            <div class="col-md-6">
+                                                {{ form.carousal_post3(class="form-control") }}
+                                            </div>
+                                            <div class=col-md-4>
+                                                {{ form.carousal_image3(class="form-control") }}
+                                            </div>
+                                    </div>
+                                <div class="row">&nbsp;</div>
+                            </div>
+              
+
+            
+                            <div>
+                                <h3>Change Carousal 4</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class=form-group>
+                                            {{ form.carousal_post4.label(class="col-md-2 control-label") }}
+                                            <div class="col-md-6">
+                                                {{ form.carousal_post4(class="form-control") }}
+                                            </div>
+                                            <div class=col-md-4>
+                                                {{ form.carousal_image4(class="form-control") }}
+                                            </div>
+                                    </div>
+                                <div class="row">&nbsp;</div>
+                            </div>
+                
+                            <div>
+                                <h3>Change Carousal 5</h3>
+                            </div>
+                            <div>
+                                <div class="row">
+                                    <div class=form-group>
+                                            {{ form.carousal_post5.label(class="col-md-2 control-label") }}
+                                            <div class="col-md-6">
+                                                {{ form.carousal_post5(class="form-control") }}
+                                            </div>
+                                            <div class=col-md-4>
+                                                {{ form.carousal_image5(class="form-control") }}
+                                            </div>
+                                    </div>
+                                <div class="row">&nbsp;</div>
+                            </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="row">
+            <section>
+                {{ form.submit(class="btn btn-default") }}
+            </section>
+        </div>
+
+{% endblock %} 

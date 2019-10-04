@@ -193,6 +193,9 @@ class Users(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+    def is_admin(self, id):
+        return self.role_id >= 2
 
 
     @classmethod
@@ -280,6 +283,8 @@ class Posts(db.Model):
     date_modified = db.Column(db.DateTime)
     visible = db.Column(db.Boolean, default=True)
     deleted = db.Column(db.Boolean, default=False)
+
+    image_id = db.relationship("Carousel", backref="posts", lazy="dynamic")
 
     __mapper_args__ = {'polymorphic_on': post_type}
 
@@ -652,3 +657,25 @@ class Documents(db.Model):
 
     def __repr__(self):
         return '<Documents %r>' % self.id
+
+class Carousel(db.Model):
+    """
+    Define the Documents class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    image -- Column: String, Actual filename.
+    """
+
+    __tablename__ = 'carousel'
+    id = db.Column(db.Integer, primary_key=True)
+    image_name = db.Column(db.String)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
+    
+    def __init__(self,
+                image_name,
+                post_id):
+        self.image_name = image_name
+        self.post_id = post_id
+
+    def __repr__(self):
+        return '<posts %r>' % self.id

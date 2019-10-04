@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts, Documents
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, \
-    AppDevIntakeForm, ITIntakeForm
+    AppDevIntakeForm, ITIntakeForm, ChangeCarouselForm
 from app.main.utils import (
     create_meeting_notes,
     create_news,
@@ -870,3 +870,16 @@ def upload_document():
         flash('Document successfully uploaded.')
         return redirect(url_for('main.documents'))
     return render_template('upload_document.html', form=form)
+
+
+@main.route('/change_carausel', methods=['GET', 'POST'])
+@login_required
+def change_carousel():
+
+    form = ChangeCarouselForm()
+
+    form.carousal_post1
+      
+
+    return render_template('carousel/change_carousel.html', form = form)
+
