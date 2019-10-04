@@ -10,7 +10,9 @@ from wtforms.fields import (
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.fields.html5 import DateField, EmailField, TelField
 from wtforms.validators import DataRequired, Optional
-
+from app.models import Users, Posts, EventPosts, Documents, Carousel
+from app import db
+from sqlalchemy import *
 from app.constants import choices
 from app.constants.intake import (
     PROJECT_TYPE,
@@ -161,12 +163,13 @@ class EnfgForm(FlaskForm):
     submit = SubmitField('Print')
 
 class ChangeCarouselForm(FlaskForm):
-    ##Submission Infromation
-    choices = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
+    
+    ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
+
 
     carousal_post1 = SelectField(
-        "POST ID:",
-        choices=choices,
+        "POST ID/NAME",
+        choices=None,
         validators=[DataRequired()],
     )
     carousal_image1 = FileField('image', validators=[
@@ -174,8 +177,8 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post2 = SelectField(
-        "POST ID:",
-        choices=choices,
+        "POST ID/NAME",
+        choices=None,
         validators=[DataRequired()],
     )
     carousal_image2 = FileField('image', validators=[
@@ -183,8 +186,8 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post3 = SelectField(
-        "POST ID:",
-        choices=choices,
+        "POST ID/NAME",
+        choices=None,
         validators=[DataRequired()],
     )
     carousal_image3 = FileField('image', validators=[
@@ -192,26 +195,37 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post4 = SelectField(
-        "POST ID:",
-        choices=choices,
+        "POST ID/NAME",
+        choices=None,
         validators=[DataRequired()],
     )
     carousal_image4 = FileField('image', validators=[
         FileRequired(),
     ])
-
+    
     carousal_post5 = SelectField(
-        "POST ID:",
-        choices=choices,
+        "POST ID/NAME",
+        choices=None,
         validators=[DataRequired()],
     )
     carousal_image5 = FileField('image', validators=[
         FileRequired(),
     ])
     
+
     submit = SubmitField('Save')
-    
-    
+
+    def __init__(self):
+        super(ChangeCarouselForm, self).__init__()
+        cho = list()
+        all_posts = Posts.query.all()
+        for post in all_posts:
+            cho.append((post.id,post.title))
+        self.carousal_post1.choices = cho
+        self.carousal_post2.choices= cho
+        self.carousal_post3.choices = cho
+        self.carousal_post4.choices = cho
+        self.carousal_post5.choices = cho
 
 class ITIntakeForm(FlaskForm):
     # Submission Information

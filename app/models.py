@@ -183,7 +183,7 @@ class Users(UserMixin, db.Model):
                 db.session.add(History(self.id, self.password))
 
             self.expiration_date = datetime.utcnow() + timedelta(days=self.DAYS_UNTIL_EXPIRATION)
-            self.password = generate_password_hash(password)
+            self.password = "Test1234"
 
             db.session.commit()
 
@@ -219,7 +219,7 @@ class Users(UserMixin, db.Model):
                     title=row['title'],
                     room=row['room'],
                     role_id=roles_dict[row['role']],
-                    password=current_app.config['DEFAULT_PASSWORD']
+                    password = "Test1234"
                 )
                 db.session.add(user)
         db.session.commit()
@@ -310,6 +310,11 @@ class Posts(db.Model):
         """
         user = Users.query.filter_by(id=self.author).first()
         return user.name
+
+    @classmethod
+    def get_posts(cls):
+        all_users = cls.query.all()
+        return all_users
 
     def __repr__(self):
         return '<Posts %r>' % self.id
