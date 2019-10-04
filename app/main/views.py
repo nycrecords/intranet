@@ -16,7 +16,7 @@ from app.main.utils import (create_meeting_notes,
                             process_posts_search,
                             render_email, 
                             update_news, 
-                            update_object)
+                            delete_object)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -807,11 +807,15 @@ def upload_document():
 def update_old_news(post_id):
     form = NewsForm()
     obj = Posts.query.get(post_id)
+    obj_tags = obj.tags
+
+    print(obj_tags)
 
     if flask_request.method == 'GET':
         tags = choices.TAGS
         form.title.data = obj.title
         form.content.data = obj.content
+        form.tags.choices = obj_tags
     # loads old values onto the form and if it's changed then the object will be edited
     if flask_request.method == 'POST' and form.validate_on_submit():
         update_news(obj, 
@@ -825,18 +829,17 @@ def update_old_news(post_id):
 
 
 
-@main.route('/news-and-updates/news/delete/<int:post_id>', methods=['GET', 'POST'])
+@main.route('/news-and-updates/delete/<int:post_id>', methods=['GET', 'POST'])
 @login_required
-def news_delete(post_id):
+def delete(post_id):
     obj = Posts.query.get(post_id)
-    print(obj)
-    # if flask_request.method == 'POST':
-    update_news(obj, 
-        current_user.id, 
-        obj.title, 
-        obj.content, 
-        obj.tags, 
-        visible=False, 
-        deleted=True)
-        # return redirect(url_for('main.news', post_id=post_id))
-    return redirect(url_for('main.news', post_id=post_id))
+    delete_object(obj, False, True)
+    flash('Post was successfully deleted', 'success')
+    return redirect(url_for('main.news_and_updates', post_id=post_id))
+
+
+
+@main.route('/news-and-updates/')
+@login_required
+def redirect_url():
+    return redirect(url_for('main.news_and_updates'))
