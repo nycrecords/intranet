@@ -16,7 +16,8 @@ from app.main.utils import (create_meeting_notes,
                             process_posts_search,
                             render_email, 
                             update_news, 
-                            delete_object)
+                            delete_object, 
+                            update_event_post)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -800,8 +801,6 @@ def upload_document():
     return render_template('upload_document.html', form=form)
 
 
-
-
 @main.route('/news-and-updates/news/edit<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def update_old_news(post_id):
@@ -809,13 +808,11 @@ def update_old_news(post_id):
     obj = Posts.query.get(post_id)
     obj_tags = obj.tags
 
-    print(obj_tags)
-
     if flask_request.method == 'GET':
         tags = choices.TAGS
         form.title.data = obj.title
         form.content.data = obj.content
-        form.tags.choices = obj_tags
+        form.tags.choices = tags
     # loads old values onto the form and if it's changed then the object will be edited
     if flask_request.method == 'POST' and form.validate_on_submit():
         update_news(obj, 
@@ -826,6 +823,55 @@ def update_old_news(post_id):
         # if no changes are made then old tags should be saved, otherwise new ones should be save
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('edit_news.html', form=form, tags=tags)
+
+
+@main.route('/news-and-updates/events/edit<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def update_old_events(post_id):
+    form = EventForm()
+    obj = Posts.query.get(post_id)
+    obj_tags = obj.tags
+    
+    if flask_request.method == 'GET':
+        tags = choices.TAGS
+        form.event_date.data = obj.event_date.strftime('%m/%d/%Y')
+        form.event_location.data = obj.event_location
+        form.event_leader.data = obj.event_location
+        form.start_time.data = obj.start_time
+        form.end_time.data = obj.end_time 
+        form.title.data = obj.title
+        form.sponsor.data = obj.sponsor
+        form.content.data = obj.content
+        form.tags.choices = tags
+    # # loads old values onto the form and if it's changed then the object will be edited
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        # update_news(obj, 
+        #             current_user.id, 
+        #             form.title.data, 
+        #             form.content.data, 
+        #             flask_request.form.getlist('tags'))
+
+        update_event_post(obj, 
+                        current_user.id, 
+                        form.event_date.data,
+                        form.event_location.data, 
+                        form.event_leader.data, 
+                        form.start_time.data,
+                        form.end_time.data, 
+                        form.title.data, 
+                        form.sponsor.data, 
+                        form.content.data, 
+                        flask_request.form.getlist('tags'))
+    #     # if no changes are made then old tags should be saved, otherwise new ones should be save
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('edit_events.html', form=form, tags=tags)
+
+
+
+
+
+
+
 
 
 

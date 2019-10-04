@@ -74,7 +74,6 @@
                     <a href="{{url_for('main.redirect_url')}}">&larr; Back</a>
                 </div>
             </div>
-
             <p><strong>Event Location: </strong>{{ post.event_location }}</p>
             <p><strong>Event Leader: </strong>{{ post.event_leader }}</p>
             <p><strong>Start Time: </strong>{{ post.start_time }}</p>
@@ -90,7 +89,7 @@
                     <a class="btn btn-danger" href="{{ url_for('main.delete', post_id=post.id )}}">Delete</a>
                 </div>
                 <div class="delete-post-button ">
-                    <a class="btn btn-primary" href="{{ url_for('main.update_old_news', post_id=post.id )}}">Edit</a>
+                    <a class="btn btn-primary" href="{{ url_for('main.update_old_events', post_id=post.id )}}">Edit</a>
                 </div>
                 {% endif %}
             </div>

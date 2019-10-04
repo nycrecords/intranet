@@ -64,7 +64,9 @@ def update_object(obj):
         current_app.logger.exception("Failed to UPDATE {}".format(obj))
         return None
 
-def delete_object(obj,visible=True,deleted=False):
+def delete_object(obj,
+                    visible=True,
+                    deleted=False):
     obj.visible = visible
     obj.deleted = deleted
     update_object(obj)
@@ -192,6 +194,39 @@ def create_event_post(event_date,
     create_object(event)
 
     return event_post.id
+
+
+def update_event_post(obj, 
+                        author, 
+                        event_date, 
+                        event_location, 
+                        event_leader, 
+                        start_time, 
+                        end_time, 
+                        title, 
+                        sponsor, 
+                        content, 
+                        tags):
+
+    """
+    Util function for updating a News object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+                        
+    obj.author = author
+    obj.event_date = event_date
+    obj.event_location = event_location 
+    obj.event_leader = event_leader
+    obj.start_time = start_time
+    obj.end_time = end_time
+    obj.title = title
+    obj.sponsor = sponsor
+    obj.content = content
+    obj.date_modified = datetime.datetime.now()
+    obj.tags = tags
+    update_object(obj)
+    return obj.id
+
 
 
 def get_users_by_division(division):
