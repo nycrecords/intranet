@@ -168,7 +168,7 @@ class ChangeCarouselForm(FlaskForm):
 
 
     carousal_post1 = SelectField(
-        "POST ID/NAME",
+        "POST ID/TITLE",
         choices=None,
         validators=[DataRequired()],
     )
@@ -177,7 +177,7 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post2 = SelectField(
-        "POST ID/NAME",
+        "POST ID/TITLE",
         choices=None,
         validators=[DataRequired()],
     )
@@ -186,7 +186,7 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post3 = SelectField(
-        "POST ID/NAME",
+        "POST ID/TITLE",
         choices=None,
         validators=[DataRequired()],
     )
@@ -195,7 +195,7 @@ class ChangeCarouselForm(FlaskForm):
     ])
 
     carousal_post4 = SelectField(
-        "POST ID/NAME",
+        "POST ID/TITLE",
         choices=None,
         validators=[DataRequired()],
     )
@@ -204,7 +204,7 @@ class ChangeCarouselForm(FlaskForm):
     ])
     
     carousal_post5 = SelectField(
-        "POST ID/NAME",
+        "POST ID/TITLE",
         choices=None,
         validators=[DataRequired()],
     )
@@ -220,7 +220,8 @@ class ChangeCarouselForm(FlaskForm):
         cho = list()
         all_posts = Posts.query.all()
         for post in all_posts:
-            cho.append((post.id,post.title))
+            title_author = "{}, {}".format(post.id,post.title)
+            cho.append((post.id,title_author))
         self.carousal_post1.choices = cho
         self.carousal_post2.choices= cho
         self.carousal_post3.choices = cho
