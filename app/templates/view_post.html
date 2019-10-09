@@ -47,7 +47,7 @@
                 <a class="btn btn-danger" href="{{ url_for('main.delete', post_id=post.id )}}">Delete</a>
             </div>
             <div class="delete-post-button ">
-                <a class="btn btn-primary" href="{{ url_for('main.update_old_news', post_id=post.id )}}">Edit</a>
+                <a class="btn btn-primary" href="{{ url_for('main.update_old_meetings', post_id=post.id )}}">Edit</a>
             </div>
             {% endif %} {% elif post.post_type == 'news' %}
             <div class='row'>

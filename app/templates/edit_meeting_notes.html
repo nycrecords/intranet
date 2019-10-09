@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}New Meeting Notes{% endblock title %} {% block custom_css %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}Edit Meeting Notes{% endblock title %} {% block custom_css %}
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-multiselect.css') }}" /> {% endblock %} {% block page_content %}
 <div class="col-sm-12">
@@ -8,10 +8,10 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
                     & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">New Meeting Notes</li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Meeting Notes</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">New Meeting Notes</h1>
+        <h1 class="breadcrumb-header">Edit Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area new-post-section">
         {% include "intranet_use_policy.html" %}

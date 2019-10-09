@@ -121,6 +121,50 @@ def create_meeting_notes(meeting_date,
 
     return meeting_notes.id
 
+def update_meeting_notes(obj, 
+                            author, 
+                            title,
+                            meeting_type,
+                            division,
+                            meeting_date,
+                            meeting_location,
+                            meeting_leader,
+                            meeting_note_taker,
+                            start_time,
+                            end_time,
+                            attendees,
+                            content,
+                            tags,
+                            next_meeting_date,
+                            next_meeting_leader,
+                            next_meeting_note_taker):
+
+    """
+    Util function for updating a Events object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+
+    obj.author = author
+    obj.title = title
+    obj.meeting_type = meeting_type
+    obj.division = division
+    obj.meeting_date = meeting_date
+    obj.meeting_location = meeting_location
+    obj.meeting_leader = meeting_leader
+    obj.meeting_note_taker = meeting_note_taker
+    obj.start_time = start_time
+    obj.end_time = end_time
+    obj.attendees = attendees
+    obj.content = content
+    obj.tags = tags
+    obj.next_meeting_date = next_meeting_date
+    obj.next_meeting_leader = next_meeting_leader
+    obj.next_meeting_note_taker = next_meeting_note_taker
+    obj.date_modified = datetime.datetime.now()
+    update_object(obj)
+    return obj.id
+
+
 
 def create_news(author,
                 title,
@@ -209,7 +253,7 @@ def update_event_post(obj,
                         tags):
 
     """
-    Util function for updating a News object. Function will take parameters passed in from the form
+    Util function for updating a Events object. Function will take parameters passed in from the form
     and update a News along with the event object.
     """
                         

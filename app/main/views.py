@@ -17,7 +17,8 @@ from app.main.utils import (create_meeting_notes,
                             render_email, 
                             update_news, 
                             delete_object, 
-                            update_event_post)
+                            update_event_post,
+                            update_meeting_notes)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -813,14 +814,13 @@ def update_old_news(post_id):
         form.title.data = obj.title
         form.content.data = obj.content
         form.tags.choices = tags
-    # loads old values onto the form and if it's changed then the object will be edited
+    
     if flask_request.method == 'POST' and form.validate_on_submit():
-        update_news(obj, 
-                    current_user.id, 
-                    form.title.data, 
-                    form.content.data, 
-                    flask_request.form.getlist('tags'))
-        # if no changes are made then old tags should be saved, otherwise new ones should be save
+        update_news(obj=obj, 
+                    author=current_user.id, 
+                    title=form.title.data, 
+                    content=form.content.data, 
+                    tags=flask_request.form.getlist('tags'))
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('edit_news.html', form=form, tags=tags)
 
@@ -843,30 +843,75 @@ def update_old_events(post_id):
         form.sponsor.data = obj.sponsor
         form.content.data = obj.content
         form.tags.choices = tags
-    # # loads old values onto the form and if it's changed then the object will be edited
+    
     if flask_request.method == 'POST' and form.validate_on_submit():
-        # update_news(obj, 
-        #             current_user.id, 
-        #             form.title.data, 
-        #             form.content.data, 
-        #             flask_request.form.getlist('tags'))
-
-        update_event_post(obj, 
-                        current_user.id, 
-                        form.event_date.data,
-                        form.event_location.data, 
-                        form.event_leader.data, 
-                        form.start_time.data,
-                        form.end_time.data, 
-                        form.title.data, 
-                        form.sponsor.data, 
-                        form.content.data, 
-                        flask_request.form.getlist('tags'))
-    #     # if no changes are made then old tags should be saved, otherwise new ones should be save
+        update_event_post(obj=obj, 
+                        author=current_user.id, 
+                        event_date=form.event_date.data,
+                        event_location=form.event_location.data, 
+                        event_leader=form.event_leader.data, 
+                        start_time=form.start_time.data,
+                        end_time=form.end_time.data, 
+                        title=form.title.data, 
+                        sponsor=form.sponsor.data, 
+                        content=form.content.data, 
+                        tags=flask_request.form.getlist('tags'))
         return redirect(url_for('main.view_post', post_id=post_id))
     return render_template('edit_events.html', form=form, tags=tags)
 
 
+
+@main.route('/news-and-updates/meeting_notes/edit<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def update_old_meetings(post_id):
+    form = MeetingNotesForm()
+    obj = Posts.query.get(post_id)
+    obj_tags = obj.tags
+    users = []
+    
+    for user in Users.query.order_by(Users.last_name):
+        users.append(user.name)
+
+    tags = choices.TAGS
+    
+    if flask_request.method == 'GET': 
+        tags = choices.TAGS
+        form.title.data = obj.title
+        form.meeting_type.data = obj.meeting_type
+        form.division.data = obj.division
+        form.meeting_date.data = obj.meeting_date.strftime('%m/%d/%Y')
+        form.meeting_location.data = obj.meeting_location
+        form.meeting_leader.data = obj.meeting_leader
+        form.meeting_note_taker.data = obj.meeting_note_taker
+        form.start_time.data = obj.start_time
+        form.end_time.data = obj.end_time
+        form.attendees.data = obj.attendees
+        form.content.data = obj.content
+        form.tags.choices = tags
+        form.next_meeting_date.data = obj.next_meeting_date.strftime('%m/%d/%Y')
+        form.next_meeting_leader.data = obj.next_meeting_leader
+        form.next_meeting_note_taker.data = obj.next_meeting_note_taker
+
+    if flask_request.method == 'POST':
+        update_meeting_notes(obj=obj, 
+                                author=current_user.id, 
+                                title=form.title.data,
+                                meeting_type=form.meeting_type.data,
+                                division=form.division.data,
+                                meeting_date=form.meeting_date.data,
+                                meeting_location=form.meeting_location.data,
+                                meeting_leader=form.meeting_leader.data,
+                                meeting_note_taker=form.meeting_note_taker.data,
+                                start_time=form.start_time.data,
+                                end_time=form.end_time.data,
+                                attendees=flask_request.form.getlist('attendees'),
+                                content=form.content.data,
+                                tags=flask_request.form.getlist('tags'),
+                                next_meeting_date=form.next_meeting_date.data,
+                                next_meeting_leader=form.next_meeting_leader.data,
+                                next_meeting_note_taker=form.next_meeting_note_taker.data)
+        return redirect(url_for('main.view_post', post_id=post_id))
+    return render_template('edit_meeting_notes.html', form=form, users=users, tags=tags)
 
 
 
