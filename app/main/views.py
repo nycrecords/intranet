@@ -805,114 +805,127 @@ def upload_document():
 @main.route('/news-and-updates/news/edit<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def update_old_news(post_id):
-    form = NewsForm()
-    obj = Posts.query.get(post_id)
-    obj_tags = obj.tags
 
-    if flask_request.method == 'GET':
-        tags = choices.TAGS
-        form.title.data = obj.title
-        form.content.data = obj.content
-        form.tags.choices = tags
-    
-    if flask_request.method == 'POST' and form.validate_on_submit():
-        update_news(obj=obj, 
-                    title=form.title.data, 
-                    content=form.content.data, 
-                    tags=flask_request.form.getlist('tags'))
+    if current_user.role_id > 2:  
+        form = NewsForm()
+        obj = Posts.query.get(post_id)
+        obj_tags = obj.tags
+
+        if flask_request.method == 'GET':
+            tags = choices.TAGS
+            form.title.data = obj.title
+            form.content.data = obj.content
+            form.tags.choices = tags
+        
+        if flask_request.method == 'POST' and form.validate_on_submit():
+            update_news(obj=obj, 
+                        title=form.title.data, 
+                        content=form.content.data, 
+                        tags=flask_request.form.getlist('tags'))
+            return redirect(url_for('main.view_post', post_id=post_id))
+        return render_template('edit_news.html', form=form, tags=tags)
+
+    else:
+        flash('You must be an Admin to edit', 'warning')
         return redirect(url_for('main.view_post', post_id=post_id))
-    return render_template('edit_news.html', form=form, tags=tags)
-
 
 @main.route('/news-and-updates/events/edit<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def update_old_events(post_id):
-    form = EventForm()
-    obj = Posts.query.get(post_id)
-    obj_tags = obj.tags
-    
-    if flask_request.method == 'GET':
-        tags = choices.TAGS
-        form.event_date.data = obj.event_date.strftime('%m/%d/%Y')
-        form.event_location.data = obj.event_location
-        form.event_leader.data = obj.event_location
-        form.start_time.data = obj.start_time
-        form.end_time.data = obj.end_time 
-        form.title.data = obj.title
-        form.sponsor.data = obj.sponsor
-        form.content.data = obj.content
-        form.tags.choices = tags
-    
-    if flask_request.method == 'POST' and form.validate_on_submit():
-        update_event_post(obj=obj, 
-                        event_date=form.event_date.data,
-                        event_location=form.event_location.data, 
-                        event_leader=form.event_leader.data, 
-                        start_time=form.start_time.data,
-                        end_time=form.end_time.data, 
-                        title=form.title.data, 
-                        sponsor=form.sponsor.data, 
-                        content=form.content.data, 
-                        tags=flask_request.form.getlist('tags'))
-        return redirect(url_for('main.view_post', post_id=post_id))
-    return render_template('edit_events.html', form=form, tags=tags)
 
+    if current_user.role_id >2:
+
+        form = EventForm()
+        obj = Posts.query.get(post_id)
+        obj_tags = obj.tags
+        
+        if flask_request.method == 'GET':
+            tags = choices.TAGS
+            form.event_date.data = obj.event_date.strftime('%m/%d/%Y')
+            form.event_location.data = obj.event_location
+            form.event_leader.data = obj.event_location
+            form.start_time.data = obj.start_time
+            form.end_time.data = obj.end_time 
+            form.title.data = obj.title
+            form.sponsor.data = obj.sponsor
+            form.content.data = obj.content
+            form.tags.choices = tags
+        
+        if flask_request.method == 'POST' and form.validate_on_submit():
+            update_event_post(obj=obj, 
+                            event_date=form.event_date.data,
+                            event_location=form.event_location.data, 
+                            event_leader=form.event_leader.data, 
+                            start_time=form.start_time.data,
+                            end_time=form.end_time.data, 
+                            title=form.title.data, 
+                            sponsor=form.sponsor.data, 
+                            content=form.content.data, 
+                            tags=flask_request.form.getlist('tags'))
+            return redirect(url_for('main.view_post', post_id=post_id))
+        return render_template('edit_events.html', form=form, tags=tags)
+
+    else:
+        flash('You must be an Admin to edit', 'warning')
+        return redirect(url_for('main.view_post', post_id=post_id))
 
 
 @main.route('/news-and-updates/meeting_notes/edit<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def update_old_meetings(post_id):
-    form = MeetingNotesForm()
-    obj = Posts.query.get(post_id)
-    obj_tags = obj.tags
-    users = []
     
-    for user in Users.query.order_by(Users.last_name):
-        users.append(user.name)
+    if current_user.role_id > 2: 
+        form = MeetingNotesForm()       
+        obj = Posts.query.get(post_id)
+        obj_tags = obj.tags
+        users = []
+        
+        for user in Users.query.order_by(Users.last_name):
+            users.append(user.name)
 
-    tags = choices.TAGS
-    
-    if flask_request.method == 'GET': 
         tags = choices.TAGS
-        form.title.data = obj.title
-        form.meeting_type.data = obj.meeting_type
-        form.division.data = obj.division
-        form.meeting_date.data = obj.meeting_date.strftime('%m/%d/%Y')
-        form.meeting_location.data = obj.meeting_location
-        form.meeting_leader.data = obj.meeting_leader
-        form.meeting_note_taker.data = obj.meeting_note_taker
-        form.start_time.data = obj.start_time
-        form.end_time.data = obj.end_time
-        form.attendees.data = obj.attendees
-        form.content.data = obj.content
-        form.tags.choices = tags
-        form.next_meeting_date.data = obj.next_meeting_date.strftime('%m/%d/%Y')
-        form.next_meeting_leader.data = obj.next_meeting_leader
-        form.next_meeting_note_taker.data = obj.next_meeting_note_taker
+        
+        if flask_request.method == 'GET': 
+            tags = choices.TAGS
+            form.title.data = obj.title
+            form.meeting_type.data = obj.meeting_type
+            form.division.data = obj.division
+            form.meeting_date.data = obj.meeting_date.strftime('%m/%d/%Y')
+            form.meeting_location.data = obj.meeting_location
+            form.meeting_leader.data = obj.meeting_leader
+            form.meeting_note_taker.data = obj.meeting_note_taker
+            form.start_time.data = obj.start_time
+            form.end_time.data = obj.end_time
+            form.attendees.data = obj.attendees
+            form.content.data = obj.content
+            form.tags.choices = tags
+            form.next_meeting_date.data = obj.next_meeting_date.strftime('%m/%d/%Y')
+            form.next_meeting_leader.data = obj.next_meeting_leader
+            form.next_meeting_note_taker.data = obj.next_meeting_note_taker
 
-    if flask_request.method == 'POST':
-        update_meeting_notes(obj=obj, 
-                                title=form.title.data,
-                                meeting_type=form.meeting_type.data,
-                                division=form.division.data,
-                                meeting_date=form.meeting_date.data,
-                                meeting_location=form.meeting_location.data,
-                                meeting_leader=form.meeting_leader.data,
-                                meeting_note_taker=form.meeting_note_taker.data,
-                                start_time=form.start_time.data,
-                                end_time=form.end_time.data,
-                                attendees=flask_request.form.getlist('attendees'),
-                                content=form.content.data,
-                                tags=flask_request.form.getlist('tags'),
-                                next_meeting_date=form.next_meeting_date.data,
-                                next_meeting_leader=form.next_meeting_leader.data,
-                                next_meeting_note_taker=form.next_meeting_note_taker.data)
+        if flask_request.method == 'POST':
+            update_meeting_notes(obj=obj, 
+                                    title=form.title.data,
+                                    meeting_type=form.meeting_type.data,
+                                    division=form.division.data,
+                                    meeting_date=form.meeting_date.data,
+                                    meeting_location=form.meeting_location.data,
+                                    meeting_leader=form.meeting_leader.data,
+                                    meeting_note_taker=form.meeting_note_taker.data,
+                                    start_time=form.start_time.data,
+                                    end_time=form.end_time.data,
+                                    attendees=flask_request.form.getlist('attendees'),
+                                    content=form.content.data,
+                                    tags=flask_request.form.getlist('tags'),
+                                    next_meeting_date=form.next_meeting_date.data,
+                                    next_meeting_leader=form.next_meeting_leader.data,
+                                    next_meeting_note_taker=form.next_meeting_note_taker.data)
+            return redirect(url_for('main.view_post', post_id=post_id))
+        return render_template('edit_meeting_notes.html', form=form, users=users, tags=tags)
+
+    else:
+        flash('You must be an Admin to edit', 'warning')
         return redirect(url_for('main.view_post', post_id=post_id))
-    return render_template('edit_meeting_notes.html', form=form, users=users, tags=tags)
-
-
-
-
 
 
 
@@ -921,9 +934,14 @@ def update_old_meetings(post_id):
 @login_required
 def delete(post_id):
     obj = Posts.query.get(post_id)
-    delete_object(obj, False, True)
-    flash('Post was successfully deleted', 'success')
-    return redirect(url_for('main.news_and_updates', post_id=post_id))
+
+    if current_user.role_id > 2:
+        delete_object(obj, False, True)
+        flash('Post was successfully deleted', 'success')
+        return redirect(url_for('main.news_and_updates', post_id=post_id))
+    else:
+        flash('You must be an Admin to delete', 'warning')
+        return redirect(url_for('main.view_post', post_id=post_id))
 
 
 
