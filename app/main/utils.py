@@ -121,8 +121,7 @@ def create_meeting_notes(meeting_date,
 
     return meeting_notes.id
 
-def update_meeting_notes(obj, 
-                            author, 
+def update_meeting_notes(obj,  
                             title,
                             meeting_type,
                             division,
@@ -144,7 +143,6 @@ def update_meeting_notes(obj,
     and update a News along with the event object.
     """
 
-    obj.author = author
     obj.title = title
     obj.meeting_type = meeting_type
     obj.division = division
@@ -190,12 +188,11 @@ def create_news(author,
 
     return news.id
 
-def update_news(obj,author,title,content,tags):
+def update_news(obj,title,content,tags):
     """
     Util function for updating a News object. Function will take parameters passed in from the form
     and update a News along with the event object.
     """
-    obj.author = author
     obj.title = title
     obj.content = content
     obj.date_modified = datetime.datetime.now()
@@ -241,7 +238,6 @@ def create_event_post(event_date,
 
 
 def update_event_post(obj, 
-                        author, 
                         event_date, 
                         event_location, 
                         event_leader, 
@@ -257,7 +253,6 @@ def update_event_post(obj,
     and update a News along with the event object.
     """
                         
-    obj.author = author
     obj.event_date = event_date
     obj.event_location = event_location 
     obj.event_leader = event_leader

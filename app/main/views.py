@@ -817,7 +817,6 @@ def update_old_news(post_id):
     
     if flask_request.method == 'POST' and form.validate_on_submit():
         update_news(obj=obj, 
-                    author=current_user.id, 
                     title=form.title.data, 
                     content=form.content.data, 
                     tags=flask_request.form.getlist('tags'))
@@ -846,7 +845,6 @@ def update_old_events(post_id):
     
     if flask_request.method == 'POST' and form.validate_on_submit():
         update_event_post(obj=obj, 
-                        author=current_user.id, 
                         event_date=form.event_date.data,
                         event_location=form.event_location.data, 
                         event_leader=form.event_leader.data, 
@@ -894,7 +892,6 @@ def update_old_meetings(post_id):
 
     if flask_request.method == 'POST':
         update_meeting_notes(obj=obj, 
-                                author=current_user.id, 
                                 title=form.title.data,
                                 meeting_type=form.meeting_type.data,
                                 division=form.division.data,
