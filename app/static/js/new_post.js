@@ -1,10 +1,9 @@
-$(function () {
+$(function() {
     // handle close button text on use policy
-    $('.intranet-use-policy-close-button').click(function () {
+    $('.intranet-use-policy-close-button').click(function() {
         if ($('#intranet-use-policy').hasClass('in')) {
             $('.intranet-use-policy-close-button').text('Open');
-        }
-        else {
+        } else {
             $('.intranet-use-policy-close-button').text('Close');
         }
     });
@@ -13,7 +12,7 @@ $(function () {
     $('#meeting-date').datepicker({
         dateFormat: 'mm/dd/yy',
         maxDate: 0
-    }).keydown(function (e) {
+    }).keydown(function(e) {
         // prevent keyboard input except for tab
         if (e.keyCode !== 9) {
             e.preventDefault();
@@ -22,7 +21,7 @@ $(function () {
 
     $('#next-meeting-date').datepicker({
         dateFormat: 'mm/dd/yy'
-    }).keydown(function (e) {
+    }).keydown(function(e) {
         // prevent keyboard input except for tab
         if (e.keyCode !== 9) {
             e.preventDefault();
@@ -32,7 +31,7 @@ $(function () {
     $('#event-date').datepicker({
         dateFormat: 'mm/dd/yy',
         minDate: 0
-    }).keydown(function (e) {
+    }).keydown(function(e) {
         // prevent keyboard input except for tab
         if (e.keyCode !== 9) {
             e.preventDefault();
@@ -50,7 +49,7 @@ $(function () {
             dynamic: false,
             dropdown: true,
             scrollbar: true
-        }).keydown(function (e) {
+        }).keydown(function(e) {
             // prevent keyboard input except for allowed keys
             if (e.keyCode !== 8 && // backspace
                 e.keyCode !== 9 && // tab
@@ -70,13 +69,12 @@ $(function () {
                 e.keyCode !== 65 && // a
                 e.keyCode !== 77 && // m
                 e.keyCode !== 80 && // p
-                e.keyCode !== 186) {// semi-colon
+                e.keyCode !== 186) { // semi-colon
                 e.preventDefault();
             }
         });
 
-    }
-    catch (err) {
+    } catch (err) {
         // if one of the forms doesn't have a time field it will throw an error when you try to render it
         // TODO: find a better way to handle this error
     }
@@ -90,21 +88,22 @@ $(function () {
     });
     // set parsley for required fields
     var requiredFields = ['title',
-                          'meeting-type',
-                          'division',
-                          'meeting-date',
-                          'meeting-location',
-                          'meeting-leader',
-                          'meeting-note-taker',
-                          'event-date',
-                          'event-location',
-                          'event-leader',
-                          'start-time',
-                          'end-time',
-                          'attendees',
-                          'tags',
-                          'news-tags',
-                          'event-tags'];
+        'meeting-type',
+        'division',
+        'meeting-date',
+        'meeting-location',
+        'meeting-leader',
+        'meeting-note-taker',
+        'event-date',
+        'event-location',
+        'event-leader',
+        'start-time',
+        'end-time',
+        'attendees',
+        'tags',
+        'news-tags',
+        'event-tags'
+    ];
     for (var i = 0; i < requiredFields.length; i++) {
         $('#' + requiredFields[i]).attr('data-parsley-required', '');
     }
@@ -113,7 +112,7 @@ $(function () {
     $.ajax({
         url: '/get_user_list/',
         type: 'GET',
-        success: function (data) {
+        success: function(data) {
             $('#meeting-leader').autocomplete({
                 source: data
             });
@@ -132,23 +131,21 @@ $(function () {
         }
     });
 
+
     // initialize multiselect plugin for tags
     $('#tags').multiselect({
         maxHeight: 400,
-        buttonText: function (options, select) {
+        buttonText: function(options, select) {
             if (options.length === 0) {
                 return 'None Selected';
-            }
-            else if (options.length > 4) {
+            } else if (options.length > 4) {
                 return options.length + ' tags selected';
-            }
-            else {
+            } else {
                 var labels = [];
-                options.each(function () {
+                options.each(function() {
                     if ($(this).attr('label') !== undefined) {
                         labels.push($(this).attr('label'));
-                    }
-                    else {
+                    } else {
                         labels.push($(this).html());
                     }
                 });
@@ -159,26 +156,24 @@ $(function () {
         includeResetOption: true,
         includeResetDivider: true,
         resetText: 'Clear all',
-        buttonWidth: '50%'
+        buttonWidth: '50%',
+        onInitialized: function(select, container) {}
     });
 
     // display tags with drop up instead of down
     $('.drop-up-tags').multiselect({
         maxHeight: 400,
-        buttonText: function (options, select) {
+        buttonText: function(options, select) {
             if (options.length === 0) {
                 return 'None Selected';
-            }
-            else if (options.length > 4) {
+            } else if (options.length > 4) {
                 return options.length + ' tags selected';
-            }
-            else {
+            } else {
                 var labels = [];
-                options.each(function () {
+                options.each(function() {
                     if ($(this).attr('label') !== undefined) {
                         labels.push($(this).attr('label'));
-                    }
-                    else {
+                    } else {
                         labels.push($(this).html());
                     }
                 });
@@ -196,20 +191,17 @@ $(function () {
     // initialize multiselect plugin for attendees
     $('#attendees').multiselect({
         maxHeight: 400,
-        buttonText: function (options, select) {
+        buttonText: function(options, select) {
             if (options.length === 0) {
                 return 'None Selected';
-            }
-            else if (options.length > 4) {
+            } else if (options.length > 4) {
                 return options.length + ' people selected';
-            }
-            else {
+            } else {
                 var labels = [];
-                options.each(function () {
+                options.each(function() {
                     if ($(this).attr('label') !== undefined) {
                         labels.push($(this).attr('label'));
-                    }
-                    else {
+                    } else {
                         labels.push($(this).html());
                     }
                 });
@@ -223,7 +215,7 @@ $(function () {
         buttonWidth: '50%'
     });
 
-    $("#new-post-form").submit(function (e) {
+    $("#new-post-form").submit(function(e) {
         // Validate that content has been filled out
         if (tinyMCE.activeEditor.getContent() === '') {
             $('#content-error').show();

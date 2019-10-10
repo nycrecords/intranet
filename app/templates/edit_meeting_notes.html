@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}Edit Meeting Notes{% endblock title %} {% block custom_css %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}New Meeting Notes{% endblock title %} {% block custom_css %}
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/new-post.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/bootstrap-multiselect.css') }}" /> {% endblock %} {% block page_content %}
 <div class="col-sm-12">
@@ -8,10 +8,10 @@
                 <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.news_and_updates') }}">News
                     & Updates</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Meeting Notes</li>
+                <li class="breadcrumb-item active" aria-current="page">New Meeting Notes</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Edit Meeting Notes</h1>
+        <h1 class="breadcrumb-header">New Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area new-post-section">
         {% include "intranet_use_policy.html" %}
@@ -57,7 +57,11 @@
                 {{ form.attendees.label (class="post-form-label") }}<br>
                 <select name="attendees" id="attendees" multiple="multiple">
                     {% for user in users %}
-                        <option value="{{ user }}">{{ user }}</option>
+                        {% if user in selected_users %}
+                            <option selected value="{{ user }}">{{ user }}</option>
+                        {% else %}
+                            <option value="{{ user }}">{{ user }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -70,10 +74,14 @@
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
-                <select name="tags" id="tags" multiple="multiple">
-                    {% for tag in tags %}
-                        <option value="{{ tag }}">{{ tag }}</option>
-                    {% endfor %}
+                <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple">
+                        {% for tag in tags %}
+                            {% if tag in selected_tags %}
+                                <option selected value="{{ tag }}">{{ tag }}</option>
+                            {% else %}
+                                <option value="{{ tag }}">{{ tag }}</option>
+                            {% endif %}
+                        {% endfor %}
                 </select>
             </div>
 
@@ -94,6 +102,7 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 {% endblock %} {% block custom_scripts %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-multiselect.js') }}"></script>

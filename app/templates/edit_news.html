@@ -30,9 +30,13 @@
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
                 <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple">
-                    {% for tag in tags %}
-                        <option value="{{ tag }}">{{ tag }}</option>
-                    {% endfor %}
+                        {% for tag in tags %}
+                            {% if tag in selected_tags %}
+                                <option selected value="{{ tag }}">{{ tag }}</option>
+                            {% else %}
+                                <option value="{{ tag }}">{{ tag }}</option>
+                            {% endif %}
+                        {% endfor %}
                 </select>
             </div>
 
