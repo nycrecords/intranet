@@ -119,21 +119,6 @@
 {% endblock %}
 
 {% block custom_scripts %}
-    <script type="text/javascript">
-    $(document).ready(
-        $.sessionTimeout({
-            title: "Session Timeout",
-            message: "",
-            countdownMessage: 'You will be automatically logged out in {timer}.',
-            countdownSmart: true,
-            countdownBar: true,
-            logoutUrl: '{{ url_for('auth.logout') }}',
-            redirUrl: '{{ url_for('auth.logout')}}',
-            warnAfter: 10 * 60 * 1000,
-            redirAfter: 15 * 60 * 1000
-        })
-    );
-    </script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-multiselect.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/new_post.js') }}"></script>
 {% endblock %}
