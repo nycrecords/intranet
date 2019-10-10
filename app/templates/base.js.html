@@ -11,8 +11,8 @@
                         countdownBar: true,
                         logoutUrl: '{{ url_for('auth.saml') }}?slo',
                         redirUrl: '{{ url_for('auth.saml') }}?slo&timeout',
-                        warnAfter: 1 * 60 * 1000,
-                        redirAfter: 5 * 60 * 1000
+                        warnAfter: 5 * 60 * 1000,
+                        redirAfter: 10 * 60 * 1000
                     });
         {% else %}
              $(document).ready(
@@ -24,7 +24,7 @@
                         countdownBar: true,
                         logoutUrl: '{{ url_for('auth.logout') }}',
                         redirUrl: '{{ url_for('auth.logout')}}',
-                        warnAfter: 1 * 60 * 1000,
+                        warnAfter: 10 * 60 * 1000,
                         redirAfter: 15 * 60 * 1000
                     })
                 );
