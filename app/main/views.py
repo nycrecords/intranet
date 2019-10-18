@@ -2,19 +2,22 @@ from flask import render_template, redirect, url_for, session, request as flask_
 from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts, Documents
 from . import main
-from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
-from app.main.utils import (create_meeting_notes,
-                            create_news,
-                            create_event_post,
-                            get_users_by_division,
-                            get_rooms_by_division,
-                            create_document,
-                            allowed_file,
-                            VirusDetectedException,
-                            scan_file,
-                            process_documents_search,
-                            process_posts_search,
-                            render_email)
+from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, \
+    AppDevIntakeForm, ITIntakeForm
+from app.main.utils import (
+    create_meeting_notes,
+    create_news,
+    create_event_post,
+    get_users_by_division,
+    get_rooms_by_division,
+    create_document,
+    allowed_file,
+    VirusDetectedException,
+    scan_file,
+    process_documents_search,
+    process_posts_search,
+    render_email
+)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -74,7 +77,8 @@ def news_and_updates():
             sorted_tags.append((key, tags_counter[key]))
 
     search_term = flask_request.args.get('search_term', None)
-    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term, posts_counter=posts_counter)
+    return render_template('news_and_updates.html', tags=sorted_tags, search_term=search_term,
+                           posts_counter=posts_counter)
 
 
 @main.route('/posts/search/', methods=['GET'])
@@ -147,7 +151,8 @@ def meeting_notes():
     # Get meeting type choices
     meeting_types = choices.MEETING_TYPES[1::]
 
-    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags, meeting_type_counter=meeting_type_counter)
+    return render_template('meeting_notes.html', posts=posts, meeting_types=meeting_types, tags=sorted_tags,
+                           meeting_type_counter=meeting_type_counter)
 
 
 @main.route('/news-and-updates/news', methods=['GET'])
@@ -639,6 +644,75 @@ def app_dev_intake_form():
     return render_template("app_dev_intake.html", form=form, current_user=current_user)
 
 
+@main.route('/it-support/it-intake-form', methods=['GET', 'POST'])
+@login_required
+def it_intake_form():
+    """
+    View function to handle the IT Intake Form.
+
+    GET Request:
+    Returns the html template for the Intake Form
+
+    POST Request:
+    Handles submission of Intake form. If it is validated, redirect to the IT Support page
+    """
+    form = ITIntakeForm()
+
+    # Pre-Fill the Submitter Information - Cannot be edited
+    form.submitter_name.data = current_user.name
+    form.submitter_email.data = current_user.email
+    form.submitter_phone.data = current_user.phone_number
+    form.submitter_title.data = current_user.title
+    form.submitter_division.data = current_user.division
+
+    if flask_request.method == 'GET':
+        # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+        form.designated_business_owner_name.data = current_user.name
+        form.designated_business_owner_email.data = current_user.email
+        form.designated_business_owner_phone.data = current_user.phone_number
+        form.designated_business_owner_title.data = current_user.title
+        form.designated_business_owner_division.data = current_user.division
+
+    if form.validate_on_submit():
+        email = render_email(form.data, 'email/email_it_intake.html')
+        sender = form.submitter_email.data
+        recipients = current_app.config['IT_INTAKE_EMAIL_RECIPIENTS'] + [form.submitter_email.data,
+                                                                              form.designated_business_owner_email.data]
+        msg = Message(
+            "IT Intake Form - {project_name}".format(
+                project_name=form.project_name.data
+            ),
+            sender=sender,
+            recipients=recipients,
+        )
+        msg.html = email
+        if form.supplemental_materials_one.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_one'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_one.data.filename,
+                       content_type=form.supplemental_materials_one.data.content_type, data=tmp_file.read())
+        if form.supplemental_materials_two.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_two'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_two.data.filename,
+                       content_type=form.supplemental_materials_two.data.content_type, data=tmp_file.read())
+        if form.supplemental_materials_three.data is not None:
+            tmp_file = BytesIO()
+            flask_request.files['supplemental_materials_three'].save(tmp_file)
+            tmp_file.seek(0)
+            msg.attach(filename=form.supplemental_materials_three.data.filename,
+                       content_type=form.supplemental_materials_three.data.content_type, data=tmp_file.read())
+        mail.send(msg)
+        flash("Successfully submitted intake form. Please allow 5 business days for a response.")
+        return redirect(url_for('main.it_support'))
+    else:
+        for error in form.errors.items():
+            flash(error[1][0], category="danger")
+    return render_template("it_intake.html", form=form, current_user=current_user)
+
+
 @main.route('/documents', methods=['GET'])
 def documents():
     """
@@ -684,8 +758,10 @@ def search_documents():
                                                             document_type='policies-and-procedures',
                                                             sort_by=sort_by,
                                                             search_term=search_term,
-                                                            documents_start=page_counters['policies_and_procedures']['start'],
-                                                            documents_end=page_counters['policies_and_procedures']['end'])
+                                                            documents_start=page_counters['policies_and_procedures'][
+                                                                'start'],
+                                                            documents_end=page_counters['policies_and_procedures'][
+                                                                'end'])
 
     templates_data = process_documents_search(document_type_plain_text='Templates',
                                               document_type='templates',
@@ -761,15 +837,16 @@ def upload_document():
     form = UploadForm()
     if flask_request.method == 'POST' and form.validate_on_submit():
         file = flask_request.files['file_object']
-        filename = secure_filename(file.filename) # use the secure version of the file name
+        filename = secure_filename(file.filename)  # use the secure version of the file name
         # Files are unique in both file title and file name, this will be used to check if a file already exists in the database
         # TODO: check file uniqueness using a checksum instead of just filename
-        file_exists = Documents.query.filter(or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
+        file_exists = Documents.query.filter(
+            or_(Documents.file_name == filename, Documents.file_title == form.file_title.data)).first() or None
         if file_exists:
-            if file_exists.file_name == filename: # File with the same name already exists
+            if file_exists.file_name == filename:  # File with the same name already exists
                 flash('This file has already been uploaded. Please select another file.')
                 return render_template('upload_document.html', form=form)
-            elif file_exists.file_title == form.file_title.data: # file with the same title already exists
+            elif file_exists.file_title == form.file_title.data:  # file with the same title already exists
                 flash('A file with this title has already been uploaded. Please use another title.')
                 return render_template('upload_document.html', form=form)
         elif not allowed_file(filename):
