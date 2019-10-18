@@ -287,3 +287,196 @@ hr {
     padding-right: 5px;
     color: #589fa3;
 }
+/* Twitter Feed Section */
+
+#twitter-section {
+    
+    text-align: center;
+    background-color: #f0eee9;
+    color: #0c0b41;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#twitter-section a {
+    color: #59315f;
+    font-weight: 600;
+}
+
+#tweetsRow {
+    margin: 60px auto 0 auto;
+    max-width: 1170px;
+    font-size: 22px;
+}
+
+#tweetsRow .col-md-4 {
+    padding: 0 30px;
+    overflow-wrap: break-word;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#home-view-tweets-btn {
+    background: none;
+    font-size: 20px;
+    color: #59315f;
+    border-radius: 0;
+    border-width: 2px;
+    margin-top: 40px;
+    border-color: #59315f;
+    padding: 12px 40px;
+    transition: background 0.2s ease;
+}
+
+#home-view-tweets-btn:hover {
+    background: #59315f;
+    color: #ffffff;
+}
+
+.timeago {
+    color: #6c6c6c !important;
+    font-weight: normal !important;
+    font-size: 18px !important;
+}
+
+.timePosted {
+    margin-top: 20px;
+}
+/* Twitter */
+
+#twitter {
+    /* position: absolute; */
+    bottom:0;
+    background: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-top: 10px;
+}
+
+.twitter-border {
+    background: #e0b040;
+    height: 10px;
+}
+
+#twitter-title {
+    font-size: 10px;
+    color: #59315f;
+    margin: 20px auto;
+}
+
+#tweetsRow {
+    text-align: left;
+    max-height: 500px;
+    margin-top: 0;
+    padding-bottom: 20px;
+}
+
+#tweetsRow ul {
+    list-style: none;
+    padding-left: 0;
+    height: 480px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#tweetsRow li {
+    display: table-cell;
+    padding: 20px;
+}
+
+#tweetsRow li:hover {
+    background-color: #f2f2f2;
+}
+
+p.tweet {
+    font-size: 16px;
+    margin: 5px 0;
+    padding: 0 30px;
+}
+
+p.interact, p.timePosted {
+    margin: 3px 0;
+    text-align: center;
+}
+
+.user {
+    font-size: 14px;
+    display: table;
+    width: 60%;
+    margin: auto;
+}
+
+.user a, .user div {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 3px;
+    color: #666;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.user div:hover, .interact a:hover, .tweet a:hover {
+    color: #59315f;
+}
+
+.user img:hover {
+    border-color: #59315f;
+}
+
+.user img {
+    border-radius: 50%;
+    border: 4px solid #d9d9d9;
+    overflow: hidden;
+}
+
+.tweet a {
+    text-decoration: none;
+}
+
+.timePosted a {
+    font-size: 12px;
+    color: #8e8e8e;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.interact a {
+    padding-right: 5px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.media {
+    text-align: center;
+    margin-top: 0;
+    width: 340px;
+}
+
+.media img {
+    max-width: 340px;
+    border-radius: 3px;
+}
+
+#leftArrow {
+    float: left;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#rightArrow {
+    float: right;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#leftArrow:hover, #rightArrow:hover {
+    color: #8e8e8e;
+}
