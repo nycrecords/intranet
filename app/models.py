@@ -665,7 +665,7 @@ class Documents(db.Model):
 
 class Carousel(db.Model):
     """
-    Define the Documents class with the following columns and relationships:
+    Define the Carousel class with the following columns and relationships:
 
     id -- Column: Integer, PrimaryKey
     image -- Column: String, Actual filename.
@@ -673,14 +673,21 @@ class Carousel(db.Model):
 
     __tablename__ = 'carousel'
     id = db.Column(db.Integer, primary_key=True)
-    image_name = db.Column(db.String)
+    file_name = db.Column(db.String)
+    image_title = db.Column(db.String)
+    carousel_placement = db.Column(db.Integer)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
     
     def __init__(self,
+                file_name,
                 image_name,
+                carousel_placement,                
                 post_id):
         self.image_name = image_name
         self.post_id = post_id
 
     def __repr__(self):
         return '<posts %r>' % self.id
+
+
+        

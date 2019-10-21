@@ -164,11 +164,11 @@ class EnfgForm(FlaskForm):
 
 class ChangeCarouselForm(FlaskForm):
     
-    ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
+    ##ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
 
 
     carousal_post1 = SelectField(
-        "POST ID/TITLE",
+        "Post ID/Title",
         choices=None,
         validators=[DataRequired()],
     )
@@ -176,6 +176,25 @@ class ChangeCarouselForm(FlaskForm):
         FileRequired(),
     ])
 
+    carousal_position = SelectField(
+        "Carousal Position",
+        choices = [(1,1),(2,2),(3,3),(4,4),(5,5)],
+        validators=[DataRequired()],
+    )
+
+    submit = SubmitField('Save')
+
+    def __init__(self):
+        super(ChangeCarouselForm, self).__init__()
+        cho = list()
+        all_posts = Posts.query.all()
+        for post in all_posts:
+            title_author = "{}, {}".format(post.id,post.title)
+            cho.append((post.id,title_author))
+        self.carousal_post1.choices = cho
+    
+
+'''
     carousal_post2 = SelectField(
         "POST ID/TITLE",
         choices=None,
@@ -211,22 +230,8 @@ class ChangeCarouselForm(FlaskForm):
     carousal_image5 = FileField('image', validators=[
         FileRequired(),
     ])
-    
+'''
 
-    submit = SubmitField('Save')
-
-    def __init__(self):
-        super(ChangeCarouselForm, self).__init__()
-        cho = list()
-        all_posts = Posts.query.all()
-        for post in all_posts:
-            title_author = "{}, {}".format(post.id,post.title)
-            cho.append((post.id,title_author))
-        self.carousal_post1.choices = cho
-        self.carousal_post2.choices= cho
-        self.carousal_post3.choices = cho
-        self.carousal_post4.choices = cho
-        self.carousal_post5.choices = cho
 
 class ITIntakeForm(FlaskForm):
     # Submission Information

@@ -8,6 +8,7 @@
     "FLASK_CONFIG": "heroku",
     "LOGIN_REQUIRED": "False",
     "FILE_UPLOAD_PATH": "./app/static/documents",
+    "IMAGE_UPLOAD_PATH": "./app/static/img/carousel",
     "APP_DEV_INTAKE_EMAIL_RECIPIENTS": "appdev@records.nyc.gov"
   },
   "formation": {},

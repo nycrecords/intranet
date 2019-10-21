@@ -34,8 +34,9 @@
                 {% endwith %}
                 <div class="row">
                         <div>
-                            <h3>Change Carousal 1</h3>
+                            <h3>Change Carousal</h3>
                         </div>
+                        <div class="row">&nbsp;</div>
                         <div>
                             <div class="row">
                                 <div class=form-group>
@@ -49,82 +50,19 @@
                                 </div>
                             <div class="row">&nbsp;</div>
                         </div>
-                 
-                            <div>
-                                <h3>Change Carousal 2</h3>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class=form-group>
-                                            {{ form.carousal_post2.label(class="col-md-2 control-label") }}
-                                            <div class="col-md-6">
-                                                {{ form.carousal_post2(class="form-control") }}
-                                            </div>
-                                            <div class=col-md-4>
-                                                {{ form.carousal_image2(class="form-control") }}
-                                            </div>
+                        <div>
+                        <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{form.carousal_position.label(class="col-md-2 control-label") }}
+                                    <div class=col-md-6>
+                                        {{ form.carousal_position(class="form-control") }}
                                     </div>
-                                <div class="row">&nbsp;</div>
-                            </div>
-             
-
-          
-                            <div>
-                                <h3>Change Carousal 3</h3>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class=form-group>
-                                            {{ form.carousal_post3.label(class="col-md-2 control-label") }}
-                                            <div class="col-md-6">
-                                                {{ form.carousal_post3(class="form-control") }}
-                                            </div>
-                                            <div class=col-md-4>
-                                                {{ form.carousal_image3(class="form-control") }}
-                                            </div>
-                                    </div>
-                                <div class="row">&nbsp;</div>
-                            </div>
-              
-
-            
-                            <div>
-                                <h3>Change Carousal 4</h3>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class=form-group>
-                                            {{ form.carousal_post4.label(class="col-md-2 control-label") }}
-                                            <div class="col-md-6">
-                                                {{ form.carousal_post4(class="form-control") }}
-                                            </div>
-                                            <div class=col-md-4>
-                                                {{ form.carousal_image4(class="form-control") }}
-                                            </div>
-                                    </div>
-                                <div class="row">&nbsp;</div>
-                            </div>
-                
-                            <div>
-                                <h3>Change Carousal 5</h3>
-                            </div>
-                            <div>
-                                <div class="row">
-                                    <div class=form-group>
-                                            {{ form.carousal_post5.label(class="col-md-2 control-label") }}
-                                            <div class="col-md-6">
-                                                {{ form.carousal_post5(class="form-control") }}
-                                            </div>
-                                            <div class=col-md-4>
-                                                {{ form.carousal_image5(class="form-control") }}
-                                            </div>
-                                    </div>
-                                <div class="row">&nbsp;</div>
-                            </div>
-                </div>
+                                </div>
+                        </div>
         </div>
     </div>
-
+    <div class="row">&nbsp;&nbsp;</div>
     <div class="row">
             <section>
                 {{ form.submit(class="btn btn-default") }}

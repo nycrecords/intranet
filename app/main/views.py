@@ -855,7 +855,7 @@ def upload_document():
         try:
             file_path = os.path.join(current_app.config['FILE_UPLOAD_PATH'], filename)
             file.save(file_path)
-            scan_file(file_path)
+            scan_file(file_path) 
         except VirusDetectedException:
             flash('Virus detected. Please contact IT for assistance.')
             return render_template('upload_document.html', form=form)
@@ -872,13 +872,49 @@ def upload_document():
     return render_template('upload_document.html', form=form)
 
 
-@main.route('/change_carausel', methods=['GET', 'POST'])
+@main.route('/change_carousel', methods=['GET', 'POST'])
 @login_required
 def change_carousel():
 
     form = ChangeCarouselForm()
 
-    form.carousal_post1
+    if flask_request.method == 'POST' and form.validate_on_submit():
+        file = flask_request.files['file_object']
+        filename = secure_filename(file.filename) 
+
+        # Files are unique in both file title and file name, this will be used to check if a file already exists in the database
+        
+        file_exists = Documents.query.filter(
+            or_(Carousel.image_name == filename, Carousel.file_title == form.file_title.data)).first() or None
+    
+        if file_exists:
+            if file_exists.file_name == filename:  # File with the same name already exists
+                flash('This file has already been uploaded. Please select another file.')
+                return render_template('carousel/change_carousel.html', form=form)
+            elif file_exists.file_title == form.file_title.data:  # file with the same title already exists
+                flash('A file with this title has already been uploaded. Please use another title.')
+                return render_template('carousel/change_carousel.html', form=form)
+        elif not allowed_file(filename):
+            # Files should fall under the list allowed file types
+            flash('Invalid file type.')
+            return render_template('carousel/change_carousel.html', form=form)
+
+        # Handle virus scanning
+        try:
+            file_path = os.path.join(current_app.config['IMAGE_UPLOAD_PATH'], filename)
+            file.save(file_path)
+            scan_file(file_path) 
+        except VirusDetectedException:
+            flash('Virus detected. Please contact IT for assistance.')
+            return render_template('carousel/change_carousel.html', form=form)
+        # Create Document object
+        create_document(
+                        image_name=filename,
+                        file_path=file_path)
+                        
+        flash('Carousal successfully uploaded.')
+        return redirect(url_for('main.documents'))
+
       
 
     return render_template('carousel/change_carousel.html', form = form)

@@ -25,7 +25,7 @@ class Config:
     LOGIN_REQUIRED = os.environ.get('LOGIN_REQUIRED') == "True"
     DEFAULT_PASSWORD = os.environ.get('DEFAULT_PASSWORD')
 
-    USE_SAML = os.environ.get('USE_SAML') == "True"
+    USE_SAML = os.environ.get('USE_SAML') == "True" 
     SAML_PATH = os.environ.get('SAML_PATH') or None
 
     USER_DATA = (os.environ.get('USER_DATA') or os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data',
@@ -36,9 +36,10 @@ class Config:
     POSTS_PER_PAGE = 10
 
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or '127.0.0.1'
-    MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
+    MAIL_PORT = os.environ.get('MAIL_PORT') or '25' 
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
+    IMAGE_UPLOAD_PATH = os.environ.get('IMAGE_UPLOAD_PATH') or 'vagrant/app/static/img/carousel'
     VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"
     MAX_CONTENT_LENGTH =  512 * 1024 * 1024 # 512 MB
 
