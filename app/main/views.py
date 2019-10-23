@@ -910,9 +910,10 @@ def change_carousel():
         # Create Document object
         create_document(
                         image_name=filename,
-                        file_path=file_path)
+                        file_path=file_path,
+                        carousel_position= form.carousel_position.data)
                         
-        flash('Carousal successfully uploaded.')
+        flash('Carousel successfully uploaded.')
         return redirect(url_for('main.documents'))
 
       

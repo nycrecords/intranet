@@ -167,17 +167,17 @@ class ChangeCarouselForm(FlaskForm):
     ##ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
 
 
-    carousal_post1 = SelectField(
+    carousel_post1 = SelectField(
         "Post ID/Title",
         choices=None,
         validators=[DataRequired()],
     )
-    carousal_image1 = FileField('image', validators=[
+    carousel_image1 = FileField('image', validators=[
         FileRequired(),
     ])
 
-    carousal_position = SelectField(
-        "Carousal Position",
+    carousel_position = SelectField(
+        "Carousel Position",
         choices = [(1,1),(2,2),(3,3),(4,4),(5,5)],
         validators=[DataRequired()],
     )
@@ -191,7 +191,7 @@ class ChangeCarouselForm(FlaskForm):
         for post in all_posts:
             title_author = "{}, {}".format(post.id,post.title)
             cho.append((post.id,title_author))
-        self.carousal_post1.choices = cho
+        self.carousel_post1.choices = cho
     
 
 '''
