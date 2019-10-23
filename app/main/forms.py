@@ -167,12 +167,12 @@ class ChangeCarouselForm(FlaskForm):
     ##ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
 
 
-    carousel_post1 = SelectField(
+    carousel_post = SelectField(
         "Post ID/Title",
         choices=None,
         validators=[DataRequired()],
     )
-    carousel_image1 = FileField('image', validators=[
+    carousel_image = FileField('image', validators=[
         FileRequired(),
     ])
 

@@ -884,8 +884,8 @@ def change_carousel():
 
         # Files are unique in both file title and file name, this will be used to check if a file already exists in the database
         
-        file_exists = Documents.query.filter(
-            or_(Carousel.image_name == filename, Carousel.file_title == form.file_title.data)).first() or None
+        file_exists = Carousel.query.filter(
+            or_(Carousel.image_name == filename, Carousel.file_path == form.file_path.data)).first() or None
     
         if file_exists:
             if file_exists.file_name == filename:  # File with the same name already exists
@@ -907,11 +907,13 @@ def change_carousel():
         except VirusDetectedException:
             flash('Virus detected. Please contact IT for assistance.')
             return render_template('carousel/change_carousel.html', form=form)
-        # Create Document object
-        create_document(
-                        image_name=filename,
-                        file_path=file_path,
-                        carousel_position= form.carousel_position.data)
+        # Create Carousel object
+        carousel = Carousel(image_name = filename,
+                            file_path = file_path,
+                            file_type = filename.rsplit('.', 1)[1].lower(),
+                            carousel_position = form.carousel_position.data,                
+                            post_id = form.carousel_post.data)
+        create_object(carousel)
                         
         flash('Carousel successfully uploaded.')
         return redirect(url_for('main.documents'))

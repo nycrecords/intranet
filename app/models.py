@@ -673,19 +673,23 @@ class Carousel(db.Model):
 
     __tablename__ = 'carousel'
     id = db.Column(db.Integer, primary_key=True)
-    file_name = db.Column(db.String)
-    image_title = db.Column(db.String)
+    image_name = db.Column(db.String)
+    file_path = db.Column(db.String)
+    file_type = db.column(db.String)
     carousel_position = db.Column(db.Integer)
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
-    
+     
     def __init__(self,
-                file_name,
                 image_name,
+                file_path,
+                file_type,
                 carousel_position,                
                 post_id):
         self.image_name = image_name
-        self.post_id = post_id
+        self.file_path = file_path
+        self.file_type = file_type
         self.carousel_position = carousel_position
+        self.post_id = post_id
 
     def __repr__(self):
         return '<posts %r>' % self.id
