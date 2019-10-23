@@ -1,226 +1,225 @@
-{% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}IT Support{% endblock %}
-
-{% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}"/>
-{% endblock %}
-
-{% block page_content %}
-    <div class="col-sm-12">
-        <div class="breadcrumb-section">
-            <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-ol">
-                    <li class="breadcrumb-item">
-                        <a href="{{ url_for('main.index') }}">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">IT Support</li>
-                </ol>
-            </nav>
-            <h1 class="breadcrumb-header">IT Support</h1>
-        </div>
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
-        <div class="col-sm-12 well content-area it-support-section">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">DORIS HELP DESK</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: (212) 788-8606</p>
-                                <p>Email: <a href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">CITYWIDE SERVICE DESK</h4>
-                            <div class="col-sm-4 city-wide-service-desk-icon"><span
-                                    class="glyphicon glyphicon-globe it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: (718) 403-8888</p>
-                                <p>Email: <a href="mailto:nychelp@doitt.nyc.gov">nychelp@doitt.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">TRAINING</h4>
-                            <div class="col-sm-4 training-icon"><span
-                                    class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 training-text">
-                                <p><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
-                                      target="_blank">MS Office Training</a></p>
-                                <p>
-                                    <a href="http://cityshare.nycnet/portal/site/cityshare/menuitem.c523e8a3e0abc9d4e6fd1e10aca088a0/"
-                                       rel="noopener"
-                                       target="_blank">Password Security and Social Engineering</a></p>
-                            </div>
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block title %}IT Support{% endblock %} {% block custom_css %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}" /> {% endblock %} {% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">IT Support</h1>
+    </div>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
+    </div>
+    {% endfor %}
+    <div class="col-sm-12 well content-area it-support-section">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">DORIS HELP DESK</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p>Phone: (212) 788-8606</p>
+                            <p>Email: <a href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov</a></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For DORIS related requests, contact Kenneth Chan in the Information Technology
-                            division.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For an immediate ticket and faster turnaround, users and IT staff can submit their incidents
-                            or
-                            requests to the <a href="http://cityshare.nycnet/mydesk" rel="noopener" target="_blank">CityWide
-                                Service Desk</a> using the
-                            Self Service Portal My Desk.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Get hands on tranining with MS Office as well as cybersecurity awareness resources.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">APPLICATION SUPPORT</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a></p>
-                            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">CITYWIDE SERVICE DESK</h4>
+                        <div class="col-sm-4 city-wide-service-desk-icon"><span class="glyphicon glyphicon-globe it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p>Phone: (718) 403-8888</p>
+                            <p>Email: <a href="mailto:nychelp@doitt.nyc.gov">nychelp@doitt.nyc.gov</a></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">RESOURCES</h4>
-                            <div class="col-sm-4 training-icon"><span
-                                    class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 training-text">
-                                <p><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">TRAINING</h4>
+                        <div class="col-sm-4 training-icon"><span class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 training-text">
+                            <p><a href="https://support.office.com/en-us/office-training-center" rel="noopener" target="_blank">MS Office Training</a></p>
+                            <p>
+                                <a href="http://cityshare.nycnet/portal/site/cityshare/menuitem.c523e8a3e0abc9d4e6fd1e10aca088a0/" rel="noopener" target="_blank">Password Security and Social Engineering</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For DORIS related requests, contact Kenneth Chan in the Information Technology division.
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For an immediate ticket and faster turnaround, users and IT staff can submit their incidents or requests to the <a href="http://cityshare.nycnet/mydesk" rel="noopener" target="_blank">CityWide
+                                Service Desk</a> using the Self Service Portal My Desk.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Get hands on tranining with MS Office as well as cybersecurity awareness resources.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">APPLICATION SUPPORT</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p>Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">RESOURCES</h4>
+                        <div class="col-sm-4 training-icon"><span class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 training-text">
+                            <p><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
                                     Public Wi-Fi</a></p>
-                                <p>
-                                    <a href="{{ url_for('static', filename='files/outlook_web_access_instructions.pdf') }}">Outlook
+                            <p>
+                                <a href="{{ url_for('static', filename='files/outlook_web_access_instructions.pdf') }}">Outlook
                                         Web Access</a></p>
-                                <p><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
+                            <p><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
                                     Instructions</a></p>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">FAQ</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p><a href="{{ url_for('main.faq') }}">Click here to see answers to Frequently Asked
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">FAQ</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p><a href="{{ url_for('main.faq') }}">Click here to see answers to Frequently Asked
                                     Questions</a></p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For support on internal DORIS Applications, email the Application Development Team.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Get instructions for accessing public wifi, outlook, and voicemail.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
-                            page.</p>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For support on internal DORIS Applications, email the Application Development Team.</p>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Get instructions for accessing public wifi, outlook, and voicemail.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a> page.
+                    </p>
+                </div>
+            </div>
+        </div>
 
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">TOOLS AND APPLICATIONS</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon glyphicon-wrench it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <a href="{{ url_for('main.tools_and_applications') }}"><p>Click here for access to
-                                    commonly used DORIS applications</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">App. Dev. Intake Form</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon glyphicon-tasks it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <a href="{{ url_for('main.app_dev_intake_form') }}"><p>Submit a new project request to the
-                                    Application Development team.</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">NYC Security Operations Center</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: (718) 403-6761</p>
-                                <p>Email: <a href="mailto:soc@cyber.nyc.gov">soc@cyber.nyc.gov</a></p>
-                            </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">TOOLS AND APPLICATIONS</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon glyphicon-wrench it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <a href="{{ url_for('main.tools_and_applications') }}">
+                                <p>Click here for access to commonly used DORIS applications</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For quick access to commonly used DORIS applications, check out our <a
-                                href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.</p>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">App. Dev. Intake Form</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon glyphicon-tasks it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <a href="{{ url_for('main.app_dev_intake_form') }}">
+                                <p>Submit a new project request to the Application Development team.</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Intake requests should be used to request major changes to an existing project or for
-                            resource allocation to a new project.</p>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">Events Intake Form</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon glyphicon-th-list it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <a href="{{ url_for('main.new_event_post') }}">
+                                <p>Submit a new event request to reflect activities.</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Contact the <a href="https://www1.nyc.gov/site/cyber/index.page" rel="noopener"
-                                          target="_blank">NYC Security Operations Center</a> for information about cyber
-                            security.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>For quick access to commonly used DORIS applications, check out our <a href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Intake requests should be used to request major changes to an existing project or for resource allocation to a new project.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Intake requests should be used to create new events. You can view other events created <a href="{{url_for('main.events') }}">here</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 centered">
+                <div class="it-support-option-boxes col-sm-12">
+                    <div class="row">
+                        <h4 class="it-support-title">NYC Security Operations Center</h4>
+                        <div class="col-sm-4 doris-help-desk-icon"><span class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
+                        <div class="col-sm-8 doris-help-desk-text">
+                            <p>Phone: (718) 403-6761</p>
+                            <p>Email: <a href="mailto:soc@cyber.nyc.gov">soc@cyber.nyc.gov</a></p>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="it-support-text">
+                    <p>Contact the <a href="https://www1.nyc.gov/site/cyber/index.page" rel="noopener" target="_blank">NYC Security Operations Center</a> for information about cyber security.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
