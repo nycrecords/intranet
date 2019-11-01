@@ -6,7 +6,7 @@ from app.auth import auth
 from app.auth.forms import LoginForm, PasswordForm
 from app.auth.utils import get_self_url, init_saml_auth, ldap_authentication, prepare_saml_request
 from app.models import Users
-
+from werkzeug.urls import url_parse
 
 @login_manager.user_loader
 def user_loader(user_id):
@@ -124,7 +124,10 @@ def login():
                     return redirect(url_for('main.index'))
             else:
                 login_user(user, remember=login_form.remember_me.data)
-                return redirect(url_for('main.index'))
+                next_page = request.args.get('next')
+                if not next_page or url_parse(next_page).netloc != '':
+                    next_page = url_for('main.index')
+                return redirect(next_page)
             flash("Invalid username/password combination.", category="danger")
             return render_template('login.html', login_form=login_form)
         else:

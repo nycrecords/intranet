@@ -339,7 +339,9 @@ def view_post(post_id):
     :param post_id: ID of the Post object being viewed
     :return: HTML template to view a single post
     """
-    post = Posts.query.filter_by(id=post_id).first()
+    post = Posts.query.filter_by(id=post_id,deleted=False).first()
+    if not post:
+        return render_template('404.html'), 404
     post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
     post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
     author = Users.query.filter_by(id=post.author).first()

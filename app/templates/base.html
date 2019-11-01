@@ -245,43 +245,9 @@
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/plugins/twitterFetcher_min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/plugins/twitterFetchInfo.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/twitterModule.js') }}"></script>
-
+    {% include 'base.js.html' %}
+  
     {% block custom_scripts %}
-        {% if current_user.is_authenticated %}
-            {% if config['USE_SAML'] %}
-                <script type="text/javascript">
-                    $(document).ready(
-                        $.sessionTimeout({
-                            title: "Session Timeout",
-                            message: "",
-                            countdownMessage: 'You will be automatically logged out in {timer}.',
-                            countdownSmart: true,
-                            countdownBar: true,
-                            logoutUrl: '{{ url_for('auth.saml') }}?slo',
-                            redirUrl: '{{ url_for('auth.saml') }}?slo&timeout',
-                            warnAfter: 10 * 60 * 1000,
-                            redirAfter: 5 * 60 * 1000
-                        })
-                    );
-                </script>
-            {% else %}
-                <script type="text/javascript">
-                    $(document).ready(
-                        $.sessionTimeout({
-                            title: "Session Timeout",
-                            message: "",
-                            countdownMessage: 'You will be automatically logged out in {timer}.',
-                            countdownSmart: true,
-                            countdownBar: true,
-                            logoutUrl: '{{ url_for('auth.logout') }}',
-                            redirUrl: '{{ url_for('auth.logout')}}',
-                            warnAfter: 10 * 60 * 1000,
-                            redirAfter: 15 * 60 * 1000
-                        })
-                    );
-                </script>
-            {% endif %}
-        {% endif %}
     {% endblock %}
 {% endblock %}
 
