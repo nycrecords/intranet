@@ -1,0 +1,129 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<div class=container>
+    <div class=row>
+        <div class=col-md-10>
+            <h3>Submission Information</h3>
+        </div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Date Submitted: </strong></div>
+        <div class=col-md-8>{{ today or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Submitter Name:</strong></div>
+        <div class=col-md-8>{{ form.submitter_name or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Submitter Email:</strong></div>
+        <div class=col-md-8>{{ form.submitter_email or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Submitter Phone:</strong></div>
+        <div class=col-md-8>{{ form.submitter_phone or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Submitter Title</strong></div>
+        <div class=col-md-8>{{ form.submitter_title or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Submitter Division:</strong></div>
+        <div class=col-md-8>{{ form.submitter_division or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-10>
+            <h3>Project Information</h3>
+        </div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Name:</strong></div>
+        <div class=col-md-8>{{ form.project_name or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Is this a new project or an enhancement to an existing project?</strong></div>
+        <div class=col-md-8>{{ form.enhancement_or_new_project or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>If this is an enhancement, please provide the name of the current project:</strong></div>
+        <div class=col-md-8>{{ form.current_project_name or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Background:</strong></div>
+        <div class=col-md-8>{{ form.project_background or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Rationale:</strong></div>
+        <div class=col-md-8>{{ form.rationale or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Goals:</strong></div>
+        <div class=col-md-8>{{ form.project_goals or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Priority:</strong></div>
+        <div class=col-md-8>{{ form.priority or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>When do you want this project to be delivered?</strong></div>
+        <div class=col-md-8>{{ form.completion_date or "" }}</div>
+    </div>
+    {% if form.supplemental_materials_one_desc %}
+    <div class=row>
+        <div class=col-md-4><strong>Supplemental Materials Description: </strong></div>
+        <div class=col-md-8>{{ form.supplemental_materials_one_desc }} ({{ form.supplemental_materials_one.filename }})</div>
+    </div>
+    {% endif %}
+    {% if form.supplemental_materials_two_desc %}
+    <div class=row>
+        <div class=col-md-4><strong>Supplemental Materials Description: </strong></div>
+        <div class=col-md-8>{{ form.supplemental_materials_two_desc }} ({{ form.supplemental_materials_two.filename }})</div>
+    </div>
+    {% if form.supplemental_materials_three_desc %}
+    {% endif %}
+    <div class=row>
+        <div class=col-md-4><strong>Supplemental Materials Description: </strong></div>
+        <div class=col-md-8>{{ form.supplemental_materials_three_desc }} ({{ form.supplemental_materials_three.filename }})</div>
+    </div>
+    {% endif %}
+    <div class=row>
+        <div class=col-md-10>
+            <h3>Business Owner Information</h3>
+        </div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Designated Business Owner Name:</strong></div>
+        <div class=col-md-8>{{ form.designated_business_owner_name or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Designated Business Owner Email:</strong></div>
+        <div class=col-md-8>{{ form.designated_business_owner_email or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Designated Business Owner Phone:</strong></div>
+        <div class=col-md-8>{{ form.designated_business_owner_phone or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Designated Business Owner Title</strong></div>
+        <div class=col-md-8>{{ form.designated_business_owner_title or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Designated Business Owner Division:</strong></div>
+        <div class=col-md-8>{{ form.designated_business_owner_division or "" }}</div>
+    </div>
+
+    <div class=row>
+        <div class=col-md-10>
+            <h3>Technical Information</h3>
+        </div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Does this project depend on other projects or applications?</strong></div>
+        <div class=col-md-8>{{ form.dependent_projects or "" }}</div>
+    </div>
+    <div class=row>
+        <div class=col-md-4><strong>Location</strong></div>
+        <div class=col-md-8>{{ form.location or "" }}</div>
+    </div>
+</div>
+</div>
+{% endblock %}
