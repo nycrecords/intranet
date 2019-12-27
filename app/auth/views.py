@@ -1,11 +1,12 @@
 from flask import current_app, flash, redirect, render_template, request, session, url_for, make_response
 from flask_login import current_user, login_required, login_user, logout_user
+from sqlalchemy.exc import IntegrityError
 
-from app import login_manager
+from app import login_manager, db
 from app.auth import auth
 from app.auth.forms import LoginForm, PasswordForm
 from app.auth.utils import get_self_url, init_saml_auth, ldap_authentication, prepare_saml_request
-from app.models import Users
+from app.models import Users, Roles
 from werkzeug.urls import url_parse
 
 @login_manager.user_loader
@@ -13,7 +14,7 @@ def user_loader(user_id):
     return Users.query.filter_by(id=user_id).first()
 
 
-@auth.route('/', methods=['GET', 'POST'])
+@auth.route('/saml', methods=['GET', 'POST'])
 def saml():
     """
     View function to login users using SAML
@@ -41,21 +42,45 @@ def saml():
         onelogin_saml_auth = init_saml_auth(onelogin_request)
         onelogin_saml_auth.process_response()
         errors = onelogin_saml_auth.get_errors()
-
         if len(errors) == 0:
             session['samlUserdata'] = onelogin_saml_auth.get_attributes()
             session['samlNameId'] = onelogin_saml_auth.get_nameid()
             session['samlSessionIndex'] = onelogin_saml_auth.get_session_index()
-
-            user = Users.query.filter_by(email=session['samlUserdata']['email'][0].lower()).first()
-
-            if user is None:
-                flash('Sorry, we couldn\'t find your account. Please send an email to <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a> for assistance.', category='danger')
+            email=session['samlUserdata']['mail'][0]
+            user = Users.query.filter_by(email=email.lower()).first()
+            Roles.populate()
+            if user is None and email.find("records.nyc.gov") >= 0:            
+                user = Users(
+                # id=Users.query.count() +1,
+                first_name=session['samlUserdata']['givenName'][0],
+                middle_initial= session['samlUserdata']['middleName'][0] if session['samlUserdata']['middleName'] else "" ,
+                last_name=session['samlUserdata']['sn'][0],
+                email=session['samlUserdata']['mail'][0],
+                password="Change4me",
+                role_id = Roles.query.filter_by(name="Employee").first().id, #setting it to Employee by default
+                division = "",
+                phone_number="",
+                title="",
+                room="",
+                )
+                db.session.add(user)
+                db.session.commit()
+                # try:
+                #     db.session.commit()
+                # except IntegrityError:
+                #     print("Didnt work")
+                #     db.session.rollback()
+                self_url = get_self_url(onelogin_request)
+                login_user(user)
                 return redirect((url_for('main.index')))
-
-            self_url = get_self_url(onelogin_request)
-            login_user(user)
-
+            elif user:
+                self_url = get_self_url(onelogin_request)
+                login_user(user)
+                return redirect((url_for('main.index')))
+            else:
+                flash('Sorry, we couldn\'t find your account. Please send an email to <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a> for assistance.', category='danger')
+                self_url = get_self_url(onelogin_request)
+                
             if 'RelayState' in request.form and self_url != request.form['RelayState'] and self_url in request.form[
                 'RelayState']:
                 return redirect(request.form['RelayState'])
@@ -100,7 +125,7 @@ def login():
                 session['samlNameId'] = onelogin_saml_auth.get_nameid()
                 session['samlSessionIndex'] = onelogin_saml_auth.get_session_index()
 
-                user = Users.query.filter_by(email=session['samlUserdata']['email'][0]).first()
+                user = Users.query.filter_by(email=session['samlUserdata']['mail'][0]).first()
                 authenticated = True
         else:
             email = login_form.email.data

@@ -135,11 +135,11 @@ class Users(UserMixin, db.Model):
         self.middle_initial = middle_initial
         self.last_name = last_name
         self.email = email
-        self.division = division,
-        self.phone_number = phone_number,
-        self.title = title,
-        self.room = room,
-        self.role_id = role_id,
+        self.division = division
+        self.phone_number = phone_number
+        self.title = title
+        self.room = room
+        self.role_id = role_id
         self.set_password(password, update_history=False)  # only update on password resets
 
 
