@@ -49,9 +49,8 @@ def saml():
             email=session['samlUserdata']['mail'][0]
             user = Users.query.filter_by(email=email.lower()).first()
             Roles.populate()
-            if user is None and email.find("records.nyc.gov") >= 0:            
+            if user is None and email.find("records.nyc.gov") >= 0:     
                 user = Users(
-                # id=Users.query.count() +1,
                 first_name=session['samlUserdata']['givenName'][0],
                 middle_initial= session['samlUserdata']['middleName'][0] if session['samlUserdata']['middleName'] else "" ,
                 last_name=session['samlUserdata']['sn'][0],
@@ -65,11 +64,6 @@ def saml():
                 )
                 db.session.add(user)
                 db.session.commit()
-                # try:
-                #     db.session.commit()
-                # except IntegrityError:
-                #     print("Didnt work")
-                #     db.session.rollback()
                 self_url = get_self_url(onelogin_request)
                 login_user(user)
                 return redirect((url_for('main.index')))
@@ -89,13 +83,14 @@ def saml():
         dscb = lambda: session.clear()
         url = onelogin_saml_auth.process_slo(delete_session_cb=dscb)
         errors = onelogin_saml_auth.get_errors()
-        if len(errors) == 0:
+        if len(errors) == 0: #['invalid_logout_response_signature', 'Signature validation failed. Logout Response rejected']
             if url is not None:
                 return redirect(url)
             else:
                 flash("You have successfully logged out", category='success')
                 return redirect(url_for('main.index'))
-        flash("You have successfully logged out", category='success')
+        logout_user()
+        flash("You have successfully logged out!", category='success')
         return redirect(url_for('main.index'))
 
 
