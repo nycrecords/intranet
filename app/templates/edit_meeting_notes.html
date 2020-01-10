@@ -57,7 +57,11 @@
                 {{ form.attendees.label (class="post-form-label") }}<br>
                 <select name="attendees" id="attendees" multiple="multiple">
                     {% for user in users %}
-                        <option value="{{ user }}">{{ user }}</option>
+                        {% if user in selected_users %}
+                            <option selected value="{{ user }}">{{ user }}</option>
+                        {% else %}
+                            <option value="{{ user }}">{{ user }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
@@ -70,10 +74,14 @@
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
                 <p>Select tags that best describe this post</p>
-                <select name="tags" id="tags" multiple="multiple">
-                    {% for tag in tags %}
-                        <option value="{{ tag }}">{{ tag }}</option>
-                    {% endfor %}
+                <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple">
+                        {% for tag in tags %}
+                            {% if tag in selected_tags %}
+                                <option selected value="{{ tag }}">{{ tag }}</option>
+                            {% else %}
+                                <option value="{{ tag }}">{{ tag }}</option>
+                            {% endif %}
+                        {% endfor %}
                 </select>
             </div>
 
@@ -94,6 +102,7 @@
             </div>
         </form>
     </div>
+</div>
 </div>
 {% endblock %} {% block custom_scripts %}
 <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/bootstrap-multiselect.js') }}"></script>
