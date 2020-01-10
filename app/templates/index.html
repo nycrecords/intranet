@@ -4,7 +4,7 @@
 {% block title %}Home{% endblock title %}
 
 {% block page_content %}
-<div class="col-sm-12 no-left-padding index-top-padding">
+<div class="col-sm-12 no-left-padding index-top-padding ">
     <div class="col-sm-9 no-left-padding">
         <br>
         {% include 'carousel/carousel.html' %}
@@ -211,8 +211,17 @@
                         <a href="{{ url_for('main.division_pages', division_name='operations') }}">Operations</a>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </div> 
+        </div>   
     </div>
+
+<div id="twitter" class="col-sm-12 well content-area" style="margin-left: 5px">
+    <div class="twitter-border"></div>
+    <div class="container">
+        <h1 id="twitter-title">Follow Us on Twitter</h1>
+        <div id="tweetsRow" class="col-sm-6 col-md-10 col-lg-11"> </div>
+    </div>
+    <div class="twitter-border"></div>
+</div>
 </div>
 {% endblock %}
