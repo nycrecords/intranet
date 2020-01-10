@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}IT - Application Development Intake Form{% endblock %}
+
+{% block page_content %}
+    <div class="col-sm-12">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.it_support') }}">IT Support</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">App. Dev. Intake Form</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">App. Dev. Intake Form</h1>
+        </div>
+        <div class="col-sm-12 well content-area">
+            <form class="enfg-form" method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% for category, message in messages %}
+                        <div class="row">
+                            <div class="alert alert-{{ category }} fade in">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                {{ message }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+                <div class="row">
+                    <section>
+                        <div>
+                            <h2>Submission Information</h2>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="submission_date">Date Submitted</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" id="submission_date" name="submission_date"
+                                               readonly=""
+                                               required="" type="date" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="form-group">
+                                    {{ form.submitter_name.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.submitter_name(class="form-control", readonly="") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="form-group">
+                                    {{ form.submitter_email.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.submitter_email(class="form-control", readonly="") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="form-group">
+                                    {{ form.submitter_phone.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.submitter_phone(class="form-control", readonly="") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="form-group">
+                                    {{ form.submitter_title.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.submitter_title(class="form-control", readonly="") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class="form-group">
+                                    {{ form.submitter_division.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.submitter_division(class="form-control", readonly="") }}
+                                    </div>
+                                </div>
+
+                            </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section>
+                        <div>
+                            <h2>Project Information</h2>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.project_name.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.project_name(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.enhancement_or_new_project.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.enhancement_or_new_project(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.current_project_name.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.current_project_name(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.project_background.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.project_background(class="form-control", rows=10) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.rationale.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.rationale(class="form-control", rows=10) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.project_goals.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.project_goals(class="form-control", rows=10) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.priority.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.priority(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.completion_date.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.completion_date(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.supplemental_materials_one_desc.label(class="col-md-2 control-label") }}
+                                    <div class="col-md-6">
+                                        {{ form.supplemental_materials_one_desc(class="form-control") }}
+                                    </div>
+                                    <div class=col-md-4>
+                                        {{ form.supplemental_materials_one(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.supplemental_materials_two_desc.label(class="col-md-2 control-label") }}
+                                    <div class="col-md-6">
+                                        {{ form.supplemental_materials_two_desc(class="form-control") }}
+                                    </div>
+                                    <div class=col-md-4>
+                                        {{ form.supplemental_materials_two(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.supplemental_materials_three_desc.label(class="col-md-2 control-label") }}
+                                    <div class="col-md-6">
+                                        {{ form.supplemental_materials_three_desc(class="form-control") }}
+                                    </div>
+                                    <div class=col-md-4>
+                                        {{ form.supplemental_materials_three(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section>
+                        <div>
+                            <h3>Business Owner Information</h3>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.designated_business_owner_name.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.designated_business_owner_name(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.designated_business_owner_email.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.designated_business_owner_email(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.designated_business_owner_phone.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                    {{ form.designated_business_owner_phone(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.designated_business_owner_title.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                    {{ form.designated_business_owner_title(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.designated_business_owner_division.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.designated_business_owner_division(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">
+                    <section>
+                        <div>
+                            <h2>Technical Information</h2>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class=form-group>
+                                    {{ form.dependencies.label(class="col-md-4 control-label") }}
+                                    <div class=col-md-8>
+                                        {{ form.dependencies(class="form-control") }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">&nbsp;</div>
+                            <div class="row">
+                                <div class=form-group>
+                                    <label class="col-md-4 control-label">Locations: </label>
+                                    <div class=col-md-8>
+                                        <div class=row>
+                                            <label class="control-label">
+                                                {{ form.location_manhattan }} {{ form.location_manhattan.label.text }}
+                                            </label>
+                                        </div>
+                                        <div class=row>
+                                            <label class="control-label">
+                                                {{ form.location_brooklyn }} {{ form.location_brooklyn.label.text }}
+                                            </label>
+                                        </div>
+                                        <div class=row>
+                                            <label class="control-label">
+                                                {{ form.location_queens }} {{ form.location_queens.label.text }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row">&nbsp;</div>
+                <div class="row">
+                    <section>
+                        {{ form.submit(class="btn btn-default") }}
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/it_intake.js') }}"></script>
+{% endblock %}

@@ -183,7 +183,7 @@ class Users(UserMixin, db.Model):
                 db.session.add(History(self.id, self.password))
 
             self.expiration_date = datetime.utcnow() + timedelta(days=self.DAYS_UNTIL_EXPIRATION)
-            self.password = generate_password_hash(password)
+            self.password = "Test1234"
 
             db.session.commit()
 
@@ -193,6 +193,9 @@ class Users(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    
+    def is_admin(self, id):
+        return self.role_id >= 2
 
 
     @classmethod
@@ -216,7 +219,7 @@ class Users(UserMixin, db.Model):
                     title=row['title'],
                     room=row['room'],
                     role_id=roles_dict[row['role']],
-                    password=current_app.config['DEFAULT_PASSWORD']
+                    password = "Test1234"
                 )
                 db.session.add(user)
         db.session.commit()
@@ -281,6 +284,8 @@ class Posts(db.Model):
     visible = db.Column(db.Boolean, default=True)
     deleted = db.Column(db.Boolean, default=False)
 
+    image_id = db.relationship("Carousel", backref="posts", lazy="dynamic")
+
     __mapper_args__ = {'polymorphic_on': post_type}
 
     def __init__(self,
@@ -305,6 +310,11 @@ class Posts(db.Model):
         """
         user = Users.query.filter_by(id=self.author).first()
         return user.name
+
+    @classmethod
+    def get_posts(cls):
+        all_users = cls.query.all()
+        return all_users
 
     def __repr__(self):
         return '<Posts %r>' % self.id
@@ -652,3 +662,37 @@ class Documents(db.Model):
 
     def __repr__(self):
         return '<Documents %r>' % self.id
+
+class Carousel(db.Model):
+    """
+    Define the Carousel class with the following columns and relationships:
+
+    id -- Column: Integer, PrimaryKey
+    image -- Column: String, Actual filename.
+    """
+
+    __tablename__ = 'carousel'
+    id = db.Column(db.Integer, primary_key=True)
+    image_name = db.Column(db.String)
+    file_path = db.Column(db.String)
+    file_type = db.column(db.String)
+    carousel_position = db.Column(db.Integer)
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id"))
+     
+    def __init__(self,
+                image_name,
+                file_path,
+                file_type,
+                carousel_position,                
+                post_id):
+        self.image_name = image_name
+        self.file_path = file_path
+        self.file_type = file_type
+        self.carousel_position = carousel_position
+        self.post_id = post_id
+
+    def __repr__(self):
+        return '<posts %r>' % self.id
+
+
+        

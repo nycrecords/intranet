@@ -7,10 +7,12 @@ from wtforms.fields import (
     BooleanField,
     SelectMultipleField
 )
-from flask_wtf.file import FileField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.fields.html5 import DateField, EmailField, TelField
 from wtforms.validators import DataRequired, Optional
-
+from app.models import Users, Posts, EventPosts, Documents, Carousel
+from app import db
+from sqlalchemy import *
 from app.constants import choices
 from app.constants.intake import (
     PROJECT_TYPE,
@@ -160,6 +162,154 @@ class EnfgForm(FlaskForm):
     signature = BooleanField('Print without signature')
     submit = SubmitField('Print')
 
+class ChangeCarouselForm(FlaskForm):
+    
+    ##ch = [(1,'id1'),(2,'id2'),(3,'id3'),(4,'id4'),(5,'id5')]
+
+
+    carousel_post = SelectField(
+        "Post ID/Title",
+        choices=None,
+        validators=[DataRequired()],
+    )
+    carousel_image = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousel_position = SelectField(
+        "Carousel Position",
+        choices = [(1,1),(2,2),(3,3),(4,4),(5,5)],
+        validators=[DataRequired()],
+    )
+
+    submit = SubmitField('Save')
+
+    def __init__(self):
+        super(ChangeCarouselForm, self).__init__()
+        cho = list()
+        all_posts = Posts.query.all()
+        for post in all_posts:
+            title_author = "{}, {}".format(post.id,post.title)
+            cho.append((post.id,title_author))
+        self.carousel_post1.choices = cho
+    
+
+'''
+    carousal_post2 = SelectField(
+        "POST ID/TITLE",
+        choices=None,
+        validators=[DataRequired()],
+    )
+    carousal_image2 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post3 = SelectField(
+        "POST ID/TITLE",
+        choices=None,
+        validators=[DataRequired()],
+    )
+    carousal_image3 = FileField('image', validators=[
+        FileRequired(),
+    ])
+
+    carousal_post4 = SelectField(
+        "POST ID/TITLE",
+        choices=None,
+        validators=[DataRequired()],
+    )
+    carousal_image4 = FileField('image', validators=[
+        FileRequired(),
+    ])
+    
+    carousal_post5 = SelectField(
+        "POST ID/TITLE",
+        choices=None,
+        validators=[DataRequired()],
+    )
+    carousal_image5 = FileField('image', validators=[
+        FileRequired(),
+    ])
+'''
+
+
+class ITIntakeForm(FlaskForm):
+    # Submission Information
+    submitter_name = StringField("Submitter Name:", validators=[DataRequired()])
+    submitter_email = EmailField("Submitter Email:", validators=[DataRequired()])
+    submitter_phone = TelField("Submitter Phone:", validators=[DataRequired()])
+    submitter_title = StringField("Submitter Title", validators=[DataRequired()])
+    submitter_division = StringField(
+        "Submitter Division:", validators=[DataRequired()]
+    )
+
+    # Project Information
+    project_name = StringField("Name:", validators=[DataRequired()])
+    enhancement_or_new_project = SelectField(
+        "Is this a new project or an enhancement to an existing project?",
+        choices=PROJECT_TYPE,
+        validators=[DataRequired()],
+    )
+    current_project_name = StringField(
+        "If this is an enhancement, please provide the name of the current project:",
+        validators=[
+            RequiredIf(
+                enhancement_or_new_project=ENHANCEMENT,
+                message="You must provide the current project name if this is an enhancement",
+            )
+        ],
+    )
+    project_background = TextAreaField("Background:", validators=[DataRequired()])
+    rationale = TextAreaField("Rationale:", validators=[DataRequired()])
+    project_goals = TextAreaField("Goals:", validators=[DataRequired()])
+    priority = SelectField("Priority:", choices=PRIORITY, validators=[DataRequired()])
+    completion_date = DateField(
+        "When do you want this project to be delivered?", validators=[DataRequired()]
+    )
+    supplemental_materials_one = FileField("Supplemental Materials:")
+    supplemental_materials_one_desc = StringField(
+        "Supplemental Materials Description: ",
+        validators=[RequiredIf(supplemental_materials_one != "None")],
+    )
+    supplemental_materials_two = FileField("Supplemental Materials")
+    supplemental_materials_two_desc = StringField(
+        "Supplemental Materials Description: ",
+        validators=[RequiredIf(supplemental_materials_two != "None")],
+    )
+    supplemental_materials_three = FileField("Supplemental Materials:")
+    supplemental_materials_three_desc = StringField(
+        "Supplemental Materials Description: ",
+        validators=[RequiredIf(supplemental_materials_three != "None")],
+    )
+    designated_business_owner_name = StringField(
+        "Designated Business Owner Name:", validators=[DataRequired()]
+    )
+    designated_business_owner_email = EmailField(
+        "Designated Business Owner Email:", validators=[DataRequired()]
+    )
+    designated_business_owner_phone = TelField(
+        "Designated Business Owner Phone:", validators=[DataRequired()]
+    )
+    designated_business_owner_title = StringField(
+        "Designated Business Owner Title", validators=[DataRequired()]
+    )
+    designated_business_owner_division = SelectField(
+        "Designated Business Owner Division:",
+        choices=choices.DIVISIONS,
+        validators=[DataRequired()],
+    )
+
+    # Technical Information
+    dependencies = TextAreaField("Does this project depend on other projects or applications? If so, please elaborate")
+    location_manhattan = BooleanField("31 Chambers")
+    location_queens = BooleanField("Queens Warehouse")
+    location_brooklyn = BooleanField("Bush Terminal Warehouse")
+
+    # Submit
+    submit = SubmitField("Submit Intake Request")
+
+
+
 
 class AppDevIntakeForm(FlaskForm):
     # Submission Information
@@ -254,3 +404,4 @@ class UploadForm(FlaskForm):
     division = SelectField('Division', choices=choices.DIVISIONS)
     file_object = FileField('File')
     submit = SubmitField('Upload')
+
