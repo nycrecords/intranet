@@ -348,7 +348,8 @@ def view_post(post_id):
     post = Posts.query.filter_by(id=post_id,deleted=False).first()
     if not post:
         return render_template('404.html'), 404
-    post_timestamp = post.date_created. replace(tzinfo=pytz.utc)
+
+    post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
     post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
     author = Users.query.filter_by(id=post.author).first()
     return render_template('view_post.html', post=post, post_timestamp=post_timestamp, author=author)

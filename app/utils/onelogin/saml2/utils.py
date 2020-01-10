@@ -758,7 +758,7 @@ class OneLogin_Saml2_Utils(object):
             if elem_id:
                 elem_id = '#' + elem_id
         else:
-            generated_id = generated_id = OneLogin_Saml2_Utils.generate_unique_id()
+            generated_id = OneLogin_Saml2_Utils.generate_unique_id()
             elem_id = '#' + generated_id
             elem_to_sign.attrib['ID'] = generated_id
 
