@@ -6,7 +6,9 @@ app/static/img/employee_photos/
 !app/static/img/employee_photos/.gitkeep
 app/static/documents/
 !app/static/documents/.gitkeep
+saml/*.json
 app/static/img/carousel/
+app/static/files/orientation.mp4
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Orientation{% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/orientation.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="col-sm-12">
+    <div class="breadcrumb-section">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.employee_resources') }}">Employee Resources</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Orientation</li>
+            </ol>
+        </nav>
+        <h1 class="breadcrumb-header">Orientation</h1>
+    </div>
+    <div class="col-sm-12 well content-area orientation-section">
+        <div class="orientation-video" id="video-anchor">
+            <video id="orientation-video" width="800" height="500" controls>
+                <source src="{{ url_for('static', filename='files/orientation.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <br>
+        <div class="timestamps">
+            <h2>Timestamps</h2>
+            <ol>
+                <li><a href="#video-anchor" onclick="setCurTime(0,0)">Cover - 0:00</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(0,13)">Agency Mission - 0:13</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(1,12)">EEO Policy - 1:12</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(1,21)">Municipal Records Management Division - 1:21</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(2,6)">Municipal Archives - 2:06</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(3,13)">Municipal Library - 3:13</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(3,45)">Information Technology - 3:45</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(4,25)">Administration - 4:25</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(4,34)">Employee Status - 4:34</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(5,21)">Employee Status (Competitive/Permanent) - 5:21</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(6,20)">Employee Status (Competitive/Provisional) - 6:20</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(7,40)">Employee Status (Non-Competitive) - 7:40</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(8,19)">Employee Status (Exempt) - 8:19</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(8,54)">Employee Status (Misc) - 8:54</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(12,0)">NYCAPS Employee Self-Service - 12:00</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(12,9)">Employee Self-Service (Cont.) - 12:09</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(15,7)">CityTime - 15:07</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(15,26)">Time & Leave - 15:26</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(19,3)">Time & Leave (Part-Timers) - 19:03</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(21,12)">Payroll - 21:12</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(22,26)">Payroll (Cont.) - 22:26</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(22,34)">Payroll (Cont.) - 22:34</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(25,9)">Payroll (Cont.) - 25:09</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(25,25)">Employee Benefits (NYCAPS Central) - 25:25</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(25,44)">Employee Benefits (OLR) - 25:44</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(25,57)">Employee Benefits (Health Benefits) - 25:57</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(26,23)">Employee Benefits (Health Benefits/Dependents) - 26:23</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(26,50)">Employee Benefits (Health Benefits/Dependents Cont.) - 26:50</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(27,52)">Employee Benefits (Health Benefits/Misc) - 27:52</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(28,38)">Employee Benefits (Health Benefits/Coverage) - 28:38</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(29,16)">Employee Benefits (NYCERS) - 29:16</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(30,31)">Employee Benefits (Pension) - 30:31</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(31,16)">Employee Benefits (Union Membership) - 31:16</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(31,47)">Tasks & Standards - 31:47</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(32,22)">Tasks & Standards (Cont.) - 32:22</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(33,44)">Evaluations - 33:44</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(34,33)">Agency & City Programs (QWL) - 34:33</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(35,54)">Agency & City Programs (Blood Program) - 35:54</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(36,59)">Agency & City Programs (EAP) - 36:59</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(38,10)">Resources - 38:10</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(38,57)">Resources (Cont.) - 38:57</a></li>
+                <li><a href="#video-anchor" onclick="setCurTime(39,6)">Resources (Cont.) - 39:06</a></li>
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/orientation.js') }}"></script>
+{% endblock %}

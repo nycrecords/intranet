@@ -339,7 +339,9 @@ def view_post(post_id):
     :param post_id: ID of the Post object being viewed
     :return: HTML template to view a single post
     """
-    post = Posts.query.filter_by(id=post_id).first()
+    post = Posts.query.filter_by(id=post_id,deleted=False).first()
+    if not post:
+        return render_template('404.html'), 404
     post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
     post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
     author = Users.query.filter_by(id=post.author).first()
@@ -501,6 +503,15 @@ def employee_benefits():
     return render_template('employee_benefits.html')
 
 
+@main.route('/employee-resources/orientation', methods=['GET'])
+def orientation():
+    """
+    View function to handle the orientation page
+    :return: HTML template for the orientation page
+    """
+    return render_template('orientation.html')
+
+
 @main.route('/tools-and-applications', methods=['GET'])
 def tools_and_applications():
     """
@@ -580,12 +591,13 @@ def app_dev_intake_form():
     form.submitter_title.data = current_user.title
     form.submitter_division.data = current_user.division
 
-    # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
-    form.designated_business_owner_name.data = current_user.name
-    form.designated_business_owner_email.data = current_user.email
-    form.designated_business_owner_phone.data = current_user.phone_number
-    form.designated_business_owner_title.data = current_user.title
-    form.designated_business_owner_division.data = current_user.division
+    if flask_request.method == 'GET':
+        # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+        form.designated_business_owner_name.data = current_user.name
+        form.designated_business_owner_email.data = current_user.email
+        form.designated_business_owner_phone.data = current_user.phone_number
+        form.designated_business_owner_title.data = current_user.title
+        form.designated_business_owner_division.data = current_user.division
 
     if form.validate_on_submit():
         email = render_email(form.data, 'email/email_app_dev_intake.html')

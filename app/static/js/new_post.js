@@ -88,7 +88,6 @@ $(function () {
         plugins: "paste lists",
         toolbar: ['undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent']
     });
-
     // set parsley for required fields
     var requiredFields = ['title',
                           'meeting-type',
