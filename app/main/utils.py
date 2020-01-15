@@ -6,6 +6,7 @@ from app import db
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
+import datetime
 
 
 class VirusDetectedException(Exception):
@@ -39,6 +40,37 @@ def create_object(obj):
         db.session.rollback()
         current_app.logger.exception("Failed to CREATE {}".format(obj))
         return None
+
+def update_object(obj):
+    """
+    Update a database record and its elasticsearch counterpart.
+
+    If 'obj' is a Requests object, nothing will be added to
+    the es index since a UserRequests record is created after
+    its associated request and the es doc requires a
+    requester id. 'es_create' is called explicitly for a
+    Requests object in app.request.utils.
+
+    :param obj: object (instance of sqlalchemy model) to create
+
+    :return: string representation of created object
+        or None if creation failed
+    """
+    try:
+        db.session.add(obj)
+        db.session.commit()
+    except SQLAlchemyError:
+        db.session.rollback()
+        current_app.logger.exception("Failed to UPDATE {}".format(obj))
+        return None
+
+def delete_object(obj,
+                    visible=True,
+                    deleted=False):
+    obj.visible = visible
+    obj.deleted = deleted
+    update_object(obj)
+    return obj.id
 
 
 def create_meeting_notes(meeting_date,
@@ -89,6 +121,48 @@ def create_meeting_notes(meeting_date,
 
     return meeting_notes.id
 
+def update_meeting_notes(obj,  
+                            title,
+                            meeting_type,
+                            division,
+                            meeting_date,
+                            meeting_location,
+                            meeting_leader,
+                            meeting_note_taker,
+                            start_time,
+                            end_time,
+                            attendees,
+                            content,
+                            tags,
+                            next_meeting_date,
+                            next_meeting_leader,
+                            next_meeting_note_taker):
+
+    """
+    Util function for updating a Events object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+
+    obj.title = title
+    obj.meeting_type = meeting_type
+    obj.division = division
+    obj.meeting_date = meeting_date
+    obj.meeting_location = meeting_location
+    obj.meeting_leader = meeting_leader
+    obj.meeting_note_taker = meeting_note_taker
+    obj.start_time = start_time
+    obj.end_time = end_time
+    obj.attendees = attendees
+    obj.content = content
+    obj.tags = tags
+    obj.next_meeting_date = next_meeting_date
+    obj.next_meeting_leader = next_meeting_leader
+    obj.next_meeting_note_taker = next_meeting_note_taker
+    obj.date_modified = datetime.datetime.now()
+    update_object(obj)
+    return obj.id
+
+
 
 def create_news(author,
                 title,
@@ -114,6 +188,17 @@ def create_news(author,
 
     return news.id
 
+def update_news(obj,title,content,tags):
+    """
+    Util function for updating a News object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+    obj.title = title
+    obj.content = content
+    obj.date_modified = datetime.datetime.now()
+    obj.tags = tags
+    update_object(obj)
+    return obj.id
 
 def create_event_post(event_date,
                       event_location,
@@ -150,6 +235,37 @@ def create_event_post(event_date,
     create_object(event)
 
     return event_post.id
+
+
+def update_event_post(obj, 
+                        event_date, 
+                        event_location, 
+                        event_leader, 
+                        start_time, 
+                        end_time, 
+                        title, 
+                        sponsor, 
+                        content, 
+                        tags):
+
+    """
+    Util function for updating a Events object. Function will take parameters passed in from the form
+    and update a News along with the event object.
+    """
+                        
+    obj.event_date = event_date
+    obj.event_location = event_location 
+    obj.event_leader = event_leader
+    obj.start_time = start_time
+    obj.end_time = end_time
+    obj.title = title
+    obj.sponsor = sponsor
+    obj.content = content
+    obj.date_modified = datetime.datetime.now()
+    obj.tags = tags
+    update_object(obj)
+    return obj.id
+
 
 
 def get_users_by_division(division):
