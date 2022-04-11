@@ -53,6 +53,7 @@
                 </button>
                 <button class="tablinks" value="templates" onclick="openTab(event, 'templates')" id="{{ 'default-open' if default_open == 'templates' }}">Templates</button>
                 <button class="tablinks" value="training_materials" onclick="openTab(event, 'training-materials')" id="{{ 'default-open' if default_open == 'training_materials' }}">Training Materials</button>
+                <button class="tablinks" value="covid_19_information" onclick="openTab(event, 'covid-19-information')" id="{{ 'default-open' if default_open == 'covid_19_information' }}">COVID-19 Information</button>
             </div>
         </div>
         <div id="instructions" class="tabcontent">
@@ -205,6 +206,45 @@
             <div class="col-sm-6 text-center" id="training-materials-page-info"></div>
             <div class="col-sm-3 text-right">
                 <button type="button" id="training-materials-next" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="covid-19-information" class="tabcontent">
+            <br>
+            <table id="covid-19-information-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in covid_19_information %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="covid-19-information-pagination" class="row pagination-row" hidden>
+            <div class="col-sm-3">
+                <button type="button" id="covid-19-information-prev" class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="covid-19-information-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="covid-19-information-next" class="btn btn-default">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>

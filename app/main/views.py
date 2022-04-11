@@ -380,18 +380,18 @@ def staff_directory():
     """
     form = StaffDirectorySearchForm()
 
-    if form.search.data is "":
-        users = Users.query.order_by(Users.last_name)
+    if form.search.data == "":
+        users = Users.query.filter(Users.is_active==True).order_by(Users.last_name)
     elif form.filters.data == 'First Name':
-        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Division':
-        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Title':
-        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'), Users.is_active==True)
     else:  # on initial page load return all users
-        users = Users.query.order_by(Users.last_name)
+        users = Users.query.filter(Users.is_active==True).order_by(Users.last_name)
 
     return render_template('staff_directory.html', users=users, form=form)
 
@@ -700,12 +700,19 @@ def search_documents():
                                                        search_term=search_term,
                                                        documents_start=page_counters['training_materials']['start'],
                                                        documents_end=page_counters['training_materials']['end'])
+    covid_19_information_data = process_documents_search(document_type_plain_text='COVID-19 Information',
+                                                         document_type='covid-19-information',
+                                                         sort_by=sort_by,
+                                                         search_term=search_term,
+                                                         documents_start=page_counters['covid_19_information']['start'],
+                                                         documents_end=page_counters['covid_19_information']['end'])
     # Create a dictionary with data for each document type to be passed back to the frontend.
     data = {
         'instructions_data': instructions_data,
         'policies_and_procedures_data': policies_and_procedures_data,
         'templates_data': templates_data,
-        'training_materials_data': training_materials_data
+        'training_materials_data': training_materials_data,
+        'covid_19_information_data': covid_19_information_data
     }
 
     return jsonify(data)

@@ -16,6 +16,10 @@ var page_counters = {
     'training_materials': {
         'start': 0,
         'end': increment
+    },
+    'covid_19_information': {
+        'start': 0,
+        'end': increment
     }
 };
 
@@ -185,6 +189,7 @@ $(function () {
     generatePaginationButtonHandlers('policies_and_procedures', 'policies-and-procedures', 'Policies and Procedures');
     generatePaginationButtonHandlers('templates', 'templates', 'Templates');
     generatePaginationButtonHandlers('training_materials', 'training-materials', 'Training Materials');
+    generatePaginationButtonHandlers('covid_19_information', 'covid-19-information', 'COVID-19 Information');
 
     // AJAX call for initial page load
     $.ajax({
@@ -202,6 +207,7 @@ $(function () {
             displayResults(data['policies_and_procedures_data']);
             displayResults(data['templates_data']);
             displayResults(data['training_materials_data']);
+            displayResults(data['covid_19_information_data']);
         }
     });
 
@@ -224,6 +230,10 @@ $(function () {
             'training_materials': {
                 'start': 0,
                 'end': increment
+            },
+            'covid_19_information': {
+                'start': 0,
+                'end': increment
             }
         };
 
@@ -242,6 +252,7 @@ $(function () {
                 displayResults(data['policies_and_procedures_data']);
                 displayResults(data['templates_data']);
                 displayResults(data['training_materials_data']);
+                displayResults(data['covid_19_information_data']);
             }
         });
     });
@@ -267,6 +278,10 @@ $(function () {
             'training_materials': {
                 'start': 0,
                 'end': increment
+            },
+            'covid_19_information': {
+                'start': 0,
+                'end': increment
             }
         };
 
@@ -284,6 +299,7 @@ $(function () {
                 displayResults(data['policies_and_procedures_data']);
                 displayResults(data['templates_data']);
                 displayResults(data['training_materials_data']);
+                displayResults(data['covid_19_information_data']);
 
                 // Display search term
                 if (search_term !== '') {

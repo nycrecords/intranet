@@ -8,7 +8,7 @@ from wtforms.fields import (
     SelectMultipleField
 )
 from flask_wtf.file import FileField
-from wtforms.fields.html5 import DateField, EmailField, TelField
+from wtforms.fields import DateField, EmailField, TelField
 from wtforms.validators import DataRequired, Optional
 
 from app.constants import choices

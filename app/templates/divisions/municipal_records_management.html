@@ -38,17 +38,6 @@
             <li>We work directly with agencies to develop and implement project plans to improve records management practices.</li>
             <li>We coordinate the transfer, storage, retrieval, and disposal of hard copy records between DORIS and municipal agencies.</li>
         </ul>
-        <p>
-            <br>
-            Staff:
-        <ul>
-            {% for user in users %}
-            <li><a href="mailto:{{ user.email }}">{{ user.name }}</a>, {{ user.title}}</li>
-            {% endfor %}
-        </ul>
-        <br>
-        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
-        </p>
     </div>
 </div>
 {% endblock %}

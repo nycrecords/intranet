@@ -44,7 +44,7 @@ def upgrade():
     sa.Column('uploader_id', sa.Integer(), nullable=True),
     sa.Column('file_title', sa.String(), nullable=True),
     sa.Column('file_name', sa.String(), nullable=True),
-    sa.Column('document_type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', name='document_type'), nullable=True),
+    sa.Column('document_type', sa.Enum('Instructions', 'Policies and Procedures', 'Templates', 'Training Materials', 'COVID-19 Information', name='document_type'), nullable=True),
     sa.Column('file_type', sa.String(), nullable=True),
     sa.Column('file_path', sa.String(), nullable=True),
     sa.Column('division', sa.Enum('Administration & Human Resources', 'Executive', 'External Affairs', 'Grants Unit', 'Information Technology', 'Legal', 'Municipal Archives', 'Municipal Library', 'Municipal Records Management', 'Operations', name='divisions'), nullable=True),
