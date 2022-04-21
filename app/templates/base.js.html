@@ -13,7 +13,8 @@
                         redirUrl: '{{ url_for('auth.saml') }}?slo&timeout',
                         warnAfter: 5 * 60 * 1000,
                         redirAfter: 10 * 60 * 1000
-                    });
+                    })
+              );
         {% else %}
              $(document).ready(
                     $.sessionTimeout({
