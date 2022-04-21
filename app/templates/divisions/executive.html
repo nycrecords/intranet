@@ -35,15 +35,6 @@
             the agency, writing grants, ensuring smooth daily operations and conditions, developing and implementing
             policy and administering resources for the Municipal Archives, Library and Records Management
             divisions.
-            <br><br>
-            Staff:
-        <ul>
-            {% for user in users %}
-            <li><a href="mailto:{{ user.email }}">{{ user.name }}</a>, {{ user.title}}</li>
-            {% endfor %}
-        </ul>
-        <br>
-        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>

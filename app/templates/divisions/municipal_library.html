@@ -32,15 +32,6 @@
             will be digitizing the collection to expand our user base. Also, of interest to DORIS employees, we maintain
             a collection of civil service examinations and study guides for various job titles. Although the exams are
             only current through the 1980’s, they may be of use and study guides might also be available.
-            <br><br>
-            Staff:
-        <ul>
-            {% for user in users %}
-            <li><a href="mailto:{{ user.email }}">{{ user.name }}</a>, {{ user.title}}</li>
-            {% endfor %}
-        </ul>
-        <br>
-        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>

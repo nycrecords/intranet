@@ -98,6 +98,7 @@ class Users(UserMixin, db.Model):
     title -- Column: String(64)
     phone_number -- Column: String(25)
     room -- Column: String()
+    is_active -- Column: Boolean
     role_id -- Column: Integer, foreign key to Roles table.
     """
     __tablename__ = 'users'
@@ -113,6 +114,7 @@ class Users(UserMixin, db.Model):
     title = db.Column(db.String(64))
     phone_number = db.Column(db.String(25))
     room = db.Column(db.String)
+    is_active = db.Column(db.Boolean, default=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
 
     history = db.relationship("History", backref="user", lazy="dynamic")
@@ -592,6 +594,7 @@ class Documents(db.Model):
                                       'Policies and Procedures',
                                       'Templates',
                                       'Training Materials',
+                                      'COVID-19 Information',
                                       name='document_type'))
     file_type = db.Column(db.String)
     file_path = db.Column(db.String)
