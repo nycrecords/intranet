@@ -9,7 +9,7 @@
     {% for document in documents %}
     {% if document.deleted == False %}
     <tr>
-        <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+        <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
             document.file_title }}</a>
             <p class="file-name">({{ document.file_name }})</p></td>
         <td>{{ document.division }}</td>

@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts, Documents
 from . import main
@@ -802,3 +802,11 @@ def upload_document():
         flash('Document successfully uploaded.')
         return redirect(url_for('main.documents'))
     return render_template('upload_document.html', form=form)
+
+
+@main.route('/return-file/<string:file_name>', methods=['GET', 'POST'])
+def return_file(file_name):
+    try:
+        return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
+    except Exception as e:
+        return str(e)
