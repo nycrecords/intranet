@@ -1,5 +1,6 @@
 import subprocess
 import os
+import pytz
 from flask import current_app, render_template
 from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Documents
 from app import db
@@ -369,3 +370,12 @@ def process_posts_search(post_type,
     }
 
     return data
+
+
+def local_timestamp(utc_timestamp):
+    """
+    Property to get the last_modified timestamp in EST
+    """
+    timestamp = utc_timestamp.replace(tzinfo=pytz.utc)
+    timestamp = timestamp.astimezone(pytz.timezone("America/New_York"))
+    return timestamp

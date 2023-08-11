@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %} Monitor {% endblock %}
+
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/monitor.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+    <div class="col-sm-12">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Website Monitor</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">Website Monitor</h1>
+        </div>
+        <div class="col-sm-12 well content-area">
+            <table class="table table-hover" id="monitor-table">
+                <thead>
+                <tr>
+                    <th>Website</th>
+                    <th>Time Stamp</th>
+                    <th>Time Stamp 2</th>
+                    <th>Error Code</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for n in range(5) %}
+
+                    <tr class="website justify-content-start" id="website-{{ n }}" data-id="{{ n }}">
+                        <td class="col-md-3" style="padding:0">
+                            <div class="symbol-website-container">
+                                <img id="website-{{ n }}-check" class="response check"
+                                     src="{{ url_for('static', filename='img/correct.png') }}" alt="" hidden>
+
+
+                                <img id="website-{{ n }}-x" class="response x"
+                                     src="{{ url_for('static', filename='img/remove.png') }}" alt="" hidden>
+
+                                <h3 class = "website-name">Website {{ n }}</h3>
+                            </div>
+                        </td>
+
+                        <td>
+                            <p id="website-{{ n }}-time" class="time" hidden>{{ s1 }} </p>
+                        </td>
+
+                         <td>
+                             <p id="website-{{ n }}-time-2" class="time-2" hidden>{{ s2 }} </p>
+                        </td>
+
+                        <td>
+                            <p> whatever error </p>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% for n in range(5) %}
+                <div class="modal fade" id="monitor-modal-{{ n }}" tabindex="-1" role="dialog"
+                     aria-labelledby="modalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modalLabel">Modal Title {{ n }}</h4>
+                            </div>
+                            <div class="modal-body" id="modalBody">
+                                Modal Content {{ n }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/monitor.js') }}"></script>
+{% endblock %}

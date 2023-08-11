@@ -14,7 +14,8 @@ from app.main.utils import (create_meeting_notes,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
-                            render_email)
+                            render_email,
+                            local_timestamp)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -25,6 +26,7 @@ from werkzeug.utils import secure_filename
 import os
 import json
 from app import mail
+import random
 
 
 @main.route('/', methods=['GET'])
@@ -810,3 +812,53 @@ def return_file(file_name):
         return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
     except Exception as e:
         return str(e)
+
+
+@main.route('/monitor', methods=['GET'])
+def monitor():
+    """
+    View function to handle the Monitor page
+    :return: HTML template for the Strategic Planning page
+    """
+
+    now = datetime.now()
+    s1 = now.strftime("%m/%d/%Y, %H:%M:%S")
+
+    s2 = now.strftime("%d/%m/%Y, %H:%M:%S")
+
+    return render_template('monitor.html', s1=s1, s2=s2)
+
+
+@main.route('/Test', methods=['GET', 'POST'])
+def test():
+    num = random.randrange(1, 10)
+    # print(num)
+    # print(request.form['field'])
+    data = {
+        "status-message": "",
+        "time-stamp": "",
+        "curl-output": ""
+    }
+
+    now = datetime.now()
+    s1 = now.strftime("%m/%d/%Y, %H:%M:%S")
+
+    s2 = now.strftime("%d/%m/%Y, %H:%M:%S")
+
+    if num % 2 == 0:
+        print("The random number", random, "is even.")
+        data["status-message"] = "success"
+        data["time-stamp"] = s1
+        data["time-stamp-2"] = s2
+
+        return data, 200
+    elif num % 2 != 0:
+        print("The random number", random, "is odd.")
+        data["status-message"] = "failed"
+        data["time-stamp"] = s1
+        data["time-stamp-2"] = s2
+        return data, 404
+    return data, 200
+
+
+

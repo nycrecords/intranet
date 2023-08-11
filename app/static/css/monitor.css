@@ -1,0 +1,27 @@
+.response {
+    height: auto;
+    width: 10%;
+    margin-top: 20px;
+    padding-left: 20px;
+    flex-basis: 40%;
+}
+
+img {
+    margin-bottom: 20px;
+    max-width: 20%
+}
+
+.website-name {
+    font-size: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.timeStamp {
+    margin-top: 20px;
+}
+
+.symbol-website-container {
+    display: flex;
+    align-items: center;
+}
