@@ -845,18 +845,26 @@ def test():
 
     s2 = now.strftime("%d/%m/%Y, %H:%M:%S")
 
+    status_code_success = 200
+    status_code_error = 404
+
     if num % 2 == 0:
         print("The random number", random, "is even.")
         data["status-message"] = "success"
         data["time-stamp"] = s1
         data["time-stamp-2"] = s2
-
+        data["status-code-success"] = status_code_success
         return data, 200
+
     elif num % 2 != 0:
         print("The random number", random, "is odd.")
         data["status-message"] = "failed"
         data["time-stamp"] = s1
         data["time-stamp-2"] = s2
+        data["status-code-error"] = status_code_error
+
+        print(data)
+
         return data, 404
     return data, 200
 

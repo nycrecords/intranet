@@ -9,6 +9,7 @@ setInterval(function () {
             url: '/Test',
             type: 'POST',
             success: function (data) {
+                console.log(data);
 
                 // Color the bars on the table.
                 el.removeClass("danger")
@@ -28,8 +29,12 @@ setInterval(function () {
                 $('#' + timeId2).html(data["time-stamp-2"]);
                 $('#' + timeId2).show(data["time-stamp-2"]);
 
+                let websiteStatusCode = el.find('.status').attr('id');
+                $('#' + websiteStatusCode).html(data["status-code-success"]);
+                // $('#' + websiteStatusCode).show(data["status-code-success"]);
             },
             error: function (data) {
+                console.log(data);
 
                 el.removeClass("success")
                 el.addClass("danger")
@@ -50,6 +55,10 @@ setInterval(function () {
                 let timeId2 = el.find('.time-2').attr('id');
                 $('#' + timeId2).html(data["time-stamp-2"]);
                 $('#' + timeId2).show(data["time-stamp-2"]);
+
+                let websiteStatusCode = el.find('.status').attr('id');
+                $('#' + websiteStatusCode).html(data["responseJSON"]["status-code-error"]);
+                // $('#' + websiteStatusCode).show(data["responseJSON"]["status-code-error"]);
 
             }
         });
