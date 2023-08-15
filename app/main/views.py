@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts, Documents
+from app.models import Users, Posts, EventPosts, Documents, Monitor
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
 from app.main.utils import (create_meeting_notes,
@@ -14,7 +14,8 @@ from app.main.utils import (create_meeting_notes,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
-                            render_email)
+                            render_email,
+                            ping_website)
 from datetime import datetime
 from io import BytesIO
 import pytz
@@ -810,3 +811,32 @@ def return_file(file_name):
         return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
     except Exception as e:
         return str(e)
+
+
+@main.route('/monitor', methods=['GET', 'POST'])
+#@login_required
+def monitor():
+    """
+    AJAX endpoint and VIEW function to service requests to check if a list of websites are alive or not. Checks if the
+    websites listed are still alive and updates the database records accordingly. If GET, then return webpage.
+    :return JSON response with fields describing if the requested websites are still alive or not and the latest updated
+            status.
+    """
+    if flask_request.method == 'POST':
+
+        # For each URL requested, find out if the website is still working and update the server.
+        url = flask_request.form['url']
+        table_entry = Monitor.query.filter_by(url=url).first()
+
+        success, timestamp, reason = ping_website(table_entry)
+
+        # If the tool failed, then return 500, otherwise return success
+        return_status = 500 if reason['status'] in ['DOWN', 'ERROR'] else 200
+
+        return jsonify({
+            'success': success,
+            'most_recent_success': timestamp,
+            'reason': reason
+        }), return_status
+
+    return render_template('monitor.html')

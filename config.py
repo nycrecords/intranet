@@ -36,6 +36,12 @@ class Config:
 
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or '127.0.0.1'
     MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
+    MAIL_DEBUG = False
+
+    MONITOR_EMAIL_RECIPIENTS = os.environ.get('MONITOR_EMAIL_RECIPIENTS', '').split(',') or []
+    MONITOR_EMAIL_SENDER = os.environ.get('MONITOR_EMAIL_SENDER') or None
+
+    OPENSSL_CONFIG = os.environ.get('OPENSSL_CONFIG') or None
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
     VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"

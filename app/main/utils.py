@@ -1,11 +1,14 @@
 import subprocess
 import os
+import traceback
+import requests
 from flask import current_app, render_template
-from app.models import Posts, MeetingNotes, News, EventPosts, Events, Users, Documents
-from app import db
+from app.models import Posts, MeetingNotes, Monitor, News, EventPosts, Events, Users, Documents
+from app import db, mail
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
+from flask_mail import Message
 
 
 class VirusDetectedException(Exception):
@@ -369,3 +372,205 @@ def process_posts_search(post_type,
     }
 
     return data
+
+
+def update_object(data, obj_type, obj_id, es_update=True):
+    """
+    Update a database record and its elasticsearch counterpart.
+
+    :param data: a dictionary of attribute-value pairs
+    :param obj_type: sqlalchemy model
+    :param obj_id: id of record
+    :param es_update: update the elasticsearch index
+
+    :return: was the record updated successfully?
+    """
+    obj = get_object(obj_type, obj_id)
+
+    if obj:
+        for attr, value in data.items():
+            if isinstance(value, dict):
+                # update json values
+                attr_json = getattr(obj, attr) or {}
+                for key, val in value.items():
+                    attr_json[key] = val
+                setattr(obj, attr, attr_json)
+                flag_modified(obj, attr)
+            else:
+                setattr(obj, attr, value)
+        try:
+            db.session.commit()
+        except SQLAlchemyError:
+            db.session.rollback()
+            current_app.logger.exception("Failed to UPDATE {}".format(obj))
+        else:
+            # update elasticsearch
+            if hasattr(obj, 'es_update') and current_app.config['ELASTICSEARCH_ENABLED'] and es_update:
+                obj.es_update()
+            return True
+    return False
+
+
+def get_object(obj_type, obj_id):
+    """
+    Safely retrieve a database record by its id
+    and its sqlalchemy object type.
+    """
+    if not obj_id:
+        return None
+    try:
+        return obj_type.query.get(obj_id)
+    except SQLAlchemyError:
+        db.session.rollback()
+        current_app.logger.exception('Error searching "{}" table for id {}'.format(
+            obj_type.__tablename__, obj_id))
+        return None
+
+
+def panic_website_down(id,
+                       name,
+                       url,
+                       status_code,
+                       current_timestamp,
+                       last_success_timestamp,
+                       response_header,
+                       use_ssl,
+                       subject):
+    """
+    Emails configured recipients about a website outage that was detected.
+
+    :param id: ID of the site that went down.
+    :param name: Name of the site that went down.
+    :param url: URL of the site that went down.
+    :param status_code: HTML status code of the site that went down.
+    :param current_timestamp: Timestamp of when the site went down.
+    :param last_success_timestamp: Timestamp of the last successful ping.
+    :param response_header: Information possibly about why the site went down.
+    :param use_ssl: Whether this website uses SSL on ping.
+    :param subject: Subject of the email being sent.
+    """
+    email = render_template('email/monitor_email_alert.html', id=id,
+                                                              name=name,
+                                                              url=url,
+                                                              status_code=status_code,
+                                                              current_timestamp=current_timestamp,
+                                                              last_success_timestamp=last_success_timestamp,
+                                                              response_header=response_header,
+                                                              use_ssl=use_ssl)
+    sender = current_app.config["MONITOR_EMAIL_SENDER"]
+    recipients = current_app.config["MONITOR_EMAIL_RECIPIENTS"]
+
+    msg = Message(
+        subject,
+        sender=sender,
+        recipients=recipients
+    )
+    msg.html = email
+    mail.send(msg)
+
+
+def ping_website(monitor_info):
+    """
+    Pings a website, sends emails if error.
+
+    :param monitor_info: the database entry of the monitor we want to ping.
+
+    :return: tuple( successful ping?, timestamp, reason )
+    """
+    time_now = datetime.now()
+
+    try:
+        response = requests.get(monitor_info.url, allow_redirects=True, verify=monitor_info.use_ssl, timeout=30)
+
+        if response.status_code == 200:
+            update_object({
+                'current_timestamp': time_now,
+                'last_success_timestamp': time_now,
+                'status_code': response.status_code,
+                'response_header': str(response.headers)
+            }, Monitor, monitor_info.id)
+
+            return True, time_now, {'status': response.status_code,
+                                    'error': None}
+
+        else:
+            print("CRASH: ", monitor_info.url, time_now, "CODE: ", response.status_code)
+            print(response.headers)
+
+            # Email on initial failure detection
+            if monitor_info.status_code == '200':
+                panic_website_down(monitor_info.id,
+                                   monitor_info.name,
+                                   monitor_info.url,
+                                   response.status_code,
+                                   time_now,
+                                   monitor_info.last_success_timestamp,
+                                   response.headers,
+                                   monitor_info.use_ssl,
+                                   'WEBSITE_DOWN: {} - BAD RESPONSE CODE {}!!!'.format(monitor_info.url,
+                                                                                       response.status_code))
+
+            update_object({
+                'status_code': response.status_code,
+                'current_timestamp': time_now,
+                'response_header': str(response.headers)
+            }, Monitor, monitor_info.id)
+
+            return False, monitor_info.last_success_timestamp, {'status': response.status_code,
+                                                                'error': response.headers}
+
+    # Unable to connect to server - update database and return failed.
+    except ConnectionError as e:
+        error_stack = traceback.format_exc()
+
+        print("CRASH: ", monitor_info.url, time_now)
+        print(error_stack)
+
+        # Email on initial failure detection
+        if monitor_info.status_code == '200':
+            panic_website_down(monitor_info.id,
+                               monitor_info.name,
+                               monitor_info.url,
+                               'DOWN',
+                               time_now,
+                               monitor_info.last_success_timestamp,
+                               error_stack,
+                               monitor_info.use_ssl,
+                               'WEBSITE_DOWN: {} - NO CONNECTION {}!!!'.format(monitor_info.url, type(e).__name__))
+
+        update_object({
+            'status_code': 'DOWN',
+            'current_timestamp': time_now,
+            'response_header': str(e)
+        }, Monitor, monitor_info.id)
+
+        return False, monitor_info.last_success_timestamp, {'status': 'DOWN',
+                                                            'error': str(e)}
+
+    # Internal tool error
+    except Exception as e:
+        error_stack = traceback.format_exc()
+
+        print("CRASH: ", monitor_info.url, time_now)
+        print(error_stack)
+
+        # Email on initial failure detection
+        if monitor_info.status_code == '200':
+            panic_website_down(monitor_info.id,
+                               monitor_info.name,
+                               monitor_info.url,
+                               'ERROR',
+                               time_now,
+                               monitor_info.last_success_timestamp,
+                               error_stack,
+                               monitor_info.use_ssl,
+                               'WEBSITE_DOWN: {} - EXCEPTION CAUGHT {}!!!'.format(monitor_info.url, type(e).__name__))
+
+        update_object({
+            'status_code': 'ERROR',
+            'current_timestamp': time_now,
+            'response_header': str(e)
+        }, Monitor, monitor_info.id)
+
+        return False, monitor_info.last_success_timestamp, {'status': 'ERROR',
+                                                            'error': str(e)}
