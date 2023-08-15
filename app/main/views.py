@@ -822,6 +822,7 @@ def monitor():
     :return JSON response with fields describing if the requested websites are still alive or not and the latest updated
             status.
     """
+
     if flask_request.method == 'POST':
 
         # For each URL requested, find out if the website is still working and update the server.
@@ -839,4 +840,7 @@ def monitor():
             'reason': reason
         }), return_status
 
-    return render_template('monitor.html')
+    websites = Monitor.query.all()
+    print(websites)
+
+    return render_template('monitor.html', websites=websites)
