@@ -24,9 +24,9 @@
                 <thead>
                 <tr>
                     <th>Website</th>
-                    <th>Time Stamp</th>
-                    <th>Time Stamp 2</th>
-                    <th>Error Code</th>
+                    <th>Current Timestamp</th>
+                    <th>Most Recent Success</th>
+                    <th>Status Code</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,13 @@
                                 <img id="website-{{ website.id }}-x" class="response x"
                                      src="{{ url_for('static', filename='img/remove.png') }}" alt="" hidden>
 
-                                <h3 class="website-name">Website {{ website.id }}</h3>
+                                <h3 class="website-name">
+                                    <a id="website-{{ website.id }}-url"
+                                       class="website-url"
+                                       href="{{ website.url }}">
+                                        {{ website.name }}
+                                    </a>
+                                </h3>
                             </div>
                         </td>
 

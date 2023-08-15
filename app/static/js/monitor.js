@@ -7,31 +7,43 @@ function WebsiteMonitorFunction () {
         url: '/monitor',
         type: 'POST',
         data: {
-            url:
+            url: el.find('.website-url').attr('href')
         },
         success: function (data) {
             console.log(data);
 
             // Color the bars on the table.
-            el.removeClass("danger")
-            el.addClass("success")
+            if (data['status_code'] == 200) {
+                el.removeClass("danger")
+                el.addClass("success")
 
-            let checkId = el.find('.check').attr('id');
-            $('#' + checkId).show();
+                let checkId = el.find('.check').attr('id');
+                $('#' + checkId).show();
 
-            let xId = el.find('.x').attr('id');
-            $('#' + xId).hide();
+                let xId = el.find('.x').attr('id');
+                $('#' + xId).hide();
+            } else {
+                el.removeClass("success")
+                el.addClass("danger")
+
+                // Hide and show the check and x symbol
+                let checkId = el.find('.check').attr('id');
+                $('#' + checkId).hide();
+
+                let xId = el.find('.x').attr('id');
+                $('#' + xId).show();
+            }
 
             let timeId = el.find('.time').attr('id');
-            $('#' + timeId).html(data["time-stamp"]);
-            $('#' + timeId).show(data["time-stamp"]);
+            $('#' + timeId).html(data["current_timestamp"]);
+            $('#' + timeId).show();
 
             let timeId2 = el.find('.time-2').attr('id');
-            $('#' + timeId2).html(data["time-stamp-2"]);
-            $('#' + timeId2).show(data["time-stamp-2"]);
+            $('#' + timeId2).html(data["most_recent_success"]);
+            $('#' + timeId2).show();
 
             let websiteStatusCode = el.find('.status').attr('id');
-            $('#' + websiteStatusCode).html(data["status-code-success"]);
+            $('#' + websiteStatusCode).html(data["status_code"]);
             // $('#' + websiteStatusCode).show(data["status-code-success"]);
         },
 
@@ -73,7 +85,7 @@ $(document).ready(function () {
     setInterval(function () {
         $(".website").each( WebsiteMonitorFunction );
 
-    }, 10000);
+    }, 60000);
 
 
 // Create the individual modals.

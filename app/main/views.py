@@ -829,18 +829,13 @@ def monitor():
         url = flask_request.form['url']
         table_entry = Monitor.query.filter_by(url=url).first()
 
-        success, timestamp, reason = ping_website(table_entry)
-
-        # If the tool failed, then return 500, otherwise return success
-        return_status = 500 if reason['status'] in ['DOWN', 'ERROR'] else 200
-
         return jsonify({
-            'success': success,
-            'most_recent_success': timestamp,
-            'reason': reason
-        }), return_status
+            'status_code': table_entry.status_code,
+            'current_timestamp': table_entry.current_timestamp,
+            'most_recent_success': table_entry.last_success_timestamp,
+            'reason': table_entry.response_header
+        })
 
-    websites = Monitor.query.all()
-    print(websites)
+    websites = Monitor.query.order_by(Monitor.id.asc()).all()
 
     return render_template('monitor.html', websites=websites)
