@@ -94,3 +94,8 @@ $(document).ready(function () {
         $('#' + 'monitor-modal-' + modalDataID).modal('show');
     });
 });
+
+// Stops modal and link from being opened at the same time.
+$(".website-url").click(function (event) {
+    event.stopPropagation();
+})
