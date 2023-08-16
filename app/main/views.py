@@ -16,7 +16,7 @@ from app.main.utils import (create_meeting_notes,
                             process_posts_search,
                             render_email,
                             ping_website)
-from datetime import datetime
+from datetime import datetime, timezone
 from io import BytesIO
 import pytz
 from flask_mail import Message
@@ -829,10 +829,16 @@ def monitor():
         url = flask_request.form['url']
         table_entry = Monitor.query.filter_by(url=url).first()
 
+        # Add timezone information to timestamp
+        current_timestamp = pytz.utc.localize(table_entry.current_timestamp)
+        last_success_timestamp = pytz.utc.localize(table_entry.last_success_timestamp)
+
         return jsonify({
             'status_code': table_entry.status_code,
-            'current_timestamp': table_entry.current_timestamp,
-            'most_recent_success': table_entry.last_success_timestamp,
+            'current_timestamp': current_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %H:%M:%S %Z'),
+            'most_recent_success': last_success_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %H:%M:%S %Z'),
             'reason': table_entry.response_header
         })
 
