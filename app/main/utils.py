@@ -477,7 +477,7 @@ def ping_website(monitor_info):
 
     :return: tuple( successful ping?, timestamp, reason )
     """
-    time_now = datetime.now()
+    time_now = datetime.utcnow()
 
     try:
         response = requests.get(monitor_info.url, allow_redirects=True, verify=monitor_info.use_ssl, timeout=30)
