@@ -836,9 +836,9 @@ def monitor():
         return jsonify({
             'status_code': table_entry.status_code,
             'current_timestamp': current_timestamp.astimezone(
-                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %H:%M:%S %Z'),
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
             'most_recent_success': last_success_timestamp.astimezone(
-                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %H:%M:%S %Z'),
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
             'reason': table_entry.response_header
         })
 
