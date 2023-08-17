@@ -52,11 +52,11 @@
                         </td>
 
                         <td>
-                            <p id="website-{{ website.id }}-time" class="time" hidden>{{ s1 }} </p>
+                            <p id="website-{{ website.id }}-time" class="time">{{ s1 }} </p>
                         </td>
 
                          <td>
-                             <p id="website-{{ website.id }}-time-2" class="time-2" hidden>{{ s2 }} </p>
+                             <p id="website-{{ website.id }}-time-2" class="time-2">{{ s2 }} </p>
                         </td>
 
                         <td>
@@ -80,7 +80,7 @@
                                 </button>
                                 <h4 class="modal-title" id="modalLabel">{{website.name}}</h4>
                             </div>
-                            <div class="modal-body" id="modalBody">
+                            <div class="modal-body" id="modalBody-{{ website.id }}">
                                 {{website.response_header}}
                             </div>
                             <div class="modal-footer">
