@@ -16,6 +16,7 @@ from app.main.utils import (create_meeting_notes,
                             process_posts_search,
                             render_email,
                             ping_website)
+from app.constants.role_name import SUPER_USER_ID
 from datetime import datetime, timezone
 from io import BytesIO
 import pytz
@@ -814,7 +815,7 @@ def return_file(file_name):
 
 
 @main.route('/monitor', methods=['GET', 'POST'])
-#@login_required
+@login_required
 def monitor():
     """
     AJAX endpoint and VIEW function to service requests to check if a list of websites are alive or not. Checks if the
@@ -822,6 +823,8 @@ def monitor():
     :return JSON response with fields describing if the requested websites are still alive or not and the latest updated
             status.
     """
+    if current_user.role_id != SUPER_USER_ID:
+        return render_template('403.html'), 403
 
     if flask_request.method == 'POST':
 
