@@ -14,16 +14,20 @@ function WebsiteMonitorFunction () {
             // Color the bars on the table.
             if (data['status_code'] === '200') {
                 tableRow.removeClass("danger")
+                tableRow.removeClass("warning")
                 tableRow.addClass("success")
 
                 $('#website-' + websiteID + '-check').show();
+                $('#website-' + websiteID + '-warning').hide();
                 $('#website-' + websiteID + '-x').hide();
             } else {
+                tableRow.removeClass("warning")
                 tableRow.removeClass("success")
                 tableRow.addClass("danger")
 
                 // Hide and show the check and x symbol
                 $('#website-' + websiteID + '-check').hide();
+                $('#website-' + websiteID + '-warning').hide();
                 $('#website-' + websiteID + '-x').show();
             }
 
@@ -35,32 +39,14 @@ function WebsiteMonitorFunction () {
         },
 
         error: function (data) {
-            console.log(data);
-
-            el.removeClass("success")
-            el.addClass("danger")
+            tableRow.removeClass("danger")
+            tableRow.removeClass("success")
+            tableRow.addClass("warning")
 
             // Hide and show the check and x symbol
-            let checkId = el.find('.check').attr('id');
-            $('#' + checkId).hide();
-
-
-            let xId = el.find('.x').attr('id');
-            $('#' + xId).show();
-
-            // Estimated time found in monitor.py and displayed.
-            let timeId = el.find('.time').attr('id');
-            $('#' + timeId).html(data["time-stamp"]);
-            $('#' + timeId).show(data["time-stamp"]);
-
-            let timeId2 = el.find('.time-2').attr('id');
-            $('#' + timeId2).html(data["time-stamp-2"]);
-            $('#' + timeId2).show(data["time-stamp-2"]);
-
-            let websiteStatusCode = el.find('.status').attr('id');
-            $('#' + websiteStatusCode).html(data["responseJSON"]["status-code-error"]);
-            // $('#' + websiteStatusCode).show(data["responseJSON"]["status-code-error"]);
-
+            $('#website-' + websiteID + '-check').hide();
+            $('#website-' + websiteID + '-x').hide();
+            $('#website-' + websiteID + '-warning').show();
         }
     });
 }

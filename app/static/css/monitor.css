@@ -2,13 +2,10 @@
     height: auto;
     width: 10%;
     margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 20%;
     padding-left: 20px;
     flex-basis: 40%;
-}
-
-img {
-    margin-bottom: 20px;
-    max-width: 20%
 }
 
 .website-name {
