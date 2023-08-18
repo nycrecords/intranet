@@ -25,3 +25,7 @@ img {
     display: flex;
     align-items: center;
 }
+
+.modalBody {
+    overflow-wrap: break-word;
+}

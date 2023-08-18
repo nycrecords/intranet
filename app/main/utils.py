@@ -480,7 +480,9 @@ def ping_website(monitor_info):
     time_now = datetime.utcnow()
 
     try:
-        response = requests.get(monitor_info.url, allow_redirects=True, verify=monitor_info.use_ssl, timeout=30)
+        response = requests.get(monitor_info.url, allow_redirects=True,
+                                                  verify=monitor_info.use_ssl,
+                                                  timeout=int(current_app.config['REQUEST_PROBE_TIMEOUT']))
 
         if response.status_code == 200:
             update_object({

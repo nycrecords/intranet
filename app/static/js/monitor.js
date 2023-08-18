@@ -72,7 +72,7 @@ $(document).ready(function () {
     setInterval(function () {
         $(".website").each( WebsiteMonitorFunction );
 
-    }, 60000);
+    }, $("meta[name='site-refresh-rate']").attr("content"));
 
 
 // Create the individual modals.

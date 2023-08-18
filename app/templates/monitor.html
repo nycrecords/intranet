@@ -3,6 +3,7 @@
 {% block title %} Monitor {% endblock %}
 
 {% block custom_css %}
+    <meta name="site-refresh-rate" content="{{ site_refresh_rate }}" />
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/monitor.css') }}"/>
 {% endblock %}
 
@@ -80,7 +81,7 @@
                                 </button>
                                 <h4 class="modal-title" id="modalLabel">{{website.name}}</h4>
                             </div>
-                            <div class="modal-body" id="modalBody-{{ website.id }}">
+                            <div class="modal-body modalBody" id="modalBody-{{ website.id }}">
                                 {{website.response_header}}
                             </div>
                             <div class="modal-footer">

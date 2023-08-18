@@ -844,4 +844,5 @@ def monitor():
 
     websites = Monitor.query.order_by(Monitor.id.asc()).all()
 
-    return render_template('monitor.html', websites=websites)
+    return render_template('monitor.html', websites=websites,
+                                           site_refresh_rate=current_app.config['FRONTEND_RESOLUTION'])
