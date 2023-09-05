@@ -2,10 +2,10 @@
 import os
 from flask_migrate import Migrate
 from flask.cli import main
-from flask import render_template, current_app
 
 from app import create_app, db
 from app.models import Documents, EventPosts, Events, MeetingNotes, Monitor, News, Posts, Roles, Users
+from app.main.utils import ping_website
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -75,8 +75,6 @@ def deploy():
 @app.cli.command('ping')
 def ping():
     """Ping list of monitored sites and check if they're still alive."""
-    from app.main.utils import ping_website
-
     # Execute pings
     monitors = Monitor.query.all()
     for monitor in monitors:

@@ -374,14 +374,13 @@ def process_posts_search(post_type,
     return data
 
 
-def update_object(data, obj_type, obj_id, es_update=True):
+def update_object(data, obj_type, obj_id):
     """
-    Update a database record and its elasticsearch counterpart.
+    Update a database record.
 
     :param data: a dictionary of attribute-value pairs
     :param obj_type: sqlalchemy model
     :param obj_id: id of record
-    :param es_update: update the elasticsearch index
 
     :return: was the record updated successfully?
     """
@@ -395,7 +394,6 @@ def update_object(data, obj_type, obj_id, es_update=True):
                 for key, val in value.items():
                     attr_json[key] = val
                 setattr(obj, attr, attr_json)
-                flag_modified(obj, attr)
             else:
                 setattr(obj, attr, value)
         try:
@@ -403,11 +401,6 @@ def update_object(data, obj_type, obj_id, es_update=True):
         except SQLAlchemyError:
             db.session.rollback()
             current_app.logger.exception("Failed to UPDATE {}".format(obj))
-        else:
-            # update elasticsearch
-            if hasattr(obj, 'es_update') and current_app.config['ELASTICSEARCH_ENABLED'] and es_update:
-                obj.es_update()
-            return True
     return False
 
 
@@ -427,15 +420,15 @@ def get_object(obj_type, obj_id):
         return None
 
 
-def panic_website_down(id,
-                       name,
-                       url,
-                       status_code,
-                       current_timestamp,
-                       last_success_timestamp,
-                       response_header,
-                       use_ssl,
-                       subject):
+def send_website_down_email(id,
+                            name,
+                            url,
+                            status_code,
+                            current_timestamp,
+                            last_success_timestamp,
+                            response_header,
+                            use_ssl,
+                            subject):
     """
     Emails configured recipients about a website outage that was detected.
 
@@ -449,14 +442,15 @@ def panic_website_down(id,
     :param use_ssl: Whether this website uses SSL on ping.
     :param subject: Subject of the email being sent.
     """
-    email = render_template('email/monitor_email_alert.html', id=id,
-                                                              name=name,
-                                                              url=url,
-                                                              status_code=status_code,
-                                                              current_timestamp=current_timestamp,
-                                                              last_success_timestamp=last_success_timestamp,
-                                                              response_header=response_header,
-                                                              use_ssl=use_ssl)
+    email = render_template('email/monitor_email_alert.html',
+                            id=id,
+                            name=name,
+                            url=url,
+                            status_code=status_code,
+                            current_timestamp=current_timestamp,
+                            last_success_timestamp=last_success_timestamp,
+                            response_header=response_header,
+                            use_ssl=use_ssl)
     sender = current_app.config["MONITOR_EMAIL_SENDER"]
     recipients = current_app.config["MONITOR_EMAIL_RECIPIENTS"]
 
@@ -482,7 +476,7 @@ def ping_website(monitor_info):
     try:
         response = requests.get(monitor_info.url, allow_redirects=True,
                                                   verify=monitor_info.use_ssl,
-                                                  timeout=int(current_app.config['REQUEST_PROBE_TIMEOUT']))
+                                                  timeout=int(current_app.config['REQUEST_TIMEOUT_DURATION']))
 
         if response.status_code == 200:
             update_object({
@@ -501,16 +495,16 @@ def ping_website(monitor_info):
 
             # Email on initial failure detection
             if monitor_info.status_code == '200':
-                panic_website_down(monitor_info.id,
-                                   monitor_info.name,
-                                   monitor_info.url,
-                                   response.status_code,
-                                   time_now,
-                                   monitor_info.last_success_timestamp,
-                                   response.headers,
-                                   monitor_info.use_ssl,
-                                   'WEBSITE_DOWN: {} - BAD RESPONSE CODE {}!!!'.format(monitor_info.url,
-                                                                                       response.status_code))
+                send_website_down_email(monitor_info.id,
+                                        monitor_info.name,
+                                        monitor_info.url,
+                                        response.status_code,
+                                        time_now,
+                                        monitor_info.last_success_timestamp,
+                                        response.headers,
+                                        monitor_info.use_ssl,
+                                        'WEBSITE DOWN: {} - BAD RESPONSE CODE {}'.format(monitor_info.url,
+                                                                                         response.status_code))
 
             update_object({
                 'status_code': response.status_code,
@@ -530,15 +524,15 @@ def ping_website(monitor_info):
 
         # Email on initial failure detection
         if monitor_info.status_code == '200':
-            panic_website_down(monitor_info.id,
-                               monitor_info.name,
-                               monitor_info.url,
-                               'DOWN',
-                               time_now,
-                               monitor_info.last_success_timestamp,
-                               error_stack,
-                               monitor_info.use_ssl,
-                               'WEBSITE_DOWN: {} - NO CONNECTION {}!!!'.format(monitor_info.url, type(e).__name__))
+            send_website_down_email(monitor_info.id,
+                                    monitor_info.name,
+                                    monitor_info.url,
+                                    'DOWN',
+                                    time_now,
+                                    monitor_info.last_success_timestamp,
+                                    error_stack,
+                                    monitor_info.use_ssl,
+                                    'WEBSITE DOWN: {} - NO CONNECTION {}'.format(monitor_info.url, type(e).__name__))
 
         update_object({
             'status_code': 'DOWN',
@@ -558,15 +552,15 @@ def ping_website(monitor_info):
 
         # Email on initial failure detection
         if monitor_info.status_code == '200':
-            panic_website_down(monitor_info.id,
-                               monitor_info.name,
-                               monitor_info.url,
-                               'ERROR',
-                               time_now,
-                               monitor_info.last_success_timestamp,
-                               error_stack,
-                               monitor_info.use_ssl,
-                               'WEBSITE_DOWN: {} - EXCEPTION CAUGHT {}!!!'.format(monitor_info.url, type(e).__name__))
+            send_website_down_email(monitor_info.id,
+                                    monitor_info.name,
+                                    monitor_info.url,
+                                    'ERROR',
+                                    time_now,
+                                    monitor_info.last_success_timestamp,
+                                    error_stack,
+                                    monitor_info.use_ssl,
+                                    'WEBSITE DOWN: {} - EXCEPTION CAUGHT {}'.format(monitor_info.url, type(e).__name__))
 
         update_object({
             'status_code': 'ERROR',

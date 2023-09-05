@@ -38,13 +38,12 @@ class Config:
     MAIL_PORT = os.environ.get('MAIL_PORT') or '25'
     MAIL_DEBUG = False
 
+    # Uptime Monitor Settings
     MONITOR_EMAIL_RECIPIENTS = os.environ.get('MONITOR_EMAIL_RECIPIENTS', '').split(',') or []
     MONITOR_EMAIL_SENDER = os.environ.get('MONITOR_EMAIL_SENDER') or None
-
-    OPENSSL_CONFIG = os.environ.get('OPENSSL_CONFIG') or None
-
-    FRONTEND_RESOLUTION = os.environ.get('FRONTEND_RESOLUTION') or 60000
-    REQUEST_PROBE_TIMEOUT = os.environ.get('REQUEST_PROBE_TIMEOUT') or 60
+    OPENSSL_CONF = os.environ.get('OPENSSL_CONF') or None
+    FRONTEND_REFRESH_RATE = os.environ.get('FRONTEND_REFRESH_RATE') or 60000
+    REQUEST_TIMEOUT_DURATION = os.environ.get('REQUEST_TIMEOUT_DURATION') or 60
 
     FILE_UPLOAD_PATH = os.environ.get('FILE_UPLOAD_PATH') or '/vagrant/app/static/documents'
     VIRUS_SCAN_ENABLED = os.environ.get('VIRUS_SCAN_ENABLED') == "True"

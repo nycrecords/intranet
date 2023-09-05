@@ -824,7 +824,7 @@ def monitor():
             status.
     """
     if current_user.role_id != SUPER_USER_ID:
-        return render_template('403.html'), 403
+        return render_template('404.html'), 404
 
     if flask_request.method == 'POST':
 
@@ -848,4 +848,4 @@ def monitor():
     websites = Monitor.query.order_by(Monitor.id.asc()).all()
 
     return render_template('monitor.html', websites=websites,
-                                           site_refresh_rate=current_app.config['FRONTEND_RESOLUTION'])
+                                           site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])
