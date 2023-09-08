@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %} Monitor {% endblock %}
+
+{% block custom_css %}
+    <meta name="site-refresh-rate" content="{{ site_refresh_rate }}" />
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/monitor.css') }}"/>
+{% endblock %}
+
+{% block page_content %}
+    <div class="col-sm-12">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Website Monitor</li>
+                </ol>
+            </nav>
+            <h1 class="breadcrumb-header">Website Monitor</h1>
+        </div>
+        <div class="col-sm-12 well content-area">
+            <table class="table table-hover" id="monitor-table">
+                <thead>
+                <tr>
+                    <th>Website</th>
+                    <th>Current Timestamp</th>
+                    <th>Most Recent Success</th>
+                    <th>Status Code</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for website in websites %}
+                    <tr class="website justify-content-start" id="website-{{ website.id }}" data-id="{{ website.id }}">
+                        <td class="col-md-3" style="padding:0">
+                            <div class="symbol-website-container">
+                                <img id="website-{{ website.id }}-check" class="response check"
+                                     src="{{ url_for('static', filename='img/correct.png') }}" alt="" hidden>
+
+
+                                <img id="website-{{ website.id }}-x" class="response x"
+                                     src="{{ url_for('static', filename='img/remove.png') }}" alt="" hidden>
+
+                                <img id="website-{{ website.id }}-warning" class="response warning"
+                                     src="{{ url_for('static', filename='img/warning.png') }}" alt="" hidden>
+
+                                <h3 class="website-name">
+                                    <a id="website-{{ website.id }}-url"
+                                       class="website-url"
+                                       href="{{ website.url }}">
+                                        {{ website.name }}
+                                    </a>
+                                </h3>
+                            </div>
+                        </td>
+
+                        <td>
+                            <p id="website-{{ website.id }}-time" class="time">{{ s1 }} </p>
+                        </td>
+
+                         <td>
+                             <p id="website-{{ website.id }}-time-2" class="time-2">{{ s2 }} </p>
+                        </td>
+
+                        <td>
+                            <p id="website-{{ website.id }}-status-code" class="status"></p>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% for website in websites %}
+                <div class="modal fade" id="monitor-modal-{{website.id}}" tabindex="-1" role="dialog"
+                     aria-labelledby="modalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modalLabel">{{website.name}}</h4>
+                            </div>
+                            <div class="modal-body modalBody" id="modalBody-{{ website.id }}">
+                                {{website.response_header}}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/monitor.js') }}"></script>
+{% endblock %}
