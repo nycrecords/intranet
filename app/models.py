@@ -655,3 +655,14 @@ class Documents(db.Model):
 
     def __repr__(self):
         return '<Documents %r>' % self.id
+
+class Monitor(db.Model):
+    __tablename__ = 'monitor'
+    id = db.Column(db.Integer, primary_key=True)
+    url = db.Column(db.String)
+    name = db.Column(db.String)
+    status_code = db.Column(db.String)
+    current_timestamp = db.Column(db.DateTime)
+    last_success_timestamp = db.Column(db.DateTime)
+    response_header = db.Column(db.String)
+    use_ssl = db.Column(db.Boolean)

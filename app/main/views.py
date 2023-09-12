@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts, Documents
+from app.models import Users, Posts, EventPosts, Documents, Monitor
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
 from app.main.utils import (create_meeting_notes,
@@ -14,8 +14,10 @@ from app.main.utils import (create_meeting_notes,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
-                            render_email)
-from datetime import datetime
+                            render_email,
+                            ping_website)
+from app.constants.role_name import SUPER_USER_ID
+from datetime import datetime, timezone
 from io import BytesIO
 import pytz
 from flask_mail import Message
@@ -810,3 +812,40 @@ def return_file(file_name):
         return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
     except Exception as e:
         return str(e)
+
+
+@main.route('/monitor', methods=['GET', 'POST'])
+@login_required
+def monitor():
+    """
+    AJAX endpoint and VIEW function to service requests to check if a list of websites are alive or not. Checks if the
+    websites listed are still alive and updates the database records accordingly. If GET, then return webpage.
+    :return JSON response with fields describing if the requested websites are still alive or not and the latest updated
+            status.
+    """
+    if current_user.role_id != SUPER_USER_ID:
+        return render_template('404.html'), 404
+
+    if flask_request.method == 'POST':
+
+        # For each URL requested, find out if the website is still working and update the server.
+        url = flask_request.form['url']
+        table_entry = Monitor.query.filter_by(url=url).first()
+
+        # Add timezone information to timestamp
+        current_timestamp = pytz.utc.localize(table_entry.current_timestamp)
+        last_success_timestamp = pytz.utc.localize(table_entry.last_success_timestamp)
+
+        return jsonify({
+            'status_code': table_entry.status_code,
+            'current_timestamp': current_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
+            'most_recent_success': last_success_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
+            'reason': table_entry.response_header
+        })
+
+    websites = Monitor.query.order_by(Monitor.id.asc()).all()
+
+    return render_template('monitor.html', websites=websites,
+                                           site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])
