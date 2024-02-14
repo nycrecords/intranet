@@ -5,6 +5,16 @@
 
 {% block page_content %}
 <div class="col-sm-12 no-left-padding index-top-padding">
+    <div class="row">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} fade in">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message | safe }}
+                </div>
+            {% endfor %}
+        {% endwith %}
+    </div>
     <div class="col-sm-9 no-left-padding">
         <br>
         {% include 'carousel/carousel.html' %}
@@ -87,13 +97,19 @@
             <div class="well quick-links-well">
                 <ul class="quick-links-anchors">
                     <li class="quick-links-text">
+                        <a href="https://www1.nyc.gov/site/doh/covid/covid-19-main.page" target="_blank">COVID-19 Information</a>
+                    </li>
+                    <li class="quick-links-text">
                         <a href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true" target="_blank">CityShare</a>
                     </li>
                     <li>
                         <a href="https://prod.citytime.nycnet/" target="_blank">CityTime</a>
                     </li>
                     <li>
-                        <a href="http://timeclock.records.nycnet/" target="_blank">TimeClock</a>
+                        <a href="https://timeclock.getinfo.nyc/" target="_blank">TimeClock</a>
+                    </li>
+                    <li>
+                        <a href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">My Desk</a>
                     </li>
                     <li>
                         <a href="{{ url_for('main.staff_directory') }}">Staff Directory</a>

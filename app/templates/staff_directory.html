@@ -34,6 +34,7 @@
         <div class="panel-body panel-body-style">
             <table class="table table-bordered table-styles">
                 <tr>
+                    <th class="staff-directory-column-header"></th>
                     <th class="staff-directory-column-header">First</th>
                     <th class="staff-directory-column-header">Last</th>
                     <th class="staff-directory-column-header">Division</th>
@@ -44,13 +45,12 @@
                 <tbody id="staff-directory-table">
                 {% for user in users %}
                     <tr>
-                        <td class="col-sm-2">
+                        <td>
                             <a class="popover-right popper" data-toggle="popover">
                                 <img class="avatar-style"
                                      src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}"
                                      onerror="this.src='/static/img/avatar.png'" alt="avatar">
                             </a>
-
                             <div class="popover-content hide">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -67,10 +67,9 @@
                                 </div>
                                 <div class="row popover-information">Phone: {{ user.phone_number }}</div>
                                 <div class="row popover-information">Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
-                                <div class="row popover-information">Office: {{ user.room }}</div>
                             </div>
-                            <span class="staff-directory-row">{{ user.first_name }}</span>
                         </td>
+                        <td class="staff-directory-row">{{ user.first_name }}</td>
                         <td class="staff-directory-row">{{ user.last_name }}</td>
                         <td class="staff-directory-row">{{ user.division }}</td>
                         <td class="staff-directory-row">{{ user.title }}</td>

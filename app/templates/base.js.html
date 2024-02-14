@@ -1,0 +1,35 @@
+<script type="text/javascript">
+"use strict";
+{% if current_user.is_authenticated %}
+        {% if config['USE_SAML'] %}
+              $(document).ready(
+                    $.sessionTimeout({
+                        title: "Session Timeout",
+                        message: "",
+                        countdownMessage: 'You will be automatically logged out in {timer}.',
+                        countdownSmart: true,
+                        countdownBar: true,
+                        logoutUrl: '{{ url_for('auth.saml') }}?slo',
+                        redirUrl: '{{ url_for('auth.saml') }}?slo&timeout',
+                        warnAfter: 5 * 60 * 1000,
+                        redirAfter: 10 * 60 * 1000
+                    })
+              );
+        {% else %}
+             $(document).ready(
+                    $.sessionTimeout({
+                        title: "Session Timeout",
+                        message: "",
+                        countdownMessage: 'You will be automatically logged out in {timer}.',
+                        countdownSmart: true,
+                        countdownBar: true,
+                        logoutUrl: '{{ url_for('auth.logout') }}',
+                        redirUrl: '{{ url_for('auth.logout')}}',
+                        warnAfter: 10 * 60 * 1000,
+                        redirAfter: 15 * 60 * 1000
+                    })
+                );
+            
+         {% endif %}
+    {% endif %}
+</script>

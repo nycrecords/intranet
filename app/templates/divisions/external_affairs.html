@@ -32,15 +32,6 @@
             on premises and for managing staff engagement. Using outreach to the media, the public, the city's many
             communities, and government offices and officials at all levels, the unit endeavors to reach ever-expanding
             audiences.
-            <br><br>
-            Staff:
-        <ul>
-            {% for user in users %}
-            <li><a href="mailto:{{ user.email }}">{{ user.name }}</a>, {{ user.title}}</li>
-            {% endfor %}
-        </ul>
-        <br>
-        Rooms: {% for room in rooms %}{{ room }}{{ ", " if not loop.last }}{% endfor %}
         </p>
     </div>
 </div>

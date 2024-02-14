@@ -1,6 +1,6 @@
-from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash
+from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts, Documents
+from app.models import Users, Posts, EventPosts, Documents, Monitor
 from . import main
 from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
 from app.main.utils import (create_meeting_notes,
@@ -14,8 +14,10 @@ from app.main.utils import (create_meeting_notes,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
-                            render_email)
-from datetime import datetime
+                            render_email,
+                            ping_website)
+from app.constants.role_name import SUPER_USER_ID
+from datetime import datetime, timezone
 from io import BytesIO
 import pytz
 from flask_mail import Message
@@ -339,7 +341,9 @@ def view_post(post_id):
     :param post_id: ID of the Post object being viewed
     :return: HTML template to view a single post
     """
-    post = Posts.query.filter_by(id=post_id).first()
+    post = Posts.query.filter_by(id=post_id,deleted=False).first()
+    if not post:
+        return render_template('404.html'), 404
     post_timestamp = post.date_created.replace(tzinfo=pytz.utc)
     post_timestamp = post_timestamp.astimezone(pytz.timezone("America/New_York"))
     author = Users.query.filter_by(id=post.author).first()
@@ -378,18 +382,18 @@ def staff_directory():
     """
     form = StaffDirectorySearchForm()
 
-    if form.search.data is "":
-        users = Users.query.order_by(Users.last_name)
+    if form.search.data == "":
+        users = Users.query.filter(Users.is_active==True).order_by(Users.last_name)
     elif form.filters.data == 'First Name':
-        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.first_name.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Last Name':
-        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.last_name.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Division':
-        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.division.ilike('%' + form.search.data + '%'), Users.is_active==True)
     elif form.filters.data == 'Title':
-        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'))
+        users = Users.query.filter(Users.title.ilike('%' + form.search.data + '%'), Users.is_active==True)
     else:  # on initial page load return all users
-        users = Users.query.order_by(Users.last_name)
+        users = Users.query.filter(Users.is_active==True).order_by(Users.last_name)
 
     return render_template('staff_directory.html', users=users, form=form)
 
@@ -501,6 +505,15 @@ def employee_benefits():
     return render_template('employee_benefits.html')
 
 
+@main.route('/employee-resources/orientation', methods=['GET'])
+def orientation():
+    """
+    View function to handle the orientation page
+    :return: HTML template for the orientation page
+    """
+    return render_template('orientation.html')
+
+
 @main.route('/tools-and-applications', methods=['GET'])
 def tools_and_applications():
     """
@@ -580,12 +593,13 @@ def app_dev_intake_form():
     form.submitter_title.data = current_user.title
     form.submitter_division.data = current_user.division
 
-    # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
-    form.designated_business_owner_name.data = current_user.name
-    form.designated_business_owner_email.data = current_user.email
-    form.designated_business_owner_phone.data = current_user.phone_number
-    form.designated_business_owner_title.data = current_user.title
-    form.designated_business_owner_division.data = current_user.division
+    if flask_request.method == 'GET':
+        # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+        form.designated_business_owner_name.data = current_user.name
+        form.designated_business_owner_email.data = current_user.email
+        form.designated_business_owner_phone.data = current_user.phone_number
+        form.designated_business_owner_title.data = current_user.title
+        form.designated_business_owner_division.data = current_user.division
 
     if form.validate_on_submit():
         email = render_email(form.data, 'email/email_app_dev_intake.html')
@@ -688,12 +702,19 @@ def search_documents():
                                                        search_term=search_term,
                                                        documents_start=page_counters['training_materials']['start'],
                                                        documents_end=page_counters['training_materials']['end'])
+    covid_19_information_data = process_documents_search(document_type_plain_text='COVID-19 Information',
+                                                         document_type='covid-19-information',
+                                                         sort_by=sort_by,
+                                                         search_term=search_term,
+                                                         documents_start=page_counters['covid_19_information']['start'],
+                                                         documents_end=page_counters['covid_19_information']['end'])
     # Create a dictionary with data for each document type to be passed back to the frontend.
     data = {
         'instructions_data': instructions_data,
         'policies_and_procedures_data': policies_and_procedures_data,
         'templates_data': templates_data,
-        'training_materials_data': training_materials_data
+        'training_materials_data': training_materials_data,
+        'covid_19_information_data': covid_19_information_data
     }
 
     return jsonify(data)
@@ -783,3 +804,48 @@ def upload_document():
         flash('Document successfully uploaded.')
         return redirect(url_for('main.documents'))
     return render_template('upload_document.html', form=form)
+
+
+@main.route('/return-file/<string:file_name>', methods=['GET', 'POST'])
+def return_file(file_name):
+    try:
+        return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
+    except Exception as e:
+        return str(e)
+
+
+@main.route('/monitor', methods=['GET', 'POST'])
+@login_required
+def monitor():
+    """
+    AJAX endpoint and VIEW function to service requests to check if a list of websites are alive or not. Checks if the
+    websites listed are still alive and updates the database records accordingly. If GET, then return webpage.
+    :return JSON response with fields describing if the requested websites are still alive or not and the latest updated
+            status.
+    """
+    if current_user.role_id != SUPER_USER_ID:
+        return render_template('404.html'), 404
+
+    if flask_request.method == 'POST':
+
+        # For each URL requested, find out if the website is still working and update the server.
+        url = flask_request.form['url']
+        table_entry = Monitor.query.filter_by(url=url).first()
+
+        # Add timezone information to timestamp
+        current_timestamp = pytz.utc.localize(table_entry.current_timestamp)
+        last_success_timestamp = pytz.utc.localize(table_entry.last_success_timestamp)
+
+        return jsonify({
+            'status_code': table_entry.status_code,
+            'current_timestamp': current_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
+            'most_recent_success': last_success_timestamp.astimezone(
+                                                pytz.timezone('America/New_York')).strftime('%m/%d/%Y, %I:%M:%S %p'),
+            'reason': table_entry.response_header
+        })
+
+    websites = Monitor.query.order_by(Monitor.id.asc()).all()
+
+    return render_template('monitor.html', websites=websites,
+                                           site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])
