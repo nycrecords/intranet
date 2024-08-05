@@ -649,6 +649,10 @@ def documents():
     """
     # default_open determines which documents tab is opened on initial load. if no value is supplied use 'instructions'
     default_open = flask_request.args.get('default_open', 'instructions')
+    documents = Documents.query.filter_by(document_type="Templates").all()
+    print(documents)
+    for document in documents:
+         print(document)
     return render_template('documents.html', default_open=default_open)
 
 
@@ -708,13 +712,21 @@ def search_documents():
                                                          search_term=search_term,
                                                          documents_start=page_counters['covid_19_information']['start'],
                                                          documents_end=page_counters['covid_19_information']['end'])
+    records_management_data = process_documents_search(document_type_plain_text='Records Management',
+                                                          document_type='records-management',
+                                                          sort_by=sort_by,
+                                                          search_term=search_term,
+                                                          documents_start=page_counters['records_management']['start'],
+                                                          documents_end=page_counters['records_management']['end'])
     # Create a dictionary with data for each document type to be passed back to the frontend.
     data = {
         'instructions_data': instructions_data,
         'policies_and_procedures_data': policies_and_procedures_data,
         'templates_data': templates_data,
         'training_materials_data': training_materials_data,
-        'covid_19_information_data': covid_19_information_data
+        'covid_19_information_data': covid_19_information_data,
+        'records_management_data': records_management_data
+
     }
 
     return jsonify(data)

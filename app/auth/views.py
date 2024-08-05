@@ -123,8 +123,8 @@ def login():
                 user = Users.query.filter_by(email=session['samlUserdata']['mail'][0]).first()
                 authenticated = True
         else:
-            email = login_form.email.data
-            password = login_form.password.data
+            email = request.form.get('email')
+            password = request.form.get('email')
 
             user = Users.query.filter_by(email=email).first()
 
