@@ -650,7 +650,6 @@ def documents():
     # default_open determines which documents tab is opened on initial load. if no value is supplied use 'instructions'
     default_open = flask_request.args.get('default_open', 'instructions')
     documents = Documents.query.filter_by(document_type="Templates").all()
-    print(documents)
     for document in documents:
          print(document)
     return render_template('documents.html', default_open=default_open)
