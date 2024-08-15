@@ -27,6 +27,7 @@ def upgrade():
     sa.Column('last_success_timestamp', sa.DateTime(), nullable=True),
     sa.Column('response_header', sa.String(), nullable=True),
     sa.Column('use_ssl', sa.Boolean(), nullable=False),
+    sa.Column('expiration_date', sa.Date(), nullable=True),  
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

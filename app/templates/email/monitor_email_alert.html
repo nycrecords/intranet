@@ -34,5 +34,13 @@
         <td class="monitor-email-data"><strong>Use SSL?</strong></td>
         <td>{{ use_ssl }}</td>
     </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Expiration Date</strong></td>
+        <td>{{ expiration_date }}</td> 
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Certificate Expired?</strong></td>
+        <td>{{ 'Yes' if is_expired else 'No' }}</td> 
+    
 </table>
 {% endblock %}

@@ -20,6 +20,8 @@ function WebsiteMonitorFunction () {
                 $('#website-' + websiteID + '-check').show();
                 $('#website-' + websiteID + '-warning').hide();
                 $('#website-' + websiteID + '-x').hide();
+
+
             } else {
                 tableRow.removeClass('warning');
                 tableRow.removeClass('success');
@@ -35,7 +37,14 @@ function WebsiteMonitorFunction () {
             $('#website-' + websiteID + '-time-2').html(data['most_recent_success']);
             $('#website-' + websiteID + '-status-code').html(data['status_code']);
             $('#modalBody-' + websiteID).html(data['reason']);
+
+            if (data['is_expired']) {
+                $('#website-' + websiteID + '-expiration-status').html('Expired');
+            } else {
+                $('#website-' + websiteID + '-expiration-status').html('Valid');
+            }
         },
+
         error: function (data) {
             tableRow.removeClass('danger');
             tableRow.removeClass('success');
