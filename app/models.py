@@ -595,6 +595,7 @@ class Documents(db.Model):
                                       'Templates',
                                       'Training Materials',
                                       'COVID-19 Information',
+                                      'Records Management',
                                       name='document_type'))
     file_type = db.Column(db.String)
     file_path = db.Column(db.String)

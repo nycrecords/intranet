@@ -20,6 +20,10 @@ var page_counters = {
     'covid_19_information': {
         'start': 0,
         'end': increment
+    },
+    'records_management': {
+        'start': 0,
+        'end': increment
     }
 };
 
@@ -190,6 +194,8 @@ $(function () {
     generatePaginationButtonHandlers('templates', 'templates', 'Templates');
     generatePaginationButtonHandlers('training_materials', 'training-materials', 'Training Materials');
     generatePaginationButtonHandlers('covid_19_information', 'covid-19-information', 'COVID-19 Information');
+    generatePaginationButtonHandlers('records_management', 'records-management', 'Records Management');
+
 
     // AJAX call for initial page load
     $.ajax({
@@ -208,6 +214,7 @@ $(function () {
             displayResults(data['templates_data']);
             displayResults(data['training_materials_data']);
             displayResults(data['covid_19_information_data']);
+            displayResults(data['records_management_data']);
         }
     });
 
@@ -234,6 +241,10 @@ $(function () {
             'covid_19_information': {
                 'start': 0,
                 'end': increment
+            },
+            'records_management': {
+                'start': 0,
+                'end': increment
             }
         };
 
@@ -253,6 +264,8 @@ $(function () {
                 displayResults(data['templates_data']);
                 displayResults(data['training_materials_data']);
                 displayResults(data['covid_19_information_data']);
+                displayResults(data['records_management_data']);
+
             }
         });
     });
@@ -282,6 +295,10 @@ $(function () {
             'covid_19_information': {
                 'start': 0,
                 'end': increment
+            },
+            'records_management': {
+                'start': 0,
+                'end': increment
             }
         };
 
@@ -300,6 +317,7 @@ $(function () {
                 displayResults(data['templates_data']);
                 displayResults(data['training_materials_data']);
                 displayResults(data['covid_19_information_data']);
+                displayResults(data['records_management_data']);
 
                 // Display search term
                 if (search_term !== '') {

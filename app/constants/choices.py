@@ -287,5 +287,7 @@ DOCUMENT_TYPES = [
     ('Policies and Procedures', 'Policies and Procedures'),
     ('Templates', 'Templates'),
     ('Training Materials', 'Training Materials'),
-    ('COVID-19 Information', 'COVID-19 Information')
+    ('COVID-19 Information', 'COVID-19 Information'),
+    ('Records Management', 'Records Management')
+
 ]
