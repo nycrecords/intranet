@@ -215,7 +215,6 @@ $(function () {
             displayResults(data['training_materials_data']);
             displayResults(data['covid_19_information_data']);
             displayResults(data['records_management_data']);
-
         }
     });
 
@@ -319,7 +318,6 @@ $(function () {
                 displayResults(data['training_materials_data']);
                 displayResults(data['covid_19_information_data']);
                 displayResults(data['records_management_data']);
-
 
                 // Display search term
                 if (search_term !== '') {

@@ -97,12 +97,12 @@
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="{{ url_for('main.orientation') }}">
+                <a href="{{ url_for('main.documents', default_open='records_management') }}">
                     <div class="employee-resources-option-boxes col-sm-12">
                         <div class="row">
-                            <h4 class="employee-resources-title">ORIENTATION</h4>
+                            <h4 class="employee-resources-title">RECORDS MANAGEMENT</h4>
                             <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/documents.png') }}">
+                                src="{{ url_for('static', filename='img/documents.png') }}">
                         </div>
                     </div>
                 </a>
@@ -121,18 +121,18 @@
             </div>
             <div class="col-sm-4">
                 <div class="employee-resources-text">
-                    <p>View the new employee orientation information here.</p>
+                    <p>Find documents relating to records management here.</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <a href="{{ url_for('main.documents', default_open='records_management') }}">
+                <a href="{{ url_for('main.orientation') }}">
                     <div class="employee-resources-option-boxes col-sm-12">
                         <div class="row">
-                            <h4 class="employee-resources-title">RECORDS MANAGEMENT</h4>
+                            <h4 class="employee-resources-title">ORIENTATION</h4>
                             <img class="employee-resources-icon"
-                                src="{{ url_for('static', filename='img/documents.png') }}">
+                                 src="{{ url_for('static', filename='img/documents.png') }}">
                         </div>
                     </div>
                 </a>
@@ -141,7 +141,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="employee-resources-text">
-                    <p>Find documents relating to records management here.</p>
+                    <p>View the new employee orientation information here.</p>
                 </div>
             </div>
         </div>
