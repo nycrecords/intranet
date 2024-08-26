@@ -572,73 +572,73 @@ def strategic_planning():
     return render_template('strategic_planning.html')
 
 
-@main.route('/it-support/app-dev-intake-form', methods=['GET', 'POST'])
-@login_required
-def app_dev_intake_form():
-    """
-    View function to handle the IT Intake Form.
-
-    GET Request:
-    Returns the html template for the Intake Form
-
-    POST Request:
-    Handles submission of Intake form. If it is validated, redirect to the IT Support page
-    """
-    form = AppDevIntakeForm()
-
-    # Pre-Fill the Submitter Information - Cannot be edited
-    form.submitter_name.data = current_user.name
-    form.submitter_email.data = current_user.email
-    form.submitter_phone.data = current_user.phone_number
-    form.submitter_title.data = current_user.title
-    form.submitter_division.data = current_user.division
-
-    if flask_request.method == 'GET':
-        # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
-        form.designated_business_owner_name.data = current_user.name
-        form.designated_business_owner_email.data = current_user.email
-        form.designated_business_owner_phone.data = current_user.phone_number
-        form.designated_business_owner_title.data = current_user.title
-        form.designated_business_owner_division.data = current_user.division
-
-    if form.validate_on_submit():
-        email = render_email(form.data, 'email/email_app_dev_intake.html')
-        sender = form.submitter_email.data
-        recipients = current_app.config['APP_DEV_INTAKE_EMAIL_RECIPIENTS'] + [form.submitter_email.data,
-                                                                              form.designated_business_owner_email.data]
-        msg = Message(
-            "App. Dev. Intake Form - {project_name}".format(
-                project_name=form.project_name.data
-            ),
-            sender=sender,
-            recipients=recipients,
-        )
-        msg.html = email
-        if form.supplemental_materials_one.data is not None:
-            tmp_file = BytesIO()
-            flask_request.files['supplemental_materials_one'].save(tmp_file)
-            tmp_file.seek(0)
-            msg.attach(filename=form.supplemental_materials_one.data.filename,
-                       content_type=form.supplemental_materials_one.data.content_type, data=tmp_file.read())
-        if form.supplemental_materials_two.data is not None:
-            tmp_file = BytesIO()
-            flask_request.files['supplemental_materials_two'].save(tmp_file)
-            tmp_file.seek(0)
-            msg.attach(filename=form.supplemental_materials_two.data.filename,
-                       content_type=form.supplemental_materials_two.data.content_type, data=tmp_file.read())
-        if form.supplemental_materials_three.data is not None:
-            tmp_file = BytesIO()
-            flask_request.files['supplemental_materials_three'].save(tmp_file)
-            tmp_file.seek(0)
-            msg.attach(filename=form.supplemental_materials_three.data.filename,
-                       content_type=form.supplemental_materials_three.data.content_type, data=tmp_file.read())
-        mail.send(msg)
-        flash("Successfully submitted intake form. Please allow 5 business days for a response.")
-        return redirect(url_for('main.it_support'))
-    else:
-        for error in form.errors.items():
-            flash(error[1][0], category="danger")
-    return render_template("app_dev_intake.html", form=form, current_user=current_user)
+# @main.route('/it-support/app-dev-intake-form', methods=['GET', 'POST'])
+# @login_required
+# def app_dev_intake_form():
+#     """
+#     View function to handle the IT Intake Form.
+#
+#     GET Request:
+#     Returns the html template for the Intake Form
+#
+#     POST Request:
+#     Handles submission of Intake form. If it is validated, redirect to the IT Support page
+#     """
+#     form = AppDevIntakeForm()
+#
+#     # Pre-Fill the Submitter Information - Cannot be edited
+#     form.submitter_name.data = current_user.name
+#     form.submitter_email.data = current_user.email
+#     form.submitter_phone.data = current_user.phone_number
+#     form.submitter_title.data = current_user.title
+#     form.submitter_division.data = current_user.division
+#
+#     if flask_request.method == 'GET':
+#         # Pre-Fill the Designated Business Owner Information with the Submitters Information - Can be Edited
+#         form.designated_business_owner_name.data = current_user.name
+#         form.designated_business_owner_email.data = current_user.email
+#         form.designated_business_owner_phone.data = current_user.phone_number
+#         form.designated_business_owner_title.data = current_user.title
+#         form.designated_business_owner_division.data = current_user.division
+#
+#     if form.validate_on_submit():
+#         email = render_email(form.data, 'email/email_app_dev_intake.html')
+#         sender = form.submitter_email.data
+#         recipients = current_app.config['APP_DEV_INTAKE_EMAIL_RECIPIENTS'] + [form.submitter_email.data,
+#                                                                               form.designated_business_owner_email.data]
+#         msg = Message(
+#             "App. Dev. Intake Form - {project_name}".format(
+#                 project_name=form.project_name.data
+#             ),
+#             sender=sender,
+#             recipients=recipients,
+#         )
+#         msg.html = email
+#         if form.supplemental_materials_one.data is not None:
+#             tmp_file = BytesIO()
+#             flask_request.files['supplemental_materials_one'].save(tmp_file)
+#             tmp_file.seek(0)
+#             msg.attach(filename=form.supplemental_materials_one.data.filename,
+#                        content_type=form.supplemental_materials_one.data.content_type, data=tmp_file.read())
+#         if form.supplemental_materials_two.data is not None:
+#             tmp_file = BytesIO()
+#             flask_request.files['supplemental_materials_two'].save(tmp_file)
+#             tmp_file.seek(0)
+#             msg.attach(filename=form.supplemental_materials_two.data.filename,
+#                        content_type=form.supplemental_materials_two.data.content_type, data=tmp_file.read())
+#         if form.supplemental_materials_three.data is not None:
+#             tmp_file = BytesIO()
+#             flask_request.files['supplemental_materials_three'].save(tmp_file)
+#             tmp_file.seek(0)
+#             msg.attach(filename=form.supplemental_materials_three.data.filename,
+#                        content_type=form.supplemental_materials_three.data.content_type, data=tmp_file.read())
+#         mail.send(msg)
+#         flash("Successfully submitted intake form. Please allow 5 business days for a response.")
+#         return redirect(url_for('main.it_support'))
+#     else:
+#         for error in form.errors.items():
+#             flash(error[1][0], category="danger")
+#     return render_template("app_dev_intake.html", form=form, current_user=current_user)
 
 
 @main.route('/documents', methods=['GET'])
@@ -817,7 +817,7 @@ def upload_document():
 @main.route('/return-file/<string:file_name>', methods=['GET', 'POST'])
 def return_file(file_name):
     try:
-        return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), attachment_filename=file_name)
+        return send_file(os.path.join(current_app.config['FILE_UPLOAD_PATH'], file_name), download_name=file_name)
     except Exception as e:
         return str(e)
 
