@@ -5,204 +5,224 @@
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/it-support.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}"/>
 {% endblock %}
 
 {% block page_content %}
-    <div class="col-sm-12">
-        <div class="breadcrumb-section">
-            <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-ol">
-                    <li class="breadcrumb-item">
-                        <a href="{{ url_for('main.index') }}">Home</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">IT Support</li>
-                </ol>
-            </nav>
-            <h1 class="breadcrumb-header">IT Support</h1>
-        </div>
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
-        <div class="col-sm-12 well content-area it-support-section">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">DORIS HELP DESK</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Email: <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">CITYWIDE SERVICE DESK</h4>
-                            <div class="col-sm-4 city-wide-service-desk-icon"><span
-                                    class="glyphicon glyphicon-globe it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: (718) 403-8888</p>
-                                <p>Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title" style="padding-bottom: 15px;">TRAINING</h4>
-                            <div class="col-sm-4 training-icon" style="padding-top: 15px;"><span
-                                    class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 training-text">
-                                <p><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
-                                      target="_blank">MS Office Training</a></p>
-                                <p><a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" rel="noopener"
-                                      target="_blank">MS Teams Training</a></p>
-                                <p><a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies"
-                                       rel="noopener"
-                                       target="_blank">Cyber Command Policies</a></p>
-                                <p><a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness"
-                                       rel="noopener"
-                                       target="_blank">User Awareness</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.
-                            For other information, view <a href="../static/documents/it_support_requests_011320.pdf" download="IT Support Request Procedure.pdf">IT Support Request Procedure</a>.<p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>
-                            <a href="https://www.nyc.gov/csdportal" rel="noopener" target="_blank">Citywide Service
-                                Desk</a> is a self-service portal to search knowledge bases, get something fixed, and
-                            request something new from OTI resources.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Get hands-on training with MS Office as well as cybersecurity awareness resources.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">APPLICATION SUPPORT</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">RESOURCES</h4>
-                            <div class="col-sm-4 resources-icon"><span
-                                    class="glyphicon glyphicon-blackboard it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 resources-text">
-                                <p><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
-                                    Public Wi-Fi</a></p>
-                                <p>
-                                    <a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a></p>
-                                <p><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
-                                    Instructions</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">FAQ</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p><a href="{{ url_for('main.faq') }}">Click here to see answers to Frequently Asked
-                                    Questions</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For support on internal DORIS Applications, email the Application Development Team.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Get instructions for accessing public wifi, outlook, and voicemail.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
-                            page.</p>
-                    </div>
-                </div>
-            </div>
+<main role="main">
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">TOOLS AND APPLICATIONS</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon glyphicon-wrench it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <a href="{{ url_for('main.tools_and_applications') }}"><p>Click here for access to
-                                    commonly used DORIS applications</p></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="it-support-title">NYC Security Operations Center</h4>
-                            <div class="col-sm-4 doris-help-desk-icon"><span
-                                    class="glyphicon glyphicon-question-sign it-support-glyphicon"></span></div>
-                            <div class="col-sm-8 doris-help-desk-text">
-                                <p>Phone: (718) 403-6761</p>
-                                <p>Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>For quick access to commonly used DORIS applications, check out our <a
-                                href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="it-support-text">
-                        <p>Contact the <a href="https://www1.nyc.gov/content/oti/pages/" rel="noopener"
-                                          target="_blank">NYC Security Operations Center</a> for information about cybersecurity.</p>
-                    </div>
-                </div>
+        <div class="container-fluid my-auto">
+            <div class="narrow">
+                <h1 class="display-4 text-white">IT Support</h1>
             </div>
         </div>
+        <!-- .container -->
     </div>
+    <!-- .banner-with-background -->
+
+
+    <!--IT Support Row 1-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">DORIS HELP DESK</h2>
+                            <h2 class="card-title h6">Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.</h2>
+
+                            <br>
+
+                            <p class="card-text">
+                                For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.
+                                For other information, view <a href="../static/documents/it_support_requests_011320.pdf" download="IT Support Request Procedure.pdf">IT Support Request Procedure</a>.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="text-secondary" href="#"><strong>Button Link</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">CITYWIDE SERVICE DESK</h2>
+                            <h2 class="card-title h6">Phone: (718) 403-8888</h2>
+                            <h2 class="card-title h6">Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a>.</h2>
+
+                            <br>
+
+                            <p class="card-text">
+                                <a href="https://www.nyc.gov/csdportal" rel="noopener" target="_blank">Citywide Service
+                                Desk</a> is a self-service portal to search knowledge bases, get something fixed, and
+                                request something new from OTI resources.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="text-secondary" href="#"><strong>Button Link</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">TRAINING</h2>
+                            <h2 class="card-title h6"><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
+                            target="_blank">MS Office Training</a></h2>
+                            <h2 class="card-title h6"><a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" 
+                                rel="noopener" target="_blank">MS Teams Training</a></h2>
+                            <h2 class="card-title h6"><a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" 
+                                rel="noopener" target="_blank">Cyber Command Policies</a></h2>
+                            <h2 class="card-title h6"><a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness"
+                                rel="noopener" target="_blank">User Awareness</a></h2>
+
+                            
+                            <br>
+
+
+                            <p class="card-text">
+                                Get hands-on training with Microsoft Office as well as cybersecurity 
+                                awareness resources.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="text-secondary" href="{{ url_for('main.documents') }}"><strong>Button Link</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">APPLICATION SUPPORT</h2>
+                            <h2 class="card-title h6">Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>.</h2>
+                            <p class="card-text">
+                                For support on internal DORIS Applications, email the Application Development team.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="text-secondary" href="{{ url_for('main.documents', default_open='policies_and_procedures') }}"><strong>Button Link</strong></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .col -->
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </section>
+
+
+    <!--IT Support Row 2-->
+        <!--IT Support Row 1-->
+        <section class="bg-light py-5">
+            <div class="container">
+                <div class="row matrix-gutter">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 bg-white">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title h5">RESOURCES</h2>
+                                <h2 class="card-title h6"><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
+                                    Public Wi-Fi</a></h2>
+                                <h2 class="card-title h6"><a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a></h2>
+                                <h2 class="card-title h6"><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
+                                Instructions</a></h2>
+
+                                <br>
+
+                                <p class="card-text">
+                                    Get instructions for accessing public Wifi, Outlook, and Voicemail. 
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="text-secondary" href="{{ url_for('main.staff_directory') }}"><strong>Button Link</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col -->
+    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 bg-white">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title h5">FAQ</h2>
+                                <h2 class="card-title h6">Click here to see answers to frequently asked  <a
+                                    href="{{ url_for('main.faq') }}">questions</a>.
+                                </h2>
+
+                                <br>
+
+                                <p class="card-text">
+                                    For answers to common problems or issues, check out our <a href="{{ url_for('main.faq') }}">FAQ</a>
+                                    page.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="text-secondary" href="#"><strong>Button Link</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col -->
+    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 bg-white">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title h5">TOOLS AND APPLICATIONS</h2>
+                                <h2 class="card-title h6">For quick access to commonly used DORIS applications, check out our <a
+                                    href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.
+                                </h2>
+
+                                <br>
+                                
+                                <p class="card-text">
+                                    For quick access to commonly used DORIS applications, check out our <a
+                                    href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="text-secondary" href="#"><strong>Button Link</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col -->
+    
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 bg-white">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title h5">NYC SECURITY OPERATIONS CENTER</h2>
+                                <h2 class="card-title h6">Phone: (718) 403-6761</h2>
+                                <h2 class="card-title h6">Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a>.</h2>
+
+                                <br>
+
+                                <p class="card-text">
+                                    Contact the <a href="https://www1.nyc.gov/content/oti/pages/" rel="noopener"
+                                    target="_blank">NYC Security Operations Center</a> for information about cybersecurity.
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="text-secondary" href="#"><strong>Button Link</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container -->
+        </section>
 {% endblock %}
