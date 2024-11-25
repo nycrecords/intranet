@@ -48,3 +48,52 @@ body {
 .no-left-padding {
     padding-left: 0;
 }
+
+/* Custom CSS that changes the font size of the Header*/
+#nyc-top-header {
+    font-size: 16px;
+  }
+  
+  #nyc-top-header p,
+  #nyc-top-header a,
+  #nyc-top-header ul,
+  #nyc-top-header li {
+    font-size: 16px;
+  }
+  
+  /* Custom CSS that changes the font size of the Navbar Items*/
+  #nav-primary {
+    font-size: 16px;
+  }
+  
+  #nav-primary p,
+  #nav-primary ul,
+  #nav-primary li,
+  #nav-primary a {
+    font-size: 16px;
+  }
+  
+  /*Custom CSS that changes the font size of Footer Items*/
+  #nyc-footer {
+    font-size: 16px;
+  }
+  
+  #nyc-footer p,
+  #nyc-footer a,
+  #nyc-footer ul,
+  #nyc-footer li {
+    font-size: 16px;
+  }
+
+/* Custom CSS for Footer social media icons*/
+.footer-icons {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.footer-icons.social-media {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+

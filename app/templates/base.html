@@ -34,38 +34,32 @@
 
     <header id="global-header" role="banner">
         <div class="bg-black text-white" id="nyc-top-header">
-            <div class="container-fluid px-0"> <!-- Removed 'wide' class and added px-0 to extend full width -->
+            <div class="container-fluid navbar-styling px-0"> 
                 <div class="row py-3 align-items-center mx-0">
-                    <!-- Added more padding with py-3 and removed horizontal margin -->
-                    <div class="col-md-6 ps-4"> <!-- Using col-md-6 for half width and ps-4 for left padding -->
-                        <p class="d-none d-md-flex fs-md mb-0"> <!-- Added mb-0 to remove bottom margin -->
-                            <a class="text-reset" href="https://www1.nyc.gov/">
-                                <strong>nyc.gov</strong>
+                    <div class="col-md-6 ps-4">
+                        <p class="d-none d-md-flex fs-md mb-0">
+                            <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                <img class="d-block" style="margin-top: 6px;"
+                                    src="{{ url_for('static', filename='img/nyc-bubble-logo.svg') }}" width="42" alt="NYC Logo">
                             </a>
                             <span class="mx-1" aria-hidden="true">|</span>
-                            <strong>New York City Department of Records and Information Services</strong>
+                            Department of Records and Information Services
                         </p>
                     </div>
 
-                    <div class="col-md-6 pe-4"> <!-- Using col-md-6 for half width and pe-4 for right padding -->
+                    <div class="col-md-6 pe-4">
                         <ul class="extensible-list horizontal fs-md mb-0 justify-content-end">
-                            <!-- Added justify-content-end and mb-0 -->
-                            <li class="me-4"> <!-- Added margin-end spacing between items -->
-                                <a class="text-reset" href="http://www1.nyc.gov/">
-                                    <strong>311</strong>
+                            <li class="me-4"> 
+                                <a class="text-reset" href="https://portal.311.nyc.gov/">
+                                    <strong>NYC 311</strong>
                                 </a>
                             </li>
-                            <li class="me-4"> <!-- Added margin-end spacing between items -->
+                            <li class="me-4">
                                 <a class="text-reset" href="http://www1.nyc.gov/home/search/index.page">
                                     <strong>Search all NYC.gov</strong>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
-                                    <img class="d-block"
-                                        src="{{ url_for('static', filename='img/nyc-bubble-logo.svg') }}" width="45"
-                                        alt="NYC Logo">
-                                </a>
                             </li>
                         </ul>
                     </div>
@@ -126,11 +120,11 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="nav-item-01">
                                             <ul class="extensible-list">
-                                                <li><a href="{{ url_for('main.news_and_updates') }}">News & Updates</a>
+                                                <li><a href="{{ url_for('main.news_and_updates') }}"><strong>News & Updates</strong></a>
                                                 </li>
-                                                <li><a href="{{ url_for('main.news') }}">News</a></li>
-                                                <li><a href="{{ url_for('main.meeting_notes') }}">Meeting Notes</a></li>
-                                                <li><a href="{{ url_for('main.events') }}">Events</a></li>
+                                                <li><a href="{{ url_for('main.news') }}"><strong>News</strong></a></li>
+                                                <li><a href="{{ url_for('main.meeting_notes') }}"><strong>Meeting Notes</strong></a></li>
+                                                <li><a href="{{ url_for('main.events') }}"><strong>Events</strong></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -164,7 +158,6 @@
                             </div>
 
                             <!-- Desktop Toggle Buttons -->
-
                             <ul class="extensible-list horizontal d-none d-lg-flex">
                                 <li>
                                     <button class="no-btn-style" type="button" data-toggle="collapse"
@@ -173,7 +166,6 @@
                                         <span class="fas fa-language fa-lg" role="img"></span>
                                     </button>
                                 </li>
-
                                 <li>
                                     <button class="no-btn-style" type="button" data-toggle="collapse"
                                         data-target="#global-search" aria-controls="global-search"
@@ -182,19 +174,14 @@
                                     </button>
                                 </li>
                             </ul>
-
                         </div>
                         <!-- .d-flex -->
-
                     </div>
                     <!-- .col -->
-
                 </div>
                 <!-- .row -->
-
             </div>
             <!-- .container-fluid -->
-
         </div>
         <!-- .wrap-header -->
 
@@ -237,9 +224,7 @@
         </h2>
 
         <div class="bg-opacity-black-25 text-white" id="nyc-footer">
-
             <div class="container py-3 d-none" id="languages">
-
                 <div class="row fs-md">
 
                     <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
@@ -273,12 +258,10 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
             <!-- #languages -->
 
             <div class="container py-3" id="languages">
-
                 <ul class="fs-md" role="list">
                     <li><a class="lang-select text-reset" href="#" data-lang="ar"><strong>عربى</strong></a></li>
                     <li><a class="lang-select text-reset" href="#" data-lang="bn"><strong>বাঙালি</strong></a></li>
@@ -291,22 +274,16 @@
                     <li><a class="lang-select text-reset" href="#" data-lang="es"><strong>Español</strong></a></li>
                     <li><a class="lang-select text-reset" href="#" data-lang="ur"><strong>اردو</strong></a></li>
                 </ul>
-
             </div>
             <!-- #languages -->
 
             <hr class="opacity-20" aria-hidden="true">
 
             <div class="container py-3">
-
                 <div class="row">
-
                     <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
-
                         <nav class="row fs-md" role="navigation">
-
                             <div class="col-lg mb-3 mb-lg-0">
-
                                 <ul class="extensible-list">
                                     <li>
                                         <a class="text-reset" href="{{ url_for('main.our_mission') }}">
@@ -347,12 +324,10 @@
                                         </a>
                                     </li>
                                 </ul>
-
                             </div>
                             <!-- .col -->
 
                             <div class="col-lg mb-3 mb-lg-0">
-
                                 <ul class="extensible-list">
                                     <li>
                                         <a class="text-reset" href="https://a860-openrecords.nyc.gov/" target="_blank">
@@ -371,17 +346,31 @@
                                         </a>
                                     </li>
                                 </ul>
-
                             </div>
                             <!-- .col -->
-
                         </nav>
 
+                        <div class="footer-icons social-media">
+                            <a href="https://www.facebook.com/nycrecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/facebook_icon.png') }}" alt="Facebook Logo" width="30">
+                            </a>
+
+                            <a href="https://www.instagram.com/nycarchives/" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/instagram_icon.png') }}" alt="instagram Logo" width="30">
+                            </a>
+
+                            <a href="https://twitter.com/nycrecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/twitter_icon.png') }}" alt="Twitter Logo" width="30">
+                            </a>
+
+                            <a href="https://www.youtube.com/user/NYCDeptofRecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/youtube_icon.png') }}" alt="Facebook Logo" width="30">
+                            </a>
+                        </div>     
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-4">
-
                         <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
                             <img class="mb-2" src="{{ url_for('static', filename='img/nyc-bubble-logo.svg') }}"
                                 width="90" alt="NYC Logo">
@@ -406,19 +395,14 @@
                                 </a>
                             </li>
                         </ul>
-
                     </div>
                     <!-- .col -->
-
                 </div>
                 <!-- .row -->
-
             </div>
             <!-- .container -->
-
         </div>
         <!-- #nyc-bottom-footer -->
-
     </footer>
     {% endblock %}
 
