@@ -169,3 +169,50 @@
     width: 14px;
     margin-right: 10px;
 }
+
+.table {
+    table-layout: fixed;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.table-bordered {
+    font-size: 16px;
+}
+
+.table-bordered th {
+    color: #000000;
+    text-align: center;
+}
+
+.division-column, .table td:nth-child(4) {
+    width: 250px;
+    white-space: nowrap;
+}
+
+.title-column {
+    width: 160px;
+}
+
+.phone-column {
+    width: 140px;
+}
+
+.email-column {
+    width: 230px;
+}
+
+.table td img {
+    width: 50px; 
+    height: 50px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto; 
+    margin-top: 5px;
+}
+
+.banner-with-background {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+  }
