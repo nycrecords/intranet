@@ -13,7 +13,7 @@
     <!-- Add your Custom image class below (after 'banner-with-background') -->
     <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
-        <div class="container-fluid my-auto">
+        <div class="container-fluid my-auto text-center">
             <div class="narrow">
                 <h1 class="display-4 text-white">IT Support</h1>
             </div>
@@ -23,17 +23,29 @@
     <!-- .banner-with-background -->
 
 
+    <div class="breadcrumb-section bg-light">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-ol">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+            </ol>
+        </nav>
+    </div>
+
+
     <!--IT Support Row 1-->
     <section class="bg-light py-5">
         <div class="container">
             <div class="row matrix-gutter">
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">DORIS HELP DESK</h2>
-                            <h2 class="card-title h6">Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.</h2>
+                            <h2 class="card-subtitle h6">Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.</h2>
 
+                            <br>
                             <br>
 
                             <p class="card-text">
@@ -50,11 +62,10 @@
 
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">CITYWIDE SERVICE DESK</h2>
-                            <h2 class="card-title h6">Phone: (718) 403-8888</h2>
-                            <h2 class="card-title h6">Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a>.</h2>
+                            <h2 class="card-subtitle h6">Phone: (718) 403-8888</h2>
+                            <h2 class="card-subtitle h6">Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a></h2>
 
                             <br>
 
@@ -73,21 +84,18 @@
 
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">TRAINING</h2>
-                            <h2 class="card-title h6"><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
-                            target="_blank">MS Office Training</a></h2>
-                            <h2 class="card-title h6"><a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" 
-                                rel="noopener" target="_blank">MS Teams Training</a></h2>
-                            <h2 class="card-title h6"><a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" 
-                                rel="noopener" target="_blank">Cyber Command Policies</a></h2>
-                            <h2 class="card-title h6"><a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness"
-                                rel="noopener" target="_blank">User Awareness</a></h2>
+                            <h2 class="card-subtitle h6"><a href="https://support.office.com/en-us/office-training-center" rel="noopener"
+                                target="_blank">MS Office Training</a></h2>
+                                <h2 class="card-subtitle h6"><a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" 
+                                    rel="noopener" target="_blank">MS Teams Training</a></h2>
+                                <h2 class="card-subtitle h6"><a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" 
+                                    rel="noopener" target="_blank">Cyber Command Policies</a></h2>
+                                <h2 class="card-subtitle h6"><a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness"
+                                    rel="noopener" target="_blank">User Awareness</a></h2>
 
-                            
                             <br>
-
 
                             <p class="card-text">
                                 Get hands-on training with Microsoft Office as well as cybersecurity 
@@ -103,10 +111,13 @@
 
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">APPLICATION SUPPORT</h2>
-                            <h2 class="card-title h6">Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>.</h2>
+                            <h2 class="card-subtitle h6">Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>.</h2>
+
+                            <br>
+
+
                             <p class="card-text">
                                 For support on internal DORIS Applications, email the Application Development team.
                             </p>
@@ -131,13 +142,12 @@
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">RESOURCES</h2>
-                                <h2 class="card-title h6"><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
+                                <h2 class="card-subtitle h6"><a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS
                                     Public Wi-Fi</a></h2>
-                                <h2 class="card-title h6"><a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a></h2>
-                                <h2 class="card-title h6"><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
+                                <h2 class="card-subtitle h6"><a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a></h2>
+                                <h2 class="card-subtitle h6"><a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail
                                 Instructions</a></h2>
 
                                 <br>
@@ -155,10 +165,9 @@
     
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">FAQ</h2>
-                                <h2 class="card-title h6">Click here to see answers to frequently asked  <a
+                                <h2 class="card-subtitle h6">Click here to see answers to frequently asked  <a
                                     href="{{ url_for('main.faq') }}">questions</a>.
                                 </h2>
 
@@ -178,10 +187,9 @@
     
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">TOOLS AND APPLICATIONS</h2>
-                                <h2 class="card-title h6">For quick access to commonly used DORIS applications, check out our <a
+                                <h2 class="card-subtitle h6">For quick access to commonly used DORIS applications, check out our <a
                                     href="{{ url_for('main.tools_and_applications') }}">Tools and Applications</a> page.
                                 </h2>
 
@@ -201,11 +209,10 @@
     
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">NYC SECURITY OPERATIONS CENTER</h2>
-                                <h2 class="card-title h6">Phone: (718) 403-6761</h2>
-                                <h2 class="card-title h6">Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a>.</h2>
+                                <h2 class="card-subtitle h6">Phone: (718) 403-6761</h2>
+                                <h2 class="card-subtitle h6">Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a>.</h2>
 
                                 <br>
 
@@ -224,5 +231,5 @@
                 <!-- .row -->
             </div>
             <!-- .container -->
-        </section>
+        </section>        
 {% endblock %}
