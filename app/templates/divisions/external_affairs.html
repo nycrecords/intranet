@@ -4,35 +4,33 @@
 {% block title %}External Affairs{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">External Affairs</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">External Affairs</h1>
+<br>
+<article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <br>
+            <h2>External Affairs</h2>
+
+            <br>
+
+            <p>
+                The Community and External Affairs Unit coordinates the public-facing elements of the agency, including
+                its websites, social media, public programs, education, community outreach and marketing. The Unit
+                advances the Department of Records and Information Services’ agenda by developing external
+                relationships, managing strategic implementation of projects and building community support. It is
+                responsible for attracting, welcoming, and retaining visitors to DORIS’ public-facing forums both online
+                and on premises and for managing staff engagement. Using outreach to the media, the public, the city's
+                many communities, and government offices and officials at all levels, the unit endeavors to reach
+                ever-expanding audiences.
+
+            </p>
+            <br><br><br>
+        </div>
     </div>
-    <div class="col-sm-12 well content-area individual-division-page">
-        <p>The Community and External Affairs Unit coordinates the public-facing
-            elements of the agency, including its websites, social media, public programs, education, community outreach
-            and marketing. The Unit advances the Department of Records and Information Services’ agenda by developing
-            external relationships, managing strategic implementation of projects and building community support. It is
-            responsible for attracting, welcoming, and retaining visitors to DORIS’ public-facing forums both online and
-            on premises and for managing staff engagement. Using outreach to the media, the public, the city's many
-            communities, and government offices and officials at all levels, the unit endeavors to reach ever-expanding
-            audiences.
-        </p>
-    </div>
-</div>
+</article>
 {% endblock %}
