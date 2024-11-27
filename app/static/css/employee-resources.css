@@ -97,3 +97,29 @@ hr {
 .employee-benefits-text {
     font-size: 18px;
 }
+
+.breadcrumb-section {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-nav {
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb-ol {
+    padding-left: 25px;
+    padding-top: 20px;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "> ";
+}

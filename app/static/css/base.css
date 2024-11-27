@@ -5,30 +5,32 @@ body {
 }
 
 .breadcrumb-header {
-    color: #5C95A3;
-    font-family: "Helvetica";
-    font-size: 28px;
-    letter-spacing: 0.5px;
-    margin-bottom: 2.5rem;
+  color: #5C95A3;
+  font-family: "Helvetica";
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  margin-bottom: 2.5rem;
 }
 
 .breadcrumb-nav {
-    color: #4A4A4A;
-    font-family: "Helvetica";
-    font-size: 14px;
-}
-
-.breadcrumb.breadcrumb-ol {
-    background-color: #F0F0F0;
+  color: #000000;
+  font-family: "Helvetica";
+  font-size: 16px;
+  background-color: transparent; 
 }
 
 .breadcrumb-ol {
-    padding-left: 0;
-    margin-top: 10px;
+  padding-left: 25px;
+  margin-top: 10px;
+  background-color: transparent;
+}
+
+.breadcrumb-item {
+  font-size: 16px;
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    content: "> ";
+  content: "> "; 
 }
 
 .content-area {

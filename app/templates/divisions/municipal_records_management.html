@@ -9,6 +9,24 @@
 {% endblock %}
 
 {% block page_content %}
+<br>
+
+<div class="breadcrumb-section">
+    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-ol">
+            <li class="breadcrumb-item">
+                <a href="{{ url_for('main.index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ url_for('main.divisions') }}">Divisions</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Municipal Records Management</li>
+        </ol>
+    </nav>
+</div>
+
+<br>
+
 <article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
     <div class="row justify-content-center">
         <div class="col-12 col-md-8">
