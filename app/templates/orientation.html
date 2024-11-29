@@ -5,10 +5,12 @@
 
 {% block custom_css %}
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/orientation.css') }}"/>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}"/>
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
+    <br>
+    <!--Breadcrumb-->
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-ol">
@@ -21,16 +23,19 @@
                 <li class="breadcrumb-item active" aria-current="page">Orientation</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Orientation</h1>
     </div>
-    <div class="col-sm-12 well content-area orientation-section">
+
+
+    <div class="orientation-section">
         <div class="orientation-video" id="video-anchor">
             <video id="orientation-video" width="800" height="500" controls>
                 <source src="{{ url_for('static', filename='files/orientation.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+
         <br>
+        
         <div class="timestamps">
             <h2>Timestamps</h2>
             <ol>
