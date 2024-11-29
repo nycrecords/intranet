@@ -84,3 +84,21 @@
 .breadcrumb-item+.breadcrumb-item::before {
     content: "> ";
 }
+
+.itsupport_card_text {
+    font-size: 16px;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.training-grid a {
+    text-decoration: none;
+}
+
+.it_support_cards {
+    min-height: 200px;
+}
