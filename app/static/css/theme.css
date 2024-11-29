@@ -10739,7 +10739,7 @@ legend,
 .banner-with-background {
   position: relative;
   overflow: hidden;
-  min-height: 350px;
+  min-height: 250px;
 }
 
 .banner-with-background > * {
