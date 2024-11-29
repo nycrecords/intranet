@@ -123,3 +123,23 @@ hr {
 .breadcrumb-item+.breadcrumb-item::before {
     content: "> ";
 }
+
+a.text-secondary.emp_resources_card_link {
+    color: #000000 !important;
+}
+
+a.text-secondary.emp_resources_card_link:hover,
+a.text-secondary.emp_resources_card_link:focus {
+    color: #000000 !important;
+}
+
+
+/*External Sources Cards*/
+a.text-secondary.ext_sources_card_link {
+    color: #000000 !important;
+}
+
+a.text-secondary.ext_sources_card_link:hover,
+a.text-secondary.ext_sources_card_link:focus {
+    color: #000000 !important;
+}

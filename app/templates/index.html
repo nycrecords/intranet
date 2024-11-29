@@ -3,8 +3,12 @@
 
 {% block title %}Home{% endblock title %}
 
-{% block page_content %}
+{% block custom_css %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}" />
+{% endblock %}
 
+{% block page_content %}
 <body>
     <main id="skip-header-target" role="main">
 
@@ -65,53 +69,37 @@
 
                 <br>
 
-                <div class="row matrix-gutter">
+                <div class="row matrix-gutter text-center">
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://www1.nyc.gov/site/doh/covid/covid-19-main.page" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">COVID-19 Information</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="https://www1.nyc.gov/site/doh/covid/covid-19-main.page" target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">CityShare</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true"
-                                    target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://prod.citytime.nycnet/" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">CityTime</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="https://prod.citytime.nycnet/" target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>
@@ -125,53 +113,38 @@
         <section class="bg-primary py-1">
             <div class="container">
 
-                <div class="row matrix-gutter">
+                <div class="row matrix-gutter text-center">
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://timeclock.getinfo.nyc/" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">TimeClock</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="https://timeclock.getinfo.nyc/" target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">MyDesk</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="{{ url_for('main.staff_directory') }}">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">Staff Directory</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="{{ url_for('main.staff_directory') }}">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>
@@ -185,54 +158,38 @@
         <section class="bg-primary py-5">
             <div class="container">
 
-                <div class="row matrix-gutter">
+                <div class="row matrix-gutter text-center">
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="{{ url_for('main.tools_and_applications') }}">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">Tools & Applications</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="{{ url_for('main.tools_and_applications') }}">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="{{ url_for('main.documents') }}">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">Documents</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="{{ url_for('main.documents') }}">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://nyco365.sharepoint.com/sites/DORIS-PMO/SitePages/Project-Intake-Form.aspx" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
                                 <h2 class="card-title">Project Intake Form</h2>
                             </div>
-                            <div class="card-footer">
-                                <a class="btn btn-lg btn-white btn-block has-icon disperse stretched-link"
-                                    href="https://nyco365.sharepoint.com/sites/DORIS-PMO/SitePages/Project-Intake-Form.aspx"
-                                    target="_blank">
-                                    <span class="fas fa-angle-right" role="img"></span>
-                                    <span class="title">Button Link</span>
-                                </a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>

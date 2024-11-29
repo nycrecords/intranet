@@ -4,8 +4,8 @@
 {% block title %}Employee Resources{% endblock %}
 
 {% block custom_css %}
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}" />
 {% endblock %}
 
 {% block page_content %}
@@ -51,8 +51,8 @@
             </header>
             <div class="row matrix-gutter">
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.staff_directory') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Staff Directory</h2>
                             <br>
@@ -60,16 +60,14 @@
                                 Look up contact information for Department of Records staff members. 
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.staff_directory') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                        <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.employee_benefits') }}">
                         <div class="card-body">
                             <h2 class="card-title h5">Employee Benefits</h2>
                             <br>
@@ -77,16 +75,14 @@
                                 Find information on employee benefits for DORIS and Nyc.gov employees. 
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.employee_benefits') }}"><strong>Button Link</strong></a>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Documents</h2>
                             <br>
@@ -95,27 +91,23 @@
                                 Download files here. 
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.documents') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='policies_and_procedures') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Policies and Procedures</h2>
                             <br>
                             <p class="card-text">
-                                Find documents relating to policies and procedures here.
+                                Find documents relating to departmental policies and procedures here.
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.documents', default_open='policies_and_procedures') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
             </div>
@@ -130,8 +122,8 @@
         <div class="container">
             <div class="row matrix-gutter">
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='training_materials') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Training Materials</h2>
                             <br>
@@ -139,16 +131,14 @@
                                 Find documents relating to training materials here.
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.documents', default_open='training_materials') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='records_management') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Records Management</h2>
                             <br>
@@ -156,16 +146,14 @@
                                 Find documents relating to records management here.
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.documents', default_open='records_management') }}"><strong>Button Link</strong></a>
-                        </div>
+                    </a>
                     </div>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.orientation') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Orientation</h2>
                             <br>
@@ -173,27 +161,23 @@
                                 View the new employee orientation information here.
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.orientation') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.strategic_planning') }}">
                     <div class="card h-100 bg-white">
-                        <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                         <div class="card-body">
                             <h2 class="card-title h5">Strategic Planning</h2>
                             <br>
                             <p class="card-text">
-                                Some filler text will go here. Still don't know if this will be fully dropped or not.
+                                Some filler text will go here. Still don't know if this will drop.
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <a class="text-secondary" href="{{ url_for('main.strategic_planning') }}"><strong>Button Link</strong></a>
-                        </div>
                     </div>
+                    </a>
                 </div>
                 <!-- .col -->
             </div>
@@ -201,6 +185,7 @@
         </div>
         <!-- .container -->
     </section>
+
 
 
         <!--External Sites Row 1-->
@@ -218,8 +203,9 @@
 
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://cityshare.nycnet/content/cityshare/pages/" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="{{ url_for('static', filename='img/cityshare_logo.png') }}" alt="Card image cap" style="height: 100px;">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">CityShare</h2>
                                 <br>
@@ -228,16 +214,15 @@
                                     Information Technology, and much more.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://cityshare.nycnet/content/cityshare/pages/" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://prod.citytime.nycnet" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="{{ url_for('static', filename='img/citytime_logo.png') }}" alt="Card image cap" style="height: 100px;">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">City Time</h2>
                                 <br>
@@ -246,16 +231,15 @@
                                     punches, and request leave. 
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://prod.citytime.nycnet" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://timeclock.getinfo.nyc/auth/login" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="{{ url_for('static', filename='img/timeclock_logo.png') }}" alt="Card image cap" style="height: 100px;">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Timeclock</h2>
                                 <br>
@@ -264,16 +248,15 @@
                                     to clock in and out, generate timesheets, and print out invoices. 
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://timeclock.getinfo.nyc/auth/login" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login"  rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="{{ url_for('static', filename='img/nycaps_logo.gif') }}" alt="Card image cap" style="height: 100px;">
+                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">NYCAPS</h2>
                                 <br>
@@ -283,10 +266,8 @@
                                     city's online human resources portal.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login"  rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>
@@ -301,6 +282,7 @@
             <div class="container">
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://www.nycers.org/" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
                             <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body paragraph-height">
@@ -311,14 +293,13 @@
                                     retirement.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://www.nycers.org/" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/opa/index.page" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
                             <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body paragraph-height">
@@ -330,14 +311,13 @@
                                     and pay dates.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://www1.nyc.gov/site/opa/index.page" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
                             <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body paragraph-height">
@@ -349,14 +329,13 @@
                                     Deferred Compensation, and Management Benefit Fund (Managers only).
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
     
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary ext_sources_card_link" href="http://www.nyc.gov/html/dcas/html/home/home.shtml" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
                             <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body paragraph-height">
@@ -368,10 +347,8 @@
                                     and information about working with and for the City of New York.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary" href="http://www.nyc.gov/html/dcas/html/home/home.shtml" rel="noopener" target="_blank"><strong>Button Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>
