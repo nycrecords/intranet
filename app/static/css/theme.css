@@ -4184,15 +4184,18 @@ input[type="button"].btn-block {
 
 .card-title {
   margin-bottom: 1rem;
+  font-size: 2.25rem;
 }
 
 .card-subtitle {
-  margin-top: -0.5rem;
+  margin-top: 1rem;
   margin-bottom: 0;
+  font-size: 16px;
 }
 
 .card-text:last-child {
   margin-bottom: 0;
+  font-size: 16px;
 }
 
 .card-link:hover {
@@ -11321,5 +11324,5 @@ In this file:
 .social-footer .social-icon {
   width: 30px;
   height: 30px;
-  margin: 0 10px; /* Add space between icons */
+  margin: 0 10px;
 }

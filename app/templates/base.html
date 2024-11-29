@@ -49,6 +49,10 @@
 
                     <div class="col-md-6 pe-4">
                         <ul class="extensible-list horizontal fs-md mb-0 justify-content-end">
+                            <li class="me-4">
+                                <div>{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
+                            </li>
+                            <span class="mx-1" aria-hidden="true">|</span>
                             <li class="me-4"> 
                                 <a class="text-reset" href="https://portal.311.nyc.gov/">
                                     <strong>NYC 311</strong>
@@ -363,8 +367,12 @@
                                 <img src="{{ url_for('static', filename='img/twitter_icon.png') }}" alt="Twitter Logo" width="30">
                             </a>
 
+                            <a href="http://nycrecords.tumblr.com/" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/tumblr_logo_main.png') }}" alt="Tumblr Logo" width="30">
+                            </a>
+
                             <a href="https://www.youtube.com/user/NYCDeptofRecords" rel="noopener" target="_blank">
-                                <img src="{{ url_for('static', filename='img/youtube_icon.png') }}" alt="Facebook Logo" width="30">
+                                <img src="{{ url_for('static', filename='img/youtube_icon.png') }}" alt="YouTube Logo" width="30">
                             </a>
                         </div>     
                     </div>
