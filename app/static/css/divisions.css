@@ -74,3 +74,13 @@
 .breadcrumb-item+.breadcrumb-item::before {
     content: "> ";
 }
+
+.divisions-card {
+    color: #000000 !important;
+    text-decoration: none; 
+}
+
+a.divisions-card:hover,
+a.divisions_card:focus {
+    color: #000000 !important;
+}
