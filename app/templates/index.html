@@ -211,8 +211,7 @@
                         </div>
                         <!-- .col -->
                         <div class="col-lg-auto">
-                            <a class="link text-reset" href="{{ url_for('main.employee_benefits') }}"><strong>See
-                                    all</strong></a>
+                            <a class="link text-reset see_all_homepage" href="{{ url_for('main.events') }}"><h2>See all</h2></a>
                         </div>
                         <!-- .col -->
                     </div>
@@ -306,25 +305,22 @@
                 <br>
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='administration-and-human-resources') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Administration & Human Resources</h2>
                                 <p class="card-text">
                                     The Administration & Human Resources division is responsible for all maintaining all
-                                    employee
-                                    personnel records, procurement, and payroll.
+                                    employee personnel records, procurement, and payroll.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='administration-and-human-resources') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='executive') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Executive</h2>
@@ -333,52 +329,40 @@
                                     that we advance DORIS’s mission.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='executive') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='external-affairs') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">External Affairs</h2>
                                 <p class="card-text">
                                     The External Affairs Unit coordinates the public-facing elements of the agency,
-                                    including
-                                    its websites, social media, public programs, education, community outreach and
+                                    including its websites, social media, public programs, education, community outreach and
                                     marketing.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='external-affairs') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='grant-unit') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Grant Unit</h2>
                                 <p class="card-text">
-                                    The Grant Administration Unit provides guidance to agencies in the development of
-                                    grant
+                                    The Grant Administration Unit provides guidance to agencies in the development of grant
                                     projects from the first conceptual stages, to the preparation of final application
                                     drafts.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='grant-unit') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>
@@ -393,86 +377,66 @@
             <div class="container">
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='information-technology') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Information Technology</h2>
                                 <p class="card-text">
                                     The IT division is responsible for innovation, automation, achieving operational
-                                    efficiencies,
-                                    standardization, using industry best practices and maximizing the use of technology
-                                    across the
-                                    agency.
+                                    efficiencies, standardization, using industry best practices and maximizing the use of technology
+                                    across the agency.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='information-technology') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='legal') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Legal</h2>
                                 <p class="card-text">
                                     The Legal unit/Agency Attorney reviews legal matters, conducts
-                                    interviews, prepares cases and represents the agency at administrative hearings and
-                                    in
-                                    court as
-                                    needed.
+                                    interviews, prepares cases and represents the agency at administrative hearings and in
+                                    court as needed.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='legal') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-archives') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Municipal Archives</h2>
                                 <p class="card-text">
                                     The Municipal Archives preserves and makes available the
-                                    historical records of New York City government. The MA holds over 200,000 cubic feet
-                                    and
-                                    over
-                                    50TB of records dating from the early seventeenth century to the present.
+                                    historical records of New York City government. The MA holds over 200,000 cubic feet and
+                                    over 50TB of records dating from the early seventeenth century to the present.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='municipal-archives') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-library') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Municipal Library</h2>
                                 <p class="card-text">
                                     The Municipal Library is mandated by the New York City Charter as the
-                                    official repository for New York City agency publications. They provide access
-                                    through
-                                    our print
-                                    collection and electronic government documents portal.
+                                    official repository for New York City agency publications. They provide access through
+                                    our print collection and electronic government documents portal.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='municipal-library') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>  
                     </div>
                     <!-- .col -->
                 </div>
@@ -487,26 +451,22 @@
             <div class="container">
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-records-management') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Municipal Records Management</h2>
                                 <p class="card-text">
                                     The Municipal Records Management division develops and sets citywide policies for
-                                    records
-                                    management and operate storage facilities that holds active records for NYC
-                                    agencies.
+                                    records management and operate storage facilities that holds active records for NYC agencies.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='municipal-records-management') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='operations') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
                                 <h2 class="card-title h5">Operations</h2>
@@ -515,12 +475,8 @@
                                     that DORIS staff have safe and comfortable working environments.
                                 </p>
                             </div>
-                            <div class="card-footer">
-                                <a class="text-secondary"
-                                    href="{{ url_for('main.division_pages', division_name='operations') }}"><strong>Button
-                                        Link</strong></a>
-                            </div>
                         </div>
+                        </a>
                     </div>
                     <!-- .col -->
                 </div>

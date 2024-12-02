@@ -293,3 +293,17 @@ hr {
     text-decoration: underline !important;
     color: #ffffff
 }
+
+.see_all_homepage:hover {
+    text-decoration: underline !important;
+}
+
+.divisions-card {
+    color: #000000 !important;
+    text-decoration: none; 
+}
+
+a.divisions-card:hover,
+a.divisions_card:focus {
+    color: #000000 !important;
+}
