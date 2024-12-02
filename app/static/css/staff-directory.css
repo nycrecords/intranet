@@ -181,7 +181,7 @@
 }
 
 .table-bordered th {
-    color: #000000;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -215,4 +215,8 @@
     position: relative;
     overflow: hidden;
     min-height: 250px;
-  }
+}
+
+.staff_directory_header {
+    background-color: #67409E;
+}

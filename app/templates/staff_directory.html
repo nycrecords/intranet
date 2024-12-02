@@ -4,6 +4,7 @@
 {% block title %}Staff Directory{% endblock %}
 
 {% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}"/>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/staff-directory.css') }}"/>
 {% endblock %}
 
@@ -39,7 +40,7 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
+        <tr class="staff_directory_header">
             <th scope="col"></th>
             <th scope="col" class="first-column">First</th>
             <th scope="col" class="last-column">Last</th>
