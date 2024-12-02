@@ -38,37 +38,61 @@
 
     <br>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr class="staff_directory_header">
-            <th scope="col"></th>
-            <th scope="col" class="first-column">First</th>
-            <th scope="col" class="last-column">Last</th>
-            <th scope="col" class="division-column">Division</th>
-            <th scope="col" class="title-column">Title</th>
-            <th scope="col" class="phone-column">Phone</th>
-            <th scope="col" class="email-column">Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>
-                <img 
-                    src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}" 
-                    class="img-fluid" 
-                    style="width: 50px; height: 50px;" 
-                    alt="avatar" 
-                    onerror="this.src='/static/img/avatar.png'">
-            </td>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.division }}</td>
-            <td>{{ user.title }}</td>
-            <td>{{ user.phone_number or 'N/A' }}</td>
-            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <div class="panel-heading panel-header-style col-sm-12">
+        <form class="staff-directory-search-options" method="post">
+            <div class="col-sm-12 ui-widget" id="staff-directory-search">
+                {{ form.search(id="staff-directory-search-data", placeholder="Enter Here") }}
+            </div>
+            
+            <div class="col-sm-12 menu" id="filter-menu">
+                {{ form.filters(id="filter-data") }}
+            </div>
+
+            <div class="col-sm-12 d-flex justify-content-center" id="button-group">
+                <div id="staff-directory-submit-test">
+                    {{ form.submit(id="staff-directory-submit-test") }}
+                </div>
+                
+                <button id="staff-directory-reset">
+                    <a href="{{ url_for('main.staff_directory') }}">Reset</a>
+                </button>
+            </div>
+        </form>
+    </div>
+    
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr class="staff_directory_header">
+                <th scope="col"></th>
+                <th scope="col" class="first-column">First</th>
+                <th scope="col" class="last-column">Last</th>
+                <th scope="col" class="division-column">Division</th>
+                <th scope="col" class="title-column">Title</th>
+                <th scope="col" class="phone-column">Phone</th>
+                <th scope="col" class="email-column">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>
+                    <img 
+                        src="{{ url_for('static', filename='img/employee_photos/' + user.email + '.jpg') }}" 
+                        class="img-fluid" 
+                        style="width: 50px; height: 50px;" 
+                        alt="avatar" 
+                        onerror="this.src='/static/img/avatar.png'">
+                </td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.division }}</td>
+                <td>{{ user.title }}</td>
+                <td>{{ user.phone_number or 'N/A' }}</td>
+                <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br><br>
 {% endblock %}

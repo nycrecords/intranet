@@ -29,6 +29,7 @@
     height: 38px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
 }
 
 #staff-directory-submit > input[type=submit] {
@@ -63,6 +64,10 @@
 
 #staff-directory-reset > a {
     color: #000000;
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    line-height: 38px;
 }
 
 #staff-directory-reset > a:hover {
@@ -219,4 +224,52 @@
 
 .staff_directory_header {
     background-color: #67409E;
+}
+
+/*New CSS For the Search Form along with New Format on how it Looks*/
+.staff-directory-search-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#staff-directory-search > input[type=text]::placeholder {
+    color: #000000;
+    font-size: 20px;
+    font-family: "Helvetica";
+}
+
+#staff-directory-submit-test > input[type=submit] {
+    height: 38px;
+    padding: 0 15px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Helvetica";
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+#staff-directory-reset {
+    height: 38px;
+    padding: 0 15px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Helvetica";
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
