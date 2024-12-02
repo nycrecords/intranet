@@ -4,10 +4,10 @@
 
 .our-mission-image {
     /* 70% of the original image size */
-    height: 385px;
-    width: 488px;
+    height: 390px;
+    width: 550px;
     margin-top: 25px;
-    margin-left: 50px;
+    margin-left: 70px;
 }
 
 .our-mission-text {
@@ -15,7 +15,7 @@
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
-    margin-right: 50px;
+    margin-right: 100px;
 }
 
 .division-list{
