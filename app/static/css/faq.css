@@ -55,4 +55,29 @@ a:hover.common-question-anchor {
     font-size: 18px;
 }
 
+.list-group-item {
+    font-size: 16px;
+    color: #000000;
+}
 
+#primary-content {
+    max-width: 100%;
+    font-size: 16px;
+    color: #000000;
+  }
+  
+  .faq-answer {
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 16px;
+    color: #000000
+  }
+  
+  .container {
+    max-width: 1200px;
+  }
+  
+  #sidebar-nav {
+    max-width: 250px;
+  }
+  
