@@ -11,49 +11,43 @@
 {% block page_content %}
 <body>
     <main id="skip-header-target" role="main">
-
-        <section class="featured-panel device-lg" dir="ltr">
-            <div class="card bg-white">
-                <div class="overlay-gradient-x-white">
-                    <img class="card-img" src="https://via.placeholder.com/1500x750" alt="Card image">
-                </div>
-                <div class="card-img-overlay d-flex px-0">
-                    <div class="container align-self-center px-0">
-                        <div class="row no-gutters">
-                            <div class="col-lg-6">
-                                <div class="card bg-white my-2">
-
-                                    <div class="card-body">
-                                        <h2 class="card-title text-primary">DORIS Intranet</h2>
-                                        <p class="card-text">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error minima id
-                                            quibusdam molestiae, et nisi
-                                            nostrum exercitationem consectetur perferendis earum.
-                                        </p>
-                                    </div>
-
-                                    <div class="card-footer">
-                                        <a class="btn btn-lg btn-outline-primary has-icon stretched-link" href="#">
-                                            <span class="fas fa-angle-right" role="img"></span>
-                                            <span class="title">Button Link</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- .card -->
+        <div class="dorishero">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="sr-only">DORIS News and Updates</h2>
+                    <ul class="dorishero-list">
+                        <li class="dorishero-item">
+                            <div class="bg-image">
+                                <img src="{{url_for('static', filename='img/testimage_hero1.jpeg')}}" alt="First big image here">
                             </div>
-                            <!-- .col -->
-                        </div>
-                        <!-- .row -->
-                    </div>
-                    <!-- .container -->
+                            <h3 class="dorishero-itemHeading">
+                                <a href="#">Story 1 Here, a tag.</a>
+                            </h3>
+                        </li>
+
+                        <li class="dorishero-item">
+                            <div class="bg-image">
+                                <img src="" alt="Second small image here">
+                            </div>
+                            <h3 class="dorishero-itemHeading">
+                                <a href="#">Story 2 Here, a tag.</a>
+                            </h3>
+                        </li>
+
+                        <li class="dorishero-item">
+                            <div class="bg-image">
+                                <img src="" alt="Third small image here">
+                            </div>
+                            <h3 class="dorishero-itemHeading">
+                                <a href="#">Story 3 Here, a tag.</a>
+                            </h3>
+                        </li>
+                    </ul>
                 </div>
-                <!-- .container -->
             </div>
-            <!-- .card -->
-        </section>
-        <!-- .featured-panel -->
-
-
+        </div>
+        
+        
         <!--Row 1 of Quick Links-->
         <section class="bg-primary py-5">
             <div class="container">
@@ -216,12 +210,12 @@
                         <!-- .col -->
                     </div>
                     <!-- .row -->
+                    <br>
                 </header>
 
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Card Title</h2>
                                 <p class="card-text">
@@ -237,7 +231,6 @@
 
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Card Title</h2>
                                 <p class="card-text">
@@ -253,7 +246,6 @@
 
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Card Title</h2>
                                 <p class="card-text">
@@ -269,7 +261,6 @@
 
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Card Title</h2>
                                 <p class="card-text">
