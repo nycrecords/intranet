@@ -312,7 +312,7 @@ a.divisions_card:focus {
 /* new hero */
 
 .dorishero {
-    background: #181A7B;
+    background: #67409E;
     padding-block: min(5vw, 2rem);
 }
 
@@ -366,7 +366,7 @@ a.divisions_card:focus {
     grid-row: 2;
     grid-column: 1;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 2rem;
     position: static;
     opacity: 1;
     z-index: 5;
@@ -401,7 +401,7 @@ a.divisions_card:focus {
 
 
 .dorishero-item:nth-child(n+2)>.dorishero-itemHeading {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 1200px) {
