@@ -4,8 +4,8 @@
 {% block title %}Administration & Human Resources{% endblock %}
 
 {% block custom_css %}
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
 {% endblock %}
 
 {% block page_content %}
@@ -21,19 +21,27 @@
 </div>
 <!-- .banner-with-background -->
 
-<div class="breadcrumb-section">
-    <nav class="breadcrumb-nav" aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-ol">
-            <li class="breadcrumb-item">
-                <a href="{{ url_for('main.index') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url_for('main.divisions') }}">Divisions</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Administration & Human Resources</li>
-        </ol>
-    </nav>
-</div>
+<section class="py-2">
+    <br>
+    <div class="container">
+        <div class="row">
+            <!-- Breadcrumb Section -->
+            <div class="col-sm-6">
+                <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-ol">
+                        <li class="breadcrumb-item">
+                            <a href="{{ url_for('main.index') }}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Administration and Human Resources</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
 
 <br>
 

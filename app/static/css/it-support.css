@@ -102,3 +102,13 @@
 .it_support_cards {
     min-height: 200px;
 }
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}

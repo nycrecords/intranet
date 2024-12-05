@@ -21,19 +21,27 @@
 </div>
 <!-- .banner-with-background -->
 
-<div class="breadcrumb-section">
-    <nav class="breadcrumb-nav" aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-ol">
-            <li class="breadcrumb-item">
-                <a href="{{ url_for('main.index') }}">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url_for('main.divisions') }}">Divisions</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Legal</li>
-        </ol>
-    </nav>
-</div>
+<section class="py-2">
+    <br>
+    <div class="container">
+        <div class="row">
+            <!-- Breadcrumb Section -->
+            <div class="col-sm-6">
+                <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-ol">
+                        <li class="breadcrumb-item">
+                            <a href="{{ url_for('main.index') }}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Legal</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
 
 <br>
 

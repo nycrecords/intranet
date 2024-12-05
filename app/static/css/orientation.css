@@ -21,3 +21,13 @@
 .timestamps ol {
     font-size: 16px;
 }
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}

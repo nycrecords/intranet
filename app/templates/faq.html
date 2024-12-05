@@ -17,19 +17,27 @@
   </div>
 </div>
 
-<div class="breadcrumb-section">
-  <nav class="breadcrumb-nav" aria-label="breadcrumb">
-      <ol class="breadcrumb breadcrumb-ol">
-          <li class="breadcrumb-item">
-              <a href="{{ url_for('main.index') }}">Home</a>
-          </li>
-          <li class="breadcrumb-item">
-              <a href="{{ url_for('main.it_support') }}">IT Support</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-      </ol>
-  </nav>
-</div>
+<section class="py-2">
+  <br>
+  <div class="container">
+      <div class="row">
+          <!-- Breadcrumb Section -->
+          <div class="col-sm-6">
+              <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                  <ol class="breadcrumb breadcrumb-ol">
+                      <li class="breadcrumb-item">
+                          <a href="{{ url_for('main.index') }}">Home</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                          <a href="{{ url_for('main.it_support') }}">IT Support</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</section>
 
 <article class="container" id="skip-header-target">
   <div class="row">

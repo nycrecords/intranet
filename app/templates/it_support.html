@@ -10,247 +10,253 @@
 
 {% block page_content %}
 <main role="main">
-    <!-- Add your Custom image class below (after 'banner-with-background') -->
-    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+  <!-- Add your Custom image class below (after 'banner-with-background') -->
+  <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
-        <div class="container-fluid my-auto text-center">
-            <div class="narrow">
-                <h1 class="display-4 text-white">IT Support</h1>
-            </div>
-        </div>
-        <!-- .container -->
+      <div class="container-fluid my-auto text-center">
+          <div class="narrow">
+              <h1 class="display-4 text-white">IT Support</h1>
+          </div>
+      </div>
+      <!-- .container -->
+  </div>
+  <!-- .banner-with-background -->
+
+
+  <!--Breadcrumb-->
+  <section class="bg-light py-2">
+    <br>
+    <div class="container">
+      <div class="row">
+        <!-- Breadcrumb Section -->
+        <div class="col-sm-6">
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+          <ol class="breadcrumb breadcrumb-ol">
+            <li class="breadcrumb-item">
+              <a href="{{ url_for('main.index') }}">Home</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">IT Support</li>
+          </ol>
+        </nav>
+      </div>
+      </div>
     </div>
-    <!-- .banner-with-background -->
+  </section>
 
+  <!--Row 1 of IT Support-->
+  <section class="bg-light py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">DORIS HELP DESK</h5>
+                  <p class="card-text itsupport_card_text">
+                  Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                  For other information, view <a href="../static/documents/it_support_requests_011320.pdf" download="IT Support Request Procedure.pdf">IT Support Request Procedure</a>.
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                </div>
+              </div>
+            </div>
+          </div>                  
+        </div>
 
-    <!--Breadcrumb-->
-    <div class="breadcrumb-section bg-light">
-      <nav class="breadcrumb-nav" aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-ol">
-          <li class="breadcrumb-item">
-            <a href="{{ url_for('main.index') }}">Home</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">IT Support</li>
-        </ol>
-      </nav>
+      <div class="col-sm-6">
+        <div class="card it_support_cards">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <h5 class="card-title">CITYWIDE SERVICE DESK</h5>
+                <p class="card-text itsupport_card_text">
+                  Phone: (718) 403-8888
+                </p>
+                <p class="card-text itsupport_card_text">
+                  Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a>
+                </p>
+                <p class="card-text itsupport_card_text">
+                  <a href="https://www.nyc.gov/csdportal" rel="noopener" target="_blank">CityWide Service Desk</a> is a self service portal to search knowledge bases, 
+                  get something fixed, and request something new from OTI resources.
+                </p>
+              </div>
+              <div class="col-4">
+                <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+              </div>
+            </div>
+          </div>
+        </div>                  
+      </div>
     </div>
+  </div>
+  </section>
 
-    
-    <!--Row 1 of IT Support-->
-    <section class="bg-light py-2">
-      <br>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">DORIS HELP DESK</h5>
-                      <p class="card-text itsupport_card_text">
-                        Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        For other information, view <a href="../static/documents/it_support_requests_011320.pdf" download="IT Support Request Procedure.pdf">IT Support Request Procedure</a>.
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
+
+
+  <!--Row 2 of IT Support-->
+  <section class="bg-light py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">TRAINING</h5>
+                  <p class="card-text itsupport_card_text training-grid">
+                    <a href="https://support.office.com/en-us/office-training-center" rel="noopener" target="_blank">MS Office Training</a>
+                    <a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" rel="noopener" target="_blank">MS Teams Training</a>
+                    <a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" rel="noopener" target="_blank">Cyber Policies</a>
+                    <a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness" rel="noopener" target="_blank">User Awareness</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    Get hands on training with MS Office as well as cybersecurity awareness resources.
+                  </p>
                 </div>
-              </div>                  
-            </div>
-
-
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">CITYWIDE SERVICE DESK</h5>
-                      <p class="card-text itsupport_card_text">
-                        Phone: (718) 403-8888
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        <a href="https://www.nyc.gov/csdportal" rel="noopener" target="_blank">CityWide Service Desk</a> is a self service portal to search knowledge bases, 
-                        get something fixed, and request something new from OTI resources.
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
-                </div>
-              </div>                  
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!--Row 2 of IT Support-->
-      <section class="bg-light py-2">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">TRAINING</h5>
-                      <p class="card-text itsupport_card_text training-grid">
-                        <a href="https://support.office.com/en-us/office-training-center" rel="noopener" target="_blank">MS Office Training</a>
-                        <a href="https://support.microsoft.com/en-us/office/microsoft-teams-video-training-4f108e54-240b-4351-8084-b1089f0d21d7" rel="noopener" target="_blank">MS Teams Training</a>
-                        <a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" rel="noopener" target="_blank">Cyber Policies</a>
-                        <a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness" rel="noopener" target="_blank">User Awareness</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        Get hands on training with MS Office as well as cybersecurity awareness resources.
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/training.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">APPLICATION SUPPORT</h5>
-                      <p class="card-text itsupport_card_text">
-                        Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        For support on internal DORIS Applications, email the Application Development Team. 
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
-                </div>
-              </div>                  
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!--Row 3 of IT Support-->
-      <section class="bg-light py-2">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">RESOURCES</h5>
-                      <p class="card-text itsupport_card_text training-grid">
-                        <a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS Public Wifi</a>
-                        <a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a>
-                        <a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail Instructions</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        Get instructions for accessing our Public Wifi, Outlook, and setting up Voicemail. 
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/resources.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">Frequently Asked Questions</h5>
-                      <p class="card-text itsupport_card_text training-grid">
-                        <a href="{{ url_for('main.faq') }}">FAQ's</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        For answers to common problems, issues, or inquiries, check out our FAQ page using the link above. 
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/training.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+        
 
-
-      <!--Row 4 of IT Support-->
-      <section class="bg-light py-2">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">Tools and Applications</h5>
-                      <p class="card-text itsupport_card_text">
-                        <a href="{{ url_for('main.tools_and_applications') }}">Common DORIS Applications</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        For quick access to commonly used DORIS applications, check out our Tools and Applications page using the link above. 
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/tools_and_apps.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">APPLICATION SUPPORT</h5>
+                  <p class="card-text itsupport_card_text">
+                    Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    For support on internal DORIS Applications, email the Application Development Team. 
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
                 </div>
               </div>
             </div>
+          </div>                  
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-            <div class="col-sm-6">
-              <div class="card it_support_cards">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-8">
-                      <h5 class="card-title">NYC SECURITY OPERATIONS CENTER</h5>
-                      <p class="card-text itsupport_card_text">
-                        Phone: (718) 403-6761
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a>
-                      </p>
-                      <p class="card-text itsupport_card_text">
-                        Contact the <a href="https://www.nyc.gov/content/oti/pages/" rel="noopener" target="_blank">NYC Security Operations Center</a> for
-                        information about cybersecurity. 
-                      </p>
-                    </div>
-                    <div class="col-4">
-                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
-                    </div>
-                  </div>
+  <!--Row 3 of IT Support-->
+  <section class="bg-light py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">RESOURCES</h5>
+                  <p class="card-text itsupport_card_text training-grid">
+                    <a href="{{ url_for('static', filename='files/accessing_doris_public_wifi.pdf') }}">DORIS Public Wifi</a>
+                    <a href="https://portal.office.com" rel="noopener" target="_blank">Office 365</a>
+                    <a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail Instructions</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    Get instructions for accessing our Public Wifi, Outlook, and setting up Voicemail. 
+                  </p>
                 </div>
-              </div>                  
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/resources.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <br><br><br>
-      </section>
-{% endblock %}
+
+
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">Frequently Asked Questions</h5>
+                  <p class="card-text itsupport_card_text training-grid">
+                    <a href="{{ url_for('main.faq') }}">FAQ's</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    For answers to common problems, issues, or inquiries, check out our FAQ page using the link above. 
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--Row 4 of IT Support-->
+  <section class="bg-light py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">Tools and Applications</h5>
+                  <p class="card-text itsupport_card_text">
+                    <a href="{{ url_for('main.tools_and_applications') }}">Common DORIS Applications</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    For quick access to commonly used DORIS applications, check out our Tools and Applications page using the link above. 
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/tools_and_apps.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <div class="card it_support_cards">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-8">
+                  <h5 class="card-title">NYC SECURITY OPERATIONS CENTER</h5>
+                  <p class="card-text itsupport_card_text">
+                    Phone: (718) 403-6761
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    Email: <a href="mailto:soc@oti.nyc.gov">soc@oti.nyc.gov</a>
+                  </p>
+                  <p class="card-text itsupport_card_text">
+                    Contact the <a href="https://www.nyc.gov/content/oti/pages/" rel="noopener" target="_blank">NYC Security Operations Center</a> for
+                    information about cybersecurity. 
+                  </p>
+                </div>
+                <div class="col-4">
+                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                </div>
+              </div>
+            </div>
+          </div>                  
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+  </section>
+  {% endblock %}

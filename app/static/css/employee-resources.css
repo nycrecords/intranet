@@ -143,3 +143,13 @@ a.text-secondary.ext_sources_card_link:hover,
 a.text-secondary.ext_sources_card_link:focus {
     color: #000000 !important;
 }
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}

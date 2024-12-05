@@ -312,7 +312,7 @@ a.divisions_card:focus {
 /* new hero */
 
 .dorishero {
-    background: darkblue;
+    background: #181A7B;
     padding-block: min(5vw, 2rem);
 }
 

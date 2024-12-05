@@ -34,10 +34,6 @@ a:hover.common-question-anchor {
     border-color: darkgrey;
 }
 
-.common-question-answer {
-
-}
-
 .common-question-answer-header {
     padding-top: 30px;
     padding-bottom: 15px;
@@ -64,20 +60,29 @@ a:hover.common-question-anchor {
     max-width: 100%;
     font-size: 16px;
     color: #000000;
-  }
+}
   
-  .faq-answer {
+.faq-answer {
     width: 100%;
     word-wrap: break-word;
     font-size: 16px;
     color: #000000
-  }
+}
   
-  .container {
+.container {
     max-width: 1200px;
-  }
+}
   
-  #sidebar-nav {
+#sidebar-nav {
     max-width: 250px;
-  }
+}  
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
   
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}

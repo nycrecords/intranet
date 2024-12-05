@@ -23,3 +23,43 @@
     font-size: 16px;
     font-weight: normal;
 }
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}
+
+.our-mission-image {
+    width: 100%;
+    display: block;
+    margin-right: 100px;
+    margin-left: -20px;
+}
+
+.col-sm-6 img {
+    margin-left: 0;
+}
+
+.col-12.px-0 {
+    padding-left: 0;
+}
+
+.our-mission-image {
+    margin-left: -20px !important;
+    width: 100%;
+    display: block;
+}
+
+.our-mission-section .col-sm-6:nth-child(2) {
+    padding-left: 25px;
+}
+
+.our-mission-section .row {
+    margin-left: 0;
+    margin-right: 0;
+}
