@@ -144,7 +144,7 @@
 
 .blue-nav-dropdown.dropdown-menu {
     width: 19em;
-    border-top: 1rem solid #F9B52B;
+    border-top: 1rem solid #67409E;
 }
 
 .blue-nav-dropdown.dropdown-menu.employee-resources-dropdown > li > a:hover{
@@ -165,7 +165,7 @@
 }
 
 .navbar-bottom-boder-style:hover {
-    border-bottom: 1rem solid #F9B52B;
+    border-bottom: 1rem solid #67409E;
 }
 
 #navbar-bottom-employee-resources {
