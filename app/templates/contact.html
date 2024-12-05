@@ -8,53 +8,72 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Contact</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Contact</h1>
-    </div>
-    <div class="col-sm-12 well content-area contact-section">
-        <p class="contact-heading-text">To find contact information for a Department of Records staff member, visit the
-            <a href="{{ url_for('main.staff_directory') }}">Staff Directory</a></p>
-        <br>
-        <div class="row">
-            <div class="contact-text col-sm-6">
-                <h3>Building Engineer</h3>
-                <p>Rodney / Arthur: 212-788-8546</p>
-                <br>
-                <h3>Building Security</h3>
-                <p>212-788-8548</p>
-                <br>
-                <h3>Building Services</h3>
-                <p>Melayka Lee: 212-788-8828</p>
-                <br>
-                <h3>Bush Warehouse</h3>
-                <p>212-788-8563</p>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Contact</h1>
             </div>
-            <div class="contact-text col-sm-6">
-                <h3>Fax Numbers</h3>
-                <p>Room 304 / 305: 212-788-8625</p>
-                <br>
-                <h3>IT Support</h3>
-                <p>Kenneth Chan: 212-788-8606</p>
-                <p>DoITT Help Desk: 718-403-8888</p>
-                <br>
-                <h3>Queens Warehouse</h3>
-                <p>718-416-8988 / 8989</p>
-                <br>
-                <h3>Reading Room</h3>
-                <p>212-788-8590</p>
-                <br>
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
+
+    <section class="py-2">
+        <div class="container">
+            <br>
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-12 px-0"> <!-- Remove extra padding -->
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="contact-text col-sm-6">
+                    <h3>Building Engineer</h3>
+                    <p>Rodney / Arthur: 212-788-8546</p>
+                    <br>
+                    <h3>Building Security</h3>
+                    <p>212-788-8548</p>
+                    <br>
+                    <h3>Building Services</h3>
+                    <p>Melayka Lee: 212-788-8828</p>
+                    <br>
+                    <h3>Bush Warehouse</h3>
+                    <p>212-788-8563</p>
+                </div>
+                <div class="contact-text col-sm-6">
+                    <h3>Fax Numbers</h3>
+                    <p>Room 304 / 305: 212-788-8625</p>
+                    <br>
+                    <h3>IT Support</h3>
+                    <p>Kenneth Chan: 212-788-8606</p>
+                    <p>DoITT Help Desk: 718-403-8888</p>
+                    <br>
+                    <h3>Queens Warehouse</h3>
+                    <p>718-416-8988 / 8989</p>
+                    <br>
+                    <h3>Reading Room</h3>
+                    <p>212-788-8590</p>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
-
