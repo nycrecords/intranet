@@ -450,3 +450,35 @@ a.divisions_card:focus {
         grid-row: span 2;
     }
 }
+
+.card {
+    overflow: hidden; 
+}
+
+.tag-body {
+    padding-top: 50px;
+}
+
+.holiday-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #181A7B;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.event-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #67409E;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
