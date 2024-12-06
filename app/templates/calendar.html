@@ -20,37 +20,37 @@
     </div>
     <!-- .banner-with-background -->
 <div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.news_and_updates') }}">News & Updates</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Events</li>
-            </ol>
-        </nav>
-    </div>
-
-    <div class="col-sm-7 events-table-column">
-        <div>
-            <div class="tab">
-                <button class="active events-this-month">
-                    Events This Month
-                </button>
+    <article class="container text-center">
+        <div class="breadcrumb-section">
+            <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-ol">
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.index') }}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url_for('main.news_and_updates') }}">News & Updates</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Events</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-sm-7 events-table-column">
+            <div>
+                <div class="tab">
+                    <button class="active events-this-month">
+                        Events This Month
+                    </button>
+                </div>
+            </div>
+            <div id="event-rows" class="tabcontent container-fluid">
             </div>
         </div>
-        <div id="event-rows" class="tabcontent container-fluid">
+        <div class="col-sm-5 calendar-column">
+            <a class="btn btn-primary" href="{{ url_for('main.new_event_post') }}">Create New Event</a><br><br>
+            <br>
+            <div id="datepicker"></div>
         </div>
-    </div>
-
-    <div class="col-sm-5 calendar-column">
-        <a class="btn btn-primary" href="{{ url_for('main.new_event_post') }}">Create New Event</a><br><br>
-        <br>
-        <div id="datepicker"></div>
-    </div>
+    </article>
 </div>
 {% endblock %}
 
