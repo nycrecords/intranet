@@ -272,3 +272,29 @@
     cursor: pointer;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
+
+.btn-outline-primary {
+    color: #000;
+    background-color: #fff;
+    border: none;
+    transition: none;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary.active,
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+#staff-directory-reset {
+    margin-top: 5px;
+}

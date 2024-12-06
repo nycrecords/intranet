@@ -99,3 +99,12 @@ body {
     align-items: center;
 }
 
+#nyc-top-header .container-fluid,
+.wrap-header .container-fluid {
+    max-width: 3000px;
+    margin: 0 auto;
+}
+
+.wrap-header {
+    text-align: center;
+}

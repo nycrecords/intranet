@@ -49,11 +49,11 @@
             </div>
 
             <div class="col-sm-12 d-flex justify-content-center" id="button-group">
-                <div id="staff-directory-submit-test">
+                <button type="button" class="btn btn-outline-primary" id="staff-directory-submit-test">
                     {{ form.submit(id="staff-directory-submit-test") }}
-                </div>
+                </button>
                 
-                <button id="staff-directory-reset">
+                <button type="button" class="btn btn-outline-primary" id="staff-directory-reset">
                     <a href="{{ url_for('main.staff_directory') }}">Reset</a>
                 </button>
             </div>
