@@ -56,11 +56,16 @@
 }
 
 .breadcrumb-nav {
+    padding-left: 105px;
+    margin-left: 0;
+}
+
+#nav-main-divisions {
     padding-left: 0;
     margin-left: 0;
 }
-  
-  .breadcrumb-ol {
+
+.breadcrumb-ol {
     padding: 0;
     margin: 0;
 }
