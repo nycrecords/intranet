@@ -21,7 +21,8 @@
                                 <img src="{{url_for('static', filename='img/street_renaming.jpg')}}" alt="DORIS Street Renaming Project Map">
                             </div>
                             <h3 class="dorishero-itemHeading">
-                                <a href="#">DORIS Street Renaming Project</a>
+                                <a href="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd" target="_blank" >DORIS
+                                    | NYC Honorary Street Names Map</a>
                             </h3>
                         </li>
 
@@ -209,19 +210,21 @@
 
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 bg-white">
-                            <div class="card-body">
-                                <h2 class="card-title h5">DORIS Holiday Party</h2>
-                                <p class="card-text" style="font-size: 18px;">
-                                    Wednesday, December 11, 2024<br>12:00 PM to 1:30 PM<br>Room 111
-                                </p>
-                                <div class="tag-body"></div>
-                                <div class="event-tag">
-                                    EVENT
+                        <a href="{{ url_for('main.view_post', post_id=158) }}" class="non-styled-card">
+                            <div class="card h-100 bg-white">
+                                <div class="card-body">
+                                    <h2 class="card-title h5">DORIS Holiday Party</h2>
+                                    <p class="card-text" style="font-size: 18px;">
+                                        Wednesday, December 11, 2024<br>12:00 PM to 1:30 PM<br>Room 111
+                                    </p>
+                                    <div class="tag-body"></div>
+                                    <div class="event-tag">
+                                        EVENT
+                                    </div>
+                                    <br>
                                 </div>
-                                <br>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <!-- .col -->
 

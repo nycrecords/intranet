@@ -70,12 +70,10 @@
 .view-post-section {
     padding-top: 25px;
     word-wrap: break-word;
-    color: dimgray;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .post-title {
-    color: #5C95A3;
     font-family: "Helvetica";
     font-weight: normal;
     font-size: 28px;
@@ -104,6 +102,5 @@
 }
 
 .view-post-text {
-    color: dimgray;
-    font-size: 16px;
+    font-size: 18px;
 }
