@@ -65,17 +65,6 @@
 
                 <div class="row matrix-gutter text-center">
                     <div class="col-md">
-                        <a class="quicklinks_homepage" href="https://www1.nyc.gov/site/doh/covid/covid-19-main.page" target="_blank">
-                        <div class="card h-100 bg-secondary">
-                            <div class="card-body text-white">
-                                <h2 class="card-title">COVID-19 Information</h2>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
-                    <div class="col-md">
                         <a class="quicklinks_homepage" href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true" target="_blank">
                         <div class="card h-100 bg-secondary">
                             <div class="card-body text-white">
@@ -96,6 +85,18 @@
                         </a>
                     </div>
                     <!-- .col -->
+
+                    <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://www1.nyc.gov/site/doh/covid/covid-19-main.page" target="_blank">
+                        <div class="card h-100 bg-secondary">
+                            <div class="card-body text-white">
+                                <h2 class="card-title">COVID-19 Information</h2>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
+
                 </div>
                 <!-- .row -->
             </div>
@@ -106,65 +107,7 @@
         <!--Row 2 of Quick Links-->
         <section class="py-1" style="background-color: #181A7B;">
             <div class="container">
-
                 <div class="row matrix-gutter text-center">
-
-                    <div class="col-md">
-                        <a class="quicklinks_homepage" href="https://timeclock.getinfo.nyc/" target="_blank">
-                        <div class="card h-100 bg-secondary">
-                            <div class="card-body text-white">
-                                <h2 class="card-title">TimeClock</h2>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
-                    <div class="col-md">
-                        <a class="quicklinks_homepage" href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">
-                        <div class="card h-100 bg-secondary">
-                            <div class="card-body text-white">
-                                <h2 class="card-title">MyDesk</h2>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
-                    <div class="col-md">
-                        <a class="quicklinks_homepage" href="{{ url_for('main.staff_directory') }}">
-                        <div class="card h-100 bg-secondary">
-                            <div class="card-body text-white">
-                                <h2 class="card-title">Staff Directory</h2>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- .container -->
-        </section>
-
-
-        <!--Row 3 of Quick Links-->
-        <section class="py-5" style="background-color: #181A7B;">
-            <div class="container">
-
-                <div class="row matrix-gutter text-center">
-
-                    <div class="col-md">
-                        <a class="quicklinks_homepage" href="{{ url_for('main.tools_and_applications') }}">
-                        <div class="card h-100 bg-secondary">
-                            <div class="card-body text-white">
-                                <h2 class="card-title">Tools & Applications</h2>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
                     <div class="col-md">
                         <a class="quicklinks_homepage" href="{{ url_for('main.documents') }}">
                         <div class="card h-100 bg-secondary">
@@ -175,7 +118,16 @@
                         </a>
                     </div>
                     <!-- .col -->
-
+                    <div class="col-md">
+                        <a class="quicklinks_homepage" href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">
+                        <div class="card h-100 bg-secondary">
+                            <div class="card-body text-white">
+                                <h2 class="card-title">MyDesk</h2>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
                     <div class="col-md">
                         <a class="quicklinks_homepage" href="https://nyco365.sharepoint.com/sites/DORIS-PMO/SitePages/Project-Intake-Form.aspx" target="_blank">
                         <div class="card h-100 bg-secondary">
@@ -192,6 +144,48 @@
             <!-- .container -->
         </section>
 
+
+        <!--Row 3 of Quick Links-->
+        <section class="py-5" style="background-color: #181A7B;">
+            <div class="container">
+                <div class="row matrix-gutter text-center">
+                    <div class="col-md">
+                        <a class="quicklinks_homepage" href="{{ url_for('main.staff_directory') }}">
+                        <div class="card h-100 bg-secondary">
+                            <div class="card-body text-white">
+                                <h2 class="card-title">Staff Directory</h2>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-md">
+                        <a class="quicklinks_homepage" href="https://timeclock.getinfo.nyc/" target="_blank">
+                        <div class="card h-100 bg-secondary">
+                            <div class="card-body text-white">
+                                <h2 class="card-title">TimeClock</h2>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-md">
+                        <a class="quicklinks_homepage" href="{{ url_for('main.tools_and_applications') }}">
+                        <div class="card h-100 bg-secondary">
+                            <div class="card-body text-white">
+                                <h2 class="card-title">Tools & Applications</h2>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container -->
+        </section>
 
 
 
