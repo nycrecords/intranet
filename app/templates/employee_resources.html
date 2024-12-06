@@ -57,6 +57,7 @@
                 </div>
                 <!-- .row -->
             </header>
+            <br>
             <div class="row matrix-gutter">
                 <div class="col-md-6 col-lg-3">
                     <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.staff_directory') }}">
@@ -208,12 +209,12 @@
                     </div>
                     <!-- .row -->
                 </header>
-
+                <br>
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://cityshare.nycnet/content/cityshare/pages/" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/cityshare_logo.png') }}" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">CityShare</h2>
                                 <br>
@@ -230,7 +231,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://prod.citytime.nycnet" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/citytime_logo.jpeg') }}" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">City Time</h2>
                                 <br>
@@ -247,7 +248,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://timeclock.getinfo.nyc/auth/login" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/timeclock_logo.png') }}" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">Timeclock</h2>
                                 <br>
@@ -264,7 +265,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login"  rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/nycaps_logo.gif') }}" alt="Card image cap">
                             <div class="card-body">
                                 <h2 class="card-title h5">NYCAPS</h2>
                                 <br>
@@ -292,7 +293,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://www.nycers.org/" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/nycers_logo.svg') }}" alt="Card image cap">
                             <div class="card-body paragraph-height">
                                 <h2 class="card-title h5">NYC Employee Retirement System</h2>
                                 <br>
@@ -309,7 +310,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/opa/index.page" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/nyc_payroll_logo.png') }}" alt="Card image cap">
                             <div class="card-body paragraph-height">
                                 <h2 class="card-title h5">NYC Payroll Administration</h2>
                                 <br>
@@ -327,7 +328,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/nyc_office_of_labor_relations_logo.png') }}" alt="Card image cap">
                             <div class="card-body paragraph-height">
                                 <h2 class="card-title h5">NYC Office of Labor Relations</h2>
                                 <br>
@@ -345,7 +346,7 @@
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary ext_sources_card_link" href="http://www.nyc.gov/html/dcas/html/home/home.shtml" rel="noopener" target="_blank">
                         <div class="card h-100 bg-white">
-                            <img class="card-img-top" src="https://via.placeholder.com/400x250" alt="Card image cap">
+                            <img class="card-img-top" src="{{ url_for('static', filename='img/dcas_logo.png') }}" alt="Card image cap">
                             <div class="card-body paragraph-height">
                                 <h2 class="card-title h5">NYC Administrative Services</h2>
                                 <br>
