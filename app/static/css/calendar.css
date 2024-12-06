@@ -1,6 +1,7 @@
 .events-table-column {
     padding-left: 0;
     padding-bottom: 50px;
+    max-width: 650px;
 }
 
 .panel > .panel-heading.event-panel-heading {
@@ -142,3 +143,12 @@ div.ui-datepicker {
 	background: #5cb85c;
 	color: white;
 }
+
+.btn-primary {
+    font-size: 18px;
+}
+
+.btn-primary a {
+    text-decoration: none;
+}
+
