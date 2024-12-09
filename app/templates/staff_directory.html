@@ -29,7 +29,8 @@
                 <ol class="breadcrumb breadcrumb-ol">
                     <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('main.employee_resources') }}">Employee
-                        Resource</a></li>
+                        Resource</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Staff Directory</li>
                 </ol>
             </nav>
@@ -73,6 +74,7 @@
                 <th scope="col" class="email-column">Email</th>
             </tr>
         </thead>
+        
         <tbody>
             {% for user in users %}
             <tr>

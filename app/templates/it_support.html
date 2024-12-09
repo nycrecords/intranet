@@ -10,8 +10,8 @@
 
 {% block page_content %}
 <main role="main">
-  <!-- Add your Custom image class below (after 'banner-with-background') -->
-  <div class="bg-primary banner-with-background oculus d-flex flex-column">
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
       <div class="container-fluid my-auto text-center">
           <div class="narrow">
@@ -21,6 +21,7 @@
       <!-- .container -->
   </div>
   <!-- .banner-with-background -->
+
 
 
   <!--Breadcrumb-->
@@ -43,6 +44,8 @@
     </div>
   </section>
 
+
+  
   <!--Row 1 of IT Support-->
   <section class="bg-light py-2">
     <div class="container">
@@ -56,6 +59,7 @@
                   <p class="card-text itsupport_card_text">
                   Email: For DORIS related requests, email <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a>.
                   </p>
+
                   <p class="card-text itsupport_card_text">
                   For other information, view <a href="../static/documents/it_support_requests_011320.pdf" download="IT Support Request Procedure.pdf">IT Support Request Procedure</a>.
                   </p>
@@ -77,9 +81,11 @@
                 <p class="card-text itsupport_card_text">
                   Phone: (718) 403-8888
                 </p>
+
                 <p class="card-text itsupport_card_text">
                   Email: <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a>
                 </p>
+
                 <p class="card-text itsupport_card_text">
                   <a href="https://www.nyc.gov/csdportal" rel="noopener" target="_blank">CityWide Service Desk</a> is a self service portal to search knowledge bases, 
                   get something fixed, and request something new from OTI resources.
@@ -92,10 +98,9 @@
           </div>
         </div>                  
       </div>
+      </div>
     </div>
-  </div>
   </section>
-
 
 
   <!--Row 2 of IT Support-->
@@ -114,6 +119,7 @@
                     <a href="https://cityshare.nycnet/content/cityshare/pages/cyber-command/cyber-command-policies" rel="noopener" target="_blank">Cyber Policies</a>
                     <a href="https://cityshare.nycnet/content/cityshare/pages/information-security/user-awareness" rel="noopener" target="_blank">User Awareness</a>
                   </p>
+
                   <p class="card-text itsupport_card_text">
                     Get hands on training with MS Office as well as cybersecurity awareness resources.
                   </p>
@@ -126,7 +132,6 @@
           </div>
         </div>
         
-
         <div class="col-sm-6">
           <div class="card it_support_cards">
             <div class="card-body">
@@ -136,6 +141,7 @@
                   <p class="card-text itsupport_card_text">
                     Email: <a href="mailto:appsupport@records.nyc.gov">appsupport@records.nyc.gov</a>
                   </p>
+
                   <p class="card-text itsupport_card_text">
                     For support on internal DORIS Applications, email the Application Development Team. 
                   </p>
@@ -179,7 +185,6 @@
           </div>
         </div>
 
-
         <div class="col-sm-6">
           <div class="card it_support_cards">
             <div class="card-body">
@@ -189,6 +194,7 @@
                   <p class="card-text itsupport_card_text training-grid">
                     <a href="{{ url_for('main.faq') }}">FAQ's</a>
                   </p>
+
                   <p class="card-text itsupport_card_text">
                     For answers to common problems, issues, or inquiries, check out our FAQ page using the link above. 
                   </p>
@@ -259,4 +265,4 @@
     </div>
     <br><br><br>
   </section>
-  {% endblock %}
+{% endblock %}
