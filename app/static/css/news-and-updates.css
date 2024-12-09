@@ -3,8 +3,12 @@
     padding-left: 0;
     padding-bottom: 10px;
     font-family: "Helvetica";
-    font-size: 14px;
+    font-size: 18px !important;
     font-weight: normal;
+}
+
+.btn-primary {
+    font-size: 18px;
 }
 
 .sort-by-label {
@@ -67,7 +71,7 @@ hr.panel-divider {
 }
 
 .filter-heading {
-    color: #5C95A3;
+    color: #000000;
     font-family: "Helvetica";
     font-size: 11px;
     font-weight: bold;
