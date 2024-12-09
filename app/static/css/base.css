@@ -117,3 +117,7 @@ a.non-styled-card:hover,
 a.non-styled-card:focus {
   color: #000000 !important;
 }
+
+.card-title {
+  font-size: 2rem !important;
+}

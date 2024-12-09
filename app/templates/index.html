@@ -11,44 +11,73 @@
 {% block page_content %}
 <body>
     <main id="skip-header-target" role="main">
-        <div class="dorishero">
-            <div class="row">
-                <div class="col-12">
-                    <h2 class="sr-only">DORIS News and Updates</h2>
-                    <ul class="dorishero-list">
-                        <li class="dorishero-item">
-                            <div class="bg-image">
-                                <img src="{{url_for('static', filename='img/street_renaming.jpg')}}" alt="DORIS Street Renaming Project Map">
-                            </div>
-                            <h3 class="dorishero-itemHeading">
-                                <a href="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd" target="_blank" >DORIS
-                                    | NYC Honorary Street Names Map</a>
-                            </h3>
-                        </li>
-
-                        <li class="dorishero-item">
-                            <div class="bg-image">
-                                <img src="{{url_for('static', filename='img/public_programs.jpeg')}}" alt="DORIS Public Programs">
-                            </div>
-                            <h3 class="dorishero-itemHeading">
-                                <a href="#">DORIS Public Programs</a>
-                            </h3>
-                        </li>
-
-                        <li class="dorishero-item">
-                            <div class="bg-image">
-                                <img src="{{url_for('static', filename='img/social_media.png')}}" alt="">
-                            </div>
-                            <h3 class="dorishero-itemHeading">
-                                <a href="#">Follow us on Social Media</a>
-                            </h3>
-                        </li>
-                    </ul>
+        <section class="featured-panel device-md">
+            <div class="card bg-black">
+                <img class="card-img opacity-50 full-opacity-on-device"
+                     src="{{ url_for('static', filename='img/records-building.jpg') }}" alt="background image">
+                <div class="card-img-overlay d-flex">
+                    <div class="container align-self-center my-3">
+                        <div class="text-white text-center">
+                            <h1 class="section-title" style="font-size: 4rem">Welcome to the DORIS Intranet</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        
+        </section>
+
+        <section class="dorishero"><br>
+            <div class="container">
+                <header class="mb-2 text-white">
+                    <div class="row align-items-baseline">
+                        <div class="col-lg">
+                            <h2 class="section-title">Announcements</h2>
+                        </div>
+                        <!-- .col -->
+                    </div>
+                    <!-- .row -->
+                </header>
+            </div>
+            <!-- .container -->
+            <div class="dorishero">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="sr-only">DORIS News and Updates</h2>
+                        <ul class="dorishero-list">
+                            <li class="dorishero-item">
+                                <div class="bg-image">
+                                    <img src="{{ url_for('static', filename='img/street_renaming.jpg') }}"
+                                         alt="DORIS Street Renaming Project Map">
+                                </div>
+                                <h3 class="dorishero-itemHeading">
+                                    <a href="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd"
+                                       target="_blank">DORIS
+                                        | NYC Honorary Street Names Map</a>
+                                </h3>
+                            </li>
+
+                            <li class="dorishero-item">
+                                <div class="bg-image">
+                                    <img src="{{ url_for('static', filename='img/public_programs.jpeg') }}"
+                                         alt="DORIS Public Programs">
+                                </div>
+                                <h3 class="dorishero-itemHeading">
+                                    <a href="{{ url_for('main.view_post', post_id=157) }}">DORIS Public Programs</a>
+                                </h3>
+                            </li>
+
+                            <li class="dorishero-item">
+                                <div class="bg-image">
+                                    <img src="{{ url_for('static', filename='img/social_media.png') }}" alt="">
+                                </div>
+                                <h3 class="dorishero-itemHeading">
+                                    <a href="{{ url_for('main.view_post', post_id=159) }}">Follow us on Social Media</a>
+                                </h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!--Row 1 of Quick Links-->
         <section class="py-5" style="background-color: #181A7B;">
@@ -104,7 +133,6 @@
             <!-- .container -->
         </section>
 
-
         <!--Row 2 of Quick Links-->
         <section class="py-1" style="background-color: #181A7B;">
             <div class="container">
@@ -146,7 +174,6 @@
             </div>
             <!-- .container -->
         </section>
-
 
         <!--Row 3 of Quick Links-->
         <section class="py-5" style="background-color: #181A7B;">
@@ -193,7 +220,7 @@
 
 
         <!--Events Section-->
-        <section class="py-5" style="background-color: lightgray;">
+        <section class="py-5 bg-light">
             <div class="container">
                 <header class="mb-2 text-primary">
                     <div class="row align-items-baseline">
@@ -288,8 +315,6 @@
             <!-- .container -->
         </section>
 
-
-
         <!--Divisions Row 1-->
         <section class="py-5" style="background-color: lightgray;">
             <div class="container">
@@ -353,32 +378,6 @@
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
-                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='grant-unit') }}">
-                        <div class="card h-100 bg-white">
-                            <div class="card-body">
-                                <h2 class="card-title h5">Grant Unit</h2>
-                                <p class="card-text">
-                                    The Grant Administration Unit provides guidance to agencies in the development of grant
-                                    projects from the first conceptual stages, to the preparation of final application
-                                    drafts.
-                                </p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- .container -->
-        </section>
-
-
-        <!--Divisions Row 2-->
-        <section class="py-2" style="background-color: lightgray;">
-            <div class="container">
-                <div class="row matrix-gutter">
-                    <div class="col-md-6 col-lg-3">
                         <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='information-technology') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
@@ -393,23 +392,16 @@
                         </a>
                     </div>
                     <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container -->
+        </section>
 
-                    <div class="col-md-6 col-lg-3">
-                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='legal') }}">
-                        <div class="card h-100 bg-white">
-                            <div class="card-body">
-                                <h2 class="card-title h5">Legal</h2>
-                                <p class="card-text">
-                                    The Legal unit/Agency Attorney reviews legal matters, conducts
-                                    interviews, prepares cases and represents the agency at administrative hearings and in
-                                    court as needed.
-                                </p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
+        <!--Divisions Row 2-->
+        <section class="py-2" style="background-color: lightgray;">
+            <div class="container">
+                <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-archives') }}">
                         <div class="card h-100 bg-white">
@@ -441,17 +433,7 @@
                         </a>  
                     </div>
                     <!-- .col -->
-                </div>
-                <!-- .row -->
-            </div>
-            <!-- .container -->
-        </section>
 
-
-        <!--Divisions Row 3-->
-        <section class="py-5" style="background-color: lightgray;">
-            <div class="container">
-                <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-records-management') }}">
                         <div class="card h-100 bg-white">
@@ -468,13 +450,13 @@
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
-                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='operations') }}">
+                        <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='project-management-office') }}">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
-                                <h2 class="card-title h5">Operations</h2>
+                                <h2 class="card-title h5">Project Management Office</h2>
                                 <p class="card-text">
-                                    The Operations Unit/Operations Manager is in charge of making sure
-                                    that DORIS staff have safe and comfortable working environments.
+                                    The Project Management Office’s mission is to organize DORIS projects to ensure the
+                                    best use of the agency resources.
                                 </p>
                             </div>
                         </div>
@@ -485,7 +467,7 @@
                 <!-- .row -->
             </div>
             <!-- .container -->
-            <br><br><br>
+            <br><br>
         </section>
     </main>
 </body>

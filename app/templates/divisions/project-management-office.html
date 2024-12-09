@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Municipal Records Management{% endblock %}
+{% block title %}Executive{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
 {% endblock %}
 
 {% block page_content %}
@@ -14,7 +14,7 @@
 
         <div class="container-fluid my-auto text-center">
             <div class="narrow">
-                <h1 class="display-4 text-white">Municipal Records Management</h1>
+                <h1 class="display-4 text-white">Project Management Office</h1>
             </div>
         </div>
         <!-- .container -->
@@ -35,7 +35,7 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ url_for('main.divisions') }}">Divisions</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Municipal Records Management</li>
+                            <li class="breadcrumb-item active" aria-current="page">Project Management Office</li>
                         </ol>
                     </nav>
                 </div>
@@ -43,22 +43,30 @@
         </div>
     </section>
 
+    <br>
+
     <article class="container-fluid" id="primary-content" style="font-size: 16px;">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8">
+                <h2>Project Management Office</h2><br>
+                <p>The Project Management Office’s mission is to organize DORIS projects to ensure the best use of the
+                    agency resources. Working with agency stakeholders, PMO will assess current and proposed projects,
+                    establish priorities and schedule available resources to meet agree-upon timelines. The PMO’s roles
+                    and responsibilities are the followings:</p>
+                <ul>
+                    <li>Manage high priority and cross divisional projects</li>
+                    <li>Develop project management standards and best practices</li>
+                    <li>Establish project governance</li>
+                    <li>Stakeholder engagement</li>
+                    <li>Resource management</li>
+                    <li>Risk management</li>
+                    <li>Communication and reporting</li>
+                    <li>Training and support</li>
+                    <li>Continuous improvement</li>
+                </ul>
                 <br>
-                <h2>Municipal Records Management</h2>
-
-                <br>
-                <p>The Records Management Division sets citywide policy and provides leadership to city agencies to
-                    maintain efficient control of city records in all forms. Records retention and disposition schedules
-                    are developed under DORIS supervision and serve as the basis for properly retaining, disposing,
-                    preserving, or transferring city records.</p><br>
-
-                <p>The Records Management Division operates storage facilities that hold 1 million cubic feet of active
-                    physical records for New York City agencies. In 2023, the division began to implement an electronic
-                    records management system city-wide.</p><br>
             </div>
         </div>
     </article>
+    <!-- #primary-content -->
 {% endblock %}

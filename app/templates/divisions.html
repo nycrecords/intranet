@@ -107,14 +107,14 @@
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
-                    <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='grant-unit') }}">
+                    <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='information-technology') }}">
                     <div class="card h-100 bg-white">
                         <div class="card-body">
-                            <h2 class="card-title h5">Grant Unit</h2>
+                            <h2 class="card-title h5">Information Technology</h2>
                             <p class="card-text">
-                                The Grant Administration Unit provides guidance to agencies in the development of grant
-                                projects from the first conceptual stages, to the preparation of final application
-                                drafts.
+                                The IT division is responsible for innovation, automation, achieving operational
+                                efficiencies, standardization, using industry best practices and maximizing the use of technology
+                                across the agency.
                             </p>
                         </div>
                     </div>
@@ -132,38 +132,6 @@
     <section class="bg-light py-2">
         <div class="container">
             <div class="row matrix-gutter">
-                <div class="col-md-6 col-lg-3">
-                    <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='information-technology') }}">
-                    <div class="card h-100 bg-white">
-                        <div class="card-body">
-                            <h2 class="card-title h5">Information Technology</h2>
-                            <p class="card-text">
-                                The IT division is responsible for innovation, automation, achieving operational
-                                efficiencies, standardization, using industry best practices and maximizing the use of technology
-                                across the agency.
-                            </p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <!-- .col -->
-
-                <div class="col-md-6 col-lg-3">
-                    <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='legal') }}">
-                    <div class="card h-100 bg-white">
-                        <div class="card-body">
-                            <h2 class="card-title h5">Legal</h2>
-                            <p class="card-text">
-                                The Legal unit/Agency Attorney reviews legal matters, conducts
-                                interviews, prepares cases and represents the agency at administrative hearings and in
-                                court as needed.
-                            </p>
-                        </div>
-                    </div>
-                    </a>
-                </div>
-                <!-- .col -->
-
                 <div class="col-md-6 col-lg-3">
                     <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-archives') }}">
                     <div class="card h-100 bg-white">
@@ -195,17 +163,7 @@
                     </a>  
                 </div>
                 <!-- .col -->
-            </div>
-            <!-- .row -->
-        </div>
-        <!-- .container -->
-    </section>
 
-
-    <!--Divisions Row 3-->
-    <section class="bg-light py-5">
-        <div class="container">
-            <div class="row matrix-gutter">
                 <div class="col-md-6 col-lg-3">
                     <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='municipal-records-management') }}">
                     <div class="card h-100 bg-white">
@@ -222,16 +180,17 @@
                 <!-- .col -->
 
                 <div class="col-md-6 col-lg-3">
-                    <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='operations') }}">
-                    <div class="card h-100 bg-white">
-                        <div class="card-body">
-                            <h2 class="card-title h5">Operations</h2>
-                            <p class="card-text">
-                                The Operations Unit/Operations Manager is in charge of making sure
-                                that DORIS staff have safe and comfortable working environments.
-                            </p>
+                    <a class="text-secondary divisions-card"
+                       href="{{ url_for('main.division_pages', division_name='project-management-office') }}">
+                        <div class="card h-100 bg-white">
+                            <div class="card-body">
+                                <h2 class="card-title h5">Project Management Office</h2>
+                                <p class="card-text">
+                                    The Project Management Office’s mission is to organize DORIS projects to ensure the
+                                    best use of the agency resources.
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
                 <!-- .col -->
@@ -239,5 +198,7 @@
             <!-- .row -->
         </div>
         <!-- .container -->
+        <br><br>
     </section>
+</main>
 {% endblock %}
