@@ -103,7 +103,7 @@ hr {
 }
 
 /*carousel styles start here*/
-
+/*
 .whats-new-title {
     color: #FFFFFF;
     font-family: "Helvetica";
@@ -287,30 +287,10 @@ hr {
     padding-right: 5px;
     color: #589fa3;
 }
-
-/*Hover for Quicklinks text*/
-.quicklinks_homepage:hover {
-    text-decoration: underline !important;
-    color: #ffffff
-}
-
-.see_all_homepage:hover {
-    text-decoration: underline !important;
-}
-
-.divisions-card {
-    color: #000000 !important;
-    text-decoration: none; 
-}
-
-a.divisions-card:hover,
-a.divisions_card:focus {
-    color: #000000 !important;
-}
+*/
 
 /*CSS For Hero - aka Story Section*/
 /* new hero */
-
 .dorishero {
     background: #67409E;
     padding-block: min(5vw, 2rem);
@@ -451,6 +431,29 @@ a.divisions_card:focus {
     }
 }
 
+
+/*Hover for Quicklinks text*/
+.quicklinks_homepage:hover {
+    text-decoration: underline !important;
+    color: #ffffff
+}
+
+.see_all_homepage:hover {
+    text-decoration: underline !important;
+}
+
+.divisions-card {
+    color: #000000 !important;
+    text-decoration: none; 
+}
+
+a.divisions-card:hover,
+a.divisions_card:focus {
+    color: #000000 !important;
+}
+
+
+/*css for event tags on bottom of card*/
 .card {
     overflow: hidden; 
 }

@@ -33,87 +33,87 @@ body {
 }
 
 .content-area {
-    margin: auto;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    border-radius: 3px;
-    background-color: #FFFFFF;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
-    margin-bottom: 5rem;
+  margin: auto;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 5rem;
 }
 
 .top-padding {
-    padding-top: 2rem;
+  padding-top: 2rem;
 }
 
 .no-left-padding {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 /* Custom CSS that changes the font size of the Header*/
 #nyc-top-header {
-    font-size: 16px;
-  }
+  font-size: 16px;
+}
   
-  #nyc-top-header p,
-  #nyc-top-header a,
-  #nyc-top-header ul,
-  #nyc-top-header li {
-    font-size: 16px;
-  }
+#nyc-top-header p,
+#nyc-top-header a,
+#nyc-top-header ul,
+#nyc-top-header li {
+  font-size: 16px;
+}
   
-  /* Custom CSS that changes the font size of the Navbar Items*/
-  #nav-primary {
-    font-size: 16px;
-  }
-  
-  #nav-primary p,
-  #nav-primary ul,
-  #nav-primary li,
-  #nav-primary a {
-    font-size: 16px;
-  }
-  
-  /*Custom CSS that changes the font size of Footer Items*/
-  #nyc-footer {
-    font-size: 16px;
-  }
-  
-  #nyc-footer p,
-  #nyc-footer a,
-  #nyc-footer ul,
-  #nyc-footer li {
-    font-size: 16px;
-  }
+/* Custom CSS that changes the font size of the Navbar Items*/
+#nav-primary {
+  font-size: 16px;
+}
+
+#nav-primary p,
+#nav-primary ul,
+#nav-primary li,
+#nav-primary a {
+  font-size: 16px;
+}
+
+/*Custom CSS that changes the font size of Footer Items*/
+#nyc-footer {
+  font-size: 16px;
+}
+
+#nyc-footer p,
+#nyc-footer a,
+#nyc-footer ul,
+#nyc-footer li {
+  font-size: 16px;
+}
 
 /* Custom CSS for Footer social media icons*/
 .footer-icons {
-    margin-top: 30px;
-    margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
 
 .footer-icons.social-media {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 #nyc-top-header .container-fluid,
 .wrap-header .container-fluid {
-    max-width: 3000px;
-    margin: 0 auto;
+  max-width: 3000px;
+  margin: 0 auto;
 }
 
 .wrap-header {
-    text-align: center;
+  text-align: center;
 }
 
 .non-styled-card {
-    color: #000000 !important;
-    text-decoration: none;
+  color: #000000 !important;
+  text-decoration: none;
 }
 
 a.non-styled-card:hover,
 a.non-styled-card:focus {
-    color: #000000 !important;
+  color: #000000 !important;
 }

@@ -49,6 +49,7 @@
         </div>
         
         
+
         <!--Row 1 of Quick Links-->
         <section class="py-5" style="background-color: #181A7B;">
             <div class="container">
@@ -97,7 +98,6 @@
                         </a>
                     </div>
                     <!-- .col -->
-
                 </div>
                 <!-- .row -->
             </div>
@@ -119,6 +119,7 @@
                         </a>
                     </div>
                     <!-- .col -->
+
                     <div class="col-md">
                         <a class="quicklinks_homepage" href="http://cityshare.nycnet/html/my-desk/html/home/home.shtml" target="_blank">
                         <div class="card h-100 bg-secondary">
@@ -129,6 +130,7 @@
                         </a>
                     </div>
                     <!-- .col -->
+
                     <div class="col-md">
                         <a class="quicklinks_homepage" href="https://nyco365.sharepoint.com/sites/DORIS-PMO/SitePages/Project-Intake-Form.aspx" target="_blank">
                         <div class="card h-100 bg-secondary">
@@ -200,7 +202,9 @@
                         </div>
                         <!-- .col -->
                         <div class="col-lg-auto">
-                            <a class="link text-reset see_all_homepage" href="{{ url_for('main.events') }}"><h2>See all</h2></a>
+                            <a class="link text-reset see_all_homepage" 
+                            href="{{ url_for('main.events') }}"><h2>See all</h2>
+                            </a>
                         </div>
                         <!-- .col -->
                     </div>
@@ -245,7 +249,6 @@
                     </div> 
                     <!-- .col -->
                  
-
                     <div class="col-md-6 col-lg-3">
                         <div class="card h-100 bg-white">
                             <div class="card-body">
@@ -299,7 +302,9 @@
                     </div>
                     <!-- .row -->
                 </header>
+                
                 <br>
+
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
                         <a class="text-secondary divisions-card" href="{{ url_for('main.division_pages', division_name='administration-and-human-resources') }}">
