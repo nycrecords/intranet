@@ -9,67 +9,70 @@
 {% endblock %}
 
 {% block page_content %}
-<!-- Add your Custom image class below (after 'banner-with-background') -->
-<div class="bg-primary banner-with-background oculus d-flex flex-column">
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
-    <div class="container-fluid my-auto text-center">
-        <div class="narrow">
-            <h1 class="display-4 text-white">Municipal Records Management</h1>
-        </div>
-    </div>
-    <!-- .container -->
-</div>
-<!-- .banner-with-background -->
-
-<section class="py-2">
-    <br>
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb Section -->
-            <div class="col-sm-6">
-                <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-ol">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url_for('main.index') }}">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Municipal Records Management</li>
-                    </ol>
-                </nav>
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Municipal Records Management</h1>
             </div>
         </div>
+        <!-- .container -->
     </div>
-</section>
+    <!-- .banner-with-background -->
 
-<br>
-
-<article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <br>
-            <h2>Municipal Records Management</h2>
-
-            <br>
-            
-            <p>The Municipal Records Management Division (MRMD) at DORIS serves two primary functions:
-            </p>
-            <ul>
-                <li>We develop and set citywide policies for records and information management and monitor compliance.</li>
-                <li>We operate storage facilities that hold 1 million cubic feet of active records for New York City agencies.</li>
-            </ul>
-
-            <p>In order to accomplish these functions, the MRMD team performs the following activities:</p>
-            <ul>
-                <li>We develop guidance and document best practices with regards to information and records governance.</li>
-                <li>We assist agencies in creating and maintaining retention schedules.</li>
-                <li>We establish protocols for offices and agencies to follow regarding electronic records management.</li>
-                <li>We work directly with agencies to develop and implement project plans to improve records management practices.</li>
-                <li>We coordinate the transfer, storage, retrieval, and disposal of hard copy records between DORIS and municipal agencies.</li>
-            </ul>
-            <br><br><br>
+    <section class="py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Municipal Records Management</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-</article>
+    </section>
+
+    <br>
+
+    <article class="container-fluid" id="primary-content" style="font-size: 16px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <br>
+                <h2>Municipal Records Management</h2>
+
+                <br>
+                
+                <p class="divisions-paragraph">
+                    The Municipal Records Management Division (MRMD) at DORIS serves two primary functions:
+                </p>
+                <ul>
+                    <li>We develop and set citywide policies for records and information management and monitor compliance.</li>
+                    <li>We operate storage facilities that hold 1 million cubic feet of active records for New York City agencies.</li>
+                </ul>
+
+                <p class="divisions-paragraph">
+                    In order to accomplish these functions, the MRMD team performs the following activities:
+                </p>
+                <ul>
+                    <li>We develop guidance and document best practices with regards to information and records governance.</li>
+                    <li>We assist agencies in creating and maintaining retention schedules.</li>
+                    <li>We establish protocols for offices and agencies to follow regarding electronic records management.</li>
+                    <li>We work directly with agencies to develop and implement project plans to improve records management practices.</li>
+                    <li>We coordinate the transfer, storage, retrieval, and disposal of hard copy records between DORIS and municipal agencies.</li>
+                </ul>
+                <br><br><br>
+            </div>
+        </div>
+    </article>
 {% endblock %}

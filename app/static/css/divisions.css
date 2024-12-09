@@ -38,7 +38,7 @@
     font-weight: normal;
     padding-top: 25px;
     padding-bottom: 25px;
-    color: #4A4A4A;
+    color: #000000;
     text-align: center;
 }
 
@@ -46,7 +46,11 @@
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
-    color: #4A4A4A;
+    color: #000000;
+}
+
+.divisions-paragraph {
+    color: #000000;
 }
 
 .breadcrumb-section {
@@ -56,7 +60,7 @@
 }
 
 .breadcrumb-nav {
-    padding-left: 105px;
+    padding-left: 0;
     margin-left: 0;
 }
 

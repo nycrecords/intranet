@@ -9,65 +9,65 @@
 {% endblock %}
 
 {% block page_content %}
-<!-- Add your Custom image class below (after 'banner-with-background') -->
-<div class="bg-primary banner-with-background oculus d-flex flex-column">
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
 
-    <div class="container-fluid my-auto text-center">
-        <div class="narrow">
-            <h1 class="display-4 text-white">Administration and Human Resources</h1>
-        </div>
-    </div>
-    <!-- .container -->
-</div>
-<!-- .banner-with-background -->
-
-<section class="py-2">
-    <br>
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb Section -->
-            <div class="col-sm-6">
-                <nav class="breadcrumb-nav" aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-ol">
-                        <li class="breadcrumb-item">
-                            <a href="{{ url_for('main.index') }}">Home</a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Administration and Human Resources</li>
-                    </ol>
-                </nav>
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Administration and Human Resources</h1>
             </div>
         </div>
+        <!-- .container -->
     </div>
-</section>
+    <!-- .banner-with-background -->
 
-<br>
-
-<article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <br>
-            <h2 class="division-title">Administration and Human Resources</h2>
-
-            <br>
-
-            <p class="division-body-text">
-                The Administration Division of the Department of Records is responsible for:
-            </p>
-
-            <ul class="division-list">
-                <li>Personnel</li>
-                <li>Payroll</li>
-                <li>Timekeeping</li>
-                <li>Budget & Revenue</li>
-                <li>Procurement</li>
-                <li>Vital Records</li>
-            </ul>
-            <br><br><br>
+    <section class="py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Administration and Human Resources</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-</article>
-<!-- #primary-content -->
+    </section>
+
+    <br>
+
+    <article class="container-fluid" id="primary-content" style="font-size: 16px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <br>
+                <h2 class="division-title">Administration and Human Resources</h2>
+
+                <br>
+
+                <p class="division-body-text">
+                    The Administration Division of the Department of Records is responsible for:
+                </p>
+
+                <ul class="division-list">
+                    <li>Personnel</li>
+                    <li>Payroll</li>
+                    <li>Timekeeping</li>
+                    <li>Budget & Revenue</li>
+                    <li>Procurement</li>
+                    <li>Vital Records</li>
+                </ul>
+                <br><br><br>
+            </div>
+        </div>
+    </article>
+    <!-- #primary-content -->
 {% endblock %}
