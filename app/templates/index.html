@@ -11,20 +11,6 @@
 {% block page_content %}
 <body>
     <main id="skip-header-target" role="main">
-        <section class="featured-panel device-md">
-            <div class="card bg-black">
-                <img class="card-img opacity-50 full-opacity-on-device"
-                     src="{{ url_for('static', filename='img/records-building.jpg') }}" alt="background image">
-                <div class="card-img-overlay d-flex">
-                    <div class="container align-self-center my-3">
-                        <div class="text-white text-center">
-                            <h1 class="section-title" style="font-size: 4rem">Welcome to the DORIS Intranet</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="dorishero"><br>
             <div class="container">
                 <header class="mb-2 text-white">
@@ -217,8 +203,6 @@
             <!-- .container -->
         </section>
 
-
-
         <!--Events Section-->
         <section class="py-5 bg-light">
             <div class="container">
@@ -241,12 +225,12 @@
 
                 <div class="row matrix-gutter">
                     <div class="col-md-6 col-lg-3">
-                        <a href="{{ url_for('main.view_post', post_id=158) }}" class="non-styled-card">
+                        <a href="{{ url_for('main.view_post', post_id=187) }}" class="non-styled-card">
                             <div class="card h-100 bg-white">
                                 <div class="card-body">
-                                    <h2 class="card-title h5">DORIS Holiday Party</h2>
+                                    <h2 class="card-title h5">HR Open House</h2>
                                     <p class="card-text" style="font-size: 18px;">
-                                        Wednesday, December 11, 2024<br>12:00 PM to 1:30 PM<br>Room 111
+                                        Wednesday, December 11, 2024<br>9:00 AM to 11:00 PM<br>Room 305
                                     </p>
                                     <div class="tag-body"></div>
                                     <div class="event-tag">
@@ -260,54 +244,60 @@
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 bg-white position-relative">
-                            <div class="card-body">
-                                <h2 class="card-title h5">Christmas Day</h2>
-                                <p class="card-text" style="font-size: 18px;">
-                                    Wednesday, December 25, 2024<br>
-                                    <strong>Offices are closed</strong>
-                                </p>
-                            </div>
-                            <div class="tag-body"></div>
-                            <div class="holiday-tag">
-                                HOLIDAY
-                            </div>
-                        </div>
-                    </div> 
-                    <!-- .col -->
-                 
-                    <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 bg-white">
-                            <div class="card-body">
-                                <h2 class="card-title h5">New Year's Day</h2>
-                                <p class="card-text" style="font-size: 18px;">
-                                    Wednesday, January 1, 2025<br>
-                                    <strong>Offices are closed</strong>
-                                </p>
-                                <div class="tag-body"></div>
-                                <div class="holiday-tag">
-                                    HOLIDAY
+                        <a href="{{ url_for('main.view_post', post_id=189) }}" class="non-styled-card">
+                            <div class="card h-100 bg-white">
+                                <div class="card-body">
+                                    <h2 class="card-title h5">DORIS Holiday Party</h2>
+                                    <p class="card-text" style="font-size: 18px;">
+                                        Wednesday, December 11, 2024<br>12:00 PM to 1:30 PM<br>Room 103
+                                    </p>
+                                    <div class="tag-body"></div>
+                                    <div class="event-tag">
+                                        EVENT
+                                    </div>
+                                    <br>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <!-- .col -->
 
                     <div class="col-md-6 col-lg-3">
-                        <div class="card h-100 bg-white">
-                            <div class="card-body">
-                                <h2 class="card-title h5">Martin Luther King Jr. Day</h2>
-                                <p class="card-text" style="font-size: 18px;">
-                                    Monday, January 20, 2025<br>
-                                    <strong>Offices are closed</strong>
-                                </p>
+                        <a href="{{ url_for('main.view_post', post_id=188) }}" class="non-styled-card">
+                            <div class="card h-100 bg-white">
+                                <div class="card-body">
+                                    <h2 class="card-title h5">HR Open House</h2>
+                                    <p class="card-text" style="font-size: 18px;">
+                                        Wednesday, December 18, 2024<br>9:00 AM to 11:00 PM<br>Room 305
+                                    </p>
+                                    <div class="tag-body"></div>
+                                    <div class="event-tag">
+                                        EVENT
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-md-6 col-lg-3">
+                        <a href="{{ url_for('main.view_post', post_id=174) }}" class="non-styled-card">
+                            <div class="card h-100 bg-white position-relative">
+                                <div class="card-body">
+                                    <h2 class="card-title h5">Christmas Day</h2>
+                                    <p class="card-text" style="font-size: 18px;">
+                                        Wednesday, December 25, 2024<br>
+                                        <strong>Offices are closed</strong>
+                                    </p>
+                                </div>
                                 <div class="tag-body"></div>
                                 <div class="holiday-tag">
                                     HOLIDAY
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </a>
+                    </div> 
                     <!-- .col -->
                 </div>
                 <!-- .row -->
