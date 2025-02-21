@@ -17,7 +17,6 @@
 }
 
 .common-question-anchor {
-    color: #787878;
     padding-bottom: 50px;
 }
 
@@ -40,12 +39,10 @@ a:hover.common-question-anchor {
     font-family: "Helvetica";
     font-size: 30px;
     font-weight: bold;
-    color: #787878;
 }
 
 .common-question-answer-text {
     padding-bottom: 15px;
-    color: #787878;
     font-family: "Helvetica";
     font-weight: normal;
     font-size: 18px;

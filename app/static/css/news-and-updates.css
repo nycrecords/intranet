@@ -12,8 +12,6 @@
 }
 
 .sort-by-label {
-    padding-left: 11rem;
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -40,7 +38,6 @@
 }
 
 .filter-by {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -144,14 +141,12 @@ form.filter-form {
 }
 
 .post-date-author {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
 }
 
 .post-preview {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -217,5 +212,17 @@ form.filter-form {
 }
 
 .tag-count {
-    color: #787878;
+    color: black;
+}
+
+#posts-pagination {
+    font-size: 16px;
+}
+
+#posts-prev {
+    font-size: 16px;
+}
+
+#posts-next {
+    font-size: 16px;
 }

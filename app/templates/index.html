@@ -11,59 +11,7 @@
 {% block page_content %}
 <body>
     <main id="skip-header-target" role="main">
-        <section class="dorishero"><br>
-            <div class="container">
-                <header class="mb-2 text-white">
-                    <div class="row align-items-baseline">
-                        <div class="col-lg">
-                            <h2 class="section-title">Announcements</h2>
-                        </div>
-                        <!-- .col -->
-                    </div>
-                    <!-- .row -->
-                </header>
-            </div>
-            <!-- .container -->
-            <div class="dorishero">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="sr-only">DORIS News and Updates</h2>
-                        <ul class="dorishero-list">
-                            <li class="dorishero-item">
-                                <div class="bg-image">
-                                    <img src="{{ url_for('static', filename='img/street_renaming.jpg') }}"
-                                         alt="DORIS Street Renaming Project Map">
-                                </div>
-                                <h3 class="dorishero-itemHeading">
-                                    <a href="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd"
-                                       target="_blank">DORIS
-                                        | NYC Honorary Street Names Map</a>
-                                </h3>
-                            </li>
-
-                            <li class="dorishero-item">
-                                <div class="bg-image">
-                                    <img src="{{ url_for('static', filename='img/public_programs.jpeg') }}"
-                                         alt="DORIS Public Programs">
-                                </div>
-                                <h3 class="dorishero-itemHeading">
-                                    <a href="{{ url_for('main.view_post', post_id=157) }}">DORIS Public Programs</a>
-                                </h3>
-                            </li>
-
-                            <li class="dorishero-item">
-                                <div class="bg-image">
-                                    <img src="{{ url_for('static', filename='img/social_media.png') }}" alt="">
-                                </div>
-                                <h3 class="dorishero-itemHeading">
-                                    <a href="{{ url_for('main.view_post', post_id=159) }}">Follow us on Social Media</a>
-                                </h3>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {% include 'homepage_hero/homepage_hero.html' %}
 
         <!--Row 1 of Quick Links-->
         <section class="py-5" style="background-color: #181A7B;">
@@ -224,81 +172,97 @@
                 </header>
 
                 <div class="row matrix-gutter">
-                    <div class="col-md-6 col-lg-3">
-                        <a href="{{ url_for('main.view_post', post_id=187) }}" class="non-styled-card">
-                            <div class="card h-100 bg-white">
-                                <div class="card-body">
-                                    <h2 class="card-title h5">HR Open House</h2>
-                                    <p class="card-text" style="font-size: 18px;">
-                                        Wednesday, December 11, 2024<br>9:00 AM to 11:00 PM<br>Room 305
-                                    </p>
-                                    <div class="tag-body"></div>
-                                    <div class="event-tag">
-                                        EVENT
+                    {% if events[0] %}
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ url_for('main.view_post', post_id = events[0].id) }}" class="non-styled-card">
+                                <div class="card h-100 bg-white">
+                                    <div class="card-body">
+                                        <h2 class="card-title h5">{{ events[0].title }}</h2>
+                                        <p class="card-text" style="font-size: 18px;">
+                                            {{ events[0].event_date.strftime('%A, %B %d, %Y') }}<br>
+                                            {{ events[0].start_time }} to {{ events[0].end_time }}<br>
+                                            {{ events[0].event_location}}
+                                        </p>
+                                        <div class="tag-body"></div>
+                                        <div class="{% if events[0].holiday %}holiday-tag{% else %}event-tag{% endif %}">
+                                            {% if events[0].holiday %}HOLIDAY{% else %}EVENT{% endif %}
+                                        </div>
+                                        <br>
                                     </div>
-                                    <br>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
+                            </a>
+                        </div>
+                        <!-- .col -->
+                    {% endif %}
 
-                    <div class="col-md-6 col-lg-3">
-                        <a href="{{ url_for('main.view_post', post_id=189) }}" class="non-styled-card">
-                            <div class="card h-100 bg-white">
-                                <div class="card-body">
-                                    <h2 class="card-title h5">DORIS Holiday Party</h2>
-                                    <p class="card-text" style="font-size: 18px;">
-                                        Wednesday, December 11, 2024<br>12:00 PM to 1:30 PM<br>Room 103
-                                    </p>
-                                    <div class="tag-body"></div>
-                                    <div class="event-tag">
-                                        EVENT
+                    {% if events[0] %}
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ url_for('main.view_post', post_id = events[1].id) }}" class="non-styled-card">
+                                <div class="card h-100 bg-white">
+                                    <div class="card-body">
+                                        <h2 class="card-title h5">{{ events[1].title }}</h2>
+                                        <p class="card-text" style="font-size: 18px;">
+                                            {{ events[1].event_date.strftime('%A, %B %d, %Y') }}<br>
+                                            {{ events[1].start_time }} to {{ events[1].end_time }}<br>
+                                            {{ events[1].event_location}}
+                                        </p>
+                                        <div class="tag-body"></div>
+                                        <div class="{% if events[1].holiday %}holiday-tag{% else %}event-tag{% endif %}">
+                                            {% if events[1].holiday %}HOLIDAY{% else %}EVENT{% endif %}
+                                        </div>
+                                        <br>
                                     </div>
-                                    <br>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
-                    <div class="col-md-6 col-lg-3">
-                        <a href="{{ url_for('main.view_post', post_id=188) }}" class="non-styled-card">
-                            <div class="card h-100 bg-white">
-                                <div class="card-body">
-                                    <h2 class="card-title h5">HR Open House</h2>
-                                    <p class="card-text" style="font-size: 18px;">
-                                        Wednesday, December 18, 2024<br>9:00 AM to 11:00 PM<br>Room 305
-                                    </p>
-                                    <div class="tag-body"></div>
-                                    <div class="event-tag">
-                                        EVENT
+                            </a>
+                        </div>
+                        <!-- .col -->
+                    {% endif %}
+                
+                    {% if events[0] %}
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ url_for('main.view_post', post_id = events[2].id) }}" class="non-styled-card">
+                                <div class="card h-100 bg-white">
+                                    <div class="card-body">
+                                        <h2 class="card-title h5">{{ events[2].title }}</h2>
+                                        <p class="card-text" style="font-size: 18px;">
+                                            {{ events[2].event_date.strftime('%A, %B %d, %Y') }}<br>
+                                            {{ events[2].start_time }} to {{ events[2].end_time }}<br>
+                                            {{ events[2].event_location}}
+                                        </p>
+                                        <div class="tag-body"></div>
+                                        <div class="{% if events[2].holiday %}holiday-tag{% else %}event-tag{% endif %}">
+                                            {% if events[2].holiday %}HOLIDAY{% else %}EVENT{% endif %}
+                                        </div>
+                                        <br>
                                     </div>
-                                    <br>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- .col -->
-
-                    <div class="col-md-6 col-lg-3">
-                        <a href="{{ url_for('main.view_post', post_id=174) }}" class="non-styled-card">
-                            <div class="card h-100 bg-white position-relative">
-                                <div class="card-body">
-                                    <h2 class="card-title h5">Christmas Day</h2>
-                                    <p class="card-text" style="font-size: 18px;">
-                                        Wednesday, December 25, 2024<br>
-                                        <strong>Offices are closed</strong>
-                                    </p>
+                            </a>
+                        </div>
+                        <!-- .col -->
+                    {% endif %}
+                
+                    {% if events[0] %}
+                        <div class="col-md-6 col-lg-3">
+                            <a href="{{ url_for('main.view_post', post_id = events[3].id) }}" class="non-styled-card">
+                                <div class="card h-100 bg-white">
+                                    <div class="card-body">
+                                        <h2 class="card-title h5">{{ events[3].title }}</h2>
+                                        <p class="card-text" style="font-size: 18px;">
+                                            {{ events[3].event_date.strftime('%A, %B %d, %Y') }}<br>
+                                            {{ events[3].start_time }} to {{ events[3].end_time }}<br>
+                                            {{ events[3].event_location}}
+                                        </p>
+                                        <div class="tag-body"></div>
+                                        <div class="{% if events[3].holiday %}holiday-tag{% else %}event-tag{% endif %}">
+                                            {% if events[3].holiday %}HOLIDAY{% else %}EVENT{% endif %}
+                                        </div>
+                                        <br>
+                                    </div>
                                 </div>
-                                <div class="tag-body"></div>
-                                <div class="holiday-tag">
-                                    HOLIDAY
-                                </div>
-                            </div>
-                        </a>
-                    </div> 
-                    <!-- .col -->
+                            </a>
+                        </div>
+                        <!-- .col -->
+                    {% endif %}
                 </div>
                 <!-- .row -->
             </div>

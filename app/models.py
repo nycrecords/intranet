@@ -427,6 +427,7 @@ class EventPosts(Posts):
     start_time -- Column: String(), contains a string representation of the event start time. Ex) 09:00 AM
     end_time -- Column: String(), contains a string representation of the event end time. Ex) 09:30 AM
     sponsor -- Column: String()
+    holiday -- Column: Boolean(), determines if a events post should be tagged as a holiday or event
     """
     __tablename__ = 'event_posts'
     __mapper_args__ = {'polymorphic_identity': 'event_posts'}
@@ -438,6 +439,7 @@ class EventPosts(Posts):
     start_time = db.Column(db.String)
     end_time = db.Column(db.String)
     sponsor = db.Column(db.String)
+    holiday = db.Column(db.Boolean, default=False)
 
     def __init__(self,
                  event_date,
