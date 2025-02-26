@@ -133,11 +133,19 @@
                                     </div>
 
                                     <div class="nav-item">
+                                    {% if current_user.is_authenticated %}
                                         {% if config['USE_SAML'] %}
-                                        <a class="nav-link" href="{{ url_for('auth.saml') }}?sso">Login</a>
+                                            <a class="nav-link"href="{{ url_for('auth.saml') }}?slo">Logout</a>
                                         {% else %}
-                                        <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
                                         {% endif %}
+                                    {% else %}
+                                        {% if config['USE_SAML'] %}
+                                            <a class="nav-link" href="{{ url_for('auth.saml') }}?sso">Login</a>
+                                        {% else %}
+                                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                                        {% endif %}
+                                    {% endif %}
                                     </div>
                                 </nav>
                             </div>
@@ -373,7 +381,7 @@
                             <img class="mb-2" src="{{ url_for('static', filename='img/nyc-bubble-logo.svg') }}"
                                 width="90" alt="NYC Logo">
                         </a>
-                        <p class="fs-sm">City of New York - 2024 All Rights Reserved. NYC is a trademark and service
+                        <p class="fs-sm">City of New York - 2025 All Rights Reserved. NYC is a trademark and service
                             mark of the City of New York.</p>
 
                         <ul class="extensible-list horizontal fs-sm">

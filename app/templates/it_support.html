@@ -174,7 +174,7 @@
                     <a href="{{ url_for('static', filename='files/voicemail_instructions.pdf') }}">Voicemail Instructions</a>
                   </p>
                   <p class="card-text itsupport_card_text">
-                    Get instructions for accessing our Public Wifi, Outlook, and setting up Voicemail. 
+                    Get instructions for accessing our public wifi, Outlook, and setting up voicemail.
                   </p>
                 </div>
                 <div class="col-4">
@@ -186,25 +186,23 @@
         </div>
 
         <div class="col-sm-6">
-          <div class="card it_support_cards">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-8">
-                  <h5 class="card-title">Frequently Asked Questions</h5>
-                  <p class="card-text itsupport_card_text training-grid">
-                    <a href="{{ url_for('main.faq') }}">FAQ's</a>
-                  </p>
-
-                  <p class="card-text itsupport_card_text">
-                    For answers to common problems, issues, or inquiries, check out our FAQ page using the link above. 
-                  </p>
-                </div>
-                <div class="col-4">
-                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+          <a href="{{ url_for('main.faq') }}" style="color: black;">
+              <div class="card it_support_cards">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h5 class="card-title">FREQUENTLY ASKED QUESTIONS</h5>
+                      <p class="card-text itsupport_card_text">
+                        For answers to common problems, issues, or inquiries, check out our FAQ page using the link above.
+                      </p>
+                    </div>
+                    <div class="col-4">
+                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/question_mark.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -216,24 +214,23 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-6">
-          <div class="card it_support_cards">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-8">
-                  <h5 class="card-title">Tools and Applications</h5>
-                  <p class="card-text itsupport_card_text">
-                    <a href="{{ url_for('main.tools_and_applications') }}">Common DORIS Applications</a>
-                  </p>
-                  <p class="card-text itsupport_card_text">
-                    For quick access to commonly used DORIS applications, check out our Tools and Applications page using the link above. 
-                  </p>
-                </div>
-                <div class="col-4">
-                  <img class="mx-auto d-block" src="{{ url_for('static', filename='img/tools_and_apps.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+          <a href="{{ url_for('main.tools_and_applications') }}" style="color: black;">
+              <div class="card it_support_cards">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-8">
+                      <h5 class="card-title">TOOLS AND APPLICATIONS</h5>
+                      <p class="card-text itsupport_card_text">
+                        For quick access to commonly used DORIS applications, check out our Tools and Applications page using the link above.
+                      </p>
+                    </div>
+                    <div class="col-4">
+                      <img class="mx-auto d-block" src="{{ url_for('static', filename='img/tools_and_apps.png') }}" alt="Testing Images" style="height: 90px; width: 90px; margin-top: 20px;">
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+          </a>
         </div>
 
 

@@ -43,8 +43,8 @@ function openTab(evt, tabName) {
     }
     document.getElementById(tabName).style.display = 'block';
     evt.currentTarget.className += ' active';
-    $('.pagination-row').hide();
-    $('#' + tabName + '-pagination').show();
+    $('.pagination-row').addClass("hidden");
+    $('#' + tabName + '-pagination').removeClass("hidden");
 }
 
 function displayResults (data) {
@@ -63,23 +63,23 @@ function displayResults (data) {
     // Conditional block to determine what should be displayed on the page info part of the pagination div
     // and whether or not to show/hide the next/prev buttons
     if (data['documents_max'] === 0) {
-        document_prev.hide();
-        document_next.hide();
+        document_prev.addClass("hidden");
+        document_next.addClass("hidden");
         document_page_info.html(0 + ' - ' + 0 + ' of ' + 0);
     }
     else if (data['documents_max'] <= increment) {
-        document_prev.hide();
-        document_next.hide();
+        document_prev.addClass("hidden");
+        document_next.addClass("hidden");
         document_page_info.html(data['documents_start'] + ' - ' + data['documents_max'] + ' of ' + data['documents_max']);
     }
     else if (data['documents_start'] === 1) {
         document_page_info.html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
-        document_prev.hide();
-        document_next.show();
+        document_prev.addClass("hidden");
+        document_next.removeClass("hidden");
     }
     else {
         document_page_info.html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
-        document_prev.show();
+        document_prev.removeClass("hidden");
     }
 }
 
@@ -100,12 +100,12 @@ function displayNextResults(data) {
     // Set page info and determine visibility of pagination buttons
     if (data['documents_end'] >= data['documents_max']) {
         document_page_info.html(data['documents_start'] + ' - ' + data['documents_max'] + ' of ' + data['documents_max']);
-        document_next.hide();
+        document_next.addClass("hidden");
     }
     else {
         document_page_info.html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
     }
-    document_prev.show();
+    document_prev.removeClass("hidden");
 }
 
 function displayPreviousResults(data) {
@@ -124,9 +124,9 @@ function displayPreviousResults(data) {
 
     // Set page info and determine visibility of pagination buttons
     if (data['documents_start'] === 1) {
-        document_prev.hide();
+        document_prev.addClass("hidden");
     }
-    document_next.show();
+    document_next.removeClass("hidden");
     document_page_info.html(data['documents_start'] + ' - ' + data['documents_end'] + ' of ' + data['documents_max']);
 }
 
