@@ -1,0 +1,8 @@
+.form-control, .control-label {
+    font-size: 16px;
+}
+
+.btn {
+    font-size: 16px;
+    color: white !important;
+}

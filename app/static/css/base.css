@@ -5,7 +5,6 @@ body {
 }
 
 .breadcrumb-header {
-  color: #5C95A3;
   font-family: "Helvetica";
   font-size: 28px;
   letter-spacing: 0.5px;
@@ -120,4 +119,12 @@ a.non-styled-card:focus {
 
 .card-title {
   font-size: 2rem !important;
+}
+
+.alert {
+  font-size: 16px;
+}
+
+.breadcrumb.breadcrumb-ol {
+  padding-left: 0;
 }
