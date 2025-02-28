@@ -22,16 +22,6 @@
     <div class="col-sm-12 well content-area">
         <form class="enfg-form" method="POST" enctype="multipart/form-data">
             {{ form.csrf_token }}
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, message in messages %}
-            <div class="row">
-                <div class="alert alert-{{ category }} fade in">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ message }}
-                </div>
-            </div>
-            {% endfor %}
-            {% endwith %}
             <div class="row">
                 <section>
                     <div>

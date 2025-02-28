@@ -31,12 +31,6 @@
         </nav>
     </div>
     <div class="col-sm-12 well content-area documents-section">
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
         <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
         <div class="searchform">
             <div class="documents-search-form">
