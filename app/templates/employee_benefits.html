@@ -4,31 +4,76 @@
 {% block title %}Employee Benefits{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.employee_resources') }}">Employee Resources</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Employee Benefits</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Employee Benefits</h1>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Employee Benefits</h1>
+            </div>
+        </div>
+        <!-- .container -->
     </div>
-    <div class="col-sm-12 well content-area employee-benefits-section">
-        <a href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank"><p class="employee-benefits-text">Office of Labor Relations (OLR)</p></a>
-        <a href="{{ url_for('static', filename='files/work_well_nyc.pdf') }}" rel="noopener" target="_blank"><p class="employee-benefits-text">WorkWell NYC</p></a>
-        <a href="{{ url_for('static', filename='files/work_well_health_benefits_program_faq.pdf') }}" rel="noopener" target="_blank"><p class="employee-benefits-text">Health Benefits Program FAQ</p></a>
-        <a href="{{ url_for('static', filename='files/work_well_weight_watchers.pdf') }}" rel="noopener" target="_blank"><p class="employee-benefits-text">Weight Watchers Program</p></a>
-        <a href="{{ url_for('static', filename='files/work_well_weight_watchers_faq.pdf') }}" rel="noopener" target="_blank"><p class="employee-benefits-text">Weight Watchers Program FAQ</p></a>
-    </div>
-</div>
+    <!-- .banner-with-background -->
+
+    <section class="py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.employee_resources') }}">Employee Resources</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Employee Benefits</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+
+    <article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <br>
+                <h2 class="division-title">Employee Benefits</h2>
+
+                <br>
+
+                <a href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank">
+                    <p class="employee-benefits-text">Office of Labor Relations (OLR)</p>
+                </a>
+                <a href="{{ url_for('static', filename='files/work_well_nyc.pdf') }}" rel="noopener" target="_blank">
+                    <p class="employee-benefits-text">WorkWell NYC</p>
+                </a>
+                <a href="{{ url_for('static', filename='files/work_well_health_benefits_program_faq.pdf') }}" rel="noopener"
+                    target="_blank">
+                    <p class="employee-benefits-text">Health Benefits Program FAQ</p>
+                </a>
+                <a href="{{ url_for('static', filename='files/work_well_weight_watchers.pdf') }}" rel="noopener"
+                    target="_blank">
+                    <p class="employee-benefits-text">Weight Watchers Program</p>
+                </a>
+                <a href="{{ url_for('static', filename='files/work_well_weight_watchers_faq.pdf') }}" rel="noopener"
+                    target="_blank">
+                    <p class="employee-benefits-text">Weight Watchers Program FAQ</p>
+                </a>
+                <br><br><br>
+            </div>
+        </div>
+    </article>
+    <!-- #primary-content -->
 {% endblock %}

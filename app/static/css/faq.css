@@ -17,7 +17,6 @@
 }
 
 .common-question-anchor {
-    color: #787878;
     padding-bottom: 50px;
 }
 
@@ -34,25 +33,53 @@ a:hover.common-question-anchor {
     border-color: darkgrey;
 }
 
-.common-question-answer {
-
-}
-
 .common-question-answer-header {
     padding-top: 30px;
     padding-bottom: 15px;
     font-family: "Helvetica";
     font-size: 30px;
     font-weight: bold;
-    color: #787878;
 }
 
 .common-question-answer-text {
     padding-bottom: 15px;
-    color: #787878;
     font-family: "Helvetica";
     font-weight: normal;
     font-size: 18px;
 }
 
+.list-group-item {
+    font-size: 18px;
+    color: #000000;
+}
 
+#primary-content {
+    max-width: 100%;
+    font-size: 18px;
+    color: #000000;
+}
+  
+.faq-answer {
+    width: 100%;
+    word-wrap: break-word;
+    font-size: 18px;
+    color: #000000
+}
+  
+.container {
+    max-width: 1200px;
+}
+  
+#sidebar-nav {
+    max-width: 250px;
+}  
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}

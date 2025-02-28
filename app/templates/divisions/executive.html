@@ -4,38 +4,85 @@
 {% block title %}Executive{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Executive</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Executive</h1>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Executive</h1>
+            </div>
+        </div>
+        <!-- .container -->
     </div>
-    <div class="col-sm-12 well content-area individual-division-page">
-        <p>The Executive Office consists of the Communications, External Affairs,
-            Finance/Procurement, Human Resources, Information Technology, Legal and Operations Management units and the
-            Commissioner’s Office. Collectively, the staff ensures that all of the agency’s operations run smoothly and
-            that we advance DORIS’s mission of preserving and providing access to the historical and contemporary
-            records of New York City government, ensuring that City records are properly maintained following
-            professional archival and record management practices and to making materials available to diverse
-            communities both online and in person. Major functions include planning for the agency’s future growth and
-            needs, overseeing compliance with City policies and directives, directing efforts to increase awareness of
-            the agency, writing grants, ensuring smooth daily operations and conditions, developing and implementing
-            policy and administering resources for the Municipal Archives, Library and Records Management
-            divisions.
-        </p>
-    </div>
-</div>
+    <!-- .banner-with-background -->
+
+    <section class="py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Executive</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+
+    <article class="container-fluid" id="primary-content" style="font-size: 16px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <h2>Executive</h2><br>
+                <p>The Executive Office consists of the Office of the Commissioner, Grants Unit, Operations Unit, and
+                    the EEO/MWBE coordinator.</p><br>
+                <p>The Commissioner’s Office sets direction for DORIS and ensures that agency operations advance our
+                    mission. The office analyzes processes and procedures and plans for future growth. We develop and
+                    implement policies, oversee compliance with City laws and directives, including the language and
+                    disability access requirements and report on the agency’s progress to the Mayor and City
+                    Council.</p><br>
+                <p>The Equal Employment Opportunity (EEO) Minority and Women Owned Business (MWBE) coordinator is a
+                    neutral, independent employee who investigates allegations of discrimination, harassment and
+                    retaliation filed by employees, applicants, contracted and temporary staff and members of the public
+                    based on protected categories covered by federal, state and local laws. The coordinator also is
+                    responsible for ensuring that DORIS follows City laws to increase procurements from MWBEs.</p><br>
+                <p>The Grants Unit coordinates applications to the State by City agencies for grants totaling City
+                    government’s applications for up to $1 million annually in State grants for projects to improve
+                    records management records at various agencies.</p><br>
+                <p>The Operations unit has wide-ranging responsibilities in facilities management, contracting, and
+                    coordinating large-scale interagency and intra-agency projects. This includes managing upgrades,
+                    repairs and renovations to DORIS facilities; surveying building conditions on a semi-annual basis to
+                    identify any emerging issues; preparing reports on the status of facilities; liaising with DCAS
+                    facilities and asset management and with Industry City management; and working on exhibit design and
+                    other public programming activities.</p><br>
+                <p>The Executive Office consists of:</p>
+                <ul>
+                    <li>Kenneth Cobb, Assistant Commissioner</li>
+                    <li>Johnnie Davis, EEO/MWBE Coordinator</li>
+                    <li>Michael Lorenzini, Operations Director</li>
+                    <li>Eleanor Price, Grant Unit Supervisor</li>
+                    <li>Gerald Rosero, Special Assistant</li>
+                    <li>Pauline Toole, Commissioner</li>
+                </ul><br>
+                <p>Rooms: 305, 306</p>
+                <br>
+            </div>
+        </div>
+    </article>
+    <!-- #primary-content -->
 {% endblock %}

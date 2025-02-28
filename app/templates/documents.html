@@ -8,6 +8,18 @@
 {% endblock %}
 
 {% block page_content %}
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Documents</h1>
+            </div>
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -17,7 +29,6 @@
                 <li class="breadcrumb-item active" aria-current="page">Documents</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Documents</h1>
     </div>
     <div class="col-sm-12 well content-area documents-section">
         {% for message in get_flashed_messages() %}
@@ -29,9 +40,10 @@
         <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
         <div class="searchform">
             <div class="documents-search-form">
-                Search by:<input id="document-search-term" type="text" class="searchbar">
-                <button class="btn btn-default documents-search-button">Submit</button>
-                Sort By:
+                <label for="document-search-term" style="font-size: 16px;">Search by:</label>
+                <input id="document-search-term" type="text" class="searchbar">
+                <button class="btn btn-primary documents-search-button">Submit</button>
+                <label for="sort-dropdown" style="font-size: 16px; padding-left: 25px;">Sort By:</label>
                 <select id="sort-dropdown" class="sort-dropdown">
                     <option value="all">All</option>
                     <option value="name_a_z">Name (A - Z)</option>
@@ -41,7 +53,7 @@
                 </select>
             </div>
         </div>
-        <div id="display-search-term" hidden>
+        <div id="display-search-term" class="hidden">
             Showing results that match "<p id="save-search-term"></p>"
         </div>
         <div class="document-tabs">
@@ -60,7 +72,7 @@
         </div>
         <div id="instructions" class="tabcontent">
             <br>
-            <table id="instructions-table" class="table table-striped">
+            <table id="instructions-table" class="table table-striped" style="font-size: 16px;">
                 <tr>
                     <th class="col-sm-3">Name</th>
                     <th class="col-sm-3">Division</th>
@@ -81,16 +93,16 @@
                 {% endfor %}
             </table>
         </div> 
-        <div id="instructions-pagination" class="row pagination-row" hidden>
+        <div id="instructions-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="instructions-prev" class="btn btn-default">
+                <button type="button" id="instructions-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="instructions-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="instructions-next" class="btn btn-default">
+                <button type="button" id="instructions-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -120,16 +132,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="policies-and-procedures-pagination" class="row pagination-row" hidden>
+        <div id="policies-and-procedures-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="policies-and-procedures-prev" class="btn btn-default">
+                <button type="button" id="policies-and-procedures-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="policies-and-procedures-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="policies-and-procedures-next" class="btn btn-default">
+                <button type="button" id="policies-and-procedures-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -159,16 +171,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="templates-pagination" class="row pagination-row" hidden>
+        <div id="templates-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="templates-prev" class="btn btn-default">
+                <button type="button" id="templates-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="templates-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="templates-next" class="btn btn-default">
+                <button type="button" id="templates-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -198,16 +210,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="training-materials-pagination" class="row pagination-row" hidden>
+        <div id="training-materials-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="training-materials-prev" class="btn btn-default">
+                <button type="button" id="training-materials-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="training-materials-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="training-materials-next" class="btn btn-default">
+                <button type="button" id="training-materials-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -237,16 +249,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="covid-19-information-pagination" class="row pagination-row" hidden>
+        <div id="covid-19-information-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="covid-19-information-prev" class="btn btn-default">
+                <button type="button" id="covid-19-information-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="covid-19-information-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="covid-19-information-next" class="btn btn-default">
+                <button type="button" id="covid-19-information-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -275,16 +287,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="records-management-pagination" class="row pagination-row" hidden>
+        <div id="records-management-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="records-management-prev" class="btn btn-default">
+                <button type="button" id="records-management-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="records-management-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="records-management-next" class="btn btn-default">
+                <button type="button" id="records-management-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>

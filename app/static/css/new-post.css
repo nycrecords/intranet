@@ -21,6 +21,7 @@
 
 .post-form-input {
     width: 50%;
+    font-size: 16px;
 }
 
 .post-form-select {
@@ -50,12 +51,6 @@
 
 .post-form-submit {
     width: 50%;
-    border: 1px solid #ECAC2A;
-    border-radius: 4px;
-    background-color: #ECAC2A;
-    color: #FFFFFF;
-    font-family: "Helvetica";
-    font-weight: normal;
     font-size: 18px;
 }
 
@@ -70,12 +65,10 @@
 .view-post-section {
     padding-top: 25px;
     word-wrap: break-word;
-    color: dimgray;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .post-title {
-    color: #5C95A3;
     font-family: "Helvetica";
     font-weight: normal;
     font-size: 28px;
@@ -104,6 +97,42 @@
 }
 
 .view-post-text {
-    color: dimgray;
+    font-size: 18px;
+}
+
+.form-control {
     font-size: 16px;
+}
+
+/* Styles for multi select plugin */
+.form-check-label {
+    padding-left: 25px;
+    font-size: 16px;
+}
+
+.multiselect-reset > .btn {
+    font-size: 16px;
+}
+
+.multiselect-container{
+    width: 50%;
+}
+
+button.multiselect {
+    font-size: 16px;
+}
+
+/* Styles for jquery time picker */
+.ui-timepicker-viewport>.ui-menu-item {
+    font-size: 16px;
+}
+
+/* Styles for jquery datepicker */
+.ui-datepicker {
+    font-size: 16px;
+}
+
+/* Styles for jquery autocomplete*/
+.ui-autocomplete {
+    font-size: 16;
 }

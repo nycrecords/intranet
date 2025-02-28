@@ -1,0 +1,53 @@
+<section class="dorishero"><br>
+    <div class="container">
+        <header class="mb-2 text-white">
+            <div class="row align-items-baseline">
+                <div class="col-lg">
+                    <h2 class="section-title">Announcements</h2>
+                </div>
+                <!-- .col -->
+            </div>
+            <!-- .row -->
+        </header>
+    </div>
+    <!-- .container -->
+    <div class="dorishero">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="sr-only">DORIS News and Updates</h2>
+                <ul class="dorishero-list">
+                    <li class="dorishero-item">
+                        <div class="bg-image">
+                            <img src="{{ url_for('static', filename='img/street_renaming.jpg') }}"
+                                 alt="DORIS Street Renaming Project Map">
+                        </div>
+                        <h3 class="dorishero-itemHeading">
+                            <a href="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd"
+                               target="_blank">DORIS
+                                | NYC Honorary Street Names Map</a>
+                        </h3>
+                    </li>
+
+                    <li class="dorishero-item">
+                        <div class="bg-image">
+                            <img src="{{ url_for('static', filename='img/public_programs.jpeg') }}"
+                                 alt="DORIS Public Programs">
+                        </div>
+                        <h3 class="dorishero-itemHeading">
+                            <a href="{{ url_for('main.view_post', post_id=157) }}">DORIS Public Programs</a>
+                        </h3>
+                    </li>
+
+                    <li class="dorishero-item">
+                        <div class="bg-image">
+                            <img src="{{ url_for('static', filename='img/social_media.png') }}" alt="">
+                        </div>
+                        <h3 class="dorishero-itemHeading">
+                            <a href="{{ url_for('main.view_post', post_id=159) }}">Follow us on Social Media</a>
+                        </h3>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

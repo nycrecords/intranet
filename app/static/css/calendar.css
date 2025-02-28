@@ -1,6 +1,7 @@
 .events-table-column {
     padding-left: 0;
     padding-bottom: 50px;
+    max-width: 650px;
 }
 
 .panel > .panel-heading.event-panel-heading {
@@ -16,7 +17,6 @@
 .event-date-column {
     padding-top: 40px;
     text-align: center;
-    color: #4C8392;
     font-family: "Helvetica";
     font-size: 20px;
     font-weight: bold;
@@ -28,7 +28,6 @@
 
 .event-title {
     word-break: break-word;
-    color: #656565;
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: 600;
@@ -36,7 +35,6 @@
 
 .event-location {
     word-break: break-word;
-    color: #656565;
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
@@ -44,7 +42,6 @@
 
 .event-date {
     word-break: break-word;
-    color: #656565;
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
@@ -52,7 +49,6 @@
 
 .event-description {
     word-break: break-word;
-    color: #656565;
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
@@ -105,7 +101,7 @@
 }
  .tab button.active {
     background-color: white;
-    border-top: 5px solid #F9B52B;
+    border-top: 5px solid #67409E;
     border-right: 2px solid darkgray;
     border-left: 2px solid darkgray;
     border-bottom: 0;
@@ -125,7 +121,7 @@ div.ui-datepicker {
 }
 
 .event a {
-    background-color: #4C8392 !important;
+    background-color: #181A7B !important;
     background-image :none !important;
     color: #ffffff !important;
 }
@@ -142,3 +138,12 @@ div.ui-datepicker {
 	background: #5cb85c;
 	color: white;
 }
+
+.btn-primary {
+    font-size: 18px;
+}
+
+.btn-primary a {
+    text-decoration: none;
+}
+

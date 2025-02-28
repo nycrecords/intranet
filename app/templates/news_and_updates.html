@@ -8,6 +8,18 @@
 {% endblock %}
 
 {% block page_content %}
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">News & Updates</h1>
+            </div>
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -16,15 +28,14 @@
                 <li class="breadcrumb-item active" aria-current="page">News & Updates</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">News & Updates</h1>
     </div>
+    
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <button class="btn btn-primary new-post-popover" data-toggle="popover" title="Select a Post Type"
-                        data-content="<a href='{{ url_for('main.new_event_post') }}' type='button' class='btn btn-primary'>Events</a><br><br><a href='{{ url_for('main.new_meeting_notes') }}' type='button' class='btn btn-primary'>Meeting Notes</a><br><br><a href='{{ url_for('main.new_news') }}' type='button' class='btn btn-primary'>News</a>">
-                    Create New Post
-                </button>
+                <a class="btn btn-primary" href="{{ url_for('main.new_event_post') }}">Create Event Post</a>
+                <a class="btn btn-primary" href="{{ url_for('main.new_news') }}">Create News Post</a>
+                <a class="btn btn-primary" href="{{ url_for('main.new_meeting_notes') }}">Create Meeting Notes</a>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>
@@ -36,9 +47,10 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-12" id="display-search-term" hidden>
+        <div class="col-sm-12 hidden" id="display-search-term">
             Showing results that match "<p id="save-search-term">{% if search_term %}{{ search_term }}{% endif %}</p>"
         </div>
+    <div ></div>
         <div class="col-sm-3 filter-section">
             <p class="filter-by">Filter by:</p>
             <div class="panel-group">

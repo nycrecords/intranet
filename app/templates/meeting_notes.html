@@ -8,6 +8,18 @@
 {% endblock %}
 
 {% block page_content %}
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white breadcrumb-header">Meeting Notes</h1>
+            </div>
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -17,12 +29,11 @@
                 <li class="breadcrumb-item active" aria-current="page">Meeting Notes</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Meeting Notes</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <div class="col-sm-12 top-padding">
             <div class="col-sm-6 new-post-button">
-                <a class="btn btn-primary" href="{{ url_for('main.new_meeting_notes') }}">Create New Meeting Notes</a>
+                <a class="btn btn-primary" href="{{ url_for('main.new_meeting_notes') }}">Create Meeting Notes</a>
             </div>
             <div class="col-sm-6">
                 <p class="sort-by-label">Sort by:</p>

@@ -69,6 +69,10 @@ DIVISION_PAGES = {
     'operations': {
         'template_name': 'operations',
         'plain_text': 'Operations'
+    },
+    'project-management-office': {
+        'template_name': 'project-management-office',
+        'plain_text': 'Project Management Office'
     }
 }
 

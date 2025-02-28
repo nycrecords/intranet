@@ -3,13 +3,15 @@
     padding-left: 0;
     padding-bottom: 10px;
     font-family: "Helvetica";
-    font-size: 14px;
+    font-size: 18px !important;
     font-weight: normal;
 }
 
+.btn-primary {
+    font-size: 18px;
+}
+
 .sort-by-label {
-    padding-left: 11rem;
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -36,7 +38,6 @@
 }
 
 .filter-by {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -67,7 +68,7 @@ hr.panel-divider {
 }
 
 .filter-heading {
-    color: #5C95A3;
+    color: #000000;
     font-family: "Helvetica";
     font-size: 11px;
     font-weight: bold;
@@ -94,7 +95,7 @@ form.filter-form {
 
 .filter-option-label {
     color: #4A90E2;
-    margin-left: 10px;
+    margin-left: 20px;
     font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
@@ -140,14 +141,12 @@ form.filter-form {
 }
 
 .post-date-author {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 14px;
     font-weight: normal;
 }
 
 .post-preview {
-    color: #787878;
     font-family: "Helvetica";
     font-size: 16px;
     font-weight: normal;
@@ -203,7 +202,6 @@ form.filter-form {
 
 #display-search-term {
     font-size: 16px;
-    color: dimgray;
     padding-top: 25px;
     padding-bottom: 30px;
 }
@@ -213,5 +211,17 @@ form.filter-form {
 }
 
 .tag-count {
-    color: #787878;
+    color: black;
+}
+
+#posts-pagination {
+    font-size: 16px;
+}
+
+#posts-prev {
+    font-size: 16px;
+}
+
+#posts-next {
+    font-size: 16px;
 }

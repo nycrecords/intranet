@@ -33,3 +33,27 @@
 .tools-and-applications-section {
     padding-top: 50px;
 }
+
+.breadcrumb-section {
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "> ";
+}

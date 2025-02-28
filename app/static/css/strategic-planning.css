@@ -8,3 +8,28 @@
     font-weight: normal;
     color: #4A4A4A;
 }
+
+.breadcrumb-section {
+    background-color: white !important;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+.breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "> ";
+}

@@ -4,37 +4,74 @@
 {% block title %}Administration & Human Resources{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/divisions.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Administration & Human Resources</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Administration & Human Resources</h1>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Administration and Human Resources</h1>
+            </div>
+        </div>
+        <!-- .container -->
     </div>
-    <div class="col-sm-12 well content-area individual-division-page">
-        <p>
-            The Administration Division of the Department of Records is responsible for:
-            <ul>
-                <li>Personnel</li>
-                <li>Payroll</li>
-                <li>Timekeeping</li>
-                <li>Budget & Revenue</li>
-                <li>Procurement</li>
-                <li>Vital Records</li>
-            </ul>
-        </p>
-    </div>
-</div>
+    <!-- .banner-with-background -->
+
+    <section class="py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.divisions') }}">Divisions</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Administration and Human Resources</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <article class="container-fluid" id="primary-content" style="font-size: 16px;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6">
+                <br>
+                <h2 class="division-title">Administration and Human Resources</h2>
+
+                <br>
+
+                <p class="division-body-text">
+                    The Administration Division of the Department of Records is responsible for:
+                </p>
+
+                <ul class="division-list">
+                    <li>Personnel</li>
+                    <li>Payroll</li>
+                    <li>Timekeeping</li>
+                    <li>Budget & Revenue</li>
+                    <li>Procurement</li>
+                    <li>Vital Records</li>
+                </ul>
+                <br>
+                <h3>HR Open House</h3>
+                <p>Day: Wednesday</p>
+                <p>Time: 9:00 AM – 11:00 AM</p>
+                <p>Duration: 15-minute meetings</p>
+                <p>Booking Link: <a href="https://outlook.office365.com/book/OpenHouse@nyco365.onmicrosoft.com/s/qsYksYp8z0q3pd3RDZIZNg2" target="_blank">HR Open House Booking</a></p>
+                <br>
+            </div>
+        </div>
+    </article>
+    <!-- #primary-content -->
 {% endblock %}

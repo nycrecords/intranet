@@ -6,7 +6,7 @@
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
-    color: #4A4A4A;
+    color: #000000;
 }
 
 .orientation-video {
@@ -15,5 +15,19 @@
 
 #video-anchor {
     padding-top: 50px;
-    margin-top: -50px;
+    margin-top: -70px;
+}
+
+.timestamps ol {
+    font-size: 16px;
+}
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+  
+  .breadcrumb-ol {
+    padding: 0;
+    margin: 0;
 }

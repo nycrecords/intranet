@@ -4,52 +4,93 @@
 {% block title %}Strategic Planning{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/strategic-planning.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/strategic-planning.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Strategic Planning</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Strategic Planning</h1>
-    </div>
-    <div class="col-sm-12 well content-area strategic-planning-section">
-        <p>
-            In 2017, DORIS undertook an agency-wide strategic planning process that engaged every employee during a four
-            month period. DORIS engaged the services of <a href="http://www.publicschoolnyc.org/" rel="noopener"
-                                                           target="_blank">Public School</a> – a not-for-profit founded
-            to help local
-            governments design and deliver better public services. There were two phases: one-on-one meetings with a
-            consultant and every DORIS employee who was interested in speaking with him (over 60% of staff) to gather
-            opinions about what worked/didn't work at the agency. Staff-identified needs were incorporated into
-            discussions of the strategic planning group – a mix of senior and frontline staff members who had been with
-            the agency for both short and long periods of time. The group set eight strategic priorities. Two of the
-            eight strategic planning priorities evolved directly from concerns raised in the staff interviews. We
-            established participatory committees to set goals and deliverables for each of the priorities. The
-            Committees meet monthly and their minutes are posted on the Intranet. DORIS has begun to implement
-            activities that will achieve the following eight priorities:
-        </p>
-        <ul>
-            <li>Develop open, trustworthy communications in all parts of the agency</li>
-            <li>Build a sense of community and create opportunities for staff to collaborate across teams</li>
-            <li>Develop and empower Human Capital</li>
-            <li>Increase agency oversight, accountability, and transparency for all operations</li>
-            <li>Provide quality customer service for all operations</li>
-            <li>Expand outreach and access to all collections to a diverse range of customers, stakeholders and
-                patrons
-            </li>
-            <li>Modernize current operations and facilities, and execute on innovation through digital assets</li>
-            <li>Improve physical and intellectual control of records</li>
-        </ul>
+    <br>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Strategic Planning</h1>
+            </div>
+        </div>
+        <!-- .container -->
+        </div>
+    <!-- .banner-with-background -->
+
+    <section class="py-2">
         <br>
-        <strong>More to come soon!</strong>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.employee_resources') }}">Employee Resources</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Strategic Planning</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+
+<article class="container-fluid" id="primary-content" style="font-size: 1.5rem;">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <h2>Strategic Planning</h2>
+
+            <br>
+
+            <p>
+                In 2017, DORIS undertook an agency-wide strategic planning process that engaged every employee during a
+                four-month period. DORIS engaged the services of <a href="http://www.publicschoolnyc.org/"
+                    rel="noopener" target="_blank">Public School</a> – a not-for-profit founded
+                to help local
+                governments design and deliver better public services. There were two phases: one-on-one meetings with a
+                consultant and every DORIS employee who was interested in speaking with him (over 60% of staff) to
+                gather
+                opinions about what worked/didn't work at the agency. Staff-identified needs were incorporated into
+                discussions of the strategic planning group – a mix of senior and frontline staff members who had been
+                with
+                the agency for both short and long periods of time. The group set eight strategic priorities. Two of the
+                eight strategic planning priorities evolved directly from concerns raised in the staff interviews. We
+                established participatory committees to set goals and deliverables for each of the priorities. The
+                Committees meet monthly and their minutes are posted on the Intranet. DORIS has begun to implement
+                activities that will achieve the following eight priorities:
+            </p>
+
+            <ul>
+                <li>Develop open, trustworthy communications in all parts of the agency</li>
+                <li>Build a sense of community and create opportunities for staff to collaborate across teams</li>
+                <li>Develop and empower Human Capital</li>
+                <li>Increase agency oversight, accountability, and transparency for all operations</li>
+                <li>Provide quality customer service for all operations</li>
+                <li>Expand outreach and access to all collections to a diverse range of customers, stakeholders and
+                    patrons
+                </li>
+                <li>Modernize current operations and facilities, and execute on innovation through digital assets</li>
+                <li>Improve physical and intellectual control of records</li>
+            </ul>
+            <br>
+            <strong class="d-block">More to come soon!</strong>
+            <br>
+            <br>
+        </div>
     </div>
-</div>
-{% endblock %} 
+</article>
+<!-- #primary-content -->
+</main>
+<!-- #content -->
+{% endblock %}
