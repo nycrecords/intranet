@@ -669,3 +669,99 @@ class Monitor(db.Model):
     last_success_timestamp = db.Column(db.DateTime)
     response_header = db.Column(db.String)
     use_ssl = db.Column(db.Boolean)
+
+
+class AnnouncementCard(db.Model):
+    """
+    Define the AnnouncementCard class for managing homepage announcement cards.
+    
+    id -- Column: Integer, PrimaryKey
+    title -- Column: String, The title of the announcement
+    link -- Column: String, The URL the announcement links to
+    image_filename -- Column: String, The filename of the uploaded image
+    image_url -- Column: String, The URL of an external image
+    is_active -- Column: Boolean, Whether the announcement is active/visible
+    display_order -- Column: Integer, The order to display (1, 2, or 3)
+    created_at -- Column: DateTime, When the announcement was created
+    updated_at -- Column: DateTime, When the announcement was last updated
+    """
+    __tablename__ = 'announcement_cards'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    link = db.Column(db.String(500), nullable=False)
+    image_filename = db.Column(db.String(255))
+    image_url = db.Column(db.String(500))
+    is_active = db.Column(db.Boolean, default=True)
+    display_order = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    def __init__(self, title, link, image_filename=None, image_url=None, display_order=1, is_active=True):
+        self.title = title
+        self.link = link
+        self.image_filename = image_filename
+        self.image_url = image_url
+        self.display_order = display_order
+        self.is_active = is_active
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
+    
+    @classmethod
+    def get_active_announcements(cls):
+        """
+        Get all active announcements ordered by display_order
+        """
+        return cls.query.filter_by(is_active=True).order_by(cls.display_order.asc()).limit(3).all()
+    
+    @classmethod
+    def populate_defaults(cls):
+        """
+        Populate the table with the current hardcoded announcements if empty
+        """
+        if cls.query.count() == 0:
+            default_announcements = [
+                cls(
+                    title="DORIS | NYC Honorary Street Names Map",
+                    link="https://nyc.maps.arcgis.com/apps/instant/basic/index.html?appid=7c667aa2fa224684962cac5fa10ec0fd",
+                    image_filename="street_renaming.jpg",
+                    display_order=1
+                ),
+                cls(
+                    title="DORIS Public Programs",
+                    link="/posts/view/157",
+                    image_filename="public_programs.jpeg",
+                    display_order=2
+                ),
+                cls(
+                    title="Follow us on Social Media",
+                    link="/posts/view/159",
+                    image_filename="social_media.png",
+                    display_order=3
+                )
+            ]
+            
+            for announcement in default_announcements:
+                db.session.add(announcement)
+            db.session.commit()
+    
+    @property
+    def image_display_url(self):
+        """
+        Property to get the image URL for display (prioritizes URL over file)
+        """
+        if self.image_url:
+            return self.image_url
+        elif self.image_filename:
+            return f"/static/uploads/announcements/{self.image_filename}"
+        return None
+    
+    @property
+    def has_image(self):
+        """
+        Check if announcement has any image (URL or file)
+        """
+        return bool(self.image_url or self.image_filename)
+    
+    def __repr__(self):
+        return f'<AnnouncementCard {self.id}: {self.title}>'
