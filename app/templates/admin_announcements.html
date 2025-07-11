@@ -1,0 +1,522 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Manage Announcements{% endblock title %}
+
+{% block custom_css %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/admin_announcements.css') }}" />
+<style>
+.admin-announcements {
+    padding: 2rem 0;
+}
+
+.announcement-form {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.announcement-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    background: #f8f9fa;
+}
+
+.announcement-card h4 {
+    color: #181A7B;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.btn-group {
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    background-color: #181A7B;
+    border-color: #181A7B;
+}
+
+.btn-primary:hover {
+    background-color: #141664;
+    border-color: #141664;
+}
+
+.preview-section {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.preview-section h3 {
+    color: #181A7B;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.current-image {
+    max-width: 200px;
+    max-height: 150px;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+    display: block;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 0.3rem;
+}
+
+.radio-group label {
+    margin-right: 1rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+</style>
+{% endblock %}
+
+{% block page_content %}
+<main id="skip-header-target" role="main">
+    <div class="container admin-announcements">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Manage Homepage Announcements</h1>
+                
+                <!-- Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Announcement Form -->
+                <div class="announcement-form">
+                    <h2 class="mb-4">Edit Announcements</h2>
+                    
+                    <form method="POST" enctype="multipart/form-data" id="announcementForm">
+                        {{ form.hidden_tag() }}
+                        
+                        <!-- Announcement 1 -->
+                        <div class="announcement-card">
+                            <h4>Announcement 1</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.title_1.label(class="form-label") }}
+                                        {{ form.title_1(class="form-control", id="title_1") }}
+                                        {% if form.title_1.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.title_1.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.link_1.label(class="form-label") }}
+                                        {{ form.link_1(class="form-control", id="link_1") }}
+                                        {% if form.link_1.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.link_1.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Image Option:</label>
+                                        <div class="radio-group">
+                                            <input type="radio" name="image_type_1" value="upload" id="image_type_1_upload" {% if not form.image_type_1.data or form.image_type_1.data == 'upload' %}checked{% endif %}>
+                                            <label for="image_type_1_upload">Upload File</label>
+                                            <input type="radio" name="image_type_1" value="url" id="image_type_1_url" {% if form.image_type_1.data == 'url' %}checked{% endif %}>
+                                            <label for="image_type_1_url">Use URL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" id="upload_section_1" style="display: {% if not form.image_type_1.data or form.image_type_1.data == 'upload' %}block{% else %}none{% endif %};">
+                                        {{ form.image_1.label(class="form-label") }}
+                                        {{ form.image_1(class="form-control", accept="image/*", id="image_1") }}
+                                        <small class="form-text text-muted">Supported formats: JPG, PNG (Max 5MB)</small>
+                                    </div>
+                                    <div class="form-group" id="url_section_1" style="display: {% if form.image_type_1.data == 'url' %}block{% else %}none{% endif %};">
+                                        {{ form.image_url_1.label(class="form-label") }}
+                                        {{ form.image_url_1(class="form-control", placeholder="https://example.com/image.jpg", id="image_url_1") }}
+                                        {% if form.image_url_1.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.image_url_1.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Preview:</label>
+                                        <div class="image-preview" id="image_preview_1">
+                                            {% if announcements and announcements[0].has_image %}
+                                                <img src="{{ announcements[0].image_display_url }}" 
+                                                     alt="Current image" class="current-image">
+                                            {% else %}
+                                                <div class="no-image">No image selected</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Announcement 2 -->
+                        <div class="announcement-card">
+                            <h4>Announcement 2</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.title_2.label(class="form-label") }}
+                                        {{ form.title_2(class="form-control", id="title_2") }}
+                                        {% if form.title_2.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.title_2.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.link_2.label(class="form-label") }}
+                                        {{ form.link_2(class="form-control", id="link_2") }}
+                                        {% if form.link_2.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.link_2.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Image Option:</label>
+                                        <div class="radio-group">
+                                            <input type="radio" name="image_type_2" value="upload" id="image_type_2_upload" {% if not form.image_type_2.data or form.image_type_2.data == 'upload' %}checked{% endif %}>
+                                            <label for="image_type_2_upload">Upload File</label>
+                                            <input type="radio" name="image_type_2" value="url" id="image_type_2_url" {% if form.image_type_2.data == 'url' %}checked{% endif %}>
+                                            <label for="image_type_2_url">Use URL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" id="upload_section_2" style="display: {% if not form.image_type_2.data or form.image_type_2.data == 'upload' %}block{% else %}none{% endif %};">
+                                        {{ form.image_2.label(class="form-label") }}
+                                        {{ form.image_2(class="form-control", accept="image/*", id="image_2") }}
+                                        <small class="form-text text-muted">Supported formats: JPG, PNG (Max 5MB)</small>
+                                    </div>
+                                    <div class="form-group" id="url_section_2" style="display: {% if form.image_type_2.data == 'url' %}block{% else %}none{% endif %};">
+                                        {{ form.image_url_2.label(class="form-label") }}
+                                        {{ form.image_url_2(class="form-control", placeholder="https://example.com/image.jpg", id="image_url_2") }}
+                                        {% if form.image_url_2.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.image_url_2.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Preview:</label>
+                                        <div class="image-preview" id="image_preview_2">
+                                            {% if announcements and announcements[1].has_image %}
+                                                <img src="{{ announcements[1].image_display_url }}" 
+                                                     alt="Current image" class="current-image">
+                                            {% else %}
+                                                <div class="no-image">No image selected</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Announcement 3 -->
+                        <div class="announcement-card">
+                            <h4>Announcement 3</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.title_3.label(class="form-label") }}
+                                        {{ form.title_3(class="form-control", id="title_3") }}
+                                        {% if form.title_3.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.title_3.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.link_3.label(class="form-label") }}
+                                        {{ form.link_3(class="form-control", id="link_3") }}
+                                        {% if form.link_3.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.link_3.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Image Option:</label>
+                                        <div class="radio-group">
+                                            <input type="radio" name="image_type_3" value="upload" id="image_type_3_upload" {% if not form.image_type_3.data or form.image_type_3.data == 'upload' %}checked{% endif %}>
+                                            <label for="image_type_3_upload">Upload File</label>
+                                            <input type="radio" name="image_type_3" value="url" id="image_type_3_url" {% if form.image_type_3.data == 'url' %}checked{% endif %}>
+                                            <label for="image_type_3_url">Use URL</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" id="upload_section_3" style="display: {% if not form.image_type_3.data or form.image_type_3.data == 'upload' %}block{% else %}none{% endif %};">
+                                        {{ form.image_3.label(class="form-label") }}
+                                        {{ form.image_3(class="form-control", accept="image/*", id="image_3") }}
+                                        <small class="form-text text-muted">Supported formats: JPG, PNG (Max 5MB)</small>
+                                    </div>
+                                    <div class="form-group" id="url_section_3" style="display: {% if form.image_type_3.data == 'url' %}block{% else %}none{% endif %};">
+                                        {{ form.image_url_3.label(class="form-label") }}
+                                        {{ form.image_url_3(class="form-control", placeholder="https://example.com/image.jpg", id="image_url_3") }}
+                                        {% if form.image_url_3.errors %}
+                                            <div class="text-danger">
+                                                {% for error in form.image_url_3.errors %}
+                                                    <small>{{ error }}</small><br>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Preview:</label>
+                                        <div class="image-preview" id="image_preview_3">
+                                            {% if announcements and announcements[2].has_image %}
+                                                <img src="{{ announcements[2].image_display_url }}" 
+                                                     alt="Current image" class="current-image">
+                                            {% else %}
+                                                <div class="no-image">No image selected</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="btn-group" role="group">
+                            {{ form.save(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <h3>Live Preview</h3>
+                    <p class="text-muted">This preview updates automatically as you make changes.</p>
+                    <div id="previewContainer">
+                        <!-- Preview content will be loaded here via AJAX -->
+                        {% include 'homepage_hero/homepage_hero.html' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const previewContainer = document.getElementById('previewContainer');
+    const form = document.getElementById('announcementForm');
+    
+    // Debounce function to limit API calls
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    // Function to update preview
+    function updatePreview() {
+        const formData = new FormData(form);
+        
+        fetch('{{ url_for("main.admin_announcements_preview") }}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': document.querySelector('input[name="csrf_token"]').value
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            previewContainer.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Preview error:', error);
+        });
+    }
+    
+    // Debounced preview update
+    const debouncedUpdate = debounce(updatePreview, 500);
+    
+    // Radio button toggle functionality
+    function setupImageToggle(num) {
+        const uploadRadio = document.getElementById(`image_type_${num}_upload`);
+        const urlRadio = document.getElementById(`image_type_${num}_url`);
+        const uploadSection = document.getElementById(`upload_section_${num}`);
+        const urlSection = document.getElementById(`url_section_${num}`);
+        const fileInput = document.getElementById(`image_${num}`);
+        const urlInput = document.getElementById(`image_url_${num}`);
+        const previewDiv = document.getElementById(`image_preview_${num}`);
+        
+        function toggleSections() {
+            if (uploadRadio.checked) {
+                uploadSection.style.display = 'block';
+                urlSection.style.display = 'none';
+            } else {
+                uploadSection.style.display = 'none';
+                urlSection.style.display = 'block';
+            }
+            debouncedUpdate();
+        }
+        
+        // File preview functionality
+        function handleFilePreview(file) {
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewDiv.innerHTML = `<img src="${e.target.result}" alt="Preview" class="current-image">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // URL preview functionality
+        function handleUrlPreview(url) {
+            if (url && url.startsWith('http')) {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Preview';
+                img.className = 'current-image';
+                img.onerror = function() {
+                    previewDiv.innerHTML = '<div class="no-image">Invalid image URL</div>';
+                };
+                img.onload = function() {
+                    previewDiv.innerHTML = '';
+                    previewDiv.appendChild(img);
+                };
+                // Show loading state
+                previewDiv.innerHTML = '<div class="no-image">Loading image...</div>';
+            } else if (!url) {
+                previewDiv.innerHTML = '<div class="no-image">No image selected</div>';
+            }
+        }
+        
+        // Event listeners
+        uploadRadio.addEventListener('change', toggleSections);
+        urlRadio.addEventListener('change', toggleSections);
+        
+        fileInput.addEventListener('change', function(e) {
+            if (uploadRadio.checked && e.target.files[0]) {
+                handleFilePreview(e.target.files[0]);
+            }
+            debouncedUpdate();
+        });
+        
+        urlInput.addEventListener('input', function(e) {
+            if (urlRadio.checked) {
+                handleUrlPreview(e.target.value);
+            }
+            debouncedUpdate();
+        });
+    }
+    
+    // Setup toggles for all three announcements
+    setupImageToggle(1);
+    setupImageToggle(2);
+    setupImageToggle(3);
+    
+    // Radio button states are now handled server-side, no need for additional initialization
+    
+    // Add real-time preview for text fields
+    ['title_1', 'link_1', 'title_2', 'link_2', 'title_3', 'link_3'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.addEventListener('input', debouncedUpdate);
+        }
+    });
+});
+</script>
+{% endblock %}
