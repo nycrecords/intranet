@@ -5,11 +5,12 @@ from wtforms.fields import (
     SelectField,
     SubmitField,
     BooleanField,
-    SelectMultipleField
+    SelectMultipleField,
+    RadioField
 )
 from flask_wtf.file import FileField
 from wtforms.fields import DateField, EmailField, TelField
-from wtforms.validators import DataRequired, Optional
+from wtforms.validators import DataRequired, Optional, URL, Length
 
 from app.constants import choices
 from app.constants.intake import (
@@ -254,3 +255,35 @@ class UploadForm(FlaskForm):
     division = SelectField('Division', choices=choices.DIVISIONS)
     file_object = FileField('File')
     submit = SubmitField('Upload')
+
+
+class AnnouncementForm(FlaskForm):
+    """
+    Form for managing homepage announcement cards
+    
+    Allows editing of 3 announcement cards with title, link, and image for each
+    """
+    # Announcement 1
+    title_1 = StringField('Title 1', validators=[DataRequired(), Length(max=255)])
+    link_1 = StringField('Link 1', validators=[DataRequired(), Length(max=500)])
+    image_type_1 = RadioField('Image Type 1', choices=[('upload', 'Upload File'), ('url', 'Use URL')], default='upload')
+    image_1 = FileField('Upload Image 1')
+    image_url_1 = StringField('Image URL 1', validators=[Optional(), URL(), Length(max=500)])
+    
+    # Announcement 2
+    title_2 = StringField('Title 2', validators=[DataRequired(), Length(max=255)])
+    link_2 = StringField('Link 2', validators=[DataRequired(), Length(max=500)])
+    image_type_2 = RadioField('Image Type 2', choices=[('upload', 'Upload File'), ('url', 'Use URL')], default='upload')
+    image_2 = FileField('Upload Image 2')
+    image_url_2 = StringField('Image URL 2', validators=[Optional(), URL(), Length(max=500)])
+    
+    # Announcement 3
+    title_3 = StringField('Title 3', validators=[DataRequired(), Length(max=255)])
+    link_3 = StringField('Link 3', validators=[DataRequired(), Length(max=500)])
+    image_type_3 = RadioField('Image Type 3', choices=[('upload', 'Upload File'), ('url', 'Use URL')], default='upload')
+    image_3 = FileField('Upload Image 3')
+    image_url_3 = StringField('Image URL 3', validators=[Optional(), URL(), Length(max=500)])
+    
+    # Form actions
+    save = SubmitField('Save Changes')
+    preview = SubmitField('Preview')
