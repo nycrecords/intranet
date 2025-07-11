@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
-from app.models import Users, Posts, EventPosts, Documents, Monitor
+from app.models import Users, Posts, EventPosts, Documents, Monitor, AnnouncementCard, Roles
 from . import main
-from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm
+from app.main.forms import MeetingNotesForm, NewsForm, EventForm, StaffDirectorySearchForm, EnfgForm, UploadForm, AppDevIntakeForm, AnnouncementForm
 from app.main.utils import (create_meeting_notes,
                             create_news,
                             create_event_post,
@@ -26,7 +26,7 @@ from sqlalchemy import extract, or_
 from werkzeug.utils import secure_filename
 import os
 import json
-from app import mail
+from app import mail, db
 
 
 @main.route('/', methods=['GET'])
@@ -40,8 +40,11 @@ def index():
     posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
     events = EventPosts.query.filter(Posts.deleted == False, EventPosts.event_date >= datetime.utcnow()).order_by(
         EventPosts.event_date.asc()).limit(4).all()
+    
+    # Get active announcements for the homepage hero section
+    announcements = AnnouncementCard.get_active_announcements()
 
-    return render_template('index.html', posts=posts, events=events)
+    return render_template('index.html', posts=posts, events=events, announcements=announcements)
 
 
 # Start view functions for posting
@@ -857,3 +860,204 @@ def monitor():
 
     return render_template('monitor.html', websites=websites,
                                            site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])
+
+
+def user_has_admin_permission():
+    """Check if current user has admin permissions"""
+    return current_user.is_authenticated and current_user.role_id in [1, 2, 3]  # Adjust role IDs as needed
+
+
+@main.route('/admin/announcements', methods=['GET', 'POST'])
+@login_required
+def admin_announcements():
+    """
+    Admin interface for managing homepage announcement cards
+    """
+    if not user_has_admin_permission():
+        flash('Access denied. Administrator permissions required.', 'error')
+        return redirect(url_for('main.index'))
+    
+    form = AnnouncementForm()
+    
+    if form.validate_on_submit():
+        if form.save.data:
+            # Handle save operation
+            try:
+                # Get current announcements or create new ones
+                announcements = AnnouncementCard.query.order_by(AnnouncementCard.display_order).all()
+                
+                # Ensure we have exactly 3 announcements
+                while len(announcements) < 3:
+                    announcements.append(AnnouncementCard(
+                        title="",
+                        link="",
+                        display_order=len(announcements) + 1
+                    ))
+                
+                # Update announcement data with both URL and file support
+                announcement_data = [
+                    (form.title_1.data, form.link_1.data, form.image_type_1.data, form.image_1.data, form.image_url_1.data),
+                    (form.title_2.data, form.link_2.data, form.image_type_2.data, form.image_2.data, form.image_url_2.data),
+                    (form.title_3.data, form.link_3.data, form.image_type_3.data, form.image_3.data, form.image_url_3.data)
+                ]
+                
+                for i, (title, link, image_type, image_file, image_url) in enumerate(announcement_data):
+                    if i < len(announcements):
+                        announcement = announcements[i]
+                    else:
+                        announcement = AnnouncementCard(
+                            title=title,
+                            link=link,
+                            display_order=i + 1
+                        )
+                        db.session.add(announcement)
+                    
+                    announcement.title = title
+                    announcement.link = link
+                    announcement.updated_at = datetime.utcnow()
+                    
+                    # Handle image based on type
+                    if image_type == 'url' and image_url:
+                        # Clear any existing file and set URL
+                        announcement.image_filename = None
+                        announcement.image_url = image_url
+                    elif image_type == 'upload' and image_file and image_file.filename:
+                        if allowed_file(image_file.filename):
+                            # Create upload directory if it doesn't exist
+                            upload_dir = os.path.join(current_app.static_folder, 'uploads', 'announcements')
+                            os.makedirs(upload_dir, exist_ok=True)
+                            
+                            # Secure the filename
+                            filename = secure_filename(image_file.filename)
+                            timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S_')
+                            filename = timestamp + filename
+                            
+                            # Save the file
+                            file_path = os.path.join(upload_dir, filename)
+                            image_file.save(file_path)
+                            
+                            # Clear any existing URL and set filename
+                            announcement.image_url = None
+                            announcement.image_filename = filename
+                        else:
+                            flash(f'Invalid file type for announcement {i+1}. Please use JPG or PNG.', 'error')
+                            continue
+                
+                db.session.commit()
+                flash('Announcements updated successfully!', 'success')
+                return redirect(url_for('main.admin_announcements'))
+                
+            except Exception as e:
+                db.session.rollback()
+                flash(f'Error updating announcements: {str(e)}', 'error')
+        
+    
+    # Load current announcements for display
+    announcements = AnnouncementCard.query.order_by(AnnouncementCard.display_order).all()
+    
+    # Ensure we have 3 announcements, create defaults if needed
+    if len(announcements) == 0:
+        AnnouncementCard.populate_defaults()
+        announcements = AnnouncementCard.query.order_by(AnnouncementCard.display_order).all()
+    
+    # Pad with empty announcements if needed
+    while len(announcements) < 3:
+        announcements.append(AnnouncementCard(
+            title="",
+            link="",
+            display_order=len(announcements) + 1
+        ))
+    
+    # Pre-populate form with current data
+    if announcements and not form.is_submitted():
+        if len(announcements) > 0:
+            form.title_1.data = announcements[0].title
+            form.link_1.data = announcements[0].link
+            if announcements[0].image_url and announcements[0].image_url.strip():
+                form.image_type_1.data = 'url'
+                form.image_url_1.data = announcements[0].image_url
+            else:
+                form.image_type_1.data = 'upload'
+        if len(announcements) > 1:
+            form.title_2.data = announcements[1].title
+            form.link_2.data = announcements[1].link
+            if announcements[1].image_url and announcements[1].image_url.strip():
+                form.image_type_2.data = 'url'
+                form.image_url_2.data = announcements[1].image_url
+            else:
+                form.image_type_2.data = 'upload'
+        if len(announcements) > 2:
+            form.title_3.data = announcements[2].title
+            form.link_3.data = announcements[2].link
+            if announcements[2].image_url and announcements[2].image_url.strip():
+                form.image_type_3.data = 'url'
+                form.image_url_3.data = announcements[2].image_url
+            else:
+                form.image_type_3.data = 'upload'
+    
+    return render_template('admin_announcements.html', form=form, announcements=announcements)
+
+
+@main.route('/admin/announcements/preview', methods=['POST'])
+@login_required
+def admin_announcements_preview():
+    """
+    AJAX endpoint for previewing announcement changes
+    """
+    if not user_has_admin_permission():
+        return jsonify({'error': 'Access denied'}), 403
+    
+    form = AnnouncementForm()
+    preview_data = []
+    
+    # Handle preview without validation to allow partial form data
+    try:
+        # Process each announcement
+        announcements_config = [
+            (form.title_1.data, form.link_1.data, form.image_type_1.data, form.image_1.data, form.image_url_1.data),
+            (form.title_2.data, form.link_2.data, form.image_type_2.data, form.image_2.data, form.image_url_2.data),
+            (form.title_3.data, form.link_3.data, form.image_type_3.data, form.image_3.data, form.image_url_3.data)
+        ]
+        
+        for i, (title, link, image_type, image_file, image_url) in enumerate(announcements_config):
+            # Set defaults if no data provided
+            if not title:
+                title = f"Announcement {i+1}"
+            if not link:
+                link = "#"
+            
+            # Determine image URL based on type
+            display_image_url = None
+            
+            if image_type == 'url' and image_url:
+                display_image_url = image_url
+            elif image_type == 'upload' and image_file and image_file.filename:
+                # For preview, create a temporary data URL if possible
+                # For now, use a placeholder since we can't process uploads in preview
+                display_image_url = '/static/img/question_mark.png'  # Placeholder for uploaded files
+            else:
+                # Use current announcement image as fallback
+                current_announcements = AnnouncementCard.query.order_by(AnnouncementCard.display_order).all()
+                if i < len(current_announcements) and current_announcements[i].has_image:
+                    display_image_url = current_announcements[i].image_display_url
+                else:
+                    # Final fallback to default images
+                    fallback_images = [
+                        '/static/img/street_renaming.jpg',
+                        '/static/img/public_programs.jpeg',
+                        '/static/img/social_media.png'
+                    ]
+                    display_image_url = fallback_images[i] if i < len(fallback_images) else '/static/img/question_mark.png'
+            
+            preview_data.append({
+                'title': title,
+                'link': link,
+                'image_display_url': display_image_url,
+                'image_filename': None  # For template compatibility
+            })
+    
+    except Exception as e:
+        # Return error response for AJAX
+        return jsonify({'error': f'Preview error: {str(e)}'}), 400
+    
+    return render_template('homepage_hero/homepage_hero.html', announcements=preview_data)
