@@ -1,4 +1,6 @@
-from flask import render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
+import socket
+import ssl
+from flask import app, render_template, redirect, url_for, session, request as flask_request, jsonify, current_app, flash, send_file, send_from_directory
 from flask_login import login_required, current_user
 from app.models import Users, Posts, EventPosts, Documents, Monitor
 from . import main
@@ -10,7 +12,7 @@ from app.main.utils import (create_meeting_notes,
                             get_rooms_by_division,
                             create_document,
                             allowed_file,
-                            VirusDetectedException,
+                            VirusDetectedException, is_certificate_expired,
                             scan_file,
                             process_documents_search,
                             process_posts_search,
@@ -37,6 +39,7 @@ def index():
     Queries for the next 4 events from today forward to display in the Calendar section
     :return: HTML template for home page
     """
+    
     posts = Posts.query.filter_by(deleted=False).order_by(Posts.date_created.desc()).limit(20).all()
     events = EventPosts.query.filter(Posts.deleted == False, EventPosts.event_date >= datetime.utcnow()).order_by(
         EventPosts.event_date.asc()).limit(4).all()
@@ -856,4 +859,4 @@ def monitor():
     websites = Monitor.query.order_by(Monitor.id.asc()).all()
 
     return render_template('monitor.html', websites=websites,
-                                           site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])
+                           site_refresh_rate=current_app.config['FRONTEND_REFRESH_RATE'])

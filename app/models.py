@@ -669,3 +669,4 @@ class Monitor(db.Model):
     last_success_timestamp = db.Column(db.DateTime)
     response_header = db.Column(db.String)
     use_ssl = db.Column(db.Boolean)
+    expiration_date = db.Column(db.Date)

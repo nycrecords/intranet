@@ -1,14 +1,18 @@
+import socket
+import ssl
 import subprocess
 import os
 import traceback
 import requests
-from flask import current_app, render_template
+from flask import app, current_app, render_template
 from app.models import Posts, MeetingNotes, Monitor, News, EventPosts, Events, Users, Documents
 from app import db, mail
 from datetime import datetime
 from sqlalchemy.exc import SQLAlchemyError
 from app.constants import file_types
 from flask_mail import Message
+import datetime
+
 
 
 class VirusDetectedException(Exception):
@@ -462,6 +466,31 @@ def send_website_down_email(id,
     msg.html = email
     mail.send(msg)
 
+def get_certificate_expiry_date_time(url):
+    # Use requests to get the certificate
+    with requests.get(url, stream=True) as response:
+        cert = response.raw.connection.sock.getpeercert()
+        exp_date_text = cert['notAfter']
+        # Parse the date with timezone information
+        expiry_date = datetime.datetime.strptime(exp_date_text, '%b %d %H:%M:%S %Y %Z')
+        # Assuming the certificate's time zone is UTC
+        expiry_date = expiry_date.replace(tzinfo=datetime.timezone.utc)
+        return expiry_date
+
+def is_certificate_expired(url):
+    try:
+        expiry_date = get_certificate_expiry_date_time(url)
+        # Get the current time in UTC
+        current_date = datetime.datetime.now(datetime.timezone.utc)
+        time_remaining = expiry_date - current_date
+        if time_remaining.days < 0:
+            return True, "Certificate has expired."
+        elif time_remaining.days < 7:
+            return False, f"Certificate is expiring soon: {time_remaining.days} days remaining."
+        else:
+            return False, f"Certificate is valid: {time_remaining.days} days remaining."
+    except Exception as e:
+        return True, f"Error checking certificate: {e}"
 
 def ping_website(monitor_info):
     """
