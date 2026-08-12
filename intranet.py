@@ -1,34 +1,33 @@
 #!/usr/bin/env python
 import os
+from flask_migrate import Migrate
+from flask.cli import main
+
 from app import create_app, db
-from app.models import Roles, Users, Posts, MeetingNotes, News, EventPosts, Events, Documents
-from flask_script import Manager, Shell
-from flask_migrate import Migrate, MigrateCommand
+from app.models import Documents, EventPosts, Events, MeetingNotes, Monitor, News, Posts, Roles, Users
+from app.main.utils import ping_website
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-manager = Manager(app)
 migrate = Migrate(app, db)
 
 
 def make_shell_context():
     return dict(
-        app=app, 
-        db=db, 
-        Roles=Roles, 
-        Users=Users, 
+        app=app,
+        db=db,
+        Roles=Roles,
+        Users=Users,
         Posts=Posts,
         MeetingNotes=MeetingNotes,
+        Monitor=Monitor,
         News=News,
         EventPosts=EventPosts,
         Events=Events,
         Documents=Documents
     )
 
-manager.add_command("shell", Shell(make_context=make_shell_context))
-manager.add_command('db', MigrateCommand)
 
-
-@manager.command
+@app.cli.command
 def reset_database():
     """Setup the database."""
     from flask_migrate import upgrade
@@ -54,7 +53,7 @@ def reset_database():
     )
 
 
-@manager.command
+@app.cli.command
 def deploy():
     """Upgrade and pre-populate database"""
     from flask_migrate import upgrade
@@ -73,7 +72,16 @@ def deploy():
     )
 
 
-@manager.command
+@app.cli.command('ping')
+def ping():
+    """Ping list of monitored sites and check if they're still alive."""
+    # Execute pings
+    monitors = Monitor.query.all()
+    for monitor in monitors:
+        ping_website(monitor)
+
+
+@app.cli.command()
 def test():
     """Run the unit tests."""
     import unittest
@@ -82,4 +90,4 @@ def test():
 
 
 if __name__ == '__main__':
-    manager.run()
+    main()

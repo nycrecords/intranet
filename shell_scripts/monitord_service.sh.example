@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export FLASK_APP=intranet.py
+export OPENSSL_CONF=<PATH TO OPENSSL CONF>
+
+cd <PATH TO APPLICATION DIRECTORY> && <PATH TO VIRTUAL ENVIRONMENT>/bin/flask ping

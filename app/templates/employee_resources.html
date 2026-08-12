@@ -4,208 +4,370 @@
 {% block title %}Employee Resources{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/employee-resources.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Employee Resources</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Employee Resources</h1>
+<main role="main">
+
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="text-white" style="font-size: 40px;">Employee Resources</h1>
+            </div>
+        </div>
+        <!-- .container -->
     </div>
-    <div class="col-sm-12 well content-area employee-resources-section">
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.staff_directory') }}">
-                    <div class="employee-resources-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="employee-resources-title">STAFF DIRECTORY</h4>
-                            <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/staff_directory.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.employee_benefits') }}">
-                    <div class="employee-resources-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="employee-resources-title">EMPLOYEE BENEFITS</h4>
-                            <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/employee_benefits.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.documents') }}">
-                    <div class="employee-resources-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="employee-resources-title">DOCUMENTS</h4>
-                            <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/documents.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="employee-resources-text">
-                    <p>Look up contact information for Department of Records staff members.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="employee-resources-text">
-                    <p>Find information on employee benefits for DORIS and NYC.gov employees.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="employee-resources-text">
-                    <p>Looking for templates, instructions or information on Policies and Procedures? Download files here.</p>
+    <!-- .banner-with-background -->
+
+
+    <!--Breadcrumb-->
+    <section class="bg-light py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Employee Resources</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.documents', default_open='policies_and_procedures') }}">
-                    <div class="employee-resources-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="employee-resources-title">POLICIES AND PROCEDURES</h4>
-                            <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/documents.png') }}">
-                        </div>
+    </section>
+    
+    
+
+    <!--Employee Resources Row 1-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <header class="mb-2 text-primary">
+                <div class="row align-items-baseline">
+                    <div class="col-lg">
+                        <h2>Employee Resources</h2>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.documents', default_open='training_materials') }}">
-                    <div class="employee-resources-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="employee-resources-title">TRAINING MATERIALS</h4>
-                            <img class="employee-resources-icon"
-                                 src="{{ url_for('static', filename='img/documents.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="employee-resources-text">
-                    <p>Find documents relating to policies and procedures here.</p>
+                    <!-- .col -->
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="employee-resources-text">
-                    <p>Find documents relating to training materials here.</p>
+                <!-- .row -->
+            </header>
+
+            <br>
+
+            <div class="row matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.staff_directory') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Staff Directory</h2>
+                            <br>
+                            <p class="card-text">
+                                Look up contact information for Department of Records staff members. 
+                            </p>
+                        </div>
+                    </div>
+                    </a>
                 </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100 bg-white">
+                        <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.employee_benefits') }}">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Employee Benefits</h2>
+                            <br>
+                            <p class="card-text">
+                                Find information on employee benefits for DORIS and NYC.gov employees.
+                            </p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Documents</h2>
+                            <br>
+                            <p class="card-text">
+                                Looking for templates, instructions or information on Policies and Procedures?
+                                Download files here. 
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='policies_and_procedures') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Policies and Procedures</h2>
+                            <br>
+                            <p class="card-text">
+                                Find documents relating to departmental policies and procedures here.
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
             </div>
+            <!-- .row -->
         </div>
-        <hr>
-        <h3>External Sites</h3>
-        <br><br>
-        <div class="row">
-            <div class="col-sm-4 center-site-cards">
-                <a href="http://cityshare.nycnet/portal/site/cityshare/?front_door=true" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/cityshare_logo.png') }}"
-                             class="external-site-image">
-                        <div class="external-site-text">
-                            <p>New York City's Employee Portal. Access information about benefits for City Employees, Information Technology, and much more.</p>
+        <!-- .container -->
+    </section>
+
+
+    <!--Employee Resources Row 2-->
+    <section class="bg-light py-2">
+        <div class="container">
+            <div class="row matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='training_materials') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Training Materials</h2>
+                            <br>
+                            <p class="card-text">
+                                Find documents relating to training materials here.
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4 center-site-cards">
-                <a href="https://prod.citytime.nycnet/" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/citytime_logo.png') }}"
-                             class="external-site-image">
-                        <div class="external-site-text">
-                            <p>New York City Employee timeclock for employees. Use this to manage your timesheet, enter time punches, and request leave.</p>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.documents', default_open='records_management') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Records Management</h2>
+                            <br>
+                            <p class="card-text">
+                                Find documents relating to records management here.
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4 center-site-cards">
-                <a href="http://timeclock.records.nycnet/auth/login" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/timeclock_logo.png') }}"
-                             class="external-site-image">
-                        <div class="external-site-text">
-                            <p>Department of Records timeclock for contractors and interns. Use this to clock in / out, generate timesheets, and print out invoices.</p>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.orientation') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Orientation</h2>
+                            <br>
+                            <p class="card-text">
+                                View the new employee orientation information here.
+                            </p>
                         </div>
                     </div>
-                </a>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary emp_resources_card_link" href="{{ url_for('main.strategic_planning') }}">
+                    <div class="card h-100 bg-white">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Strategic Planning</h2>
+                            <br>
+                            <p class="card-text">
+                                Some filler text will go here. Still don't know if this will drop.
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
             </div>
+            <!-- .row -->
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-sm-4 center-site-cards">
-                <a href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/nycaps_logo.gif') }}" class="external-site-image">
-                        <div class="external-site-text">
-                            <p>NYCAPS - Employee Self-Service (ESS). NYC Employee Self-Service Portal. Find your pay stubs, deduction information, and manage your personal information in the city's online human resources portal.</p>
+        <!-- .container -->
+    </section>
+
+
+
+    <!--External Sites Row 1-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <header class="mb-2 text-primary">
+                <div class="row align-items-baseline">
+                    <div class="col-lg">
+                        <h2>External Sites</h2>
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </header>
+
+            <br>
+
+            <div class="row matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://cityshare.nycnet/content/cityshare/pages/" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/cityshare_logo.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">CityShare</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC's Employee Portal. Access information about benefits for City Employees,
+                                Information Technology, and much more.
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4 center-site-cards">
-                <a href="https://www.nycers.org/" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/nycers_logo.svg') }}" class="external-site-image">
-                        <div class="external-site-text">
-                            <p>NYC Employee Retirement System. Manage your retirement benefits and plan for your retirement.</p>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://prod.citytime.nycnet" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/citytime_logo.jpeg') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">City Time</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC's Employee Timeclock. Use this to manage your timesheet, enter time
+                                punches, and request leave. 
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4 center-site-cards">
-                <a href="https://www1.nyc.gov/site/opa/index.page" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/nyc_payroll_logo.png') }}"
-                             class="external-site-image">
-                        <div class="external-site-text">
-                            <p>NYC Office of Payroll Administration website has information about direct deposit, paycheck calculator information on the commuter benefits program and City holidays and pay dates.</p>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://timeclock.getinfo.nyc/auth/login" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/timeclock_logo.png') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">Timeclock</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC Department of Records timeclock for contractors and interns. Use this
+                                to clock in and out, generate timesheets, and print out invoices. 
+                            </p>
                         </div>
                     </div>
-                </a>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login"  rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/nycaps_logo.gif') }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h2 class="card-title h5">NYCAPS</h2>
+                            <br>
+                            <p class="card-text">
+                                NYCAPS - Employee Self-Service (ESS). NYC Employee Self-Service Portal. Find your
+                                pay stubs, deduction information, and manage your personal information in the 
+                                city's online human resources portal.
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
             </div>
+            <!-- .row -->
         </div>
-        <br><br>
-        <div class="row">
-            <div class="col-sm-4 center-site-cards">
-                <a href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/nyc_office_of_labor_relations_logo.png') }}"
-                             class="external-site-image">
-                        <div class="external-site-text">
-                            <p>NYC Office of Labor Relations website allows you to find out information about  NYC Health Benefit Plans description and cost, Flexible Spending Accounts, Deferred Compensation and Management Benefit Fund (Managers Only)</p>
+        <!-- .container -->
+    </section>
+
+
+    <!--External Sites Row 2-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://www.nycers.org/" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/nycers_logo.svg') }}" alt="Card image cap">
+                        <div class="card-body paragraph-height">
+                            <h2 class="card-title h5">NYC Employee Retirement System</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC Employee Retirement System. Manage your retirement benefits and plan for your
+                                retirement.
+                            </p>
                         </div>
                     </div>
-                </a>
-            </div>
-            <div class="col-sm-4 center-site-cards">
-                <a href="http://www.nyc.gov/html/dcas/html/home/home.shtml" rel="noopener" target="_blank">
-                    <div class="external-site-card col-sm-12">
-                        <img src="{{ url_for('static', filename='img/dcas_logo.png') }}" class="external-site-image">
-                        <div class="external-site-text">
-                            <p>NYC Department of Citywide Administrative Services website has information about civil service exams and requirements, training at the Citywide Training Center, and information about working with and for the City of New York.</p>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/opa/index.page" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/nyc_payroll_logo.png') }}" alt="Card image cap">
+                        <div class="card-body paragraph-height">
+                            <h2 class="card-title h5">NYC Payroll Administration</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC Office of Payroll Administration website has information about direct deposit,
+                                paycheck calculator information on the commuter benefits program, City holidays,
+                                and pay dates.
+                            </p>
                         </div>
                     </div>
-                </a>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="https://www1.nyc.gov/site/olr/index.page" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/nyc_office_of_labor_relations_logo.png') }}" alt="Card image cap">
+                        <div class="card-body paragraph-height">
+                            <h2 class="card-title h5">NYC Office of Labor Relations</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC Office of Labor Relations website allows you to find out information
+                                about NYC Health Benefit Plans description and cost, Flexible Spending Accounts,
+                                Deferred Compensation, and Management Benefit Fund (Managers only).
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a class="text-secondary ext_sources_card_link" href="http://www.nyc.gov/html/dcas/html/home/home.shtml" rel="noopener" target="_blank">
+                    <div class="card h-100 bg-white">
+                        <img class="card-img-top" src="{{ url_for('static', filename='img/dcas_logo.png') }}" alt="Card image cap">
+                        <div class="card-body paragraph-height">
+                            <h2 class="card-title h5">NYC Administrative Services</h2>
+                            <br>
+                            <p class="card-text">
+                                NYC Department of Citywide Administrative Services website has information
+                                about civil service exams and requirements, training at the Citywide Training Center,
+                                and information about working with and for the City of New York.
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <!-- .col -->
             </div>
+            <!-- .row -->
         </div>
-        <br><br>
-    </div>
-</div>
+        <!-- .container -->
+        <br><br><br>
+    </section>
 {% endblock %}

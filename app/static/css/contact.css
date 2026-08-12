@@ -4,7 +4,7 @@
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
-    color: dimgrey;
+    color: #000000;
 }
 
 .contact-section {
@@ -12,8 +12,6 @@
 }
 
 .contact-heading-text {
-    color: dimgrey;
-    font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
 }

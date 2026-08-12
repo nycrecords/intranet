@@ -4,20 +4,62 @@
 
 .our-mission-image {
     /* 70% of the original image size */
-    height: 385px;
-    width: 488px;
+    height: 390px;
+    width: 550px;
     margin-top: 25px;
+    margin-left: 70px;
 }
 
 .our-mission-text {
-    color: #787878;
+    color: #000000;
     font-family: "Helvetica";
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
+    margin-right: 100px;
 }
 
 .division-list{
     font-family: "Helvetica";
-    font-size: 18px;
+    font-size: 16px;
     font-weight: normal;
+}
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}
+
+.our-mission-image {
+    width: 100%;
+    display: block;
+    margin-right: 100px;
+    margin-left: -20px;
+}
+
+.col-sm-6 img {
+    margin-left: 0;
+}
+
+.col-12.px-0 {
+    padding-left: 0;
+}
+
+.our-mission-image {
+    margin-left: -20px !important;
+    width: 100%;
+    display: block;
+}
+
+.our-mission-section .col-sm-6:nth-child(2) {
+    padding-left: 25px;
+}
+
+.our-mission-section .row {
+    margin-left: 0;
+    margin-right: 0;
 }

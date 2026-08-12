@@ -4,170 +4,370 @@
 {% block title %}FAQ{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/faq.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/faq.css') }}"/>
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.it_support') }}">IT Support</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">FAQ</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">FAQ</h1>
+<!-- Add your Custom image class below (after 'banner-with-background') -->
+<div class="bg-primary banner-with-background oculus d-flex flex-column">
+  <div class="container-fluid my-auto text-center">
+    <div class="narrow">
+      <h1 class="display-4 text-white">Frequently Asked Questions</h1>
     </div>
-    <div class="col-sm-12 well content-area faq-section">
-        <h1 class="faq-header">Find answers to common computing problems below!</h1>
-        <br>
-        <div class="common-questions-list">
-            <ul>
-                <li class="common-question-link"><a href="#common-question-answer-1" class="common-question-anchor">My computer won't start.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-2" class="common-question-anchor">I can't access the network or Internet.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-3" class="common-question-anchor">I'm getting an error message.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-4" class="common-question-anchor">My computer is frozen.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-5" class="common-question-anchor">I can only see a blue screen.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-6" class="common-question-anchor">The keyboard will not work.</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-7" class="common-question-anchor">What is CTRL-ALT-DEL?</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-8" class="common-question-anchor">Should I reboot my computer?</a></li>
-                <li class="common-question-link"><a href="#common-question-answer-9" class="common-question-anchor">I'm stumped and nothing is working.</a></li>
-            </ul>
-        </div>
-        <br>
-        <hr class="faq-seperator">
-        <div class="common-question-answer" id="common-question-answer-1">
-            <h1 class="common-question-answer-header">My computer won't start.</h1>
-            <ol class="common-question-answer-text" type="1">
-                <li>Check the power cord on the computer
-                    <ol type="a">
-                        <li>Examine the power cord to make sure that it is plugged in securely at both ends.</li>
-                    </ol>z
-                </li>
-                <li>Check the monitor
-                    <ol type="a">
-                        <li>It could be that the computer is on, but the monitor is off.</li>
-                        <li>Check the power cord on both ends and video cable (VGA or Display port) on the monitor.</li>
-                    </ol>
-                </li>
-                <li>If both the computer and monitor cannot start, it is most likely an issue from the power strip or
-                    surge protector
-                    <ol type="a">
-                        <li>Ensure that they are plugged in.</li>
-                        <li>Check the on/off switch on the power strip or surge protector.</li>
-                        <li>If there is too much load on the power strip, try to reduce the load.</li>
-                    </ol>
-                </li>
-            </ol>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-2">
-            <h1 class="common-question-answer-header">I can't access the network or Internet.</h1>
-            <ol class="common-question-answer-text" type="1">
-                <li>Check to see if anyone else around you is having a similar problem. If so, there may be a service
-                    outage affecting a wider area. Please inform the support staff or help desk.
-                </li>
-                <li>Check to make sure the network cable is connected to both the computer and the wall.</li>
-                <li>Check where the network cable connection is made to the back of the computer. You should see a
-                    little green or orange light right where the cable connects. If the light isn’t on or flashing, then
-                    you are not getting a signal to the computer. If rebooting does not fix it, contact the help desk.
-                </li>
-            </ol>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-3">
-            <h1 class="common-question-answer-header">I'm getting an error message.</h1>
-            <ol class="common-question-answer-text" type="1">
-                <li>Take a screenshot and email it to the support staff.</li>
-                <li>If you experience the BSOD (Blue Screen of Death), use your cell phone to take a picture and send it
-                    to the support staff.
-                </li>
-            </ol>
+  </div>
+</div>
+
+<section class="py-2">
+  <br>
+  <div class="container">
+      <div class="row">
+          <!-- Breadcrumb Section -->
+          <div class="col-sm-6">
+              <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                  <ol class="breadcrumb breadcrumb-ol">
+                      <li class="breadcrumb-item">
+                          <a href="{{ url_for('main.index') }}">Home</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                          <a href="{{ url_for('main.it_support') }}">IT Support</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">FAQ</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
+  </div>
+</section>
+
+<article class="container" id="skip-header-target">
+  <div class="row">
+    <div class="col-lg-3 collapse d-lg-block" id="sidebar-nav">
+      <div class="mt-5">
+        <a class="sr-only sr-only-focusable skip-menu" href="#primary-content">Skip Nav</a>
+        <h2 class="sr-only">Secondary Navigation</h2>
+        <nav role="navigation">
+          <div class="list-group custom-active">
+            <a href="#common-question-answer-1" class="list-group-item list-group-item-action active" aria-current="page">
+              My computer won't start.
+            </a>
+            <a href="#common-question-answer-2" class="list-group-item list-group-item-action">
+              I can't access the network or internet.
+            </a>
+            <a href="#common-question-answer-3" class="list-group-item list-group-item-action">
+              I'm getting an error message.
+            </a>
+            <a href="#common-question-answer-4" class="list-group-item list-group-item-action">
+                My computer is frozen.
+            </a>
+            <a href="#common-question-answer-5" class="list-group-item list-group-item-action">
+                I can only see a blue screen.
+            </a>
+            <a href="#common-question-answer-6" class="list-group-item list-group-item-action">
+                The keyboard will not work.
+            </a>
+            <a href="#common-question-answer-7" class="list-group-item list-group-item-action">
+                What is CTRL-ALT-DELETE?
+            </a>
+            <a href="#common-question-answer-8" class="list-group-item list-group-item-action">
+                Should I reboot my computer?
+            </a>
+            <a href="#common-question-answer-9" class="list-group-item list-group-item-action">
+                I'm stumped and nothing is working.
+            </a>
+            <a href="#common-question-answer-10" class="list-group-item list-group-item-action">
+                How do I access archived emails in Enterprise Vault?
+            </a>
+            <a href="#common-question-answer-11" class="list-group-item list-group-item-action">
+                How do I forward Phishing emails to NYC3 (phish@oti.nyc.gov)?
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="col-lg-9 overflow-hidden" id="primary-content">
+      <div class="my-5">
+        <div class="narrow my-4">
+          <div id="common-question-answer-1" class="faq-answer" style="display: block;">
+            <h2>My computer won't start.</h2>
+            <br>
+            <p>
+              <li>Check the power cord on the computer
+                <ol type="a">
+                    <li>Examine the power cord to make sure that it is plugged in securely at both ends.</li>
+                </ol>
+            </li>
+            <br>
+
+            <li>Check the monitor
+                <ol type="a">
+                    <li>It could be that the computer is on, but the monitor is off.</li>
+                    <li>Check the power cord on both ends and video cable (VGA or Display port) on the monitor.</li>
+                </ol>
+            </li>
+            <br>
+
+            <li>If both the computer and monitor cannot start, it is most likely an issue from the power strip or
+                surge protector
+                <ol type="a">
+                    <li>Ensure that they are plugged in.</li>
+                    <li>Check the on/off switch on the power strip or surge protector.</li>
+                    <li>If there is too much load on the power strip, try to reduce the load.</li>
+                </ol>
+            </li>
+            </p>
+          </div>
+
+
+          <div id="common-question-answer-2" class="faq-answer" style="display: none;">
+            <h2>I can't access the network or Internet.</h2>
+            <br>
+            <p>
+              <li>Check to see if anyone else around you is having a similar problem. If so, there may be a service
+                outage affecting a wider area. Please inform the support staff or help desk.
+            </li>
+            <br>
+
+            <li>Check to make sure the network cable is connected to both the computer and the wall.</li>
+            <br>
+
+            <li>Check where the network cable connection is made to the back of the computer. You should see a
+                little green or orange light right where the cable connects. If the light isn’t on or flashing, then
+                you are not getting a signal to the computer. If rebooting does not fix it, contact the help desk.
+            </li>
+            </p>
+          </div>
+
+
+          <div id="common-question-answer-3" class="faq-answer" style="display: none;">
+            <h2>I'm getting an error message.</h2>
+            <br>
+            <p>
+              <li>Take a screenshot and email it to the support staff.</li>
+              <br>
+
+              <li>
+                If you experience the BSOD (Blue Screen of Death), use your cell phone to take a picture and send it
+                to the support staff.
+              </li>
+            </p>
+            <br>
+
             <p class="common-question-answer-text">Screenshot of BSOD:</p>
             <div style="text-align: center;">
                 <img class="center" src="{{ url_for('static', filename='img/blue_screen_of_death.png') }}">
             </div>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-4">
-            <h1 class="common-question-answer-header">My computer is frozen.</h1>
-            <p class="common-question-answer-text">If the computer is on but everything on the screen is frozen and the
-                keyboard and mouse are not responding, try tapping on the Num Lock key. It’s located on the right-hand
-                side of the keyboard above the number 7. While tapping the Num Lock key, notice whether or not the Num
-                Lock light goes on and off. If it doesn't, the computer is completely locked up. You’ll have to REBOOT
-                the computer. If the light does go off and on, then wait a minute before giving up hope. It might come
-                back to life on its own.
-                <br>
-                <br>
-                Pressing Alt + F4 keys - If a software program stops working or freezes up, try pressing the ALT+F4 keys
-                to close the window that you’re currently working in. This can shut down a frozen window and bring the
-                computer back to life.
-                <br>
-                <br>
-                If Alt + F4 keys do not work, press Ctrl + Shift + Esc keys to open Task Manager, and try to end the
-                software that is not responding.
-                <br>
-                <br>
-                If the keyboard is frozen as well, you will have to reboot the computer.</p>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-5">
-            <h1 class="common-question-answer-header">I can only see a blue screen.</h1>
-            <p class="common-question-answer-text">If the dreaded “Blue Screen of death” (BSOD) has appeared, there is
-                not a lot to be done except to reboot the machine. If it keeps occurring, this is an indication of a
-                major problem with the computer.
-                Use your cell phone to take a picture or use a pen and paper to mark down the error code.
+          </div>
+
+
+          <div id="common-question-answer-4" class="faq-answer" style="display: none;">
+            <h2>My computer is frozen.</h2>
+            <br>
+            <p>
+              If the computer is on but everything on the screen is frozen and the keyboard and mouse are not responding, 
+              try tapping on the Num Lock key. It’s located on the right-hand side of the keyboard above the number 7. 
+              While tapping the Num Lock key, notice whether or not the Num Lock light goes on and off. If it doesn't, the 
+              computer is completely locked up. You’ll have to REBOOT the computer. If the light does go off and on, then 
+              wait a minute before giving up hope. It might come back to life on its own.
+              <br>
+              <br>
+              Pressing Alt + F4 keys - If a software program stops working or freezes up, try pressing the ALT+F4 keys
+              to close the window that you’re currently working in. This can shut down a frozen window and bring the
+              computer back to life.
+              <br>
+              <br>
+              If Alt + F4 keys do not work, press Ctrl + Shift + Esc keys to open Task Manager, and try to end the
+              software that is not responding.
+              <br>
+              <br>
+              If the keyboard is frozen as well, you will have to reboot the computer.</p>
+          </div>
+
+
+          <div id="common-question-answer-5" class="faq-answer" style="display: none;">
+            <h2>I can only see a blue screen.</h2>
+            <br>
+            <p>
+              If the dreaded “Blue Screen of death” (BSOD) has appeared, there is not a lot to be done except to reboot 
+              the machine. If it keeps occurring, this is an indication of a major problem with the computer. Use your 
+              cell phone to take a picture or use a pen and paper to mark down the error code.
             </p>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-6">
-            <h1 class="common-question-answer-header">The keyboard won't work.</h1>
-            <p class="common-question-answer-text">Swap the keyboard or try plugging the keyboard into another computer.
-                If it doesn't work on the other computer, there is likely something wrong with the keyboard. If it does
-                work on the other computer, there is likely something wrong with the computer or the connection to the
-                computer. Please contact the support staff.
+          </div>
+
+
+          <div id="common-question-answer-6" class="faq-answer" style="display: none;">
+            <h2>The keyboard will not work.</h2>
+            <br>
+            <p>
+              Swap the keyboard or try plugging the keyboard into another computer. If it doesn't work on the other computer, 
+              there is likely something wrong with the keyboard. If it does work on the other computer, there is likely 
+              something wrong with the computer or the connection to the computer. Please contact the support staff.
             </p>
+          </div>
+
+
+          <div id="common-question-answer-7" class="faq-answer" style="display: none;">
+            <h2>What is CTRL-ALT-DELETE?</h2>
+            <br>
+            <p>
+              When you press the CTRL-ALT-DEL buttons together, it will bring up
+              a control panel where you can select “Task Manager” and see if any of the programs are shown as “not
+              responding”. You may be able to shut down the offending program from there.
+              <br>
+              <br>
+              If you have to change your password, you can use CTRL-ALT-DEL, then select “Change a password”.
+              <br>
+              <br>
+              If you can't get to this screen, you'll have to reboot the computer.
+            </p>
+          </div>
+
+
+          <div id="common-question-answer-8" class="faq-answer" style="display: none;">
+            <h2>Should I reboot my computer?</h2>
+            <br>
+            <p>
+              Rebooting can do wonders. Don’t just pull the plug!
+              <br>
+              <br>
+              A simple reboot may clear up the problem. Go to the Start Menu and select Shutdown. Didn't work? It's
+              time to try a forced reboot — with, unfortunately, no way to save your work — by pressing the keys
+              CTRL-ALT-DEL simultaneously twice in a row.
+              <br>
+              <br>
+              If that didn't work, you have no choice: you have to turn the computer off manually with the power
+              switch. Hold the power button down (for about 5 -10 seconds) and the computer will shut down. Wait at
+              least 10 seconds for the hard drive to stop spinning and then restart the machine.
+              <br>
+              <br>
+              If the computer starts up, start the applications you were using when the crash occurred. Some programs,
+              like Microsoft Word, make timed backups of your work and may bring up recovered files. If the program
+              notifies you that there is a “recovered document” save the file under a different name and compare them
+              to your previously saved files.
+            </p>
+          </div>
+
+
+          <div id="common-question-answer-9" class="faq-answer" style="display: none;">
+            <h2>I'm stumped and nothing is working.</h2>
+            <br>
+            <p>Contact:
+              <li>OTI Helpdesk - (718) 403-8888, email - <a href="mailto:nychelp@oti.nyc.gov">nychelp@oti.nyc.gov</a></li>
+              <li>IT Support - email - <a href="mailto:itsupport@records.nyc.gov">itsupport@records.nyc.gov</a></li>
+            </p>
+          </div>
+
+
+          <div id="common-question-answer-10" class="faq-answer" style="display: none;">
+            <h2>How do I access archived emails in Enterprise Vault?</h2>
+            <br>
+            <p>
+              OTI has provided the following information regarding accessing
+              Enterprise Vault and archiving in Office 365:
+              <br>
+              <br>
+              Background: Before the migration to Office 365, the archival platform
+              for emails has been the Enterprise Vault (EV), an on-premises solution hosted at OTI. After OTI
+              migrated all Mailboxes to the cloud (Office 365) then the archiving platform also moved to the cloud.
+              OTI is working on a project to migrate the legacy data from on-premises Enterprise Vault to Office
+              365. We do not have a date as to when that project will be completed. However, the following information
+              will help you regarding the archival process.
+            </p>
+            <br>
+            <br>
+
+            <p class="common-question-answer-text">
+              <strong>How do I access archival items through Enterprise Vault?</strong>
+            </p>
+            <p>
+              To access your EV archival items please follow the links below. I
+              recommend that you bookmark these links:
+            </p>
+            <span class="common-question-answer-text">Internal:</span>
+            <ul class="common-question-answer-text">
+                <li><a href="http://ctea01.cs.nycnet/enterprisevault/search.asp" rel="noopener" target="_blank">
+                  http://ctea01.cs.nycnet/enterprisevault/search.asp</a>
+                </li>
+
+                <li><a href="http://ctea01.cs.nycnet/enterprisevault/archiveexplorerui.asp" rel="noopener" target="_blank">
+                  http://ctea01.cs.nycnet/enterprisevault/archiveexplorerui.asp (for Internet
+                    Explorer)</a>
+                </li>
+            </ul>
+
+            <span class="common-question-answer-text">External:</span>
+            <ul class="common-question-answer-text">
+                <li><a href="https://owa-archive.nyc.gov" rel="noopener" target="_blank">
+                  https://owa-archive.nyc.gov</a>
+                </li>
+            </ul>
+            <p class="common-question-answer-text">
+              <strong>What is the archiving process in the cloud (Office 365)?</strong>
+            </p>
+            <p class="common-question-answer-text">
+              The archiving is done after 1 year in the cloud (Office 365) since
+              the primary mailbox limit is 100 GB per mailbox and the archiving is unlimited. This eliminates the
+              on-premises archiving policy as the storage is not an issue anymore. DORIS migrated to Office 365 as of
+              February 26th, 2020. So, the archiving began after that date in the year 2021 for us.
+              </p>
+          </div>
+
+
+          <div id="common-question-answer-11" class="faq-answer" style="display: none;">
+            <h2>How do I forward Phishing emails to NYC3 (phish@oti.nyc.gov)?</h2>
+            <br>
+            <p>
+              <li>With the suspected phishing email highlighted or opened, hit CTRL-ALT-F. (this will forward the
+                email, with required tracking information (headers), as an attachment, to the NYC Cyber Command
+                Security Operations Center for analysis.)
+              </li>
+              <br>
+
+              <li>Enter <a href="mailto:phish@oti.nyc.gov">phish@oti.nyc.gov</a> as the recipient and click send. </li>
+              <br>
+
+              <li>Delete the suspicious email from your mailbox without clicking on any hyperlinks or attachments and
+                delete it from the Deleted Items folder.
+              </li>
+              <br>
+            </p>
+          </div>
+
         </div>
-        <div class="common-question-answer" id="common-question-answer-7">
-            <h1 class="common-question-answer-header">What is CTRL-ALT-DEL?</h1>
-            <p class="common-question-answer-text">When you press the CTRL-ALT-DEL buttons together, it will bring up
-                a control panel where you can select “Task Manager” and see if any of the programs are shown as “not
-                responding”. You may be able to shut down the offending program from there.
-                <br>
-                <br>
-                If you have to change your password, you can use CTRL-ALT-DEL, then select “Change a password”.
-                <br>
-                <br>
-                If you can't get to this screen, you'll have to reboot the computer.</p>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-8">
-            <h1 class="common-question-answer-header">Should I reboot my computer?</h1>
-            <p class="common-question-answer-text">Rebooting can do wonders. Don’t just pull the plug!
-                <br>
-                <br>
-                A simple reboot may clear up the problem. Go to the Start Menu and select Shutdown. Didn't work? It's
-                time to try a forced reboot — with, unfortunately, no way to save your work — by pressing the keys
-                CTRL-ALT-DEL simultaneously twice in a row.
-                <br>
-                <br>
-                If that didn't work, you have no choice: you have to turn the computer off manually with the power
-                switch. Hold the power button down (for about 5 -10 seconds) and the computer will shut down. Wait at
-                least 10 seconds for the hard drive to stop spinning and then restart the machine.
-                <br>
-                <br>
-                If the computer starts up, start the applications you were using when the crash occurred. Some programs,
-                like Microsoft Word, make timed backups of your work and may bring up recovered files. If the program
-                notifies you that there is a “recovered document” save the file under a different name and compare them
-                to your previously saved files.</p>
-        </div>
-        <div class="common-question-answer" id="common-question-answer-9">
-            <h1 class="common-question-answer-header">I'm stumped and nothing is working.</h1>
-            <p class="common-question-answer-text">Contact:</p>
-            <ol class="common-question-answer-text" type="1">
-                <li>DoITT Helpdesk - (718) 403-8888, email - <a href="mailto:nychelp@doitt.nyc.gov">nychelp@doitt.nyc.gov</a></li>
-                <li>Kenneth Chan - (212) 788-8606, email - <a href="mailto:hchan@records.nyc.gov">hchan@records.nyc.gov</a></li>
-            </ol>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+</article>
+<br><br><br>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const links = document.querySelectorAll('.list-group-item');
+  
+      links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+  
+          const answers = document.querySelectorAll('.faq-answer');
+          answers.forEach(function(answer) {
+            answer.style.display = 'none';
+          });
+  
+          const targetId = link.getAttribute('href');
+          const targetAnswer = document.querySelector(targetId);
+  
+          if (targetAnswer) {
+            targetAnswer.style.display = 'block';
+          }
+          
+          links.forEach(function(item) {
+            item.classList.remove('active');
+          });
+          link.classList.add('active');
+        });
+      });
+    });
+  </script>
 {% endblock %}

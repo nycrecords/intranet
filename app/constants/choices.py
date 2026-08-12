@@ -69,6 +69,10 @@ DIVISION_PAGES = {
     'operations': {
         'template_name': 'operations',
         'plain_text': 'Operations'
+    },
+    'project-management-office': {
+        'template_name': 'project-management-office',
+        'plain_text': 'Project Management Office'
     }
 }
 
@@ -108,7 +112,7 @@ TAGS = [
     'Audit',
     'Benefit',
     'Blog',
-    'Book ',
+    'Book',
     'Book Signing',
     'Borough President',
     'Bronx',
@@ -286,5 +290,8 @@ DOCUMENT_TYPES = [
     ('Instructions', 'Instructions'),
     ('Policies and Procedures', 'Policies and Procedures'),
     ('Templates', 'Templates'),
-    ('Training Materials', 'Training Materials')
+    ('Training Materials', 'Training Materials'),
+    ('COVID-19 Information', 'COVID-19 Information'),
+    ('Records Management', 'Records Management')
+
 ]

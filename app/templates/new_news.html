@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item active" aria-current="page">New News Post</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">New News Post</h1>
+        <h1 class="breadcrumb-header pb-3">New News Post</h1>
     </div>
     <div class="col-sm-12 well content-area new-post-section">
         {% include "intranet_use_policy.html" %}
@@ -38,8 +38,8 @@
 
             <div class="form-group">
                 {{ form.tags.label (class="post-form-label") }}<br>
-                <p>Select tags that best describe this post</p>
-                <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple">
+                <p style="font-size: 16px;">Select tags that best describe this post</p>
+                <select name="tags" id="news-tags" class="drop-up-tags" multiple="multiple" style="font-size: 16px;">
                     {% for tag in tags %}
                         <option value="{{ tag }}">{{ tag }}</option>
                     {% endfor %}
@@ -47,7 +47,7 @@
             </div>
 
             <div class="center-submit-button">
-                    {{ form.submit (class="btn btn-secondary post-form-submit", id="submit", type="submit") }}
+                    {{ form.submit (class="btn btn-primary post-form-submit", id="submit", type="submit") }}
             </div>
         </form>
     </div>

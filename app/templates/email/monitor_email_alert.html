@@ -1,0 +1,38 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<table class="monitor-email">
+    <tr>
+        <td class="monitor-email-data"><strong>ID</strong></td>
+        <td>{{ id }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Name</strong></td>
+        <td>{{ name }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>URL</strong></td>
+        <td>{{ url }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Status Code</strong></td>
+        <td>{{ status_code }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Current Timestamp</strong></td>
+        <td>{{ current_timestamp }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Last Success Timestamp</strong></td>
+        <td>{{ last_success_timestamp }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Response Header / Error</strong></td>
+        <td>{{ response_header }}</td>
+    </tr>
+    <tr>
+        <td class="monitor-email-data"><strong>Use SSL?</strong></td>
+        <td>{{ use_ssl }}</td>
+    </tr>
+</table>
+{% endblock %}

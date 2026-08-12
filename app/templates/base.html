@@ -4,214 +4,447 @@
 <html class="no-js" lang="en">
 
 {% block head %}
-    {{ super() }}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %} - Intranet</title>
+{{ super() }}
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{% endblock title %} - Intranet</title>
 
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/parsley.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}"/>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery-ui.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/jquery.timepicker.min.css') }}" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    {% block custom_css %}
-    {% endblock %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/plugins/parsley.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/theme.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/base.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/index.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/header.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/footer.css') }}" />
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/fontawesome/css/all.min.css') }}" />
+
+{% block custom_css %}
+{% endblock %}
 {% endblock %}
 
 <body>
-{% block navbar %}
-    <nav class="navbar navbar-inverse navbar-static-top login-header">
-        <div class="container">
-            <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated %}
-                <li class="dropdown">
-                    <a class="dropdown-toggle login-button" data-toggle="dropdown" href="#">Hello, {{ current_user.name
-                        }}&nbsp;<span
-                                class="glyphicon glyphicon-triangle-bottom"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                {% else %}
-                    <li><a class="login-button" href="{{ url_for('auth.login') }}">Login</a></li>
-                {% endif %}}
-            </ul>
-        </div>
-    </nav>
-    <div class="blue-overlay">
-        <div class="container">
-            <div class=" header-current-date">{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
-            <div class="header-doris-style">
-                <span><a id="doris-link-style" href="{{ url_for('main.index') }}">DORIS</a></span>
-            </div>
-            <a href="{{ url_for('main.index') }}"><span class="header-intranet-style">intranet</span></a>
+    <!--Header is shown first. And then the Navbar is shown.-->
+    {% block navbar %}
+    <!-- For keyboard users -->
+    <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
 
-            <div class="navbar-form navbar-right" role="search">
-                <div class="input-group add-on">
-                    <input class="form-control" placeholder="Search" name="search-term" id="search-bar" type="text">
+    <header id="global-header" role="banner">
+        <div class="bg-black text-white" id="nyc-top-header">
+            <div class="container-fluid navbar-styling px-0"> 
+                <div class="row py-2 align-items-center mx-0">
+                    <div class="col-md-6 ps-4">
+                        <p class="d-none d-md-flex fs-md mb-0">
+                            <strong>DORIS</strong>
+                            <span class="mx-1" aria-hidden="true">|</span>
+                            Intranet
+                        </p>
+                    </div>
+
+                    <div class="col-md-6 pe-4">
+                        <ul class="extensible-list horizontal fs-md mb-0 justify-content-end">
+                            <li class="me-4">
+                                <div>{{ moment().format('dddd, MMMM DD, YYYY') }}</div>
+                            </li>
+                            <span class="mx-1" aria-hidden="true">|</span>
+                            <li class="me-4">
+                                <a class="text-reset" href="http://www1.nyc.gov/home/search/index.page">
+                                    <strong>Search all NYC.gov</strong>
+                                </a>
+                            </li>
+                            <li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-header">
+            <div class="container-fluid wide">
+                <div class="row align-items-center">
+                    <div class="col-lg py-2">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
+                            <a class="align-self-center" href="{{ url_for('main.index') }}" title="Home">
+                                <img src="{{ url_for('static', filename='img/DORIS-logo.png') }}" width="150">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-auto border-top border-lg-0">
+                        <div class="d-lg-flex align-items-center">
+                            <!-- Mobile Toggle Buttons -->
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="navbar-toggler no-btn-style" type="button" data-toggle="collapse"
+                                        data-target="#nav-primary" aria-controls="nav-primary" aria-expanded="false">
+                                        <span class="fas fa-bars" role="img"></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="no-btn-style" type="button" data-toggle="collapse"
+                                        data-target="#global-search" aria-controls="global-search"
+                                        aria-expanded="false">
+                                        <span class="fas fa-search" role="img"></span>
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+                                <h2 class="sr-only">Primary Navigation</h2>
+                                <nav class="nav" role="navigation">
+                                    <div class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                            href="{{ url_for('main.news_and_updates') }}" id="nav-item-01"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            News & Updates
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="nav-item-01">
+                                            <ul class="extensible-list">
+                                                <li><a href="{{ url_for('main.news_and_updates') }}"><strong>News & Updates</strong></a>
+                                                </li>
+                                                <li><a href="{{ url_for('main.news') }}"><strong>News</strong></a></li>
+                                                <li><a href="{{ url_for('main.meeting_notes') }}"><strong>Meeting Notes</strong></a></li>
+                                                <li><a href="{{ url_for('main.events') }}"><strong>Events</strong></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('main.employee_resources') }}">
+                                            Employee Resources
+                                        </a>
+                                    </div>
+
+                                    <div class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('main.staff_directory') }}">
+                                            Staff Directory
+                                        </a>
+                                    </div>
+
+                                    <div class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('main.it_support') }}">
+                                            IT Support
+                                        </a>
+                                    </div>
+
+                                    <div class="nav-item">
+                                    {% if current_user.is_authenticated %}
+                                        {% if config['USE_SAML'] %}
+                                            <a class="nav-link"href="{{ url_for('auth.saml') }}?slo">Logout</a>
+                                        {% else %}
+                                            <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if config['USE_SAML'] %}
+                                            <a class="nav-link" href="{{ url_for('auth.saml') }}?sso">Login</a>
+                                        {% else %}
+                                            <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+                                </nav>
+                            </div>
+
+                            <!-- Desktop Toggle Buttons -->
+                            <ul class="extensible-list horizontal d-none d-lg-flex">
+                                <li>
+                                    <button class="no-btn-style" type="button" data-toggle="collapse"
+                                        data-target="#global-language" aria-controls="global-language"
+                                        aria-expanded="false">
+                                        <span class="fas fa-language" role="img"></span>
+                                    </button>
+                                </li>
+
+                                <li>
+                                    <button class="no-btn-style" type="button" data-toggle="collapse"
+                                        data-target="#global-search" aria-controls="global-search"
+                                        aria-expanded="false">
+                                        <span class="fas fa-search" role="img"></span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- .d-flex -->
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container-fluid -->
+        </div>
+        <!-- .wrap-header -->
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2" aria-label="Language">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+        <div class="container-fluid border-top collapse" id="global-search">
+            <form class="narrow py-2" aria-label="Search" role="search" style="margin-top: 10px; margin-bottom: 10px;">
+                <div class="input-group">
+                    <label class="sr-only" for="global-search-bar">Search</label>
+                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search" name="search-term" required>
                     <div class="input-group-btn">
-                        <button id="header-search" class="btn btn-default nav-magnification-style" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
+                        <button class="btn btn-primary btn-lg" type="button" title="Search" id="header-search" style="font-size: 24px;">
+                            <span class="sr-only">Search</span>
+                            <span class="fas fa-arrow-right" role="img"></span>
                         </button>
                     </div>
                 </div>
-            </div>
-
-            <nav class="navbar transparent">
-                <div class="navbar-inner container-fluid">
-                    <ul class="nav navbar-nav col-sm-12">
-                        <li class="col-md-3 navbar-option">
-                            <a href="{{ url_for('main.news_and_updates') }}">
-                                News & Updates
-                                <span class="caret nav-caret"></span>
-                            </a>
-                            <ul class="blue-nav-dropdown dropdown-menu">
-                                <li>
-                                    <a href="{{ url_for('main.news_and_updates') }}">News & Updates</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('main.news') }}">News</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('main.meeting_notes') }}">Meeting Notes</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('main.events') }}">Events</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="col-sm-3 navbar-option employee-resources-navbar-option">
-                            <a href="{{ url_for('main.employee_resources') }}" id="navbar-bottom-employee-resources" class="navbar-bottom-boder-style">Employee Resources</a>
-                        </li>
-                        <li class="col-sm-3 navbar-option">
-                            <a href="{{ url_for('main.strategic_planning') }}" id="navbar-bottom-strategic-planning" class="navbar-bottom-boder-style">Strategic Planning</a>
-                        </li>
-                        <li class="col-sm-3 navbar-option">
-                            <a href="{{ url_for('main.it_support') }}" id="navbar-bottom-it-support" class="navbar-bottom-boder-style">
-                                IT Support
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            </form>
         </div>
-    </div>
-{% endblock %}
-{% block content %}
-    <div class="container page-container">
+    </header>
+    {% endblock %}
+
+
+    <!--Where other page content goes-->
+    {% block content %}
+    <div class="container-fluid page-container" style="padding-left: 0; padding-right: 0;">
         {% block page_content %}{% endblock %}
     </div>
-    <div class="wrap">
-        <div class="intranet-footer">
-            <div class="container col-sm-12">
-                <div class="center-footer">
-                    <div class="footer-left col-sm-3 line">
-                        <div class="footer-box">
-                            <img class="doris-banner" src="{{ url_for('static', filename='img/doris_banner.png') }}">
-                        </div>
+
+
+    <!--Footer with a version of iSpeak, Links, and Social Media Icons-->
+    <footer class="bg-black" id="global-footer" role="contentinfo">
+        <h2 class="sr-only">
+            Page Footer
+        </h2>
+
+        <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+            <div class="container py-3 d-none" id="languages">
+                <div class="row fs-md">
+
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                        </ul>
                     </div>
-                    <div class="col-sm-3 line">
-                        <div class="footer-box">
-                            <h1>ABOUT</h1>
-                            <ul>
-                                <li>
-                                    <a href="{{ url_for('main.our_mission') }}">Our Mission</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('main.divisions') }}">Divisions</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url_for('main.contact') }}">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
+
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                        </ul>
                     </div>
-                    <div class="col-sm-3 line">
-                        <div class="footer-box">
-                            <h1>DORIS SITES</h1>
-                            <ul>
-                                <li>
-                                    <a href="http://www.archives.nyc/" rel="noopener" target="_blank">Archives.nyc</a>
-                                </li>
-                                <li>
-                                    <a href="http://a860-gpp.nyc.gov/" rel="noopener" target="_blank">Government Publications Portal</a>
-                                </li>
-                                <li>
-                                    <a href="https://nycrecords.bywatersolutions.com/" rel="noopener" target="_blank">Municipal Library Catalog</a>
-                                </li>
-                                <li>
-                                    <a href="https://a860-openrecords.nyc.gov/" rel="noopener" target="_blank">OpenRecords</a>
-                                </li>
-                                <li>
-                                    <a href="http://nycma.lunaimaging.com/luna/servlet" rel="noopener" target="_blank">Online Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="http://www.womensactivism.nyc/" rel="noopener" target="_blank">Women's Activism.nyc</a>
-                                </li>
-                            </ul>
-                        </div>
+
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                        </ul>
                     </div>
-                    <div class="col-sm-3 line">
-                        <div class="social-media-box">
-                            <div class="social-media-box-centered">
-                                </ul>
-                                <h1>SOCIAL MEDIA</h1>
-                                <ul>
+
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-4 col-lg">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- #languages -->
+
+            <div class="container py-3" id="languages">
+                <ul class="fs-md" role="list">
+                    <li><a class="lang-select text-reset" href="#" data-lang="ar"><strong>عربى</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="bn"><strong>বাঙালি</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="zh-CN"><strong>中文</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="fr"><strong>français</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ht"><strong>Kreyòl Ayisyen</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ko"><strong>한국어</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="pl"><strong>Polskie</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ru"><strong>русский</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="es"><strong>Español</strong></a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ur"><strong>اردو</strong></a></li>
+                </ul>
+            </div>
+            <!-- #languages -->
+
+            <hr class="opacity-20" aria-hidden="true">
+
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+                        <nav class="row fs-md" role="navigation">
+                            <div class="col-lg mb-3 mb-lg-0">
+                                <ul class="extensible-list">
                                     <li>
-                                        <img class="social-media-logo"
-                                             src="{{ url_for('static', filename='img/facebook_logo.png') }}">
-                                        <a href="https://www.facebook.com/nycrecords" rel="noopener" target="_blank"> Facebook</a>
+                                        <a class="text-reset" href="{{ url_for('main.our_mission') }}">
+                                            <strong>Our Mission</strong>
+                                        </a>
                                     </li>
+
                                     <li>
-                                        <img class="social-media-logo"
-                                             src="{{ url_for('static', filename='img/instagram_logo.png') }}">
-                                        <a href="https://www.instagram.com/nycarchives/" rel="noopener" target="_blank"> Instagram</a>
+                                        <a class="text-reset" href="{{ url_for('main.divisions') }}">
+                                            <strong>Divisions</strong>
+                                        </a>
                                     </li>
+
                                     <li>
-                                        <img class="social-media-logo"
-                                             src="{{ url_for('static', filename='img/twitter_logo.png') }}">
-                                        <a href="https://twitter.com/nycrecords" rel="noopener" target="_blank"> Twitter</a>
-                                    </li>
-                                    <li>
-                                        <img class="social-media-logo"
-                                             src="{{ url_for('static', filename='img/tumblr_logo.png') }}">
-                                        <a href="http://nycrecords.tumblr.com/" rel="noopener" target="_blank"> Tumblr</a>
-                                    </li>
-                                    <li>
-                                        <img class="social-media-logo"
-                                             src="{{ url_for('static', filename='img/youtube_logo.png') }}">
-                                        <a href="https://www.youtube.com/user/NYCDeptofRecords" rel="noopener" target="_blank"> YouTube</a>
+                                        <a class="text-reset" href="{{ url_for('main.contact') }}">
+                                            <strong>Contact</strong>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+                            <!-- .col -->
 
-{% block scripts %}
+                            <div class="col-lg mb-3 mb-lg-0">
+                                <ul class="extensible-list">
+                                    <li>
+                                        <a class="text-reset" href="http://www.archives.nyc/" target="_blank">
+                                            <strong>Archives.nyc</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="text-reset" href="http://a860-gpp.nyc.gov/" target="_blank">
+                                            <strong>Government Publications</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="text-reset" href="https://nycrecords.bywatersolutions.com/"
+                                            target="_blank">
+                                            <strong>Municipal Library Catalog</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .col -->
+
+                            <div class="col-lg mb-3 mb-lg-0">
+                                <ul class="extensible-list">
+                                    <li>
+                                        <a class="text-reset" href="https://a860-openrecords.nyc.gov/" target="_blank">
+                                            <strong>OpenRecords</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="text-reset" href="http://nycma.lunaimaging.com/luna/servlet"
+                                            target="_blank">
+                                            <strong>Online Gallery</strong>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="text-reset" href="https://womensactivism.nyc/" target="_blank">
+                                            <strong>Women's Activism</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .col -->
+                        </nav>
+
+                        <div class="footer-icons social-media">
+                            <a href="https://www.facebook.com/nycrecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/facebook_icon.png') }}" alt="Facebook Logo" width="30">
+                            </a>
+
+                            <a href="https://www.instagram.com/nycarchives/" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/instagram_icon.png') }}" alt="Instagram Logo" width="30">
+                            </a>
+
+                            <a href="https://twitter.com/nycrecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/twitter_icon.png') }}" alt="Twitter Logo" width="30">
+                            </a>
+
+                            <a href="http://nycrecords.tumblr.com/" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/tumblr_logo_main.png') }}" alt="Tumblr Logo" width="30">
+                            </a>
+
+                            <a href="https://www.youtube.com/user/NYCDeptofRecords" rel="noopener" target="_blank">
+                                <img src="{{ url_for('static', filename='img/youtube_icon.png') }}" alt="YouTube Logo" width="30">
+                            </a>
+                        </div>     
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-md-6 col-lg-4">
+                        <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                            <img class="mb-2" src="{{ url_for('static', filename='img/nyc-bubble-logo.svg') }}"
+                                width="90" alt="NYC Logo">
+                        </a>
+                        <p class="fs-sm">City of New York - 2025 All Rights Reserved. NYC is a trademark and service
+                            mark of the City of New York.</p>
+
+                        <ul class="extensible-list horizontal fs-sm">
+                            <li>
+                                <a class="text-reset" href="http://www1.nyc.gov/home/privacy-policy.page">Privacy
+                                    Policy</a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="http://www1.nyc.gov/home/terms-of-use.page">Terms
+                                    of Use</a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="http://www1.nyc.gov/site/mopd/index.page"
+                                    title="Mayor's Office for People with Disabilities">
+                                    <span class="sr-only">Mayor's Office for People with Disabilities</span>
+                                    <span class="fab fa-lg fa-accessible-icon"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .col -->
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .container -->
+        </div>
+        <!-- #nyc-bottom-footer -->
+    </footer>
+    {% endblock %}
+
+    {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
-
-    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.mask.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery-ui.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/jquery.timepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/parsley.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/plugins/session-timeout.min.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Google Translate -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/base.js') }}"></script>
 
+    {% include 'base.js.html' %}
     {% block custom_scripts %}
     {% endblock %}
-{% endblock %}
-
+    {% endblock %}
 </body>
 
 </html>

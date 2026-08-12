@@ -1,5 +1,4 @@
 .page-container {
-    width: 1300px;
     padding-bottom: 20px;
 }
 
@@ -29,6 +28,7 @@
     height: 38px;
     background-color: #FFFFFF;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    font-size: 20px;
 }
 
 #staff-directory-submit > input[type=submit] {
@@ -63,6 +63,10 @@
 
 #staff-directory-reset > a {
     color: #000000;
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    line-height: 38px;
 }
 
 #staff-directory-reset > a:hover {
@@ -168,4 +172,129 @@
     height: 16px;
     width: 14px;
     margin-right: 10px;
+}
+
+.table {
+    table-layout: fixed;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.table-bordered {
+    font-size: 16px;
+}
+
+.table-bordered th {
+    color: #ffffff;
+    text-align: center;
+}
+
+.division-column, .table td:nth-child(4) {
+    width: 250px;
+    white-space: nowrap;
+}
+
+.title-column {
+    width: 160px;
+}
+
+.phone-column {
+    width: 140px;
+}
+
+.email-column {
+    width: 230px;
+}
+
+.table td img {
+    width: 50px; 
+    height: 50px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto; 
+    margin-top: 5px;
+}
+
+.banner-with-background {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+}
+
+.staff_directory_header {
+    background-color: #67409E;
+}
+
+/*New CSS For the Search Form along with New Format on how it Looks*/
+.staff-directory-search-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+#staff-directory-search > input[type=text]::placeholder {
+    color: #000000;
+    font-size: 20px;
+    font-family: "Helvetica";
+}
+
+#staff-directory-submit-test > input[type=submit] {
+    height: 38px;
+    padding: 0 15px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Helvetica";
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+#staff-directory-reset {
+    height: 38px;
+    padding: 0 15px;
+    border: 1px solid #979797;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #000000;
+    font-size: 16px;
+    font-family: "Helvetica";
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn-outline-primary {
+    color: #000;
+    background-color: #fff;
+    border: none;
+    transition: none;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active,
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary.active,
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #000;
+    background-color: #fff;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+#staff-directory-reset {
+    margin-top: 5px;
 }

@@ -38,7 +38,7 @@
     font-weight: normal;
     padding-top: 25px;
     padding-bottom: 25px;
-    color: #4A4A4A;
+    color: #000000;
     text-align: center;
 }
 
@@ -46,5 +46,49 @@
     font-family: "Helvetica";
     font-size: 18px;
     font-weight: normal;
-    color: #4A4A4A;
+    color: #000000;
+}
+
+.divisions-paragraph {
+    color: #000000;
+}
+
+.breadcrumb-section {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-nav {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#nav-main-divisions {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.breadcrumb-ol {
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-item {
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "> ";
+}
+
+.divisions-card {
+    color: #000000 !important;
+    text-decoration: none; 
+}
+
+a.divisions-card:hover,
+a.divisions_card:focus {
+    color: #000000 !important;
 }

@@ -3,6 +3,10 @@
 
 {% block title %}Easy Not Found Generator{% endblock %}
 
+{% block custom_css %}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/enfg.css') }}"/>
+{% endblock %}
+
 {% block page_content %}
 <div class="col-sm-12">
     <div class="breadcrumb-section">
@@ -20,7 +24,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Easy Not Found Generator</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Easy Not Found Generator</h1>
+        <h1 class="breadcrumb-header pb-3">Easy Not Found Generator</h1>
     </div>
     <div class="col-sm-12 well content-area">
         <form class="enfg-form" method="POST">
@@ -46,14 +50,15 @@
                 {{ form.borough (class="form-control", size="5") }}
             </div>
             <div class="form-group">
-                <a class="btn btn-default" id="all-boroughs"   >All Boroughs</a>
+                <a class="btn btn-primary" id="all-boroughs"   >All Boroughs</a>
             </div>
             <div class="checkbox">
-                <label>
+                <label style="font-size: 16px;">
                     {{ form.signature() }} Print without signature
                 </label>
             </div>
-            {{ form.submit (class="btn btn-default") }}
+            <br>
+            {{ form.submit (class="btn btn-primary") }}
         </form>
     </div>
 </div>

@@ -1,6 +1,10 @@
 import ssl
+from urllib.parse import urlparse
+
 from flask import current_app
-from ldap3 import Server, Tls, Connection
+from ldap3 import Connection, Server, Tls
+from app.utils.onelogin.saml2.auth import OneLogin_Saml2_Auth
+from app.utils.onelogin.saml2.utils import OneLogin_Saml2_Utils
 
 
 def ldap_authentication(email, password):
@@ -41,3 +45,45 @@ def _ldap_server_connect():
     conn = Connection(server, ldap_sa_bind_dn, ldap_sa_password, auto_bind=True)
 
     return conn
+
+
+def prepare_saml_request(request):
+    """
+    Prepare a Flask request to be processed by the OneLogin SAML Toolkit.
+
+    Source: https://github.com/onelogin/python3-saml/blob/master/demo-flask/index.py#L22
+
+    :param request: Flask HTTP Request
+    :return: JSON Object for OneLogin
+    """
+    url_data = urlparse(request.url)
+    return {
+        'https': 'on' if request.scheme == 'https' else 'off',
+        'http_host': request.host,
+        'server_port': url_data.port,
+        'script_name': request.path,
+        'get_data': request.args.copy(),
+        'post_data': request.form.copy()
+    }
+
+
+def init_saml_auth(onelogin_request):
+    """
+    Initialize a OneLoginSaml2 Auth Object from a Flask Request
+
+    Source: https://github.com/onelogin/python3-saml/blob/master/demo-flask/index.py#L17
+
+    :param onelogin_request: JSON Object with Request Details
+    :return: OneLogin_Saml2_Auth object
+    """
+    onelogin_auth = OneLogin_Saml2_Auth(onelogin_request, custom_base_path=current_app.config['SAML_PATH'])
+    return onelogin_auth
+
+
+def get_self_url(onelogin_request):
+    """
+
+    :param onelogin_request:
+    :return:
+    """
+    return OneLogin_Saml2_Utils.get_self_url(onelogin_request)

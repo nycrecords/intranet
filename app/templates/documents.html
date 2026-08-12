@@ -8,6 +8,18 @@
 {% endblock %}
 
 {% block page_content %}
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Documents</h1>
+            </div>
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
 <div class="col-sm-12">
     <div class="breadcrumb-section">
         <nav class="breadcrumb-nav" aria-label="breadcrumb">
@@ -17,21 +29,15 @@
                 <li class="breadcrumb-item active" aria-current="page">Documents</li>
             </ol>
         </nav>
-        <h1 class="breadcrumb-header">Documents</h1>
     </div>
     <div class="col-sm-12 well content-area documents-section">
-        {% for message in get_flashed_messages() %}
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{ message }}
-        </div>
-        {% endfor %}
         <a class="btn btn-primary" href="{{ url_for('main.upload_document') }}">Upload New Document</a>
         <div class="searchform">
             <div class="documents-search-form">
-                Search by:<input id="document-search-term" type="text" class="searchbar">
-                <button class="btn btn-default documents-search-button">Submit</button>
-                Sort By:
+                <label for="document-search-term" style="font-size: 16px;">Search by:</label>
+                <input id="document-search-term" type="text" class="searchbar">
+                <button class="btn btn-primary documents-search-button">Submit</button>
+                <label for="sort-dropdown" style="font-size: 16px; padding-left: 25px;">Sort By:</label>
                 <select id="sort-dropdown" class="sort-dropdown">
                     <option value="all">All</option>
                     <option value="name_a_z">Name (A - Z)</option>
@@ -41,7 +47,7 @@
                 </select>
             </div>
         </div>
-        <div id="display-search-term" hidden>
+        <div id="display-search-term" class="hidden">
             Showing results that match "<p id="save-search-term"></p>"
         </div>
         <div class="document-tabs">
@@ -53,11 +59,14 @@
                 </button>
                 <button class="tablinks" value="templates" onclick="openTab(event, 'templates')" id="{{ 'default-open' if default_open == 'templates' }}">Templates</button>
                 <button class="tablinks" value="training_materials" onclick="openTab(event, 'training-materials')" id="{{ 'default-open' if default_open == 'training_materials' }}">Training Materials</button>
+                <button class="tablinks" value="covid_19_information" onclick="openTab(event, 'covid-19-information')" id="{{ 'default-open' if default_open == 'covid_19_information' }}">COVID-19 Information</button>
+                <button class="tablinks" value="records_management" onclick="openTab(event, 'records-management')" id="{{ 'default-open' if default_open == 'records_management' }}">Records Management</button>
+
             </div>
         </div>
         <div id="instructions" class="tabcontent">
             <br>
-            <table id="instructions-table" class="table table-striped">
+            <table id="instructions-table" class="table table-striped" style="font-size: 16px;">
                 <tr>
                     <th class="col-sm-3">Name</th>
                     <th class="col-sm-3">Division</th>
@@ -67,7 +76,7 @@
                 {% for document in instructions %}
                 {% if document.deleted == False %}
                 <tr>
-                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
                         document.file_title }}</a>
                         <p class="file-name">({{ document.file_name }})</p></td>
                     <td>{{ document.division }}</td>
@@ -77,17 +86,17 @@
                 {% endif %}
                 {% endfor %}
             </table>
-        </div>
-        <div id="instructions-pagination" class="row pagination-row" hidden>
+        </div> 
+        <div id="instructions-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="instructions-prev" class="btn btn-default">
+                <button type="button" id="instructions-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="instructions-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="instructions-next" class="btn btn-default">
+                <button type="button" id="instructions-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -106,7 +115,7 @@
                 {% for document in policies_and_procedures %}
                 {% if document.deleted == False %}
                 <tr>
-                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
                         document.file_title }}</a>
                         <p class="file-name">({{ document.file_name }})</p></td>
                     <td>{{ document.division }}</td>
@@ -117,16 +126,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="policies-and-procedures-pagination" class="row pagination-row" hidden>
+        <div id="policies-and-procedures-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="policies-and-procedures-prev" class="btn btn-default">
+                <button type="button" id="policies-and-procedures-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="policies-and-procedures-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="policies-and-procedures-next" class="btn btn-default">
+                <button type="button" id="policies-and-procedures-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -145,7 +154,7 @@
                 {% for document in templates %}
                 {% if document.deleted == False %}
                 <tr>
-                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
                         document.file_title }}</a>
                         <p class="file-name">({{ document.file_name }})</p></td>
                     <td>{{ document.division }}</td>
@@ -156,16 +165,16 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="templates-pagination" class="row pagination-row" hidden>
+        <div id="templates-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="templates-prev" class="btn btn-default">
+                <button type="button" id="templates-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="templates-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="templates-next" class="btn btn-default">
+                <button type="button" id="templates-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -184,7 +193,7 @@
                 {% for document in training_materials %}
                 {% if document.deleted == False %}
                 <tr>
-                    <td><a href="{{ url_for('static', filename='documents/' + document.file_name ) }}">{{
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
                         document.file_title }}</a>
                         <p class="file-name">({{ document.file_name }})</p></td>
                     <td>{{ document.division }}</td>
@@ -195,16 +204,93 @@
                 {% endfor %}
             </table>
         </div>
-        <div id="training-materials-pagination" class="row pagination-row" hidden>
+        <div id="training-materials-pagination" class="row pagination-row hidden">
             <div class="col-sm-3">
-                <button type="button" id="training-materials-prev" class="btn btn-default">
+                <button type="button" id="training-materials-prev" class="btn btn-primary">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                     Prev
                 </button>
             </div>
             <div class="col-sm-6 text-center" id="training-materials-page-info"></div>
             <div class="col-sm-3 text-right">
-                <button type="button" id="training-materials-next" class="btn btn-default">
+                <button type="button" id="training-materials-next" class="btn btn-primary">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="covid-19-information" class="tabcontent">
+            <br>
+            <table id="covid-19-information-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in covid_19_information %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="covid-19-information-pagination" class="row pagination-row hidden">
+            <div class="col-sm-3">
+                <button type="button" id="covid-19-information-prev" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="covid-19-information-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="covid-19-information-next" class="btn btn-primary">
+                    Next
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+            </div>
+        </div>
+        <div id="records-management" class="tabcontent">
+            <br>
+            <table id="records-management-table" class="table table-striped">
+                <tr>
+                    <th class="col-sm-3">Name</th>
+                    <th class="col-sm-3">Division</th>
+                    <th class="col-sm-3">Uploaded By</th>
+                    <th class="col-sm-3">Uploaded On</th>
+                </tr>
+                {% for document in records_management %}
+                {% if document.deleted == False %}
+                <tr>
+                    <td><a href="/return-file/{{ document.file_name }}" rel="noopener" target="_blank">{{
+                        document.file_title }}</a>
+                        <p class="file-name">({{ document.file_name }})</p></td>
+                    <td>{{ document.division }}</td>
+                    <td>{{ document.uploader }}</td>
+                    <td>{{ document.local_timestamp.strftime("%m/%d/%Y %I:%M %p") }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div id="records-management-pagination" class="row pagination-row hidden">
+            <div class="col-sm-3">
+                <button type="button" id="records-management-prev" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    Prev
+                </button>
+            </div>
+            <div class="col-sm-6 text-center" id="records-management-page-info"></div>
+            <div class="col-sm-3 text-right">
+                <button type="button" id="records-management-next" class="btn btn-primary">
                     Next
                     <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
@@ -212,6 +298,7 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block custom_scripts %}

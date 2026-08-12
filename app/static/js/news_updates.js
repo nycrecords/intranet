@@ -234,10 +234,10 @@ $(function () {
 
             var search_term = $('#save-search-term').text();
             if (search_term !== '') {
-                $('#display-search-term').show();
+                $('#display-search-term').removeClass("hidden");
             }
             else {
-                $('#display-search-term').hide();
+                $('#display-search-term').addClass("hidden");
             }
         }
     });

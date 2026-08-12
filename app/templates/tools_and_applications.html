@@ -4,75 +4,108 @@
 {% block title %}Tools and Applications{% endblock %}
 
 {% block custom_css %}
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/tools-and-applications.css') }}"/>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/tools-and-applications.css') }}" />
 {% endblock %}
 
 {% block page_content %}
-<div class="col-sm-12">
-    <div class="breadcrumb-section">
-        <nav class="breadcrumb-nav" aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-ol">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.index') }}">Home</a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('main.it_support') }}">IT Support</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">Tools and Applications</li>
-            </ol>
-        </nav>
-        <h1 class="breadcrumb-header">Tools and Applications</h1>
-    </div>
-    <div class="col-sm-12 well content-area tools-and-applications-section">
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="http://epayments.records.nycnet/" target="_blank">
-                    <div class="tools-and-applications-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="tools-and-applications-title">LABEL GENERATOR<br>(EPAYMENTS)</h4>
-                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/creditcard.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a href="{{ url_for('main.enfg') }}">
-                    <div class="tools-and-applications-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="tools-and-applications-title">LETTER GENERATOR</h4>
-                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/letter.png') }}">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-sm-4">
-                <a href="http://procurement.records.nycnet/" target="_blank">
-                    <div class="tools-and-applications-option-boxes col-sm-12">
-                        <div class="row">
-                            <h4 class="tools-and-applications-title">PROCUREMENT</h4>
-                            <img class="tools-and-applications-icon" src="{{ url_for('static', filename='img/procurement.png') }}">
-                        </div>
-                    </div>
-                </a>
+    <!-- Add your Custom image class below (after 'banner-with-background') -->
+    <div class="bg-primary banner-with-background oculus d-flex flex-column">
+
+        <div class="container-fluid my-auto text-center">
+            <div class="narrow">
+                <h1 class="display-4 text-white">Tools and Applications</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="tools-and-applications-text">
-                    <p>Online order tracking for Reference Room and Photo Unit staff.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="tools-and-applications-text">
-                    <p>Letter generator for Reference Room staff.</p>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="tools-and-applications-text">
-                    <p>Create and track procurement requests for DORIS.</p>
+        <!-- .container -->
+    </div>
+    <!-- .banner-with-background -->
+
+
+    <section class="bg-light py-2">
+        <br>
+        <div class="container">
+            <div class="row">
+                <!-- Breadcrumb Section -->
+                <div class="col-sm-6">
+                    <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                        <ol class="breadcrumb breadcrumb-ol">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.index') }}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url_for('main.it_support') }}">IT Support</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Tools and Applications</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
+
+    <!--Tools and Applications-->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row justify-content-center matrix-gutter">
+                <div class="col-md-6 col-lg-3">
+                    <a href="http://epayments.records.nycnet/" target="_blank" style="color: black;">
+                        <div class="card h-100 bg-white">
+                            <div class="card-body">
+                                <h2 class="card-title h5">EPAYMENTS</h2>
+                                <p class="card-text">
+                                    Online order tracking for Reference Room and Photo Unit staff.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="{{ url_for('main.enfg') }}" style="color: black;">
+                        <div class="card h-100 bg-white">
+                            <div class="card-body">
+                                <h2 class="card-title h5">LETTER GENERATOR</h2>
+                                <p class="card-text">
+                                    Letter generator for Reference Room staff.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="http://procurement.records.nycnet/" target="_blank" style="color: black;">
+                        <div class="card h-100 bg-white">
+                            <div class="card-body">
+                                <h2 class="card-title h5">PROCUREMENT</h2>
+                                <p class="card-text">
+                                    Create and track procurement requests for DORIS.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- .col -->
+
+                <div class="col-md-6 col-lg-3">
+                    <a href="https://dorisorders.nyc.gov/dorisorders/ui/cashier/items" target="_blank" style="color: black;">
+                        <div class="card h-100 bg-white">
+                            <div class="card-body">
+                                <h2 class="card-title h5">POINT OF SALE</h2>
+                                <p class="card-text">
+                                    DORIS Point of Sale application.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- .col -->
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </section>
 {% endblock %}
